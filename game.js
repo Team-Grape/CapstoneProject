@@ -1,6 +1,6 @@
 kaboom({
   global: true,
-  width: 1248,
+  width: 1246,
   height: 546,
   scale: 1,
   debug: true,
