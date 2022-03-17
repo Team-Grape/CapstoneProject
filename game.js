@@ -4,6 +4,7 @@ kaboom({
   height: 546,
   scale: 1,
   debug: true,
+  background: [35, 35, 35],
 });
 
 //creates our inventory in our local storage
@@ -30,21 +31,26 @@ loadSprite("background-tile", "basementTemplate.png");
 loadSprite("door", "evilDoor.png");
 loadSprite("key", "key_gold.png");
 
-onLoad(() => {
-  add([sprite("background-tile"), scale(1), area()]);
+scene('title', () => {
+  add([
+    text('Click anywhere to start'),
+    color(255, 0, 0),
+    pos(width() / 2, height() / 2),
+    origin('center'),
+  ]);
+  // onLoad(() => {
+  //   add([sprite('start'), scale(1), area(), 'start']);
+  // });
+  // can change to onClick when we have the start asset.
+  onClick(() => {
+    go('game');
+  });
 });
 
-onLoad(() => {
-  add([sprite("drawer"), pos(80, 200), scale(2), area(), "drawer"]);
-});
-
-onLoad(() => {
-  add([sprite("door"), pos(500, 150), scale(4), area(), "door"]);
-});
-
-onLoad(() => {
-  add([sprite("key"), pos(90, 250), scale(1), area(), "key"]);
-});
+scene('game', () => {
+  onLoad(() => {
+    add([sprite('background-tile'), scale(1), area()]);
+  });
 
 onClick("key", (key) => {
   console.log("a click happened");
@@ -57,3 +63,32 @@ onClick("key", (key) => {
   addToInventory(cellarKey);
   key.destroy();
 });
+
+  onLoad(() => {
+    add([sprite('drawer'), pos(80, 200), scale(2), area(), 'drawer']);
+  });
+
+  onLoad(() => {
+    add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
+  });
+
+  onLoad(() => {
+    add([sprite('key'), pos(90, 250), scale(1), area(), 'key']);
+  });
+
+  onClick('door', (door) => {
+    go('win');
+  });
+});
+
+scene('win', () => {
+  add([
+    text('You escape!'),
+    color(255, 0, 0),
+    origin('center'),
+    pos(width() / 2, height() / 2),
+  ]);
+});
+
+go('title');
+
