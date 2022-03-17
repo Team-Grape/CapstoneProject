@@ -30,6 +30,7 @@ onLoad(() => {
 onClick("key", (key) => {
   console.log('a click happened');
   alert("a key was added to your inventory");
+  localStorage.setItem('inventory', JSON.stringify(["key"]));
   key.destroy()
 });
 
