@@ -12,7 +12,7 @@ onLoad(() => {
 });
 
 onClick('drawer', (drawer) => {
-  console.log('something is hidden inside the drawer, find the way to open it');
+  alert('something is hidden inside the drawer, find the way to open it');
 });
 
 // scene('game', () => {
