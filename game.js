@@ -5,10 +5,14 @@ kaboom({
   debug: true,
 });
 
-loadSprite("drawer", "https://i.imgur.com/FchYMKv.png");
+loadSprite('drawer', 'drawer.png');
 
 onLoad(() => {
-  add([sprite("drawer"), pos(80, 100), area()]);
+  add([sprite('drawer'), pos(80, 100), area(), 'drawer']);
+});
+
+onClick('drawer', (drawer) => {
+  console.log('something is hidden inside the drawer, find the way to open it');
 });
 
 // scene('game', () => {
