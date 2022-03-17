@@ -27,10 +27,9 @@ onLoad(() => {
   add([sprite("key"), pos(90, 250), scale(1), area(), 'key']);
 });
 
-console.log('hello world')
-
 onClick("key", (key) => {
   console.log('a click happened');
   alert("a key was added to your inventory");
   key.destroy()
 });
+
