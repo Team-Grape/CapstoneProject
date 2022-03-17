@@ -11,7 +11,7 @@ onLoad(() => {
 });
 
 onClick('drawer', (drawer) => {
-  alert('something is hidden inside the drawer, find the way to open it');
+  alert('something is hidden inside the drawer, find the way to open it.');
 });
 
 loadSprite('drawer', 'drawer.png');
