@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "http-server": "^14.1.0"
-  }
+    "http-server": "^14.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "name": "capstoneproject",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server -p 1337"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Grape/CapstoneProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Grape/CapstoneProject/issues"
+  },
+  "homepage": "https://github.com/Team-Grape/CapstoneProject#readme",
+  "description": ""
 }
