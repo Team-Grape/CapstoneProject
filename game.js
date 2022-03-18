@@ -7,6 +7,14 @@ kaboom({
   background: [35, 35, 35],
 });
 
+
+cellarKey = {
+  name: 'cellar key',
+  description: 'an old rusty key to the cellar door',
+  quantity: 1,
+  image: 'key_gold.png',
+};
+
 //creates our inventory in our local storage
 // window.localStorage.setItem("inventory", JSON.stringify([]));
 
@@ -23,6 +31,23 @@ function addToInventory(item) {
     );
   }
 }
+
+
+function checkInventoryForItem(item) {
+  if (!window.localStorage.getItem('inventory')) {
+    // you dont even have an inventory yet!
+    return false
+  }
+  const currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  if (currentInventory.filter((i) => i.name === item.name).length > 0) {
+    // item is in the inventory!
+    return true
+  } else {
+    // item is not in the inventory!
+    return false
+  }
+}
+
 
 loadSprite('drawer', 'drawer.png');
 loadSprite('background-tile', 'basementTemplate.png');
@@ -57,11 +82,6 @@ scene('game', () => {
   onClick('key', (key) => {
     console.log('a click happened');
     alert('a key was added to your inventory');
-    cellarKey = {
-      name: 'cellar key',
-      description: 'an old rusty key to the cellar door',
-      quantity: 1,
-    };
     addToInventory(cellarKey);
     key.destroy();
   });
@@ -79,7 +99,11 @@ scene('game', () => {
   });
 
   onClick('door', (door) => {
-    go('win');
+    if (checkInventoryForItem(cellarKey)) {
+      go('win');
+    } else {
+      console.log('It does open, I think its locked.')
+    }
   });
 
   // Current dialog
