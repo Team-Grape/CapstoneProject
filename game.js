@@ -7,44 +7,42 @@ kaboom({
   background: [35, 35, 35],
 });
 
-
 cellarKey = {
-  name: 'cellar key',
-  description: 'an old rusty key to the cellar door',
+  name: "cellar key",
+  description: "an old rusty key to the cellar door",
   quantity: 1,
-  image: 'key_gold.png',
+  image: "key_gold.png",
 };
 
 //creates our inventory in our local storage
 // window.localStorage.setItem("inventory", JSON.stringify([]));
 
 function addToInventory(item) {
-  if (!window.localStorage.getItem('inventory')) {
-    window.localStorage.setItem('inventory', JSON.stringify([]));
+  if (!window.localStorage.getItem("inventory")) {
+    window.localStorage.setItem("inventory", JSON.stringify([]));
   }
-  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
   if (currentInventory.filter((i) => i.name === item.name).length === 0) {
     // this item is not in the inventory. So add it to the inventory below:
     localStorage.setItem(
-      'inventory',
+      "inventory",
       JSON.stringify([...currentInventory, item])
     );
   }
 }
 
-
 function checkInventoryForItem(item) {
-  if (!window.localStorage.getItem('inventory')) {
+  if (!window.localStorage.getItem("inventory")) {
     // you dont even have an inventory yet!
-    return false
+    return false;
   }
-  const currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  const currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
   if (currentInventory.filter((i) => i.name === item.name).length > 0) {
     // item is in the inventory!
-    return true
+    return true;
   } else {
     // item is not in the inventory!
-    return false
+    return false;
   }
 }
 
@@ -57,6 +55,8 @@ loadSprite('room-two-background-right', './assets/roomTwoRightLeft.png');
 loadSprite('room-two-background-left', './assets/roomTwoRightLeft.png');
 loadSprite('right-arrow', './assets/rightArrow.png');
 loadSprite('left-arrow', './assets/leftArrow.png');
+loadSprite("up-arrow", "./assets/upArrow.png");
+loadSprite("down-arrow", "./assets/downArrow.png");
 loadSprite('fruit-painting', './assets/fruitPainting.png');
 loadSprite('bookcase', './assets/bookcase.png');
 loadSprite('turn-right-arrow', './assets/turn-right-arrow.png')
@@ -65,31 +65,32 @@ loadSprite('small-window', './assets/small-window.png')
 loadSprite('pile-of-bones', './assets/pileOfBones.png')
 loadSprite('chained-skeleton', './assets/chainedSkeleton.png')
 
+
 // Define the dialogue data
 const dialogs = [
-  ['when you woke up you found yourself in an strange room'],
-  ['the door is locked and you are trapped in the room'],
-  ['look around the room to see if you can find the key to open the door'],
+  ["when you woke up you found yourself in an strange room"],
+  ["the door is locked and you are trapped in the room"],
+  ["look around the room to see if you can find the key to open the door"],
 ];
 
-scene('title', () => {
+scene("title", () => {
   add([
-    text('Click anywhere to start'),
+    text("Click anywhere to start"),
     color(255, 0, 0),
     pos(width() / 2, height() / 2),
-    origin('center'),
+    origin("center"),
   ]);
 
   onClick(() => {
-
-    go('room-1-wall-1');
+    go("room-1-wall-1");
   });
 });
+
 
 //Room One
 // 1-1
 scene('room-1-wall-1', () => {
-  console.log('entered 1-1')
+
 
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
@@ -100,19 +101,24 @@ scene('room-1-wall-1', () => {
 
   //Door click handler
   onClick('door', (door) => {
-    if (checkInventoryForItem(cellarKey)) {
-      go('roomTwo');
-    } else {
-      console.log('It doesn\'t open, I think its locked.')
-    }
-  });
 
-  //Navigation click handlers (1-1)
-  onClick('turn-right-arrow', () => {
-    go('room-1-wall-2');
+    if (checkInventoryForItem(cellarKey)) {
+      go("roomTwo");
+    } else {
+
+// add text box that says'it doesn't open, it seems like it needs a key' or something
+    } 
+    localStorage.clear() 
+    // we will need to change this to remove just the key
   });
-  onClick('turn-left-arrow', () => {
-    go('room-1-wall-4');
+  //Navigation click handlers (1-1)
+
+  onClick("turn-right-arrow", () => {
+    go("room-1-wall-2");
+  });
+  onClick("turn-left-arrow", () => {
+    go("room-1-wall-4");
+
   });
 
   // Current dialog
@@ -121,22 +127,22 @@ scene('room-1-wall-1', () => {
   // Text bubble
   const textbox = add([
     rect(width() - 200, 120, { radius: 32 }),
-    origin('center'),
+    origin("center"),
     pos(center().x, height() - 100),
     outline(2),
   ]);
 
   // Text
   const txt = add([
-    text('', { size: 32, width: width() - 230 }),
+    text("", { size: 32, width: width() - 230 }),
     pos(textbox.pos),
-    origin('center'),
+    origin("center"),
   ]);
 
   // NextButton
   const nextButton = add([
-    text('Next', { size: 16 }),
-    pos(textbox.pos, 'botright'),
+    text("Next", { size: 20 }),
+    pos(1050, 475),
     area(),
   ]);
 
@@ -195,9 +201,10 @@ scene('room-1-wall-3', () => {
   //Key click handler
   onClick('key', (key) => {
     alert('a key was added to your inventory');
+
     cellarKey = {
-      name: 'cellar key',
-      description: 'an old rusty key to the cellar door',
+      name: "cellar key",
+      description: "an old rusty key to the cellar door",
       quantity: 1,
     };
     addToInventory(cellarKey);
@@ -207,17 +214,16 @@ scene('room-1-wall-3', () => {
   // Navigation click handlers (1-3)
   onClick('turn-right-arrow', () => {
     go('room-1-wall-4');
+    
   });
-  onClick('turn-left-arrow', () => {
-    go('room-1-wall-2');
+  onClick("turn-left-arrow", () => {
+    go("room-1-wall-2");
   });
 });
 
 
 // 1-4
 scene('room-1-wall-4', () => {
-  console.log('entered 1-4')
-
   //Sprite Loaders
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
@@ -229,66 +235,138 @@ scene('room-1-wall-4', () => {
   //Navigation Click Handlers
   onClick('turn-right-arrow', () => {
     go('room-1-wall-1');
+
   });
-  onClick('turn-left-arrow', () => {
-    go('room-1-wall-3');
+  onClick("turn-left-arrow", () => {
+    go("room-1-wall-3");
   });
 });
 
 
-//Room 2
-scene('roomTwo', () => {
-  onLoad(() => {
-    add([sprite('room-two-background'), scale(1), area()]);
-  })
-  onLoad(() => {
-    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
-  })
-  onLoad(() => {
-    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
-  })
-  onClick('left-arrow', () => {
-    go("roomTwoLeft")
-  })
-  onClick('right-arrow', () => {
-    go('roomTwoRight')
-  })
-})
+scene("roomTwo", () => {
 
-scene('roomTwoLeft', () => {
   onLoad(() => {
-    add([sprite('room-two-background-left'), scale(1), area()])
-  })
+    add([sprite("room-two-background"), scale(1), area()]);
+  });
   onLoad(() => {
-    add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
-  })
+    add([
+      sprite("right-arrow"),
+      pos(1175, 250),
+      scale(0.5),
+      area(),
+      "right-arrow",
+    ]);
+  });
   onLoad(() => {
-    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
-  })
-  onClick('right-arrow', () => {
-    go('roomTwo')
-  })
-})
+    add([sprite("left-arrow"), pos(25, 250), scale(0.5), area(), "left-arrow"]);
+  });
+  onLoad(() => {
+    add([
+      sprite("down-arrow"),
+      pos(width() / 2, 480),
+      scale(0.5),
+      area(),
+      "down-arrow",
+    ]);
+  });
+  onLoad(() => {
+    add([
+      sprite("fruit-painting"),
+      pos(500, 100),
+      scale(0.5),
+      area(),
+      "fruit-painting",
+    ]);
+  });
+  onClick("down-arrow", () => {
+    go("roomTwoDown");
+  });
+  onClick("left-arrow", () => {
+    go("roomTwoLeft");
+  });
+  onClick("right-arrow", () => {
+    go("roomTwoRight");
+  });
+});
 
-scene('roomTwoRight', () => {
+scene("roomTwoDown", () => {
   onLoad(() => {
-    add([sprite('room-two-background-right'), scale(1), area()])
-  })
+    add([sprite("room-two-background"), scale(1), area()]);
+  });
   onLoad(() => {
-    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
-  })
-  onClick('left-arrow', () => {
-    go("roomTwo")
-  })
-})
+    add([
+      sprite("up-arrow"),
+      pos(width() / 2, 25),
+      scale(0.5),
+      area(),
+      "up-arrow",
+    ]);
+  });
 
-scene('win', () => {
+  onClick("up-arrow", () => {
+    go("roomTwo");
+  });
+});
+
+scene("roomTwoLeft", () => {
+  onLoad(() => {
+    add([sprite("room-two-background-left"), scale(1), area()]);
+  });
+  onLoad(() => {
+    add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
+  });
+  onLoad(() => {
+    add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
+  });
+  onLoad(() => {
+    add([sprite("bookcase"), pos(400, 150), scale(0.5), area(), "bookcase"]);
+  });
+  onLoad(() => {
+    add([
+      sprite("right-arrow"),
+      pos(1175, 250),
+      scale(0.5),
+      area(),
+      "right-arrow",
+    ]);
+  });
+  onClick("bookcase", (bookcase) => {
+    bookcase.pos.x = 180
+  });
+  onClick("key", (key) => {
+    alert("a key was added to your inventory");
+    cellarKey = {
+      name: "cellar key",
+      description: "an old rusty key to the cellar door",
+      quantity: 1,
+    };
+    addToInventory(cellarKey);
+    key.destroy();
+  });
+  onClick("right-arrow", () => {
+    go("roomTwo");
+  });
+});
+
+scene("roomTwoRight", () => {
+  onLoad(() => {
+    add([sprite("room-two-background-right"), scale(1), area()]);
+  });
+  onLoad(() => {
+    add([sprite("left-arrow"), pos(25, 250), scale(0.5), area(), "left-arrow"]);
+  });
+  onClick("left-arrow", () => {
+    go("roomTwo");
+  });
+});
+
+scene("win", () => {
   add([
-    text('You escape!'),
+    text("You escape!"),
     color(255, 0, 0),
-    origin('center'),
+    origin("center"),
     pos(width() / 2, height() / 2),
   ]);
 });
 
-go('title');
+go("title");
