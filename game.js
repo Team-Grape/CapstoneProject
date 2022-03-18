@@ -48,7 +48,6 @@ function checkInventoryForItem(item) {
   }
 }
 
-
 loadSprite('drawer', './assets/drawer.png');
 loadSprite('background-tile', './assets/basementTemplate.png');
 loadSprite('door', './assets/evilDoor.png');
@@ -110,11 +109,9 @@ scene('room-1-wall-1', () => {
 
   //Navigation click handlers (1-1)
   onClick('turn-right-arrow', () => {
-    console.log('go to 1-2')
     go('room-1-wall-2');
   });
   onClick('turn-left-arrow', () => {
-    console.log('go to 1-4')
     go('room-1-wall-4');
   });
 
@@ -165,8 +162,6 @@ scene('room-1-wall-1', () => {
 
 // 1-2
 scene('room-1-wall-2', () => {
-  console.log('entered 1-2')
-  
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
     add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
@@ -176,12 +171,10 @@ scene('room-1-wall-2', () => {
 
   //Navigation click handlers (1-2)
   onClick('turn-right-arrow', () => {
-    console.log('go to 1-3')
     go('room-1-wall-3');
   });
 
   onClick('turn-left-arrow', () => {
-    console.log('go to 1-1')
     go('room-1-wall-1');
   });
 });
@@ -189,8 +182,6 @@ scene('room-1-wall-2', () => {
 
 // 1-3
 scene('room-1-wall-3', () => {
-  console.log('entered 1-3')
-
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
     add([sprite('small-window'), pos(900, 30), scale(4), area(), 'small-window']);
@@ -203,7 +194,6 @@ scene('room-1-wall-3', () => {
  
   //Key click handler
   onClick('key', (key) => {
-    console.log('a click happened');
     alert('a key was added to your inventory');
     cellarKey = {
       name: 'cellar key',
