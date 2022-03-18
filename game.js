@@ -46,22 +46,25 @@ function checkInventoryForItem(item) {
   }
 }
 
-loadSprite("drawer", "./assets/drawer.png");
-loadSprite("background-tile", "./assets/basementTemplate.png");
-loadSprite("door", "./assets/evilDoor.png");
-loadSprite("key", "./assets/key_gold.png");
-loadSprite("room-two-background", "./assets/roomTwoBackground.png");
-loadSprite("room-two-background-right", "./assets/roomTwoRightLeft.png");
-loadSprite("room-two-background-left", "./assets/roomTwoRightLeft.png");
-loadSprite("right-arrow", "./assets/rightArrow.png");
-loadSprite("left-arrow", "./assets/leftArrow.png");
+loadSprite('drawer', './assets/drawer.png');
+loadSprite('background-tile', './assets/basementTemplate.png');
+loadSprite('door', './assets/evilDoor.png');
+loadSprite('key', './assets/key_gold.png');
+loadSprite('room-two-background', './assets/roomTwoBackground.png');
+loadSprite('room-two-background-right', './assets/roomTwoRightLeft.png');
+loadSprite('room-two-background-left', './assets/roomTwoRightLeft.png');
+loadSprite('right-arrow', './assets/rightArrow.png');
+loadSprite('left-arrow', './assets/leftArrow.png');
 loadSprite("up-arrow", "./assets/upArrow.png");
-loadSprite("fruit-painting", "./assets/fruitPainting.png");
-loadSprite("bookcase", "./assets/bookcase.png");
-loadSprite("turn-right-arrow", "./assets/turn-right-arrow.png");
-loadSprite("turn-left-arrow", "./assets/turn-left-arrow.png");
-loadSprite("small-window", "./assets/small-window.png");
 loadSprite("down-arrow", "./assets/downArrow.png");
+loadSprite('fruit-painting', './assets/fruitPainting.png');
+loadSprite('bookcase', './assets/bookcase.png');
+loadSprite('turn-right-arrow', './assets/turn-right-arrow.png')
+loadSprite('turn-left-arrow', './assets/turn-left-arrow.png')
+loadSprite('small-window', './assets/small-window.png')
+loadSprite('pile-of-bones', './assets/pileOfBones.png')
+loadSprite('chained-skeleton', './assets/chainedSkeleton.png')
+
 
 // Define the dialogue data
 const dialogs = [
@@ -83,43 +86,32 @@ scene("title", () => {
   });
 });
 
-scene("room-1-wall-1", () => {
-  onLoad(() => {
-    add([sprite("background-tile"), scale(1), area()]);
-  });
+
+//Room One
+// 1-1
+scene('room-1-wall-1', () => {
+
 
   onLoad(() => {
-    add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
+    add([sprite('background-tile'), scale(1), area()]);
+    add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
+    add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
+    add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
   });
 
-  onLoad(() => {
-    add([
-      sprite("turn-right-arrow"),
-      pos(1200, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
+  //Door click handler
+  onClick('door', (door) => {
 
-  onLoad(() => {
-    add([
-      sprite("turn-left-arrow"),
-      pos(0, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
-  onClick("door", (door) => {
     if (checkInventoryForItem(cellarKey)) {
       go("roomTwo");
     } else {
-      console.log("It doesn't open, I think its locked.");
-    } 
-    localStorage.clear()
-  });
 
+// add text box that says'it doesn't open, it seems like it needs a key' or something
+    } 
+    localStorage.clear() 
+    // we will need to change this to remove just the key
+  });
+  //Navigation click handlers (1-1)
   onClick("turn-right-arrow", () => {
     go("room-1-wall-2");
   });
@@ -171,89 +163,50 @@ scene("room-1-wall-1", () => {
 
   updateDialog();
 });
-scene("room-1-wall-2", () => {
+
+// 1-2
+scene('room-1-wall-2', () => {
+  console.log('entered 1-2')
+  
   onLoad(() => {
-    add([sprite("background-tile"), scale(1), area()]);
+    add([sprite('background-tile'), scale(1), area()]);
+    add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
+    add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+    add([sprite('fruit-painting'), pos(500, 150), scale(1), area(), 'fruit-painting']);
   });
 
-  onLoad(() => {
-    add([
-      sprite("turn-right-arrow"),
-      pos(1200, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
+  //Navigation click handlers (1-2)
+  onClick('turn-right-arrow', () => {
+    console.log('go to 1-3')
+    go('room-1-wall-3');
   });
 
-  onLoad(() => {
-    add([
-      sprite("turn-left-arrow"),
-      pos(0, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
-
-  onClick("turn-right-arrow", () => {
-    go("room-1-wall-3");
-  });
-  onClick("turn-left-arrow", () => {
-    go("room-1-wall-1");
+  onClick('turn-left-arrow', () => {
+    console.log('go to 1-1')
+    go('room-1-wall-1');
   });
 });
 
-scene("room-1-wall-3", () => {
-  onLoad(() => {
-    add([sprite("background-tile"), scale(1), area()]);
-  });
-  onLoad(() => {
-    add([
-      sprite("small-window"),
-      pos(900, 30),
-      scale(4),
-      area(),
-      "small-window",
-    ]);
-  });
-  onLoad(() => {
-    add([
-      sprite("small-window"),
-      pos(300, 30),
-      scale(4),
-      area(),
-      "small-window",
-    ]);
-  });
+
+// 1-3
+scene('room-1-wall-3', () => {
+  console.log('entered 1-3')
 
   onLoad(() => {
-    add([
-      sprite("turn-right-arrow"),
-      pos(1200, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
+    add([sprite('background-tile'), scale(1), area()]);
+    add([sprite('small-window'), pos(900, 30), scale(4), area(), 'small-window']);
+    add([sprite('small-window'), pos(300, 30), scale(4), area(), 'small-window']);
+    add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
+    add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+    add([sprite('key'), pos(120, 400), scale(1), area(), 'key']);
+    add([sprite('chained-skeleton'), pos(500, 150), scale(4), area(), 'chained-skeleton']);
   });
+ 
+  //Key click handler
+  onClick('key', (key) => {
+    console.log('a click happened');
+    alert('a key was added to your inventory');
 
-  onLoad(() => {
-    add([
-      sprite("turn-left-arrow"),
-      pos(0, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
-
-  onLoad(() => {
-    add([sprite("key"), pos(90, 250), scale(1), area(), "key"]);
-  });
-
-  onClick("key", (key) => {
-    console.log("a click happened");
-    alert("a key was added to your inventory");
     cellarKey = {
       name: "cellar key",
       description: "an old rusty key to the cellar door",
@@ -263,48 +216,40 @@ scene("room-1-wall-3", () => {
     key.destroy();
   });
 
-  onClick("turn-right-arrow", () => {
-    go("room-1-wall-4");
+  // Navigation click handlers (1-3)
+  onClick('turn-right-arrow', () => {
+    go('room-1-wall-4');
+    
   });
   onClick("turn-left-arrow", () => {
     go("room-1-wall-2");
   });
 });
 
-scene("room-1-wall-4", () => {
+
+// 1-4
+scene('room-1-wall-4', () => {
+  //Sprite Loaders
   onLoad(() => {
-    add([sprite("background-tile"), scale(1), area()]);
+    add([sprite('background-tile'), scale(1), area()]);
+    add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
+    add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+    add([sprite('pile-of-bones'), pos(500, 350), scale(3), area(), 'pile-of-bones']);
   });
 
-  onLoad(() => {
-    add([
-      sprite("turn-right-arrow"),
-      pos(1200, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
+  //Navigation Click Handlers
+  onClick('turn-right-arrow', () => {
+    go('room-1-wall-1');
 
-  onLoad(() => {
-    add([
-      sprite("turn-left-arrow"),
-      pos(0, 250),
-      scale(0.75),
-      area(),
-      "turn-right-arrow",
-    ]);
-  });
-
-  onClick("turn-right-arrow", () => {
-    go("room-1-wall-1");
   });
   onClick("turn-left-arrow", () => {
     go("room-1-wall-3");
   });
 });
 
+
 scene("roomTwo", () => {
+
   onLoad(() => {
     add([sprite("room-two-background"), scale(1), area()]);
   });
