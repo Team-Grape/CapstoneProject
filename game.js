@@ -11,25 +11,30 @@ kaboom({
 // window.localStorage.setItem("inventory", JSON.stringify([]));
 
 function addToInventory(item) {
-  if (!window.localStorage.getItem("inventory")) {
-    window.localStorage.setItem("inventory", JSON.stringify([]));
+  if (!window.localStorage.getItem('inventory')) {
+    window.localStorage.setItem('inventory', JSON.stringify([]));
   }
-  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
-  if (currentInventory.filter((i) =>  i.name === item.name).length === 0) {
+  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  if (currentInventory.filter((i) => i.name === item.name).length === 0) {
     // this item is not in the inventory. So add it to the inventory below:
     localStorage.setItem(
-      "inventory",
+      'inventory',
       JSON.stringify([...currentInventory, item])
     );
   }
-  }
- 
+}
 
+loadSprite('drawer', 'drawer.png');
+loadSprite('background-tile', 'basementTemplate.png');
+loadSprite('door', 'evilDoor.png');
+loadSprite('key', 'key_gold.png');
 
-loadSprite("drawer", "drawer.png");
-loadSprite("background-tile", "basementTemplate.png");
-loadSprite("door", "evilDoor.png");
-loadSprite("key", "key_gold.png");
+// Define the dialogue data
+const dialogs = [
+  ['when you woke up you found yourself in an strange room'],
+  ['the door is locked and you are trapped in the room'],
+  ['look around the room to see if you can find the key to open the door'],
+];
 
 scene('title', () => {
   add([
@@ -38,10 +43,7 @@ scene('title', () => {
     pos(width() / 2, height() / 2),
     origin('center'),
   ]);
-  // onLoad(() => {
-  //   add([sprite('start'), scale(1), area(), 'start']);
-  // });
-  // can change to onClick when we have the start asset.
+
   onClick(() => {
     go('game');
   });
@@ -52,17 +54,17 @@ scene('game', () => {
     add([sprite('background-tile'), scale(1), area()]);
   });
 
-onClick("key", (key) => {
-  console.log("a click happened");
-  alert("a key was added to your inventory");
-  cellarKey = {
-    name: "cellar key",
-    description: "an old rusty key to the cellar door",
-    quantity: 1,
-  };
-  addToInventory(cellarKey);
-  key.destroy();
-});
+  onClick('key', (key) => {
+    console.log('a click happened');
+    alert('a key was added to your inventory');
+    cellarKey = {
+      name: 'cellar key',
+      description: 'an old rusty key to the cellar door',
+      quantity: 1,
+    };
+    addToInventory(cellarKey);
+    key.destroy();
+  });
 
   onLoad(() => {
     add([sprite('drawer'), pos(80, 200), scale(2), area(), 'drawer']);
@@ -79,6 +81,51 @@ onClick("key", (key) => {
   onClick('door', (door) => {
     go('win');
   });
+
+  // Current dialog
+  let curDialog = 0;
+
+  // Text bubble
+  const textbox = add([
+    rect(width() - 200, 120, { radius: 32 }),
+    origin('center'),
+    pos(center().x, height() - 100),
+    outline(2),
+  ]);
+
+  // Text
+  const txt = add([
+    text('', { size: 32, width: width() - 230 }),
+    pos(textbox.pos),
+    origin('center'),
+  ]);
+
+  // NextButton
+  const nextButton = add([
+    text('Next', { size: 16 }),
+    pos(textbox.pos),
+    origin('right'),
+    area(),
+  ]);
+
+  nextButton.onClick(() => {
+    if (curDialog === dialogs.length - 1) {
+      textbox.destroy();
+      txt.destroy();
+      nextButton.destroy();
+      return;
+    }
+    curDialog = curDialog + 1;
+    updateDialog();
+  });
+
+  // Update the on screen sprite & text
+  function updateDialog() {
+    const [dialog] = dialogs[curDialog];
+    txt.text = dialog;
+  }
+
+  updateDialog();
 });
 
 scene('win', () => {
@@ -91,4 +138,3 @@ scene('win', () => {
 });
 
 go('title');
-
