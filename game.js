@@ -28,6 +28,13 @@ loadSprite('drawer', 'drawer.png');
 loadSprite('background-tile', 'basementTemplate.png');
 loadSprite('door', 'evilDoor.png');
 loadSprite('key', 'key_gold.png');
+loadSprite('room-two-background', 'roomTwoBackground.png');
+loadSprite('room-two-background-right', 'roomTwoRightLeft.png');
+loadSprite('room-two-background-left', 'roomTwoRightLeft.png');
+loadSprite('right-arrow', 'rightArrow.png');
+loadSprite('left-arrow', 'leftArrow.png');
+loadSprite('fuit-painting', 'fruitPainting.png');
+loadSprite('bookcase', 'bookcase.png');
 
 // Define the dialogue data
 const dialogs = [
@@ -45,17 +52,16 @@ scene('title', () => {
   ]);
 
   onClick(() => {
-    go('game');
+    go('roomOne');
   });
 });
 
-scene('game', () => {
+scene('roomOne', () => {
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
   });
 
   onClick('key', (key) => {
-    console.log('a click happened');
     alert('a key was added to your inventory');
     cellarKey = {
       name: 'cellar key',
@@ -79,7 +85,7 @@ scene('game', () => {
   });
 
   onClick('door', (door) => {
-    go('win');
+    go('roomTwo');
   });
 
   // Current dialog
@@ -103,8 +109,7 @@ scene('game', () => {
   // NextButton
   const nextButton = add([
     text('Next', { size: 16 }),
-    pos(textbox.pos),
-    origin('right'),
+    pos(textbox.pos, 'botright'),
     area(),
   ]);
 
@@ -127,6 +132,51 @@ scene('game', () => {
 
   updateDialog();
 });
+
+scene('roomTwo', () => {
+  onLoad(() => {
+    add([sprite('room-two-background'), scale(1), area()]);
+  })
+  onLoad(() => {
+    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
+  })
+  onLoad(() => {
+    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
+  })
+  onClick('left-arrow', () => {
+    go("roomTwoLeft")
+  })
+  onClick('right-arrow', () => {
+    go('roomTwoRight')
+  })
+})
+
+scene('roomTwoLeft', () => {
+  onLoad(() => {
+    add([sprite('room-two-background-left'), scale(1), area()])
+  })
+  onLoad(() => {
+    add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
+  })
+  onLoad(() => {
+    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
+  })
+  onClick('right-arrow', () => {
+    go('roomTwo')
+  })
+})
+
+scene('roomTwoRight', () => {
+  onLoad(() => {
+    add([sprite('room-two-background-right'), scale(1), area()])
+  })
+  onLoad(() => {
+    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
+  })
+  onClick('left-arrow', () => {
+    go("roomTwo")
+  })
+})
 
 scene('win', () => {
   add([
