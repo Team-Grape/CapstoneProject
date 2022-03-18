@@ -53,9 +53,17 @@ loadSprite('drawer', 'drawer.png');
 loadSprite('background-tile', 'basementTemplate.png');
 loadSprite('door', 'evilDoor.png');
 loadSprite('key', 'key_gold.png');
+loadSprite('room-two-background', 'roomTwoBackground.png');
+loadSprite('room-two-background-right', 'roomTwoRightLeft.png');
+loadSprite('room-two-background-left', 'roomTwoRightLeft.png');
+loadSprite('right-arrow', 'rightArrow.png');
+loadSprite('left-arrow', 'leftArrow.png');
+loadSprite('fuit-painting', 'fruitPainting.png');
+loadSprite('bookcase', 'bookcase.png');
 loadSprite('turn-right-arrow', './assets/turn-right-arrow.png')
 loadSprite('turn-left-arrow', './assets/turn-left-arrow.png')
 loadSprite('small-window', './assets/small-window.png')
+
 
 // Define the dialogue data
 const dialogs = [
@@ -73,6 +81,7 @@ scene('title', () => {
   ]);
 
   onClick(() => {
+
     go('room-1-wall-1');
   });
 });
@@ -96,8 +105,9 @@ scene('room-1-wall-1', () => {
     add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-right-arrow']);
   });
   onClick('door', (door) => {
+
     if (checkInventoryForItem(cellarKey)) {
-      go('win');
+      go('roomTwo');
     } else {
       console.log('It does open, I think its locked.')
     }
@@ -131,8 +141,7 @@ scene('room-1-wall-1', () => {
   // NextButton
   const nextButton = add([
     text('Next', { size: 16 }),
-    pos(textbox.pos),
-    origin('right'),
+    pos(textbox.pos, 'botright'),
     area(),
   ]);
 
@@ -155,7 +164,6 @@ scene('room-1-wall-1', () => {
 
   updateDialog();
 });
-
 scene('room-1-wall-2', () => {
   onLoad(() => {
     add([sprite('background-tile'), scale(1), area()]);
@@ -242,6 +250,51 @@ scene('room-1-wall-4', () => {
     go('room-1-wall-3');
   });
 });
+
+scene('roomTwo', () => {
+  onLoad(() => {
+    add([sprite('room-two-background'), scale(1), area()]);
+  })
+  onLoad(() => {
+    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
+  })
+  onLoad(() => {
+    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
+  })
+  onClick('left-arrow', () => {
+    go("roomTwoLeft")
+  })
+  onClick('right-arrow', () => {
+    go('roomTwoRight')
+  })
+})
+
+scene('roomTwoLeft', () => {
+  onLoad(() => {
+    add([sprite('room-two-background-left'), scale(1), area()])
+  })
+  onLoad(() => {
+    add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
+  })
+  onLoad(() => {
+    add([sprite('right-arrow'), pos(1175, 250), scale(0.5), area(), 'right-arrow'])
+  })
+  onClick('right-arrow', () => {
+    go('roomTwo')
+  })
+})
+
+scene('roomTwoRight', () => {
+  onLoad(() => {
+    add([sprite('room-two-background-right'), scale(1), area()])
+  })
+  onLoad(() => {
+    add([sprite('left-arrow'), pos(25, 250), scale(0.5), area(), 'left-arrow'])
+  })
+  onClick('left-arrow', () => {
+    go("roomTwo")
+  })
+})
 
 scene('win', () => {
   add([
