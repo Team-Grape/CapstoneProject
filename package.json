@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "http-server": "^14.1.0",
-    "nodemon": "^2.0.15"
+    "http-server": "^14.1.0"
   },
   "name": "capstoneproject",
   "version": "1.0.0",
