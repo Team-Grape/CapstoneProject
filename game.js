@@ -7,6 +7,14 @@ kaboom({
   background: [35, 35, 35],
 });
 
+
+cellarKey = {
+  name: 'cellar key',
+  description: 'an old rusty key to the cellar door',
+  quantity: 1,
+  image: 'key_gold.png',
+};
+
 //creates our inventory in our local storage
 // window.localStorage.setItem("inventory", JSON.stringify([]));
 
@@ -23,6 +31,23 @@ function addToInventory(item) {
     );
   }
 }
+
+
+function checkInventoryForItem(item) {
+  if (!window.localStorage.getItem('inventory')) {
+    // you dont even have an inventory yet!
+    return false
+  }
+  const currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  if (currentInventory.filter((i) => i.name === item.name).length > 0) {
+    // item is in the inventory!
+    return true
+  } else {
+    // item is not in the inventory!
+    return false
+  }
+}
+
 
 loadSprite('drawer', 'drawer.png');
 loadSprite('background-tile', 'basementTemplate.png');
@@ -73,17 +98,17 @@ scene('roomOne', () => {
   });
 
   onLoad(() => {
-    add([sprite('drawer'), pos(80, 200), scale(2), area(), 'drawer']);
-  });
-
-  onLoad(() => {
     add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
   });
 
+
   onLoad(() => {
-    add([sprite('key'), pos(90, 250), scale(1), area(), 'key']);
+    add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
   });
 
+  onLoad(() => {
+    add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-right-arrow']);
+  });
   onClick('door', (door) => {
     go('roomTwo');
   });
