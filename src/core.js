@@ -11,7 +11,7 @@ export const checkInventoryForItem = (item) => {
     // item is not in the inventory!
     return false;
   }
-}
+};
 
 export const addToInventory = (item) => {
   if (!window.localStorage.getItem("inventory")) {
@@ -25,29 +25,40 @@ export const addToInventory = (item) => {
       JSON.stringify([...currentInventory, item])
     );
   }
+};
+
+export function displayNavArrows(arrayOfDirectionsStrings = []) {
+  for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
+    let direction = arrayOfDirectionsStrings[i];
+    if (direction === "left") {
+      add([
+        sprite("left-arrow"),
+        pos(7.5, 250),
+        scale(0.5),
+        area(),
+        "left-arrow",
+      ]);
+    }
+    if (direction === "right") {
+      add([
+        sprite("right-arrow"),
+        pos(1190, 250),
+        scale(0.5),
+        area(),
+        "right-arrow",
+      ]);
+    }
+    if (direction === "up") {
+      add([sprite("up-arrow"), pos(600, 15), scale(0.5), area(), "up-arrow"]);
+    }
+    if (direction === "down") {
+      add([
+        sprite("down-arrow"),
+        pos(575, 475),
+        scale(0.5),
+        area(),
+        "down-arrow",
+      ]);
+    }
+  }
 }
-
-
-export function displayNavigationArrows() {
-  add([
-    sprite("right-arrow"),
-    pos(1190, 250),
-    scale(0.5),
-    area(),
-    "right-arrow",
-  ]);
-  add([
-    sprite("left-arrow"),
-    pos(7.5, 250),
-    scale(0.5),
-    area(),
-    "left-arrow",
-  ]);
-  add([
-    sprite("down-arrow"),
-    pos(575, 475),
-    scale(0.5),
-    area(),
-    "down-arrow",
-  ]);
-} 

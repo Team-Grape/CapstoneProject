@@ -1,4 +1,8 @@
-import { addToInventory, checkInventoryForItem, displayNavigationArrows } from "../core.js";
+import {
+  addToInventory,
+  checkInventoryForItem,
+  displayNavArrows,
+} from "../core.js";
 import { cellarKey } from "../items.js";
 
 const dialogs = [
@@ -68,8 +72,8 @@ export const basementFirstRoom = () => {
         textbox.destroy();
         txt.destroy();
         nextButton.destroy();
-        displayNavigationArrows()
-        curDialog = 0
+        displayNavArrows(["left", "right", "down"]);
+        curDialog = 0;
         return;
       }
       curDialog = curDialog + 1;
@@ -90,13 +94,6 @@ export const basementFirstRoom = () => {
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
       add([
-        sprite("left-arrow"),
-        pos(7.5, 250),
-        scale(0.5),
-        area(),
-        "left-arrow",
-      ]);
-      add([
         sprite("fruit-painting"),
         pos(500, 150),
         scale(1),
@@ -104,6 +101,8 @@ export const basementFirstRoom = () => {
         "fruit-painting",
       ]);
     });
+
+    displayNavArrows(["left"]);
 
     //Navigation click handlers (1-2)
     onClick("left-arrow", () => {
@@ -137,13 +136,7 @@ export const basementFirstRoom = () => {
         area(),
         "chained-skeleton",
       ]);
-      add([
-        sprite("up-arrow"),
-        pos(600, 15),
-        scale(0.5),
-        area(),
-        "up-arrow",
-      ]);
+      displayNavArrows(["up"]);
     });
 
     //Key click handler
@@ -156,24 +149,15 @@ export const basementFirstRoom = () => {
 
     // Navigation click handlers (1-3)
     onClick("up-arrow", () => {
-      console.log('clicked')
       go("room-1-wall-1");
     });
   });
-
 
   // 1-4
   scene("room-1-wall-4", () => {
     //Sprite Loaders
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
-      add([
-        sprite("right-arrow"),
-        pos(1190, 250),
-        scale(0.5),
-        area(),
-        "right-arrow",
-      ]);
       add([
         sprite("pile-of-bones"),
         pos(500, 350),
@@ -182,6 +166,8 @@ export const basementFirstRoom = () => {
         "pile-of-bones",
       ]);
     });
+
+    displayNavArrows(["right"]);
 
     //Navigation Click Handlers
     onClick("right-arrow", () => {
