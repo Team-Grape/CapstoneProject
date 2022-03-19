@@ -11,7 +11,7 @@ const dialogs = [
   ["look around the room to see if you can find the key to open the door"],
 ];
 
-//Room One
+//ROOM ONE
 // 1-1
 export const basementFirstRoom = () => {
   scene("room-1-wall-1", () => {
@@ -25,10 +25,12 @@ export const basementFirstRoom = () => {
       if (checkInventoryForItem(cellarKey)) {
         go("roomTwo");
       } else {
-        // add text box that says'it doesn't open, it seems like it needs a key' or something
+        /* add text box that says:
+        'it doesn't open, it seems like it needs a key'
+         or something like that
+        */
       }
-      localStorage.clear();
-      // we will need to change this to remove just the key
+      localStorage.clear(); // we will need to change this to remove just the key
     });
 
     //Navigation click handlers (1-1)
@@ -59,6 +61,8 @@ export const basementFirstRoom = () => {
       pos(textbox.pos),
       origin("center"),
     ]);
+
+    console.log(txt)
 
     // NextButton
     const nextButton = add([
@@ -96,7 +100,7 @@ export const basementFirstRoom = () => {
       add([
         sprite("fruit-painting"),
         pos(500, 150),
-        scale(1),
+        scale(4),
         area(),
         "fruit-painting",
       ]);
@@ -115,18 +119,18 @@ export const basementFirstRoom = () => {
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
       add([
-        sprite("small-window"),
-        pos(900, 30),
+        sprite("basement-window"),
+        pos(1000, 30),
         scale(4),
         area(),
-        "small-window",
+        "basement-window",
       ]);
       add([
-        sprite("small-window"),
-        pos(300, 30),
+        sprite("basement-window"),
+        pos(200, 30),
         scale(4),
         area(),
-        "small-window",
+        "basement-window",
       ]);
       add([sprite("key"), pos(120, 400), scale(1), area(), "key"]);
       add([

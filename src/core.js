@@ -34,7 +34,7 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
       add([
         sprite("left-arrow"),
         pos(7.5, 250),
-        scale(0.5),
+        scale(1),
         area(),
         "left-arrow",
       ]);
@@ -43,19 +43,19 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
       add([
         sprite("right-arrow"),
         pos(1190, 250),
-        scale(0.5),
+        scale(1),
         area(),
         "right-arrow",
       ]);
     }
     if (direction === "up") {
-      add([sprite("up-arrow"), pos(600, 15), scale(0.5), area(), "up-arrow"]);
+      add([sprite("up-arrow"), pos(600, 15), scale(1), area(), "up-arrow"]);
     }
     if (direction === "down") {
       add([
         sprite("down-arrow"),
         pos(575, 475),
-        scale(0.5),
+        scale(1),
         area(),
         "down-arrow",
       ]);
