@@ -15,8 +15,8 @@ export const basementFirstRoom = () => {
     onLoad(() => {
       add([sprite('background-tile'), scale(1), area()]);
       add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
-      add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
-      add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+      add([sprite('right-arrow'), pos(1190, 250), scale(.5), area(), 'right-arrow']);
+      add([sprite('left-arrow'), pos(7.5, 250), scale(.5), area(), 'left-arrow']);
     });
   
     //Door click handler
@@ -33,10 +33,10 @@ export const basementFirstRoom = () => {
     });
     //Navigation click handlers (1-1)
   
-    onClick("turn-right-arrow", () => {
+    onClick("right-arrow", () => {
       go("room-1-wall-2");
     });
-    onClick("turn-left-arrow", () => {
+    onClick("left-arrow", () => {
       go("room-1-wall-4");
   
     });
@@ -90,17 +90,17 @@ export const basementFirstRoom = () => {
   scene('room-1-wall-2', () => {
     onLoad(() => {
       add([sprite('background-tile'), scale(1), area()]);
-      add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
-      add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+      add([sprite('right-arrow'), pos(1190, 250), scale(.5), area(), 'right-arrow']);
+      add([sprite('left-arrow'), pos(7.5, 250), scale(.5), area(), 'left-arrow']);
       add([sprite('fruit-painting'), pos(500, 150), scale(1), area(), 'fruit-painting']);
     });
   
     //Navigation click handlers (1-2)
-    onClick('turn-right-arrow', () => {
+    onClick('right-arrow', () => {
       go('room-1-wall-3');
     });
   
-    onClick('turn-left-arrow', () => {
+    onClick('left-arrow', () => {
       go('room-1-wall-1');
     });
   });
@@ -112,8 +112,8 @@ export const basementFirstRoom = () => {
       add([sprite('background-tile'), scale(1), area()]);
       add([sprite('small-window'), pos(900, 30), scale(4), area(), 'small-window']);
       add([sprite('small-window'), pos(300, 30), scale(4), area(), 'small-window']);
-      add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
-      add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+      add([sprite('right-arrow'), pos(1190, 250), scale(.5), area(), 'right-arrow']);
+      add([sprite('left-arrow'), pos(7.5, 250), scale(.5), area(), 'left-arrow']);
       add([sprite('key'), pos(120, 400), scale(1), area(), 'key']);
       add([sprite('chained-skeleton'), pos(500, 150), scale(4), area(), 'chained-skeleton']);
     });
@@ -127,11 +127,11 @@ export const basementFirstRoom = () => {
     });
   
     // Navigation click handlers (1-3)
-    onClick('turn-right-arrow', () => {
+    onClick('right-arrow', () => {
       go('room-1-wall-4');
       
     });
-    onClick("turn-left-arrow", () => {
+    onClick("left-arrow", () => {
       go("room-1-wall-2");
     });
   });
@@ -142,17 +142,17 @@ export const basementFirstRoom = () => {
     //Sprite Loaders
     onLoad(() => {
       add([sprite('background-tile'), scale(1), area()]);
-      add([sprite('turn-right-arrow'), pos(1200, 250), scale(.75), area(), 'turn-right-arrow']);
-      add([sprite('turn-left-arrow'), pos(0, 250), scale(.75), area(), 'turn-left-arrow']);
+      add([sprite('right-arrow'), pos(1190, 250), scale(.5), area(), 'right-arrow']);
+      add([sprite('left-arrow'), pos(7.5, 250), scale(.5), area(), 'left-arrow']);
       add([sprite('pile-of-bones'), pos(500, 350), scale(3), area(), 'pile-of-bones']);
     });
   
     //Navigation Click Handlers
-    onClick('turn-right-arrow', () => {
+    onClick('right-arrow', () => {
       go('room-1-wall-1');
   
     });
-    onClick("turn-left-arrow", () => {
+    onClick("left-arrow", () => {
       go("room-1-wall-3");
     });
   });
