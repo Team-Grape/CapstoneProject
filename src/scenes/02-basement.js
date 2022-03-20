@@ -1,3 +1,4 @@
+
 import { 
   addToInventory, 
   checkInventoryForItem,
@@ -30,17 +31,28 @@ export const createBasementRoomTwo = () => {
         area(),
         "fruit-painting",
       ]);
+
     });
   roomNavArrows(direction)
   });
+
   
   // ======================================================== //
 
   scene(roomName + "Down", () => {
     const direction = "Down"
+
     onLoad(() => {
       add([sprite("room-two-background"), scale(1), area()]);
+      add([sprite("up-arrow"), pos(width() / 2, 25), scale(1), area(), "up-arrow"]);
+      add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
     });
+
+    onClick("door", () => {
+      go("basementRoomOneUp")
+    })
+    
+
     roomNavArrows(direction)
   });
   
@@ -52,9 +64,7 @@ export const createBasementRoomTwo = () => {
     onLoad(() => {
       add([sprite("room-two-background-left"), scale(1), area()]);
     });
-    onLoad(() => {
-      add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
-    });
+
     if (!getGameState(roomName, 'keyPickedUp')) {
       onLoad(() => {
         add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
@@ -68,6 +78,10 @@ export const createBasementRoomTwo = () => {
       }
       add([sprite("bookcase"), pos(bookCaseX, 150), scale(4), area(), "bookcase"]);
     });
+
+
+
+    
     onClick("bookcase", (bookcase) => {
       setGameState(roomName, 'bookCaseMoved', true)
       bookcase.pos.x = 180
@@ -87,7 +101,20 @@ export const createBasementRoomTwo = () => {
     const direction = "Right"
     onLoad(() => {
       add([sprite("room-two-background-right"), scale(1), area()]);
+      add([sprite("left-arrow"), pos(25, 250), scale(1), area(), "left-arrow"]);
+      add([sprite("woodenDoor"), pos(900, 100), scale(0.75), area(), "woodenDoor"]);
+      add([sprite("dresser-with-candle"), pos(400, 130), scale(0.60), area() ])
     });
+
+    
+    onClick("woodenDoor", (woodenDoor) => {
+      if (checkInventoryForItem(cellarKey)) {
+        removeFromInventory(cellarKey)
+        go("roomThree");
+      } else {
+        textBubble([["it doesn't open, it seems like it needs a key"]])
+      }
+    }); 
     roomNavArrows(direction)
   });
 
