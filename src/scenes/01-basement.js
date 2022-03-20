@@ -32,7 +32,8 @@ export const createBasementRoomOne = () => {
 
     //Door click handler
     onClick("door", (door) => {
-      if (checkInventoryForItem(cellarKey)) {
+      if ((getGameState(roomName, "doorUnlocked")) || (checkInventoryForItem(cellarKey))) {
+        setGameState(roomName, 'doorUnlocked', true)
         removeFromInventory(cellarKey)
         go("basementRoomTwoUp");
       } else {
