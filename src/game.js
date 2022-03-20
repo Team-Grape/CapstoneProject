@@ -16,23 +16,28 @@ kaboom({
 // initializes or resets inventory in local storage
 window.localStorage.setItem("inventory", JSON.stringify([]));
 
+//Nav Arrows
+loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
+loadSprite('right-arrow', './assets/nav_arrows/rightArrow.png');
+loadSprite("up-arrow", "./assets/nav_arrows/upArrow.png");
+loadSprite("down-arrow", "./assets/nav_arrows/downArrow.png");
+
+//Room Backgrounds
+loadSprite('room-two-background', './assets/room_backgrounds/basement/roomTwoBackground.png');
+loadSprite('room-two-background-right', './assets/room_backgrounds/basement/roomTwoRightLeft.png');
+loadSprite('room-two-background-left', './assets/room_backgrounds/basement/roomTwoRightLeft.png');
+loadSprite('background-tile', './assets/room_backgrounds/basement/basementTemplate.png');
+
+//Decorations
+loadSprite('fruit-painting', './assets/decorations/fruitPainting.png');
+loadSprite('bookcase', './assets/decorations/bookcase.png');
+loadSprite('pile-of-bones', './assets/decorations/pileOfBones.png')
+
+//Misc. Objects/Items
 loadSprite('drawer', './assets/drawer.png');
-loadSprite('background-tile', './assets/basementTemplate.png');
 loadSprite('door', './assets/evilDoor.png');
 loadSprite('key', './assets/key_gold.png');
-loadSprite('room-two-background', './assets/roomTwoBackground.png');
-loadSprite('room-two-background-right', './assets/roomTwoRightLeft.png');
-loadSprite('room-two-background-left', './assets/roomTwoRightLeft.png');
-loadSprite('right-arrow', './assets/rightArrow.png');
-loadSprite('left-arrow', './assets/leftArrow.png');
-loadSprite("up-arrow", "./assets/upArrow.png");
-loadSprite("down-arrow", "./assets/downArrow.png");
-loadSprite('fruit-painting', './assets/fruitPainting.png');
-loadSprite('bookcase', './assets/bookcase.png');
-loadSprite('turn-right-arrow', './assets/turn-right-arrow.png')
-loadSprite('turn-left-arrow', './assets/turn-left-arrow.png')
-loadSprite('small-window', './assets/small-window.png')
-loadSprite('pile-of-bones', './assets/pileOfBones.png')
+loadSprite('basement-window', './assets/basementWindow.png')
 loadSprite('chained-skeleton', './assets/chainedSkeleton.png')
 
 

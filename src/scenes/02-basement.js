@@ -32,7 +32,7 @@ export const basementSecondRoom = () => {
       add([
         sprite("fruit-painting"),
         pos(500, 100),
-        scale(0.5),
+        scale(4),
         area(),
         "fruit-painting",
       ]);
@@ -78,7 +78,7 @@ export const basementSecondRoom = () => {
       add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
     });
     onLoad(() => {
-      add([sprite("bookcase"), pos(400, 150), scale(0.5), area(), "bookcase"]);
+      add([sprite("bookcase"), pos(400, 150), scale(4), area(), "bookcase"]);
     });
     onLoad(() => {
       add([
