@@ -8,7 +8,7 @@ export const titleScene = () => {
     ]);
   
     onClick(() => {
-      go("room-1-wall-1");
+      go("basementRoomOneUp");
     });
   });
 }
