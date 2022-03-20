@@ -48,26 +48,35 @@ export const createBasementRoomTwo = () => {
 
   scene(roomName + "Left", () => {
     const direction = "Left"
+    let bookCaseX;
     onLoad(() => {
       add([sprite("room-two-background-left"), scale(1), area()]);
     });
     onLoad(() => {
       add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
     });
+    if (!getGameState(roomName, 'keyPickedUp')) {
+      onLoad(() => {
+        add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
+      });
+    }
     onLoad(() => {
-      add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
-    });
-    onLoad(() => {
-      add([sprite("bookcase"), pos(400, 150), scale(4), area(), "bookcase"]);
+      if (!getGameState(roomName, 'bookCaseMoved')) {
+        bookCaseX = 400;
+      } else {
+        bookCaseX = 180
+      }
+      add([sprite("bookcase"), pos(bookCaseX, 150), scale(4), area(), "bookcase"]);
     });
     onClick("bookcase", (bookcase) => {
-      setGameState(roomName, 'introMessageRead', true)
+      setGameState(roomName, 'bookCaseMoved', true)
       bookcase.pos.x = 180
-    });
-    onClick("key", (key) => {
-      textBubble([["a key was added to your inventory"]])
-      addToInventory(cellarKey);
-      key.destroy();
+        onClick("key", (key) => {
+          textBubble([["a key was added to your inventory"]])
+          addToInventory(cellarKey);
+          setGameState(roomName, 'keyPickedUp', true)
+          key.destroy();
+        });
     });
     roomNavArrows(direction)
   });
@@ -81,4 +90,7 @@ export const createBasementRoomTwo = () => {
     });
     roomNavArrows(direction)
   });
+
+  // ======================================================== //
+
 }

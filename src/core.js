@@ -178,9 +178,9 @@ export const textBubble = (dialogs, onFinish) => {
     }
 
     nextButton.onClick(() => {
-      if (curDialog === dialogs.length - 2) {
+    /*  if (curDialog === dialogs.length - 2) {
         nextButton.text = "Close"
-      } else if (curDialog === dialogs.length - 1) {
+      } else */ if (curDialog === dialogs.length - 1) {
         textbox.destroy();
         txt.destroy();
         nextButton.destroy();

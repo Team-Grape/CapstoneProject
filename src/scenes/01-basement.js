@@ -20,8 +20,7 @@ const introMessage = [
 
 export const createBasementRoomOne = () => {
 
-
-  // ================ 1-1 ================ //
+  // ======================================================== //
   
   scene(roomName + "Up", () => {
   //scene("room-1-wall-1", () => {
@@ -51,8 +50,7 @@ export const createBasementRoomOne = () => {
     }
   });
 
-
-  // ================ 1-2 ================ //
+  // ======================================================== //
 
   scene(roomName + "Right", () => {
     const direction = "Right"
@@ -72,8 +70,7 @@ export const createBasementRoomOne = () => {
 
   });
 
-
-  // ================ 1-3 ================ //
+  // ======================================================== //
 
   scene(roomName + "Down", () => {
     const direction = "Down"
@@ -121,8 +118,7 @@ export const createBasementRoomOne = () => {
 
   });
 
-
-  // ================ 1-4 ================ //
+  // ======================================================== //
 
   scene(roomName + "Left", () => {
     const direction = "Left"
@@ -142,5 +138,7 @@ export const createBasementRoomOne = () => {
     roomNavArrows(direction)
 
   });
+
+  // ======================================================== //
 
 };
