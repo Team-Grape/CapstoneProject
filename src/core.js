@@ -27,6 +27,19 @@ export const addToInventory = (item) => {
   }
 };
 
+
+export const addToMessageLog = (msg) => {
+  if (!window.localStorage.getItem("messageLog")) {
+    window.localStorage.setItem("messageLog", JSON.stringify([]));
+  }
+  let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
+  localStorage.setItem("messageLog", JSON.stringify([...currentMessageLog, msg]))
+  
+
+}
+
+
+
 export const removeFromInventory = (item) => {
   if (!window.localStorage.getItem("inventory")) {
     window.localStorage.setItem("inventory", JSON.stringify([]));
