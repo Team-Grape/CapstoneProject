@@ -1,4 +1,4 @@
-import * as K from "./lib/kaboom.js";
+import kaboom from 'kaboom'
 import { titleScene } from "./scenes/00-title.js";
 import { winScene } from "./scenes/00-win.js";
 
@@ -89,4 +89,5 @@ createBasementRoomOne();
 createBasementRoomTwo();
 thirdRoom();
 
-go("basementRoomTwoUp");
+//go("basementRoomTwoUp");
+go("title");
