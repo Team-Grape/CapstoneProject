@@ -21,6 +21,9 @@ window.localStorage.setItem("inventory", JSON.stringify([]));
 // initializes or resets gameState in local storage
 window.localStorage.setItem("gameState", JSON.stringify({}));
 
+// initializes or resets messageLog in local storage
+window.localStorage.setItem("messageLog", JSON.stringify([]));
+
 //Nav Arrows
 loadSprite("left-arrow", "./assets/nav_arrows/leftArrow.png");
 loadSprite("right-arrow", "./assets/nav_arrows/rightArrow.png");
@@ -66,10 +69,16 @@ loadSprite("basement-window", "./assets/basementWindow.png");
 loadSprite("chained-skeleton", "./assets/chainedSkeleton.png");
 loadSprite("woodenDoor", "./assets/woodenDoor.png");
 
+
 //sounds
 loadSound("falling", "./assets/sounds/paintingFalling.wav");
 loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
 loadSound("gong", "./assets/sounds/clockGong.wav");
+
+//Buttons
+loadSprite('menu-button', './assets/buttons/menuButtonGray.png')
+loadSprite('start-button', './assets/buttons/startButton.png')
+
 
 // initialize components
 
