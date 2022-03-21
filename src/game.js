@@ -1,9 +1,11 @@
 import * as K from './lib/kaboom.js'
 import { titleScene } from "./scenes/00-title.js"
 import { winScene } from "./scenes/00-win.js"
-import { basementFirstRoom } from "./scenes/01-basement.js"
-import { basementSecondRoom } from "./scenes/02-basement.js"
+
+import { createBasementRoomOne } from "./scenes/01-basement.js"
+import { createBasementRoomTwo } from "./scenes/02-basement.js"
 import { thirdRoom } from "./scenes/03-room.js"
+
 
 kaboom({
   global: true,
@@ -16,6 +18,9 @@ kaboom({
 
 // initializes or resets inventory in local storage
 window.localStorage.setItem("inventory", JSON.stringify([]));
+
+// initializes or resets gameState in local storage
+window.localStorage.setItem("gameState", JSON.stringify({}));
 
 //Nav Arrows
 loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
@@ -48,8 +53,10 @@ loadSprite('woodenDoor', './assets/woodenDoor.png')
 // initialize components
 titleScene();
 winScene();
-basementFirstRoom();
-basementSecondRoom();
+
+createBasementRoomOne();
+createBasementRoomTwo();
 thirdRoom();
 
-go("roomTwo");
+
+go("title");
