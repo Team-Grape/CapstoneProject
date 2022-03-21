@@ -6,7 +6,7 @@ import {
   setGameState,
   getGameState,
   textBubble,
-  displayMenu,
+  addToMessageLog
 } from "../core.js";
 import { cellarKey } from "../items.js";
 
@@ -47,6 +47,7 @@ export const createBasementRoomOne = () => {
       textBubble(introMessage, () => {
         setGameState(roomName, 'introMessageRead', true)
         roomNavArrows(direction)
+        addToMessageLog(introMessage)
       });
     } else {
       roomNavArrows(direction)
