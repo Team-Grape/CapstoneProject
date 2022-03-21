@@ -1,9 +1,9 @@
 export const checkInventoryForItem = (item) => {
-  if (!window.localStorage.getItem("inventory")) {
+  if (!window.localStorage.getItem('inventory')) {
     // you dont even have an inventory yet!
     return false;
   }
-  const currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
+  const currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
   if (currentInventory.filter((i) => i.name === item.name).length > 0) {
     // item is in the inventory!
     return true;
@@ -14,38 +14,75 @@ export const checkInventoryForItem = (item) => {
 };
 
 export const addToInventory = (item) => {
-  if (!window.localStorage.getItem("inventory")) {
-    window.localStorage.setItem("inventory", JSON.stringify([]));
+  if (!window.localStorage.getItem('inventory')) {
+    window.localStorage.setItem('inventory', JSON.stringify([]));
   }
-  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
+  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
   if (currentInventory.filter((i) => i.name === item.name).length === 0) {
     // this item is not in the inventory. So add it to the inventory below:
     localStorage.setItem(
-      "inventory",
+      'inventory',
       JSON.stringify([...currentInventory, item])
     );
   }
 };
 
+// ===================================================================================================
 
 export const addToMessageLog = (msg) => {
-  if (!window.localStorage.getItem("messageLog")) {
-    window.localStorage.setItem("messageLog", JSON.stringify([]));
+  if (!window.localStorage.getItem('messageLog')) {
+    window.localStorage.setItem('messageLog', JSON.stringify([]));
   }
-  let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
-  localStorage.setItem("messageLog", JSON.stringify([...currentMessageLog, msg]))
-  
+  let currentMessageLog = JSON.parse(window.localStorage.getItem('messageLog'));
 
-}
+  currentMessageLog.push(msg);
 
+  localStorage.setItem('messageLog', JSON.stringify(currentMessageLog));
 
+  // const messag
+
+  const viewPastMessage = add([
+    text('Message Log', { size: 20 }),
+    pos(1050, 475),
+    area(),
+  ]);
+
+  viewPastMessage.onClick(() => {
+    const messageBox = add([
+      rect(width() / 2, height() - 200, { radius: 32 }),
+      origin('center'),
+      pos(center().x, center().y),
+    ]);
+
+    let msgY = height() / 2 - 160;
+    msg.forEach((currentMessage) => {
+      msgY = msgY + 20;
+      add([text(currentMessage, { size: 12 }), pos(width() / 2 - 280, msgY)]);
+    });
+
+    // const messages = add([
+    //   text('', { size: 16 }),
+    //   pos(width() / 2 - 280, height() / 2 - 160),
+    // ]);
+
+    const closeButton = add([text('X', { size: 30 }), pos(890, 400), area()]);
+
+    closeButton.onClick(() => {
+      messageBox.destroy();
+      closeButton.destroy();
+      messages.destroy();
+    });
+  });
+};
+
+// ==============================================================================================
 
 export const removeFromInventory = (item) => {
-  if (!window.localStorage.getItem("inventory")) {
-    window.localStorage.setItem("inventory", JSON.stringify([]));
+  if (!window.localStorage.getItem('inventory')) {
+    window.localStorage.setItem('inventory', JSON.stringify([]));
   }
 
-  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
+  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
 
   // this does not care about quantity! just removes if exists
   currentInventory = currentInventory.filter((i) => i.name != item.name);
@@ -53,10 +90,10 @@ export const removeFromInventory = (item) => {
 };
 
 export const setGameState = (roomName, gameEvent, value) => {
-  if (!window.localStorage.getItem("gameState")) {
-    window.localStorage.setItem("gameState", JSON.stringify({}));
+  if (!window.localStorage.getItem('gameState')) {
+    window.localStorage.setItem('gameState', JSON.stringify({}));
   }
-  let currentGameState = JSON.parse(window.localStorage.getItem("gameState"));
+  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
 
   // check if roomName has been created
   if (Object.entries(currentGameState).some((room) => room[0] == roomName)) {
@@ -79,7 +116,7 @@ export const getGameState = (roomName, gameEvent) => {
     return false;
   }
 
-  let currentGameState = JSON.parse(window.localStorage.getItem("gameState"));
+  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
 
   // if roomName does not exist
   if (!Object.entries(currentGameState).some((room) => room[0] == roomName)) {
@@ -95,34 +132,34 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
   displayMenu()
   for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
     let direction = arrayOfDirectionsStrings[i];
-    if (direction === "left") {
+    if (direction === 'left') {
       add([
-        sprite("left-arrow"),
+        sprite('left-arrow'),
         pos(7.5, 250),
         scale(1),
         area(),
-        "left-arrow",
+        'left-arrow',
       ]);
     }
-    if (direction === "right") {
+    if (direction === 'right') {
       add([
-        sprite("right-arrow"),
+        sprite('right-arrow'),
         pos(1190, 250),
         scale(1),
         area(),
-        "right-arrow",
+        'right-arrow',
       ]);
     }
-    if (direction === "up") {
-      add([sprite("up-arrow"), pos(600, 15), scale(1), area(), "up-arrow"]);
+    if (direction === 'up') {
+      add([sprite('up-arrow'), pos(600, 15), scale(1), area(), 'up-arrow']);
     }
-    if (direction === "down") {
+    if (direction === 'down') {
       add([
-        sprite("down-arrow"),
+        sprite('down-arrow'),
         pos(575, 475),
         scale(1),
         area(),
-        "down-arrow",
+        'down-arrow',
       ]);
     }
   }
@@ -133,11 +170,11 @@ export const navArrows = (roomName) => (d) => {
     onClick("right-arrow", () => {
       go(roomName + "Right");
     });
-    onClick("left-arrow", () => {
-      go(roomName + "Left");
+    onClick('left-arrow', () => {
+      go(roomName + 'Left');
     });
-    onClick("down-arrow", () => {
-      go(roomName + "Down");
+    onClick('down-arrow', () => {
+      go(roomName + 'Down');
     });
     displayNavArrows(["left", "right", "down"]);
   } else if (d == "Right") {
@@ -154,7 +191,7 @@ export const navArrows = (roomName) => (d) => {
     onClick("right-arrow", () => {
       go(roomName + "Up");
     });
-    displayNavArrows(["right"]);
+    displayNavArrows(['right']);
   }
 };
 
@@ -185,7 +222,6 @@ export const textBubble = (dialogs, onFinish) => {
   if (dialogs.length === 1) {
     nextButton.text = "Close";
   }
-
   nextButton.onClick(() => {
     /*  if (curDialog === dialogs.length - 2) {
         nextButton.text = "Close"
@@ -331,3 +367,4 @@ export function openMenu() {
   onClick('options', () => {
   })
 }
+
