@@ -31,6 +31,7 @@ export const createBasementRoomOne = () => {
       add([sprite("door"), pos(900, 150), scale(4), area(), "door"]);
     });
 
+
     //Door click handler
     onClick("door", (door) => {
       if ((getGameState(roomName, "doorUnlocked")) || (checkInventoryForItem(cellarKey))) {
@@ -51,6 +52,8 @@ export const createBasementRoomOne = () => {
     } else {
       roomNavArrows(direction)
     }
+
+
   });
 
   // ======================================================== //
