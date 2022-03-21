@@ -22,6 +22,9 @@ window.localStorage.setItem("inventory", JSON.stringify([]));
 // initializes or resets gameState in local storage
 window.localStorage.setItem("gameState", JSON.stringify({}));
 
+// initializes or resets messageLog in local storage
+window.localStorage.setItem("messageLog", JSON.stringify([]));
+
 //Nav Arrows
 loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
 loadSprite('right-arrow', './assets/nav_arrows/rightArrow.png');
