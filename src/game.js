@@ -49,6 +49,9 @@ loadSprite('basement-window', './assets/basementWindow.png')
 loadSprite('chained-skeleton', './assets/chainedSkeleton.png')
 loadSprite('woodenDoor', './assets/woodenDoor.png')
 
+//Buttons
+loadSprite('menu-button', './assets/buttons/menuButtonGray.png')
+loadSprite('start-button', './assets/buttons/startButton.png')
 
 // initialize components
 titleScene();
