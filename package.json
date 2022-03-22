@@ -1,12 +1,14 @@
 {
   "dependencies": {
-    "http-server": "^14.1.0"
+    "http-server": "^14.1.0",
+    "kaboom": "^2000.2.9",
+    "webpack-cli": "^4.9.2"
   },
   "name": "capstoneproject",
   "version": "1.0.0",
   "devDependencies": {},
   "scripts": {
-    "start": "http-server -p 1337"
+    "start": "webpack -w & http-server -p 1337 dist"
   },
   "repository": {
     "type": "git",
