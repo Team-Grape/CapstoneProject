@@ -6,49 +6,74 @@ import {
   setGameState,
   getGameState,
   textBubble,
-} from "../core.js";
-import { cellarKey } from "../items.js";
+  addToMessageLog,
+} from '../core.js';
+import { cellarKey } from '../items.js';
 
-const roomName = "basementRoomTwo";
+const roomName = 'basementRoomTwo';
 const roomNavArrows = navArrows(roomName);
+
+const introMessage = [
+  ['Now you are in the second room'],
+  ['The challanges will increase  '],
+  ["If you can't escape from the room, then stay here in my tummy forever~~~ "],
+];
 
 export const createBasementRoomTwo = () => {
   // ======================================================== //
 
-  scene(roomName + "Up", () => {
-    const direction = "Up";
+  scene(roomName + 'Up', () => {
+    const direction = 'Up';
     let fruitPaintingY;
     onLoad(() => {
-      add([sprite("room-two-background"), scale(1), area()]);
-      add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
-      add([sprite("cob-webs"), scale(1), area()]);
-      add(
-        [sprite("grandfather-clock"), pos(900, 100), scale(4), area(), "grandfather-clock"]
-        
-      );
+      add([sprite('room-two-background'), scale(1), area()]);
+      add([sprite('help-me'), pos(500, 100), scale(0.2), area()]);
+      add([sprite('cob-webs'), scale(1), area()]);
+      add([
+        sprite('grandfather-clock'),
+        pos(900, 100),
+        scale(4),
+        area(),
+        'grandfather-clock',
+      ]);
     });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    if (!getGameState(roomName, 'introMessageRead')) {
+      textBubble(introMessage, () => {
+        setGameState(roomName, 'introMessageRead', true);
+        roomNavArrows(direction);
+        addToMessageLog(introMessage);
+      });
+    } else {
+      roomNavArrows(direction);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
     onLoad(() => {
-      if (!getGameState(roomName, "fruitPaintingMoved")) {
+      if (!getGameState(roomName, 'fruitPaintingMoved')) {
         fruitPaintingY = 100;
       } else {
         fruitPaintingY = 300;
       }
       add([
-        sprite("fruit-painting"),
+        sprite('fruit-painting'),
         pos(500, fruitPaintingY),
         scale(5),
         area(),
-        "fruit-painting",
+        'fruit-painting',
       ]);
     });
-    onClick("grandfather-clock", () => {
-      play("gong");
+    onClick('grandfather-clock', () => {
+      play('gong');
     });
-    onClick("fruit-painting", (fruitPainting) => {
-      setGameState(roomName, "fruitPaintingMoved", true);
+    onClick('fruit-painting', (fruitPainting) => {
+      setGameState(roomName, 'fruitPaintingMoved', true);
       fruitPainting.pos.y = 350;
-      play("falling");
-      const music = play("horror", {
+      play('falling');
+      const music = play('horror', {
         loop: true,
       });
       music.play();
@@ -58,16 +83,16 @@ export const createBasementRoomTwo = () => {
 
   // ======================================================== //
 
-  scene(roomName + "Down", () => {
-    const direction = "Down";
+  scene(roomName + 'Down', () => {
+    const direction = 'Down';
 
     onLoad(() => {
-      add([sprite("room-two-background"), scale(1), area()]);
-      add([sprite("door"), pos(440, 150), scale(4), area(), "door"]);
+      add([sprite('room-two-background'), scale(1), area()]);
+      add([sprite('door'), pos(440, 150), scale(4), area(), 'door']);
     });
 
-    onClick("door", () => {
-      go("basementRoomOneUp");
+    onClick('door', () => {
+      go('basementRoomOneUp');
     });
 
     roomNavArrows(direction);
@@ -75,41 +100,41 @@ export const createBasementRoomTwo = () => {
 
   // ======================================================== //
 
-  scene(roomName + "Left", () => {
-    const direction = "Left";
+  scene(roomName + 'Left', () => {
+    const direction = 'Left';
     let bookCaseX;
     onLoad(() => {
-      add([sprite("room-two-background-left"), scale(1), area()]);
+      add([sprite('room-two-background-left'), scale(1), area()]);
     });
 
-    if (!getGameState(roomName, "keyPickedUp")) {
+    if (!getGameState(roomName, 'keyPickedUp')) {
       onLoad(() => {
-        add([sprite("key"), pos(500, 300), scale(1), area(), "key"]);
+        add([sprite('key'), pos(500, 300), scale(1), area(), 'key']);
       });
     }
     onLoad(() => {
-      if (!getGameState(roomName, "bookCaseMoved")) {
+      if (!getGameState(roomName, 'bookCaseMoved')) {
         bookCaseX = 400;
       } else {
         bookCaseX = 180;
       }
       add([
-        sprite("bookcase"),
+        sprite('bookcase'),
         pos(bookCaseX, 150),
         scale(4),
         area(),
-        "bookcase",
+        'bookcase',
       ]);
     });
 
-    onClick("bookcase", (bookcase) => {
-      setGameState(roomName, "bookCaseMoved", true);
+    onClick('bookcase', (bookcase) => {
+      setGameState(roomName, 'bookCaseMoved', true);
       bookcase.pos.x = 180;
     });
-    onClick("key", (key) => {
-      textBubble([["a key was added to your inventory"]]);
+    onClick('key', (key) => {
+      textBubble([['a key was added to your inventory']]);
       addToInventory(cellarKey);
-      setGameState(roomName, "keyPickedUp", true);
+      setGameState(roomName, 'keyPickedUp', true);
       key.destroy();
     });
     roomNavArrows(direction);
@@ -117,28 +142,28 @@ export const createBasementRoomTwo = () => {
 
   // ======================================================== //
 
-  scene(roomName + "Right", () => {
-    const direction = "Right";
+  scene(roomName + 'Right', () => {
+    const direction = 'Right';
     onLoad(() => {
-      add([sprite("room-two-background-right"), scale(1), area()]);
+      add([sprite('room-two-background-right'), scale(1), area()]);
       add([
-        sprite("woodenDoor"),
+        sprite('woodenDoor'),
         pos(900, 100),
         scale(3),
         area(),
-        "woodenDoor",
+        'woodenDoor',
       ]);
-      add([sprite("dresser-with-candle"), pos(400, 130), scale(0.6), area()]);
+      add([sprite('dresser-with-candle'), pos(400, 130), scale(0.6), area()]);
     });
 
-    onClick("woodenDoor", (woodenDoor) => {
+    onClick('woodenDoor', (woodenDoor) => {
       if (
-        getGameState(roomName, "doorUnlocked") ||
+        getGameState(roomName, 'doorUnlocked') ||
         checkInventoryForItem(cellarKey)
       ) {
-        setGameState(roomName, "doorUnlocked", true);
+        setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        go("roomThree");
+        go('roomThree');
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
