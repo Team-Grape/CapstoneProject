@@ -8,6 +8,7 @@ import {
   textBubble,
 } from "../core.js";
 import { cellarKey } from "../items.js";
+import getMusicManager from "../MusicManager.js";
 
 const roomName = "basementRoomTwo";
 const roomNavArrows = navArrows(roomName);
@@ -18,14 +19,20 @@ export const createBasementRoomTwo = () => {
   scene(roomName + "Up", () => {
     const direction = "Up";
     let fruitPaintingY;
+    const bgMusic = getMusicManager();
+    console.log(bgMusic.play)
+    bgMusic.play("spooky");
+  
     onLoad(() => {
       add([sprite("room-two-background"), scale(1), area()]);
       add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
-      add([sprite("cob-webs"), scale(1), area()]);
-      add(
-        [sprite("grandfather-clock"), pos(900, 100), scale(4), area(), "grandfather-clock"]
-        
-      );
+      add([
+        sprite("grandfather-clock"),
+        pos(900, 100),
+        scale(4),
+        area(),
+        "grandfather-clock",
+      ]);
     });
     onLoad(() => {
       if (!getGameState(roomName, "fruitPaintingMoved")) {
@@ -42,16 +49,13 @@ export const createBasementRoomTwo = () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-      play("gong");
+     play("gong");
     });
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
       play("falling");
-      const music = play("horror", {
-        loop: true,
-      });
-      music.play();
+      play("horror");
     });
     roomNavArrows(direction);
   });
@@ -105,6 +109,7 @@ export const createBasementRoomTwo = () => {
     onClick("bookcase", (bookcase) => {
       setGameState(roomName, "bookCaseMoved", true);
       bookcase.pos.x = 180;
+      play("bookcaseMoving");
     });
     onClick("key", (key) => {
       textBubble([["a key was added to your inventory"]]);
@@ -128,7 +133,9 @@ export const createBasementRoomTwo = () => {
         area(),
         "woodenDoor",
       ]);
-      add([sprite("dresser-with-candle"), pos(400, 130), scale(0.6), area()]);
+      add([sprite("table"), pos(600, 240), scale(3), area()]);
+      add([sprite("candle"), pos(600, 160), scale(3), area()]);
+      add([sprite("cob-webs"), pos(640, 280), scale(2), area()]);
     });
 
     onClick("woodenDoor", (woodenDoor) => {

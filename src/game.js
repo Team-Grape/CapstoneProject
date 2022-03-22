@@ -1,4 +1,4 @@
-import kaboom from 'kaboom'
+import kaboom from "kaboom";
 import { titleScene } from "./scenes/00-title.js";
 import { winScene } from "./scenes/00-win.js";
 
@@ -56,10 +56,11 @@ loadSprite(
 loadSprite("fruit-painting", "./assets/decorations/fruitPainting.png");
 loadSprite("bookcase", "./assets/decorations/bookcase.png");
 loadSprite("pile-of-bones", "./assets/decorations/pileOfBones.png");
-loadSprite("dresser-with-candle", "./assets/decorations/dresserWithCandle.png");
 loadSprite("help-me", "./assets/decorations/helpMe.png");
-loadSprite("cob-webs", "./assets/decorations/cobWebs.png");
+loadSprite("cob-webs", "./assets/decorations/cobweb_down_right.png");
 loadSprite("grandfather-clock", "./assets/decorations/grandfatherClock.png");
+loadSprite("table", "./assets/decorations/longTable_dark_brown.png");
+loadSprite("candle", "./assets/decorations/wallMountedCandleHolder_brown.png");
 
 //Misc. Objects/Items
 loadSprite("drawer", "./assets/drawer.png");
@@ -69,18 +70,51 @@ loadSprite("basement-window", "./assets/basementWindow.png");
 loadSprite("chained-skeleton", "./assets/chainedSkeleton.png");
 loadSprite("woodenDoor", "./assets/woodenDoor.png");
 
-
 //sounds
 loadSound("falling", "./assets/sounds/paintingFalling.wav");
 loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
 loadSound("gong", "./assets/sounds/clockGong.wav");
+loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
+loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
 
 //Buttons
-loadSprite('menu-button', './assets/buttons/menuButtonGray.png')
-loadSprite('start-button', './assets/buttons/startButton.png')
-
+loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
+loadSprite("start-button", "./assets/buttons/startButton.png");
 
 // initialize components
+// function unlockAudioContext(audioCtx) {
+//     if (audioCtx.state !== "suspended") return;
+//     const b = document.body;
+//     const events = ["touchstart", "touchend", "mousedown", "keydown"];
+//     events.forEach((e) => b.addEventListener(e, unlock, false));
+//     function unlock() {
+//       audioCtx.resume().then(clean);
+//     }
+//     function clean() {
+//       events.forEach((e) => b.removeEventListener(e, unlock));
+//     }
+  
+// }
+
+
+
+// function unlockAudioContext(audioCtx) {
+//   if (audioCtx.state === 'suspended') {
+//     var events = ['touchstart', 'touchend', 'mousedown', 'keydown'];
+//     var unlock = function unlock() {
+//       events.forEach(function (event) {
+//         document.body.removeEventListener(event, unlock)
+//       });
+//       audioCtx.resume();
+//     };
+
+//     events.forEach(function (event) {
+//       document.body.addEventListener(event, unlock, false)
+//     });
+//   }
+// }
+// const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+// unlockAudioContext(audioCtx);
 
 titleScene();
 winScene();
@@ -89,5 +123,5 @@ createBasementRoomOne();
 createBasementRoomTwo();
 thirdRoom();
 
-//go("basementRoomTwoUp");
-go("title");
+go("basementRoomTwoUp");
+// go("title");

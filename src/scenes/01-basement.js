@@ -20,7 +20,7 @@ const introMessage = [
 ];
 
 export const createBasementRoomOne = () => {
-
+  
   // ======================================================== //
   
   scene(roomName + "Up", () => {
