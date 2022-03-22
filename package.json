@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "fs": "^0.0.1-security",
     "http-server": "^14.1.0",
     "kaboom": "^2000.2.9",
     "mermaid": "^8.14.0",
