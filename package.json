@@ -2,13 +2,13 @@
   "dependencies": {
     "http-server": "^14.1.0",
     "kaboom": "^2000.2.9",
-    "webpack": "^5.70.0"
+    "mermaid": "^8.14.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "name": "capstoneproject",
   "version": "1.0.0",
-  "devDependencies": {
-    "webpack-cli": "^4.9.2"
-  },
+
   "scripts": {
     "start": "webpack -w & http-server -p 1337 dist"
   },
