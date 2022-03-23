@@ -6,6 +6,7 @@ import {
   setGameState,
   getGameState,
   textBubble,
+  addToMessageLog
 
 } from "../core.js";
 import { cellarKey } from "../items.js";
