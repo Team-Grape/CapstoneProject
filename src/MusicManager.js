@@ -1,6 +1,6 @@
 class Music {
   static PLAY_SOUND = true;
-  static SOUNDS = ["gong", "bookcaseMoving", "horror", "falling", "spooky"];
+  static SOUNDS = ["gong", "bookcaseMoving", "horror", "falling", "spooky", "kidMusic"];
 
   constructor() {
     this.sound = {
@@ -29,6 +29,11 @@ class Music {
         vol: 0.5,
         loadInitally: false,
       },
+      kidMusic: {
+        url: "kidMusic.wav",
+        vol: 0.5,
+        loadInitally: true
+      }
     };
     this.currentlyPlaying = null;
     this.currentlyPlayingName = null;
@@ -57,7 +62,7 @@ class Music {
     if (!Music.SOUNDS.includes(soundName)) {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
-    const soundFile = this.sounds[soundName];
+    const soundFile = this.sound[soundName];
     console.log("what is this????",this)
     console.log("what is this sound??????",soundFile)
     try {

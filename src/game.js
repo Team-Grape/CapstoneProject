@@ -76,45 +76,11 @@ loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
 loadSound("gong", "./assets/sounds/clockGong.wav");
 loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
 loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
+loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
 
 //Buttons
 loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
 loadSprite("start-button", "./assets/buttons/startButton.png");
-
-// initialize components
-// function unlockAudioContext(audioCtx) {
-//     if (audioCtx.state !== "suspended") return;
-//     const b = document.body;
-//     const events = ["touchstart", "touchend", "mousedown", "keydown"];
-//     events.forEach((e) => b.addEventListener(e, unlock, false));
-//     function unlock() {
-//       audioCtx.resume().then(clean);
-//     }
-//     function clean() {
-//       events.forEach((e) => b.removeEventListener(e, unlock));
-//     }
-  
-// }
-
-
-
-// function unlockAudioContext(audioCtx) {
-//   if (audioCtx.state === 'suspended') {
-//     var events = ['touchstart', 'touchend', 'mousedown', 'keydown'];
-//     var unlock = function unlock() {
-//       events.forEach(function (event) {
-//         document.body.removeEventListener(event, unlock)
-//       });
-//       audioCtx.resume();
-//     };
-
-//     events.forEach(function (event) {
-//       document.body.addEventListener(event, unlock, false)
-//     });
-//   }
-// }
-// const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-// unlockAudioContext(audioCtx);
 
 titleScene();
 winScene();
@@ -123,5 +89,5 @@ createBasementRoomOne();
 createBasementRoomTwo();
 thirdRoom();
 
-go("basementRoomTwoUp");
-// go("title");
+// go("basementRoomOneUp");
+go("title");

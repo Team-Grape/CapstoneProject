@@ -15,14 +15,11 @@ const roomNavArrows = navArrows(roomName);
 
 export const createBasementRoomTwo = () => {
   // ======================================================== //
+  const bgMusic = getMusicManager();
 
   scene(roomName + "Up", () => {
     const direction = "Up";
     let fruitPaintingY;
-    const bgMusic = getMusicManager();
-    console.log(bgMusic.play)
-    bgMusic.play("spooky");
-  
     onLoad(() => {
       add([sprite("room-two-background"), scale(1), area()]);
       add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
@@ -49,13 +46,14 @@ export const createBasementRoomTwo = () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-     play("gong");
+      play("gong");
     });
+    bgMusic.play("spooky");
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
       play("falling");
-      play("horror");
+      bgMusic.play("horror");
     });
     roomNavArrows(direction);
   });
@@ -139,13 +137,14 @@ export const createBasementRoomTwo = () => {
     });
 
     onClick("woodenDoor", (woodenDoor) => {
+      bgMusic.play("kidMusic")
       if (
         getGameState(roomName, "doorUnlocked") ||
         checkInventoryForItem(cellarKey)
       ) {
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
-        go("roomThree");
+        go("basementRoomThreeUp");
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
