@@ -1,37 +1,41 @@
+import { getOption, getBackgroundMusicVolume } from "./core";
+
 class Music {
   static PLAY_SOUND = true;
   static SOUNDS = ["gong", "bookcaseMoving", "horror", "falling", "spooky", "kidMusic"];
 
   constructor() {
+    this.soundEffectVolume = 1.5;
+    this.backgroundMusicVolume = 1.5
     this.sound = {
       spooky: {
         url: "spookyBgMusic.mp3",
-        vol: 0.5,
-        loadInitally: true,
+        vol: this.backgroundMusicVolume,
+        // loadInitally: true,
       },
       gong: {
         url: "clockGong.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       bookcaseMoving: {
         url: "bookcaseMoving.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       horror: {
         url: "horrorAmbiance.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       falling: {
         url: "paintingFalling.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       kidMusic: {
         url: "kidMusic.wav",
-        vol: 0.5,
+        vol: this.backgroundMusicVolume,
         loadInitally: true
       }
     };
@@ -63,8 +67,7 @@ class Music {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
     const soundFile = this.sound[soundName];
-    console.log("what is this????",this)
-    console.log("what is this sound??????",soundFile)
+    console.log('Sound File.vol before -->',soundFile.vol)
     try {
       this.currentlyPlayingName = soundName;
       await this.loadSoundEffect(soundName, soundFile);
@@ -72,9 +75,10 @@ class Music {
         stop(soundName);
       } else {
         this.currentlyPlaying = play(soundName, {
-          volume: soundFile.vol,
+          volume: getBackgroundMusicVolume(),
           loop: soundFile.loop === false ? false : true,
         });
+        console.log('SoundFile.vol after -->',this)
         return this.currentlyPlaying;
       }
     } catch (e) {
@@ -89,6 +93,17 @@ class Music {
       }
     } else {
       this.stopCurrentlyPlaying();
+    }
+  }
+
+  changeVolume(soundType, soundLevel) {
+    if (soundType === 'backgroundMusic') {
+      console.log('old background music level ->',this.backgroundMusicVolume)
+      this.backgroundMusicVolume = soundLevel
+      console.log('new background music level ->',this.backgroundMusicVolume)
+    } else {
+      this.soundEffectVolume = soundLevel
+      console.log(this.soundEffectVolume)
     }
   }
 }

@@ -1,4 +1,4 @@
-import { getCurrentRoom, setOnTitleScene, clearLocalStorage } from "../core";
+import { getCurrentRoom, setOnTitleScene, clearLocalStorage, getOption, setOption } from "../core";
 
 export const titleScene = () => {
   scene("title", () => {
@@ -53,5 +53,8 @@ export const titleScene = () => {
     onClick("options", () => {
       go("options");
     });
+
+ 
+
   });
 };
