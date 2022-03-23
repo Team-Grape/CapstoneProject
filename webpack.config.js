@@ -1,10 +1,23 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: './src/game.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry: {
+    gameBundle: "./src/game.js",
+    puzzleChartBundle: "./src/puzzleChart.js",
   },
-  mode: 'development',
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.mmd/,
+        type: 'asset/source',
+      },
+    ],
+  },
+
+
 };

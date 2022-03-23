@@ -1,0 +1,65 @@
+%% this is a comment
+%% syntax docs https://mermaid-js.github.io/mermaid/#/flowchart
+%% live editor https://mermaid.live
+
+graph TD	%% this sets flow to TOP DOWN
+
+%%%%%%%%%%%%%%%%  Setup Nodes  %%%%%%%%%%%%%%%%
+
+%% ------------ Many Branches ------------ %%
+classDef Game fill:#fff,stroke:#333,stroke-width:4px;
+
+game((gameplay))
+
+class game Game;
+
+%% ------------ Messages  ------------ %%
+classDef Messages fill:#f9f,stroke:#333,stroke-width:4px;
+
+intro[[intro message]]
+locked[[message about door locked]]
+
+class intro,locked Messages
+
+%% ------------ State Modified  ------------ %%
+classDef State fill:#f66,stroke:#333,stroke-width:4px;
+
+unlock[door unlocks]
+finishedIntro[user finishes reading intro message]
+
+class unlock,finishedIntro State
+
+%% ------------ Verbs ------------ %%
+classDef Verb fill:#6f6,stroke:#333,stroke-width:4px;
+
+clickDoor{{"click on door"}}
+getKey{{user pickes up key}}
+start{{start new game}}
+exit{{go to room 2}}
+
+class clickDoor,getKey,start,exit Verb;
+
+%% ------------ Conditionals ------------ %%
+classDef Conditional fill:#ffF,stroke:#333,stroke-width:4px;
+
+hasKey{"user has key in inventory?"}
+
+class hasKey Conditional
+
+
+
+
+%%%%%%%%%%%%%%%%  Make Connections  %%%%%%%%%%%%%%%%
+
+start --> intro --> finishedIntro --> game
+
+game --> getKey --> clickDoor
+game --> clickDoor
+
+clickDoor --> hasKey
+
+hasKey -->|Yes| unlock
+hasKey -->|No| locked --> game
+
+unlock --> exit
+
