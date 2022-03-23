@@ -1,5 +1,6 @@
 import kaboom from 'kaboom'
-import { titleScene } from "./scenes/00-title.js";
+import { entry } from "./scenes/00-entry.js";
+import { titleScene } from './scenes/00-title.js';
 import { options } from './scenes/00-options.js'
 import { winScene } from "./scenes/00-win.js";
 
@@ -16,14 +17,7 @@ kaboom({
   background: [35, 35, 35],
 });
 
-// initializes or resets inventory in local storage
-window.localStorage.setItem("inventory", JSON.stringify([]));
 
-// initializes or resets gameState in local storage
-window.localStorage.setItem("gameState", JSON.stringify({}));
-
-// initializes or resets messageLog in local storage
-window.localStorage.setItem("messageLog", JSON.stringify([]));
 
 //Nav Arrows
 loadSprite("left-arrow", "./assets/nav_arrows/leftArrow.png");
@@ -85,6 +79,7 @@ volume(1.5) // hardcoded to 50% based of Kaboom docs. 1.5 out of 3
 
 // initialize components
 
+entry()
 titleScene();
 options()
 winScene();
@@ -94,4 +89,4 @@ createBasementRoomTwo();
 thirdRoom();
 
 //go("basementRoomTwoUp");
-go("options");
+go("entry");

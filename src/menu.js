@@ -1,4 +1,4 @@
-
+import { clearLocalStorage } from "./core";
 // ==================== In Game Menu ====================================== //
 
 export class InGameMenu {
@@ -92,8 +92,7 @@ export class InGameMenu {
     onClick("yes", () => {
       // We do not want to reset the options key in our
       // local storage because we want options to persist
-      window.localStorage.setItem("gameState", JSON.stringify({}));
-      window.localStorage.setItem("inventory", JSON.stringify([]));
+      clearLocalStorage()
       go("title");
     });
   }
