@@ -121,4 +121,4 @@ createBasementRoomTwo();
 createBasementRoomThree();
 
 //go("basementRoomTwoUp");
-go('basementRoomThreeLeft');
+go('title');
