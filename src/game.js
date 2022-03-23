@@ -2,6 +2,7 @@ import kaboom from 'kaboom';
 import { titleScene } from './scenes/00-title.js';
 import { winScene } from './scenes/00-win.js';
 
+
 import { createBasementRoomOne } from './scenes/01-basement.js';
 import { createBasementRoomTwo } from './scenes/02-basement.js';
 import { createBasementRoomThree } from './scenes/03-room.js';
@@ -57,13 +58,34 @@ loadSprite(
 );
 
 //Decorations
-loadSprite('fruit-painting', './assets/decorations/fruitPainting.png');
-loadSprite('bookcase', './assets/decorations/bookcase.png');
-loadSprite('pile-of-bones', './assets/decorations/pileOfBones.png');
-loadSprite('dresser-with-candle', './assets/decorations/dresserWithCandle.png');
-loadSprite('help-me', './assets/decorations/helpMe.png');
-loadSprite('cob-webs', './assets/decorations/cobWebs.png');
-loadSprite('grandfather-clock', './assets/decorations/grandfatherClock.png');
+loadSprite("fruit-painting", "./assets/decorations/fruitPainting.png");
+loadSprite("bookcase", "./assets/decorations/bookcase.png");
+loadSprite("pile-of-bones", "./assets/decorations/pileOfBones.png");
+loadSprite("help-me", "./assets/decorations/helpMe.png");
+loadSprite("cob-webs", "./assets/decorations/cobweb_down_right.png");
+loadSprite("grandfather-clock", "./assets/decorations/grandfatherClock.png");
+loadSprite("table", "./assets/decorations/longTable_dark_brown.png");
+loadSprite("candle", "./assets/decorations/wallMountedCandleHolder_brown.png");
+
+//Misc. Objects/Items
+loadSprite("drawer", "./assets/drawer.png");
+loadSprite("door", "./assets/evilDoor.png");
+loadSprite("key", "./assets/key_gold.png");
+loadSprite("basement-window", "./assets/basementWindow.png");
+loadSprite("chained-skeleton", "./assets/chainedSkeleton.png");
+loadSprite("woodenDoor", "./assets/woodenDoor.png");
+
+//sounds
+loadSound("falling", "./assets/sounds/paintingFalling.wav");
+loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
+loadSound("gong", "./assets/sounds/clockGong.wav");
+loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
+loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
+loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
+
+//Buttons
+loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
+loadSprite("start-button", "./assets/buttons/startButton.png");
 
 /////////////////////////////////////////////////////////////////////////////////
 loadSprite('orange-carpet', './assets/decorations/orangecarpet.png');
@@ -94,25 +116,7 @@ loadSprite('wood-door', './assets/decorations/wooddoor.png');
 
 /////////////////////////////////////////////////////////////////////////////////
 
-//Misc. Objects/Items
-loadSprite('drawer', './assets/drawer.png');
-loadSprite('door', './assets/evilDoor.png');
-loadSprite('key', './assets/key_gold.png');
-loadSprite('basement-window', './assets/basementWindow.png');
-loadSprite('chained-skeleton', './assets/chainedSkeleton.png');
-loadSprite('woodenDoor', './assets/woodenDoor.png');
-
-//sounds
-loadSound('falling', './assets/sounds/paintingFalling.wav');
-loadSound('horror', './assets/sounds/horrorAmbiance.wav');
-loadSound('gong', './assets/sounds/clockGong.wav');
-
-//Buttons
-loadSprite('menu-button', './assets/buttons/menuButtonGray.png');
-loadSprite('start-button', './assets/buttons/startButton.png');
-
 // initialize components
-
 titleScene();
 winScene();
 
@@ -122,3 +126,4 @@ createBasementRoomThree();
 
 //go("basementRoomTwoUp");
 go('title');
+

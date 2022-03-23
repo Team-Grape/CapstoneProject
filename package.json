@@ -8,7 +8,6 @@
   },
   "name": "capstoneproject",
   "version": "1.0.0",
-
   "scripts": {
     "start": "webpack -w & http-server -p 1337 dist"
   },

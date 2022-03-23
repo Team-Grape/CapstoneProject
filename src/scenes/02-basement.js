@@ -6,9 +6,11 @@ import {
   setGameState,
   getGameState,
   textBubble,
-  addToMessageLog,
-} from '../core.js';
-import { cellarKey } from '../items.js';
+
+} from "../core.js";
+import { cellarKey } from "../items.js";
+import getMusicManager from "../MusicManager.js";
+
 
 const roomName = 'basementRoomTwo';
 const roomNavArrows = navArrows(roomName);
@@ -21,20 +23,20 @@ const introMessage = [
 
 export const createBasementRoomTwo = () => {
   // ======================================================== //
+  const bgMusic = getMusicManager();
 
   scene(roomName + 'Up', () => {
     const direction = 'Up';
     let fruitPaintingY;
     onLoad(() => {
-      add([sprite('room-two-background'), scale(1), area()]);
-      add([sprite('help-me'), pos(500, 100), scale(0.2), area()]);
-      add([sprite('cob-webs'), scale(1), area()]);
+      add([sprite("room-two-background"), scale(1), area()]);
+      add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
       add([
-        sprite('grandfather-clock'),
+        sprite("grandfather-clock"),
         pos(900, 100),
         scale(4),
         area(),
-        'grandfather-clock',
+        "grandfather-clock",
       ]);
     });
 
@@ -69,14 +71,12 @@ export const createBasementRoomTwo = () => {
     onClick('grandfather-clock', () => {
       play('gong');
     });
-    onClick('fruit-painting', (fruitPainting) => {
-      setGameState(roomName, 'fruitPaintingMoved', true);
+    bgMusic.play("spooky");
+    onClick("fruit-painting", (fruitPainting) => {
+      setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
-      play('falling');
-      const music = play('horror', {
-        loop: true,
-      });
-      music.play();
+      play("falling");
+      bgMusic.play("horror");
     });
     roomNavArrows(direction);
   });
@@ -85,16 +85,13 @@ export const createBasementRoomTwo = () => {
 
   scene(roomName + 'Down', () => {
     const direction = 'Down';
-
     onLoad(() => {
       add([sprite('room-two-background'), scale(1), area()]);
       add([sprite('door'), pos(440, 150), scale(4), area(), 'door']);
     });
-
     onClick('door', () => {
       go('basementRoomOneUp');
     });
-
     roomNavArrows(direction);
   });
 
@@ -106,7 +103,6 @@ export const createBasementRoomTwo = () => {
     onLoad(() => {
       add([sprite('room-two-background-left'), scale(1), area()]);
     });
-
     if (!getGameState(roomName, 'keyPickedUp')) {
       onLoad(() => {
         add([sprite('key'), pos(500, 300), scale(1), area(), 'key']);
@@ -126,10 +122,10 @@ export const createBasementRoomTwo = () => {
         'bookcase',
       ]);
     });
-
     onClick('bookcase', (bookcase) => {
       setGameState(roomName, 'bookCaseMoved', true);
       bookcase.pos.x = 180;
+      play("bookcaseMoving");
     });
     onClick('key', (key) => {
       textBubble([['a key was added to your inventory']]);
@@ -153,17 +149,19 @@ export const createBasementRoomTwo = () => {
         area(),
         'woodenDoor',
       ]);
-      add([sprite('dresser-with-candle'), pos(400, 130), scale(0.6), area()]);
+      add([sprite("table"), pos(600, 240), scale(3), area()]);
+      add([sprite("candle"), pos(600, 160), scale(3), area()]);
+      add([sprite("cob-webs"), pos(640, 280), scale(2), area()]);
     });
-
-    onClick('woodenDoor', (woodenDoor) => {
+    onClick("woodenDoor", (woodenDoor) => {
+      bgMusic.play("kidMusic")
       if (
         getGameState(roomName, 'doorUnlocked') ||
         checkInventoryForItem(cellarKey)
       ) {
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        go('roomThree');
+        go("basementRoomThreeUp");
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }

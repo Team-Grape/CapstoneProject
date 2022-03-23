@@ -6,9 +6,11 @@ import {
   setGameState,
   getGameState,
   textBubble,
-  addToMessageLog,
-} from '../core.js';
-import { cellarKey } from '../items.js';
+ 
+  addToMessageLog
+} from "../core.js";
+import { cellarKey } from "../items.js";
+import getMusicManager from "../MusicManager.js";
 
 const roomName = 'basementRoomOne';
 const roomNavArrows = navArrows(roomName);
@@ -20,6 +22,7 @@ const introMessage = [
 ];
 
 export const createBasementRoomOne = () => {
+
   // ======================================================== //
 
   scene(roomName + 'Up', () => {
@@ -31,14 +34,13 @@ export const createBasementRoomOne = () => {
     });
 
     //Door click handler
-    onClick('door', (door) => {
-      if (
-        getGameState(roomName, 'doorUnlocked') ||
-        checkInventoryForItem(cellarKey)
-      ) {
-        setGameState(roomName, 'doorUnlocked', true);
-        removeFromInventory(cellarKey);
-        go('basementRoomTwoUp');
+    onClick("door", (door) => {
+      const bgMusic = getMusicManager();
+      bgMusic.play("spooky");
+      if ((getGameState(roomName, "doorUnlocked")) || (checkInventoryForItem(cellarKey))) {
+        setGameState(roomName, 'doorUnlocked', true)
+        removeFromInventory(cellarKey)
+        go("basementRoomTwoUp");
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
