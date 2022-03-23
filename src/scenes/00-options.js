@@ -1,9 +1,19 @@
-import { getCurrentRoom, getOnTitleScene, getOption, setOption, setBackgroundMusicVolume, getBackgroundMusicVolume } from "../core";
+import { 
+  getCurrentRoom, 
+  getOnTitleScene, 
+  getOption, 
+  setOption, 
+  setBackgroundMusicVolume, 
+  getBackgroundMusicVolume, 
+  getSoundEffectVolume,
+  setSoundEffectVolume
+ } from "../core";
 import MusicManager from "../MusicManager";
 
 export const options = () => {
   scene("options", () => {
     const music = MusicManager();
+    const soundEffects = MusicManager()
 
     console.log("Music Manager ==>", music);
 
@@ -126,10 +136,10 @@ export const options = () => {
       "soundEffects",
     ]);
 
-    let currentSeVolume = music.soundEffectsVolume;
-
-    const currentSeVolumeDisplay = add([
-      text(`${(currentSeVolume / 3) * 100}%`, {
+    // let currentSeVolume = music.soundEffectsVolume;
+    let currentSoundEffectVolume = getSoundEffectVolume();
+    const currentSFXVolumeDisplay = add([
+      text(`${((currentSoundEffectVolume / 3) * 100).toFixed(0)}%`, {
         size: 42,
         width: width() - 230,
         font: "sink",
@@ -138,10 +148,10 @@ export const options = () => {
       color(249, 215, 57),
       origin("center"),
       area(),
-      "currentSeVolumeDisplay",
+      "currentSFXVolumeDisplay",
     ]);
 
-    const increaseSeMusicButton = add([
+    const increaseSFXButton = add([
       text(`+`, {
         size: 30,
         font: "sink",
@@ -152,10 +162,10 @@ export const options = () => {
       color(140, 140, 140),
       //   outline(width, 10, color(255, 255, 255)),
       origin("center"),
-      "increaseSeMusicButton",
+      "increaseSFXButton",
     ]);
 
-    const decreaseSeMusicButton = add([
+    const decreaseSFXButton = add([
       text(`-`, {
         size: 30,
         width: width() - 230,
@@ -165,33 +175,39 @@ export const options = () => {
       color(140, 140, 140),
       origin("center"),
       area(),
-      "decreaseSeMusicButton",
+      "decreaseSFXButton",
     ]);
 
-    onClick("decreaseSeMusicButton", () => {
-      console.log("increaseSeMusic");
-      if (currentSeVolume > 0) {
-        currentSeVolume -= 0.1;
-        currentSeVolumeDisplay.text = `${((currentSeVolume / 3) * 100).toFixed(
+    onClick("decreaseSFXButton", () => {
+      let currentSoundEffectVolume = getSoundEffectVolume();
+      if (currentSoundEffectVolume > 0.1) {
+        // currentSeVolume -= 0.1;
+        setSoundEffectVolume(currentSoundEffectVolume -= 0.1);
+        currentSFXVolumeDisplay.text = `${((currentSoundEffectVolume / 3) * 100).toFixed(
           0
         )}%`;
-        // volume((currentSeVolume).toFixed(0))
-        music.changeVolume("soundEffect", currentSeVolume);
-        readd(currentSeVolumeDisplay);
+
+        if (soundEffects.currentlyPlaying) {
+          soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
+        }
+   
+        readd(currentSFXVolumeDisplay);
       }
     });
 
-    onClick("increaseSeMusicButton", () => {
-      console.log("decreaseSeMusic");
-      if (currentSeVolume < 3.0) {
-        currentSeVolume += 0.1;
-
-        currentSeVolumeDisplay.text = `${((currentSeVolume / 3) * 100).toFixed(
+    onClick("increaseSFXButton", () => {
+      let currentSoundEffectVolume = getSoundEffectVolume();
+      if (currentSoundEffectVolume < 3.0) {
+        console.log('current sound effect volume ->',currentSoundEffectVolume)
+        setSoundEffectVolume(currentSoundEffectVolume += 0.1);
+        currentSFXVolumeDisplay.text = `${((currentSoundEffectVolume / 3) * 100).toFixed(
           0
         )}%`;
-        // volume((currentSeVolume).toFixed(0))
-        music.changeVolume("soundEffect", currentSeVolume);
-        readd(currentSeVolumeDisplay);
+
+        if (soundEffects.currentlyPlaying) {
+          soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
+        }
+        readd(currentSFXVolumeDisplay);
       }
     });
 
@@ -252,10 +268,46 @@ export const options = () => {
       music.stop();
     });
 
-    onKeyPress("up", () => music.volume(music.volume() + 0.1));
-    onKeyPress("down", () => music.volume(music.volume() - 0.1));
-    onKeyPress("left", () => music.detune(music.detune() - 100));
-    onKeyPress("right", () => music.detune(music.detune() + 100));
-    onKeyPress("escape", () => music.stop());
+    // ============== Sound Effect Test Buttons =========================
+
+
+    add([
+      text(`Play Sound Effect`, {
+        size: 30,
+        font: "sink",
+      }),
+      area(),
+      pos(1050, 250),
+      // pos(1200, 500),
+      color(140, 140, 140),
+      //   outline(width, 10, color(255, 255, 255)),
+      "playSoundEffect",
+    ]);
+    
+    onClick("playSoundEffect", () => {
+      console.log('SoundEffects instance')
+      console.dir(soundEffects, { depth: null });
+      soundEffects.play("falling");
+    });
+
+    // add([
+    //   text(`Stop Sound Effect`, {
+    //     size: 30,
+    //     font: "sink",
+    //   }),
+    //   area(),
+    //   pos(1050, 350),
+    //   // pos(1200, 500),
+    //   color(140, 140, 140),
+    //   //   outline(width, 10, color(255, 255, 255)),
+    //   "stopSoundEffect",
+    // ]);
+
+    
+
+    // onClick("stopMusic", () => {
+    //   console.dir(music, { depth: null });
+    //   music.stop();
+    // });
   });
 };

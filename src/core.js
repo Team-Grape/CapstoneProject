@@ -60,9 +60,6 @@ export function clearLocalStorage() {
   // initializes or resets inventory in local storage
   window.localStorage.setItem("inventory", JSON.stringify([]));
 
-  // initializes or resets options in local storage
-  window.localStorage.setItem("options", JSON.stringify({}));
-
   // initializes or resets messageLog in local storage
   window.localStorage.setItem("messageLog", JSON.stringify([]));
 
@@ -88,21 +85,29 @@ export function getOption(option) {
   if (!window.localStorage.getItem("options")) {
     window.localStorage.setItem("options", JSON.stringify({}));
   }
-  const currentOptions = JSON.parse(localStorage.getItem('options'))
-  console.log('Current Options ->',currentOptions)
+  const currentOptions = JSON.parse(localStorage.getItem("options"));
+  console.log("Current Options ->", currentOptions);
   if (currentOptions) {
-    return currentOptions[option]
+    return currentOptions[option];
   } else {
-    console.log('no options currently set')
+    console.log("no options currently set");
   }
 }
 
 export function setBackgroundMusicVolume(value) {
-    setOption('backgroundMusicVolume', value)
+  setOption("backgroundMusicVolume", value);
 }
 
 export function getBackgroundMusicVolume() {
-  return getOption('backgroundMusicVolume')
+  return getOption("backgroundMusicVolume");
+}
+
+export function setSoundEffectVolume(value) {
+  setOption("soundEffectVolume", value);
+}
+
+export function getSoundEffectVolume() {
+  return getOption("soundEffectVolume");
 }
 
 // ===================================================================================================
@@ -173,42 +178,42 @@ export const removeFromInventory = (item) => {
   localStorage.setItem("inventory", JSON.stringify(currentInventory));
 };
 
-export const setoptions = (roomName, gameEvent, value) => {
-  if (!window.localStorage.getItem("options")) {
-    window.localStorage.setItem("options", JSON.stringify({}));
+export const setGameState = (roomName, gameEvent, value) => {
+  if (!window.localStorage.getItem('gameState')) {
+    window.localStorage.setItem('gameState', JSON.stringify({}));
   }
-  let currentoptions = JSON.parse(window.localStorage.getItem("options"));
+  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
 
   // check if roomName has been created
-  if (Object.entries(currentoptions).some((room) => room[0] == roomName)) {
+  if (Object.entries(currentGameState).some((room) => room[0] == roomName)) {
     // room object already exists, so we can add & set keys/values on it!
-    currentoptions[roomName][gameEvent] = value;
+    currentGameState[roomName][gameEvent] = value;
   } else {
     // room object does not exist.
     // we need to create it before we can add & set keys/values to it.
-    currentoptions[roomName] = {};
-    currentoptions[roomName][gameEvent] = value;
+    currentGameState[roomName] = {};
+    currentGameState[roomName][gameEvent] = value;
   }
 
-  // save the updated options to local storage
-  localStorage.setItem("options", JSON.stringify(currentoptions));
+  // save the updated gameState to local storage
+  localStorage.setItem('gameState', JSON.stringify(currentGameState));
 };
 
-export const getoptions = (roomName, gameEvent) => {
-  // if options does not exist
-  if (!window.localStorage.getItem("options")) {
+export const getGameState = (roomName, gameEvent) => {
+  // if gameState does not exist
+  if (!window.localStorage.getItem('gameState')) {
     return false;
   }
 
-  let currentoptions = JSON.parse(window.localStorage.getItem("options"));
+  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
 
   // if roomName does not exist
-  if (!Object.entries(currentoptions).some((room) => room[0] == roomName)) {
+  if (!Object.entries(currentGameState).some((room) => room[0] == roomName)) {
     return false;
   } else {
     // roomName does exist; but if gameEvent doesnt exist, it will return undefined;
     // which evaluates to false
-    return currentoptions[roomName][gameEvent];
+    return currentGameState[roomName][gameEvent];
   }
 };
 

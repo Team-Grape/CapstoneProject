@@ -1,4 +1,8 @@
-import { getOption, getBackgroundMusicVolume } from "./core";
+import { 
+  getOption, 
+  getBackgroundMusicVolume,
+  getSoundEffectVolume
+ } from "./core";
 
 class Music {
   static PLAY_SOUND = true;
@@ -9,31 +13,37 @@ class Music {
     this.backgroundMusicVolume = 1.5
     this.sound = {
       spooky: {
+        type: 'background',
         url: "spookyBgMusic.mp3",
         vol: this.backgroundMusicVolume,
         // loadInitally: true,
       },
       gong: {
+        type: 'soundEffect',
         url: "clockGong.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       bookcaseMoving: {
+        type: 'soundEffect',
         url: "bookcaseMoving.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       horror: {
+        type: 'background',
         url: "horrorAmbiance.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       falling: {
+        type: 'soundEffect',
         url: "paintingFalling.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       kidMusic: {
+        type: 'background',
         url: "kidMusic.wav",
         vol: this.backgroundMusicVolume,
         loadInitally: true
@@ -56,9 +66,10 @@ class Music {
   }
 
   async play(soundName) {
-    if (this.currentlyPlayingName === soundName) {
-      return;
-    }
+    // if (this.currentlyPlayingName === soundName) {
+    //   // console.log('I think its this one lol')
+    //   return;
+    // }
     if (Music.PLAY_SOUND === false) {
       return;
     }
@@ -74,12 +85,23 @@ class Music {
       if (this.currentlyPlayingName !== soundName) {
         stop(soundName);
       } else {
-        this.currentlyPlaying = play(soundName, {
-          volume: getBackgroundMusicVolume(),
-          loop: soundFile.loop === false ? false : true,
-        });
-        console.log('SoundFile.vol after -->',this)
-        return this.currentlyPlaying;
+        console.log('Before the If/Else Background vs Sound Effect')
+        if (soundFile.type === 'background') {
+          this.currentlyPlaying = play(soundName, {
+            volume: getBackgroundMusicVolume(),
+            loop: soundFile.loop === false ? false : true,
+          });
+          
+          return this.currentlyPlaying;
+        } else if (soundFile.type === 'soundEffect') {
+          console.log('Sound Effect else if -->')
+          this.currentlyPlaying = play(soundName, {
+            volume: getSoundEffectVolume(),
+            loop: soundFile.loop === false
+          });
+          console.log('SoundFile.vol after -->',this)
+          return this.currentlyPlaying;
+        }
       }
     } catch (e) {
       console.log(e);
