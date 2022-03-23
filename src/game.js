@@ -1,5 +1,6 @@
 import kaboom from 'kaboom'
 import { titleScene } from "./scenes/00-title.js";
+import { options } from './scenes/00-options.js'
 import { winScene } from "./scenes/00-win.js";
 
 import { createBasementRoomOne } from "./scenes/01-basement.js";
@@ -79,10 +80,13 @@ loadSound("gong", "./assets/sounds/clockGong.wav");
 loadSprite('menu-button', './assets/buttons/menuButtonGray.png')
 loadSprite('start-button', './assets/buttons/startButton.png')
 
+// set global volume
+volume(1.5) // hardcoded to 50% based of Kaboom docs. 1.5 out of 3
 
 // initialize components
 
 titleScene();
+options()
 winScene();
 
 createBasementRoomOne();
@@ -90,4 +94,4 @@ createBasementRoomTwo();
 thirdRoom();
 
 //go("basementRoomTwoUp");
-go("title");
+go("options");

@@ -1,3 +1,7 @@
+import { InGameMenu } from './menu.js'
+
+const inGameMenu = new InGameMenu()
+
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem('inventory')) {
     // you dont even have an inventory yet!
@@ -129,7 +133,9 @@ export const getGameState = (roomName, gameEvent) => {
 };
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
-  displayMenu()
+  
+  inGameMenu.display()
+
   for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
     let direction = arrayOfDirectionsStrings[i];
     if (direction === 'left') {
@@ -248,123 +254,4 @@ export const textBubble = (dialogs, onFinish) => {
   updateDialog();
 };
 
-
-// ==================== Change Color ===============================//
-export function changeComponentColor(componentName, red, green, blue ) {
-  componentName.color.r = red
-  componentName.color.g = green
-  componentName.color.b = blue
-}
-// ==================== MENU ====================================== //
-
-// class Menu {
-//   constructor() {}
-//   displayMenu() {
-//     add([
-//       sprite("menu-button"),
-//       pos(1150, 10),
-//       scale(1),
-//       area(),
-//       "menu-button",
-//     ]);
-//     onClick("menu-button", () => {
-//       openMenu();
-//     });
-//   }
-
-  // closeMenu() {
-
-  // }
-// }
-
-
-export function displayMenu() {
-  add([sprite("menu-button"), pos(1150, 10), scale(1), area(), "menu-button"]);
-  onClick("menu-button", () => {
-    openMenu();
-  });
-}
-
-function restart() {
-  const restartPrompt = add([pos(430, 100), rect(350, 100), color(0, 0, 255), outline(4), area(), color(100, 100, 100)]);
-  const areYouSure = add([
-    text("Are You Sure?", { size: 40 }),
-    pos(450, 105),
-    area(),
-    "are-you-sure",
-  ]);
-  const yes = add([
-    text("Yes", { size: 30 }),
-    pos(480, 150),
-    area(),
-    "yes",
-  ]);
-  const no = add([
-    text("No", { size: 30 }),
-    pos(670, 150),
-    area(),
-    "no",
-  ]);
-
-  onClick('no', () => {
-    restartPrompt.destroy()
-    areYouSure.destroy()
-    yes.destroy()
-    no.destroy()
-  })
-
-  onClick('yes', () => {
-    window.localStorage.setItem("gameState", JSON.stringify({}));
-    window.localStorage.setItem("inventory", JSON.stringify([]));
-    go('title')
-  })
-}
-
-export function openMenu() {
-  const gameMenu = add([pos(1070, 50), rect(160, 120), outline(4),  color(100, 100, 100), area()]);
-  const continueButton = add([
-    text("Continue", { size: 20, font: 'sink'}),
-    pos(1080, 60),
-    color(255, 255, 255), 
-    area(),
-    "continue",
-  ]);
-  const optionsButton = add([
-    text("Options", { size: 20, font: 'sink' }),
-    pos(1080, 100),
-    color(255, 255, 255), 
-    area(),
-    "options",
-  ]);
-  const restartButton = add([
-    text("Restart", { size: 20, font: 'sink' }),
-    pos(1080, 140),
-    area(),
-    "restart",
-  ]);
-
-  onHover('continue', () => {
-    changeComponentColor(continueButton, 246, 207, 27)
-    // maybe write some if logic so that color reverts
-    // return changeComponentColor(continueButton, 0, 0, 0)
-  })
-
-  onClick("continue", () => {
-    gameMenu.destroy();
-    continueButton.destroy();
-    optionsButton.destroy();
-    restartButton.destroy();
-  });
-
-  onClick('restart', () => {
-    gameMenu.destroy();
-    continueButton.destroy();
-    optionsButton.destroy();
-    restartButton.destroy();
-    restart()
-  })
-
-  onClick('options', () => {
-  })
-}
 
