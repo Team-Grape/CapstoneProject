@@ -1,8 +1,9 @@
-import kaboom from 'kaboom';
+
+import kaboom from 'kaboom'
+import { entry } from "./scenes/00-entry.js";
 import { titleScene } from './scenes/00-title.js';
-import { winScene } from './scenes/00-win.js';
-
-
+import { options } from './scenes/00-options.js'
+import { winScene } from "./scenes/00-win.js";
 import { createBasementRoomOne } from './scenes/01-basement.js';
 import { createBasementRoomTwo } from './scenes/02-basement.js';
 import { createBasementRoomThree } from './scenes/03-room.js';
@@ -15,15 +16,6 @@ kaboom({
   debug: true,
   background: [35, 35, 35],
 });
-
-// initializes or resets inventory in local storage
-window.localStorage.setItem('inventory', JSON.stringify([]));
-
-// initializes or resets gameState in local storage
-window.localStorage.setItem('gameState', JSON.stringify({}));
-
-// initializes or resets messageLog in local storage
-window.localStorage.setItem('messageLog', JSON.stringify([]));
 
 //Nav Arrows
 loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
@@ -83,7 +75,14 @@ loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
 loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
 loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
 
+
+
+
+// set global volume
+volume(1.5) // hardcoded to 50% based of Kaboom docs. 1.5 out of 3
+
 //Buttons
+
 loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
 loadSprite("start-button", "./assets/buttons/startButton.png");
 
@@ -117,7 +116,9 @@ loadSprite('wood-door', './assets/decorations/wooddoor.png');
 /////////////////////////////////////////////////////////////////////////////////
 
 // initialize components
+entry()
 titleScene();
+options()
 winScene();
 
 createBasementRoomOne();
@@ -125,5 +126,6 @@ createBasementRoomTwo();
 createBasementRoomThree();
 
 //go("basementRoomTwoUp");
-go('title');
+
+go("entry");
 

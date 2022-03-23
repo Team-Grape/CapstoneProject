@@ -1,3 +1,7 @@
+import { InGameMenu } from './menu.js'
+
+const inGameMenu = new InGameMenu()
+
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem('inventory')) {
     // you dont even have an inventory yet!
@@ -26,6 +30,44 @@ export const addToInventory = (item) => {
     );
   }
 };
+
+export function saveCurrentRoom(currentRoom) {
+  if (!window.localStorage.getItem('currentRoom')) {
+    window.localStorage.setItem('currentRoom', '')
+  }
+  localStorage.setItem('currentRoom', currentRoom)
+}
+
+export function getCurrentRoom() {
+  const currentRoom = localStorage.getItem('currentRoom')
+  if (currentRoom === '') {
+    return 'title'
+  } return currentRoom 
+}
+
+export function setOnTitleScene(bool) {
+  localStorage.setItem('onTitleScene', JSON.stringify(bool))
+}
+
+export function getOnTitleScene() {
+  if (localStorage.getItem('onTitleScene')) {
+    return JSON.parse(localStorage.getItem('onTitleScene'))
+  }
+}
+
+export function clearLocalStorage() {
+  // initializes or resets inventory in local storage
+  window.localStorage.setItem("inventory", JSON.stringify([]));
+
+  // initializes or resets gameState in local storage
+  window.localStorage.setItem("gameState", JSON.stringify({}));
+
+  // initializes or resets messageLog in local storage
+  window.localStorage.setItem("messageLog", JSON.stringify([]));
+
+  // resets the save state
+  window.localStorage.setItem('currentRoom', '')
+}
 
 // ===================================================================================================
 
@@ -135,8 +177,9 @@ export const getGameState = (roomName, gameEvent) => {
 };
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
-  displayMenu();
+  inGameMenu.display()
   displayMessageLog();
+
   for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
     let direction = arrayOfDirectionsStrings[i];
     if (direction === 'left') {
@@ -173,9 +216,12 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
 }
 
 export const navArrows = (roomName) => (d) => {
-  if (d == 'Up') {
-    onClick('right-arrow', () => {
-      go(roomName + 'Right');
+
+  saveCurrentRoom(roomName + d)
+  if (d == "Up") {
+    onClick("right-arrow", () => {
+      go(roomName + "Right");
+
     });
     onClick('left-arrow', () => {
       go(roomName + 'Left');
@@ -258,6 +304,7 @@ export const textBubble = (dialogs, onFinish) => {
 
   updateDialog();
 };
+
 
 // ==================== Change Color ===============================//
 export function changeComponentColor(componentName, red, green, blue) {
@@ -378,3 +425,4 @@ export function openMenu() {
 
   onClick('options', () => {});
 }
+
