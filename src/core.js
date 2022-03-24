@@ -7,6 +7,61 @@ export const playSFX = (sndNameStr) => {
 }
 
 
+export const removeInventoryDiv = () => {
+  if (document.getElementById('inventoryPanel')) {
+    document.getElementById('inventoryPanel').remove()
+  }
+}
+
+export const displayInventoryDiv = () => {
+  if (!window.localStorage.getItem("inventory")) {
+    window.localStorage.setItem("inventory", JSON.stringify([]));
+  }
+  const currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
+
+  removeInventoryDiv()
+
+  if (currentInventory.length <= 0) {
+    return
+  }
+
+  const inventoryContainerDiv = document.createElement("div");
+//  inventoryContainer.style['border'] = '2px solid blue'
+  inventoryContainerDiv.style['display'] = 'flex'
+  inventoryContainerDiv.style['position'] = 'absolute'
+  inventoryContainerDiv.style['bottom'] = '0'
+  inventoryContainerDiv.id = "inventoryPanel"
+
+/*
+  const headingTextNode = document.createTextNode('Inventory:');
+  const headingContainer = document.createElement("div");
+  headingContainer.appendChild(headingTextNode);
+  headingContainer.style['-webkit-text-stroke'] = '1px white'
+  headingContainer.style['color'] = 'black'
+  headingContainer.style['font-size'] = 'xxx-large'
+  inventoryContainerDiv.appendChild(headingContainer);
+*/
+
+  currentInventory.map((item) => {
+    const tmpItemImg = document.createElement("img");
+    tmpItemImg.src = "./assets/" + item.image;
+    //tmpItemImg.alt = `${item.name}: ${item.description}`
+    tmpItemImg.title = `${item.name}: \n  ${item.description}`
+    tmpItemImg.style['border'] = '3px solid grey'
+    tmpItemImg.style['width'] = '32'
+    tmpItemImg.style['height'] = '32'
+    tmpItemImg.classList.add("inventoryItem");
+    
+    inventoryContainerDiv.appendChild(tmpItemImg)
+  })
+
+  //let aaa = document.getElementsByTagName('body')[0]
+  //let aaa = document.getElementById("chartParent")
+
+  document.body.appendChild(inventoryContainerDiv);
+}
+
+
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem("inventory")) {
     // you dont even have an inventory yet!
@@ -34,6 +89,7 @@ export const addToInventory = (item) => {
       JSON.stringify([...currentInventory, item])
     );
   }
+  displayInventoryDiv();
 };
 
 export function saveCurrentRoom(currentRoom) {
@@ -177,6 +233,7 @@ export const removeFromInventory = (item) => {
   // this does not care about quantity! just removes if exists
   currentInventory = currentInventory.filter((i) => i.name != item.name);
   localStorage.setItem("inventory", JSON.stringify(currentInventory));
+  displayInventoryDiv();
 };
 
 export const setGameState = (roomName, gameEvent, value) => {

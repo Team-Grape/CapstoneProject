@@ -7,7 +7,8 @@ import {
   getBackgroundMusicVolume, 
   getSoundEffectVolume,
   setSoundEffectVolume,
-  playSFX
+  playSFX,
+  displayInventoryDiv
  } from "../core";
 import MusicManager from "../MusicManager";
 
@@ -233,6 +234,7 @@ const music = MusicManager();
       if (getOnTitleScene()) {
         go("title");
       } else {
+        displayInventoryDiv()
         go(getCurrentRoom());
       }
     });

@@ -1,4 +1,11 @@
-import { getCurrentRoom, setOnTitleScene, clearLocalStorage, getOption, setOption } from "../core";
+import { 
+  getCurrentRoom,
+  setOnTitleScene,
+  clearLocalStorage,
+  getOption,
+  setOption,
+  displayInventoryDiv
+} from "../core";
 
 export const titleScene = () => {
   scene("title", () => {
@@ -40,6 +47,7 @@ export const titleScene = () => {
 
       onClick("continue", () => {
         setOnTitleScene(false);
+        displayInventoryDiv()
         go(getCurrentRoom());
       });
     }

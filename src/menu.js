@@ -1,4 +1,4 @@
-import { clearLocalStorage } from "./core";
+import { clearLocalStorage, removeInventoryDiv} from "./core";
 // ==================== In Game Menu ====================================== //
 
 export class InGameMenu {
@@ -59,6 +59,7 @@ export class InGameMenu {
     });
 
     onClick("options", () => {
+      removeInventoryDiv()
       go('options')
     });
   }
@@ -93,6 +94,7 @@ export class InGameMenu {
       // We do not want to reset the options key in our
       // local storage because we want options to persist
       clearLocalStorage()
+      removeInventoryDiv()
       go("title");
     });
   }
