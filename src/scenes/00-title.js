@@ -1,10 +1,10 @@
-import { 
+import {
   getCurrentRoom,
   setOnTitleScene,
   clearLocalStorage,
   getOption,
   setOption,
-  displayInventoryDiv
+  displayInventoryDiv,
 } from "../core";
 
 export const titleScene = () => {
@@ -17,7 +17,7 @@ export const titleScene = () => {
       origin("center"),
     ]);
 
-    add([
+    const optionsButton = add([
       text("Options"),
       color(255, 0, 0),
       pos(width() / 2, 400),
@@ -26,7 +26,7 @@ export const titleScene = () => {
       "options",
     ]);
 
-    add([
+    const startNewGameButton = add([
       text("Start New Game"),
       color(255, 0, 0),
       pos(width() / 2, 300),
@@ -34,9 +34,17 @@ export const titleScene = () => {
       area(),
       "startNewGame",
     ]);
- 
+
+    let continueButton;
+
+    function startNewGame() {
+      clearLocalStorage();
+      setOnTitleScene(false);
+      go("basementRoomOneUp");
+    }
+
     if (getCurrentRoom()) {
-      add([
+      continueButton = add([
         text("Continue"),
         color(255, 0, 0),
         pos(width() / 2, 200),
@@ -47,22 +55,51 @@ export const titleScene = () => {
 
       onClick("continue", () => {
         setOnTitleScene(false);
-        displayInventoryDiv()
+        displayInventoryDiv();
         go(getCurrentRoom());
       });
     }
 
     onClick("startNewGame", () => {
-      clearLocalStorage();
-      setOnTitleScene(false);
-      go("basementRoomOneUp");
+      if (getCurrentRoom()) {
+        optionsButton.destroy();
+        continueButton.destroy();
+        startNewGameButton.destroy();
+
+        const areYouSure = add([
+          text(
+            "Starting a new game will erase your old save. \n \n Are you sure you want to proceed?",
+            { size: 40 }
+          ),
+          color(255, 0, 0),
+          pos(width() / 2, 250),
+          origin("center"),
+          area(),
+          "areYouSure",
+        ]);
+        const yes = add([
+          text("Yes", { size: 50 }),
+          pos(480, 370),
+          area(),
+          "yes",
+        ]);
+        const no = add([text("No", { size: 50 }), pos(670, 370), area(), "no"]);
+
+        onClick("no", () => {
+          go('title')
+        });
+
+        onClick("yes", () => {
+         startNewGame()
+        });
+
+      } else {
+        startNewGame()
+      }
     });
 
     onClick("options", () => {
       go("options");
     });
-
- 
-
   });
 };
