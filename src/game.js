@@ -1,11 +1,12 @@
-import kaboom from "kaboom";
+
+import kaboom from 'kaboom'
 import { entry } from "./scenes/00-entry.js";
-import { titleScene } from "./scenes/00-title.js";
-import { options } from "./scenes/00-options.js";
+import { titleScene } from './scenes/00-title.js';
+import { options } from './scenes/00-options.js'
 import { winScene } from "./scenes/00-win.js";
-import { createBasementRoomOne } from "./scenes/01-basement.js";
-import { createBasementRoomTwo } from "./scenes/02-basement.js";
-import { createBasementRoomThree } from "./scenes/03-room.js";
+import { createBasementRoomOne } from './scenes/01-basement.js';
+import { createBasementRoomTwo } from './scenes/02-basement.js';
+import { createBasementRoomThree } from './scenes/03-room.js';
 
 kaboom({
   global: true,
@@ -17,35 +18,35 @@ kaboom({
 });
 
 //Nav Arrows
-loadSprite("left-arrow", "./assets/nav_arrows/leftArrow.png");
-loadSprite("right-arrow", "./assets/nav_arrows/rightArrow.png");
-loadSprite("up-arrow", "./assets/nav_arrows/upArrow.png");
-loadSprite("down-arrow", "./assets/nav_arrows/downArrow.png");
+loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
+loadSprite('right-arrow', './assets/nav_arrows/rightArrow.png');
+loadSprite('up-arrow', './assets/nav_arrows/upArrow.png');
+loadSprite('down-arrow', './assets/nav_arrows/downArrow.png');
 
 //Room Backgrounds
 loadSprite(
-  "room-two-background",
-  "./assets/room_backgrounds/basement/roomTwoBackground.png"
+  'room-two-background',
+  './assets/room_backgrounds/basement/roomTwoBackground.png'
 );
 loadSprite(
-  "room-two-background-right",
-  "./assets/room_backgrounds/basement/roomTwoRightLeft.png"
+  'room-two-background-right',
+  './assets/room_backgrounds/basement/roomTwoRightLeft.png'
 );
 loadSprite(
-  "room-two-background-left",
-  "./assets/room_backgrounds/basement/roomTwoRightLeft.png"
+  'room-two-background-left',
+  './assets/room_backgrounds/basement/roomTwoRightLeft.png'
 );
 loadSprite(
-  "background-tile",
-  "./assets/room_backgrounds/basement/basementTemplate.png"
+  'background-tile',
+  './assets/room_backgrounds/basement/basementTemplate.png'
 );
 loadSprite(
-  "room-three-background",
-  "./assets/room_backgrounds/roomThreeBackground.png"
+  'room-three-background',
+  './assets/room_backgrounds/roomThreeBackground.png'
 );
 loadSprite(
-  "room-three-background-side",
-  "./assets/room_backgrounds/roomThreeBackgroundSide.png"
+  'room-three-background-side',
+  './assets/room_backgrounds/roomThreeBackgroundSide.png'
 );
 
 //Decorations
@@ -74,8 +75,11 @@ loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
 loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
 loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
 
+
+
+
 // set global volume
-volume(1.5); // hardcoded to 50% based of Kaboom docs. 1.5 out of 3
+volume(1.5) // hardcoded to 50% based of Kaboom docs. 1.5 out of 3
 
 //Buttons
 
@@ -83,38 +87,38 @@ loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
 loadSprite("start-button", "./assets/buttons/startButton.png");
 
 /////////////////////////////////////////////////////////////////////////////////
-loadSprite("orange-carpet", "./assets/decorations/orangecarpet.png");
-loadSprite("flower-painting", "./assets/decorations/flowerpainting.png");
-loadSprite("little-drawer", "./assets/decorations/littledrawer.png");
-loadSprite("flower", "./assets/decorations/flower.png");
-loadSprite("books", "./assets/decorations/books.png");
-loadSprite("pink-bed", "./assets/decorations/pinkbed.png");
-loadSprite("red-carpet", "./assets/decorations/redcarpet.png");
-loadSprite("deng", "./assets/decorations/deng.png");
-loadSprite("clock", "./assets/decorations/clock.png");
-loadSprite("opened-book", "./assets/decorations/openedbook.png");
-loadSprite("cycle-chair", "./assets/decorations/cyclechair.png");
-loadSprite("bookshelve", "./assets/decorations/bookshelve.png");
-loadSprite("empty-picture", "./assets/decorations/emptypicture.png");
-loadSprite("books-on-chair", "./assets/decorations/booksonchair.png");
-loadSprite("makeup-table", "./assets/decorations/makeuptable.png");
-loadSprite("clothset", "./assets/decorations/clothset.png");
-loadSprite("land-scape-painting", "./assets/decorations/landscapepainting.png");
-loadSprite("red-flower", "./assets/decorations/redflower.png");
-loadSprite("orange-big-carpet", "./assets/decorations/orangebigcarpet.png");
-loadSprite("toy", "./assets/decorations/toy.png");
-loadSprite("ball", "./assets/decorations/ball.png");
-loadSprite("another-painting", "./assets/decorations/anotherpainting.png");
-loadSprite("white-flowers", "./assets/decorations/whiteflowers.png");
-loadSprite("seats", "./assets/decorations/seats.png");
-loadSprite("wood-door", "./assets/decorations/wooddoor.png");
+loadSprite('orange-carpet', './assets/decorations/orangecarpet.png');
+loadSprite('flower-painting', './assets/decorations/flowerpainting.png');
+loadSprite('little-drawer', './assets/decorations/littledrawer.png');
+loadSprite('flower', './assets/decorations/flower.png');
+loadSprite('books', './assets/decorations/books.png');
+loadSprite('pink-bed', './assets/decorations/pinkbed.png');
+loadSprite('red-carpet', './assets/decorations/redcarpet.png');
+loadSprite('deng', './assets/decorations/deng.png');
+loadSprite('clock', './assets/decorations/clock.png');
+loadSprite('opened-book', './assets/decorations/openedbook.png');
+loadSprite('cycle-chair', './assets/decorations/cyclechair.png');
+loadSprite('bookshelve', './assets/decorations/bookshelve.png');
+loadSprite('empty-picture', './assets/decorations/emptypicture.png');
+loadSprite('books-on-chair', './assets/decorations/booksonchair.png');
+loadSprite('makeup-table', './assets/decorations/makeuptable.png');
+loadSprite('clothset', './assets/decorations/clothset.png');
+loadSprite('land-scape-painting', './assets/decorations/landscapepainting.png');
+loadSprite('red-flower', './assets/decorations/redflower.png');
+loadSprite('orange-big-carpet', './assets/decorations/orangebigcarpet.png');
+loadSprite('toy', './assets/decorations/toy.png');
+loadSprite('ball', './assets/decorations/ball.png');
+loadSprite('another-painting', './assets/decorations/anotherpainting.png');
+loadSprite('white-flowers', './assets/decorations/whiteflowers.png');
+loadSprite('seats', './assets/decorations/seats.png');
+loadSprite('wood-door', './assets/decorations/wooddoor.png');
 
 /////////////////////////////////////////////////////////////////////////////////
 
 // initialize components
-entry();
+entry()
 titleScene();
-options();
+options()
 winScene();
 
 createBasementRoomOne();
@@ -124,3 +128,4 @@ createBasementRoomThree();
 //go("basementRoomTwoUp");
 
 go("entry");
+

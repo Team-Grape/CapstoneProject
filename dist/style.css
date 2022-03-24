@@ -4,18 +4,19 @@
  */
 * {
   font-family: arial, sans-serif;
-  /*
+/*
   border: 1px solid black;
 */
 }
 
-body {
+body{
   background-color: #000000;
   overflow: hidden;
 }
 
+
 canvas {
-  /*  width: 1248px;
+/*  width: 1248px;
   height: 546px;
 */
   position: absolute;
@@ -23,18 +24,22 @@ canvas {
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: #444444;
-  position: relative;
-}
+  position:relative;
+ }
 
 nav {
-  position: absolute;
-  bottom: 0;
+
+  position:absolute;
+  bottom:0;
   height: 46px;
   width: 1248px;
   background-color: #222222;
-}
+  }
+
+
 
 .inventoryItem {
+
 }
 
 /*

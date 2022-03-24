@@ -14,8 +14,10 @@ module.exports = {
     rules: [
       {
         test: /\.mmd/,
-        type: "asset/source",
+        type: 'asset/source',
       },
     ],
   },
+
+
 };

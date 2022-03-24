@@ -1,9 +1,10 @@
-import { clearLocalStorage, removeInventoryDiv } from "./core";
+import { clearLocalStorage, removeInventoryDiv} from "./core";
 // ==================== In Game Menu ====================================== //
 
 export class InGameMenu {
   constructor() {
-    (this.backgroundMusicVolume = 0), (this.soundEffectsVolume = 0);
+    this.backgroundMusicVolume = 0,
+    this.soundEffectsVolume = 0
   }
 
   display() {
@@ -58,13 +59,13 @@ export class InGameMenu {
     });
 
     onClick("options", () => {
-      removeInventoryDiv();
-      go("options");
+      removeInventoryDiv()
+      go('options')
     });
   }
 
   close(arrayOfComponents) {
-    arrayOfComponents.forEach((component) => component.destroy());
+    arrayOfComponents.forEach(component => component.destroy())
   }
 
   restart() {
@@ -86,14 +87,14 @@ export class InGameMenu {
     const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
 
     onClick("no", () => {
-      this.close([restartPrompt, areYouSure, yes, no]);
+      this.close([restartPrompt, areYouSure, yes, no])
     });
 
     onClick("yes", () => {
       // We do not want to reset the options key in our
       // local storage because we want options to persist
-      clearLocalStorage();
-      removeInventoryDiv();
+      clearLocalStorage()
+      removeInventoryDiv()
       go("title");
     });
   }

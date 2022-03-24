@@ -1,22 +1,26 @@
-import {
-  getCurrentRoom,
-  getOnTitleScene,
-  getOption,
-  setOption,
-  setBackgroundMusicVolume,
-  getBackgroundMusicVolume,
+import { 
+  getCurrentRoom, 
+  getOnTitleScene, 
+  getOption, 
+  setOption, 
+  setBackgroundMusicVolume, 
+  getBackgroundMusicVolume, 
   getSoundEffectVolume,
   setSoundEffectVolume,
   playSFX,
-  displayInventoryDiv,
-} from "../core";
+  displayInventoryDiv
+ } from "../core";
 import MusicManager from "../MusicManager";
 
+
+
 export const options = () => {
-  const music = MusicManager();
-  //const soundEffects = MusicManager()
+const music = MusicManager();
+//const soundEffects = MusicManager()
 
   scene("options", () => {
+   
+
     console.log("Music Manager ==>", music);
 
     add([
@@ -83,16 +87,15 @@ export const options = () => {
 
     onClick("decreaseBgMusicButton", () => {
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
-      console.log("Current BgMusic Volume", currentBackgroundMusicVolume);
+      console.log('Current BgMusic Volume',currentBackgroundMusicVolume)
       if (currentBackgroundMusicVolume > 0) {
         // currentBgVolume -= 0.1;
-        currentBgVolumeDisplay.text = `${(
-          (currentBackgroundMusicVolume / 3) *
-          100
-        ).toFixed(0)}%`;
+        currentBgVolumeDisplay.text = `${((currentBackgroundMusicVolume / 3) * 100).toFixed(
+          0
+        )}%`;
         // sets volume on local storage 'options' key
-        console.log(typeof currentBackgroundMusicVolume);
-        setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
+        console.log(typeof currentBackgroundMusicVolume)
+        setBackgroundMusicVolume(currentBackgroundMusicVolume -= 0.1);
 
         music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
         if (music.currentlyPlaying) {
@@ -104,19 +107,16 @@ export const options = () => {
 
     onClick("increaseBgMusicButton", () => {
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
-      console.log(
-        "current level in increase on click",
-        currentBackgroundMusicVolume
-      );
+      console.log('current level in increase on click',currentBackgroundMusicVolume);
       if (currentBackgroundMusicVolume < 3.0) {
-        currentBgVolumeDisplay.text = `${(
-          (currentBackgroundMusicVolume / 3) *
-          100
-        ).toFixed(0)}%`;
-
+  
+        currentBgVolumeDisplay.text = `${((currentBackgroundMusicVolume / 3) * 100).toFixed(
+          0
+        )}%`;
+                
         // sets volume on local storage 'options' key
-        console.log(typeof currentBackgroundMusicVolume);
-        setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
+        console.log(typeof currentBackgroundMusicVolume)
+        setBackgroundMusicVolume(currentBackgroundMusicVolume += 0.1);
 
         music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
 
@@ -188,16 +188,15 @@ export const options = () => {
       let currentSoundEffectVolume = getSoundEffectVolume();
       if (currentSoundEffectVolume > 0.1) {
         // currentSeVolume -= 0.1;
-        setSoundEffectVolume((currentSoundEffectVolume -= 0.1));
-        currentSFXVolumeDisplay.text = `${(
-          (currentSoundEffectVolume / 3) *
-          100
-        ).toFixed(0)}%`;
+        setSoundEffectVolume(currentSoundEffectVolume -= 0.1);
+        currentSFXVolumeDisplay.text = `${((currentSoundEffectVolume / 3) * 100).toFixed(
+          0
+        )}%`;
 
         //if (soundEffects.currentlyPlaying) {
         //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
         //}
-
+   
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -205,12 +204,11 @@ export const options = () => {
     onClick("increaseSFXButton", () => {
       let currentSoundEffectVolume = getSoundEffectVolume();
       if (currentSoundEffectVolume < 3.0) {
-        console.log("current sound effect volume ->", currentSoundEffectVolume);
-        setSoundEffectVolume((currentSoundEffectVolume += 0.1));
-        currentSFXVolumeDisplay.text = `${(
-          (currentSoundEffectVolume / 3) *
-          100
-        ).toFixed(0)}%`;
+        console.log('current sound effect volume ->',currentSoundEffectVolume)
+        setSoundEffectVolume(currentSoundEffectVolume += 0.1);
+        currentSFXVolumeDisplay.text = `${((currentSoundEffectVolume / 3) * 100).toFixed(
+          0
+        )}%`;
 
         //if (soundEffects.currentlyPlaying) {
         //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
@@ -236,7 +234,7 @@ export const options = () => {
       if (getOnTitleScene()) {
         go("title");
       } else {
-        displayInventoryDiv();
+        displayInventoryDiv()
         go(getCurrentRoom());
       }
     });
@@ -279,6 +277,7 @@ export const options = () => {
 
     // ============== Sound Effect Test Buttons =========================
 
+
     add([
       text(`Play Sound Effect`, {
         size: 30,
@@ -293,10 +292,10 @@ export const options = () => {
     ]);
 
     onClick("playSoundEffect", () => {
-      console.log("SoundEffects instance");
+      console.log('SoundEffects instance')
       //console.dir(soundEffects, { depth: null });
       //soundEffects.play("falling");
-      playSFX("falling");
+      playSFX("falling")
     });
 
     // add([
@@ -311,6 +310,8 @@ export const options = () => {
     //   //   outline(width, 10, color(255, 255, 255)),
     //   "stopSoundEffect",
     // ]);
+
+    
 
     // onClick("stopMusic", () => {
     //   console.dir(music, { depth: null });
