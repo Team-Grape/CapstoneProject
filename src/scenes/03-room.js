@@ -59,7 +59,7 @@ export const createBasementRoomThree = () => {
       add([sprite('cycle-chair'), scale(3.5), pos(165, 400)]);
       add([sprite('land-scape-painting'), scale(3), pos(600, 120)]);
       add([sprite('red-flower'), scale(3.5), pos(1200, 300)]);
-      add([sprite('woodenDoor'), pos(900, 100), scale(3), area(), 'woodenDoor']);
+      add([sprite('woodenDoor', {flipX: true}), pos(900, 106), scale(3), area(), 'woodenDoor']);
     });
     onClick("woodenDoor", () => {
       go("basementRoomTwoLeft");
