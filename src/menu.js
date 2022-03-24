@@ -23,7 +23,7 @@ export class InGameMenu {
   open() {
     const gameMenu = add([
       pos(1070, 50),
-      rect(160, 120),
+      rect(160, 180),
       outline(4),
       color(100, 100, 100),
       area(),
@@ -49,12 +49,27 @@ export class InGameMenu {
       "restart",
     ]);
 
+    const saveAndQuit= add([
+      text("Save\nand Quit", { size: 20, font: "sink" }),
+      pos(1080, 175),
+      area(),
+      "saveAndQuit",
+    ]);
+
+    // const andQuit = add([
+    //   text("And Quit", { size: 20, font: "sink" }),
+    //   pos(1080, 205),
+    //   area(),
+    //   "saveAndQuit",
+    // ]);
+
+
     onClick("continue", () => {
-      this.close([gameMenu, continueButton, optionsButton, restartButton]);
+      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
     });
 
     onClick("restart", () => {
-      this.close([gameMenu, continueButton, optionsButton, restartButton]);
+      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
       this.restart();
     });
 
@@ -62,6 +77,11 @@ export class InGameMenu {
       removeInventoryDiv()
       go('options')
     });
+
+    onClick('saveAndQuit', () => {
+      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
+      this.saveAndQuit()
+    })
   }
 
   close(arrayOfComponents) {
@@ -91,10 +111,35 @@ export class InGameMenu {
     });
 
     onClick("yes", () => {
-      // We do not want to reset the options key in our
-      // local storage because we want options to persist
       clearLocalStorage()
       removeInventoryDiv()
+      go("title");
+    });
+  }
+
+  saveAndQuit() {
+    const saveAndQuit = add([
+      pos(430, 100),
+      rect(350, 100),
+      color(0, 0, 255),
+      outline(4),
+      area(),
+      color(100, 100, 100),
+    ]);
+    const areYouSure = add([
+      text("Are You Sure?", { size: 40 }),
+      pos(450, 105),
+      area(),
+      "are-you-sure",
+    ]);
+    const yes = add([text("Yes", { size: 30 }), pos(480, 150), area(), "yes"]);
+    const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
+
+    onClick("no", () => {
+      this.close([saveAndQuit, areYouSure, yes, no])
+    });
+
+    onClick("yes", () => {
       go("title");
     });
   }
