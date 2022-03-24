@@ -27,7 +27,7 @@ export const titleScene = () => {
       area(),
       "startNewGame",
     ]);
-    console.log('Get Current Room -->',getCurrentRoom())
+ 
     if (getCurrentRoom() != 'title') {
       add([
         text("Continue"),

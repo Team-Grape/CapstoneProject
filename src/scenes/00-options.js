@@ -10,10 +10,14 @@ import {
  } from "../core";
 import MusicManager from "../MusicManager";
 
+
+
 export const options = () => {
+const music = MusicManager();
+const soundEffects = MusicManager()
+
   scene("options", () => {
-    const music = MusicManager();
-    const soundEffects = MusicManager()
+   
 
     console.log("Music Manager ==>", music);
 
@@ -283,7 +287,7 @@ export const options = () => {
       //   outline(width, 10, color(255, 255, 255)),
       "playSoundEffect",
     ]);
-    
+
     onClick("playSoundEffect", () => {
       console.log('SoundEffects instance')
       console.dir(soundEffects, { depth: null });

@@ -86,11 +86,11 @@ export function getOption(option) {
     window.localStorage.setItem("options", JSON.stringify({}));
   }
   const currentOptions = JSON.parse(localStorage.getItem("options"));
-  console.log("Current Options ->", currentOptions);
+
   if (currentOptions) {
     return currentOptions[option];
   } else {
-    console.log("no options currently set");
+
   }
 }
 
@@ -156,7 +156,7 @@ export function openMessageLog() {
         text(currentMessage, { size: 12 }),
         pos(width() / 2 - 280, msgY),
       ]);
-      console.log(currentMessage);
+    
       closeButton.onClick(() => {
         cm.destroy();
       });

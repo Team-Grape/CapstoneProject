@@ -58,6 +58,7 @@ class Music {
       this.currentlyPlaying.stop();
       this.currentlyPlaying = null;
       this.currentlyPlayingName = null;
+
     }
   }
 
@@ -66,6 +67,9 @@ class Music {
   }
 
   async play(soundName) {
+    if (this.currentlyPlayingName) {
+      this.stop()
+    }
     // if (this.currentlyPlayingName === soundName) {
     //   // console.log('I think its this one lol')
     //   return;
@@ -78,28 +82,25 @@ class Music {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
     const soundFile = this.sound[soundName];
-    console.log('Sound File.vol before -->',soundFile.vol)
+ 
     try {
       this.currentlyPlayingName = soundName;
       await this.loadSoundEffect(soundName, soundFile);
       if (this.currentlyPlayingName !== soundName) {
         stop(soundName);
       } else {
-        console.log('Before the If/Else Background vs Sound Effect')
         if (soundFile.type === 'background') {
-          this.currentlyPlaying = play(soundName, {
+          this.currentlyPlaying = await play(soundName, {
             volume: getBackgroundMusicVolume(),
             loop: soundFile.loop === false ? false : true,
           });
           
           return this.currentlyPlaying;
         } else if (soundFile.type === 'soundEffect') {
-          console.log('Sound Effect else if -->')
           this.currentlyPlaying = play(soundName, {
             volume: getSoundEffectVolume(),
             loop: soundFile.loop === false
           });
-          console.log('SoundFile.vol after -->',this)
           return this.currentlyPlaying;
         }
       }
@@ -120,12 +121,12 @@ class Music {
 
   changeVolume(soundType, soundLevel) {
     if (soundType === 'backgroundMusic') {
-      console.log('old background music level ->',this.backgroundMusicVolume)
+
       this.backgroundMusicVolume = soundLevel
-      console.log('new background music level ->',this.backgroundMusicVolume)
+
     } else {
       this.soundEffectVolume = soundLevel
-      console.log(this.soundEffectVolume)
+
     }
   }
 }
@@ -138,6 +139,7 @@ export default () => {
   }
   if (soundEffect === null) {
     soundEffect = new Music();
+
   }
   return soundEffect;
 };
