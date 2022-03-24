@@ -19,7 +19,13 @@ classDef Messages fill:#f9f,stroke:#333,stroke-width:4px;
 intro[[intro message]]
 locked[[message about door locked]]
 
-class intro,locked Messages
+ghostMsgIntro[[intro message from ghost]]
+ghostMsgBeforeKey[[ghost says to look for key]]
+ghostMsgAfterKey[[ghost says you found the key]]
+
+windowLockedMessage[[window can not be open message]]
+
+class intro,locked,ghostMsgIntro,ghostMsgBeforeKey,ghostMsgAfterKey,windowLockedMessage Messages
 
 %% ------------ State Modified  ------------ %%
 classDef State fill:#f66,stroke:#333,stroke-width:4px;
@@ -33,18 +39,23 @@ class unlock,finishedIntro State
 classDef Verb fill:#6f6,stroke:#333,stroke-width:4px;
 
 clickDoor{{"click on door"}}
+clickSkeleton{{"click on skeleton"}}
+clickWindow{{"click on Window"}}
+clickChest{{"click on Chest"}}
+clickBarrel{{"click on Barrel"}}
 getKey{{user pickes up key}}
 start{{start new game}}
 exit{{go to room 2}}
 
-class clickDoor,getKey,start,exit Verb;
+class clickDoor,clickSkeleton,getKey,start,exit,clickWindow,clickBarrel,clickChest Verb;
 
 %% ------------ Conditionals ------------ %%
 classDef Conditional fill:#ffF,stroke:#333,stroke-width:4px;
 
-hasKey{"user has key in inventory?"}
+hasKeyForDoor{"user has key in inventory?"}
+hasKeyForGhost{"user has key in inventory?"}
 
-class hasKey Conditional
+class hasKeyForDoor,hasKeyForGhost Conditional
 
 
 
@@ -55,11 +66,20 @@ start --> intro --> finishedIntro --> game
 
 game --> getKey --> clickDoor
 game --> clickDoor
+game --> clickBarrel
+game --> clickChest
+game --> clickWindow --> windowLockedMessage
+game --> clickSkeleton --> ghostMsgIntro --> hasKeyForGhost
 
-clickDoor --> hasKey
+hasKeyForGhost --->|Yes| ghostMsgAfterKey
+hasKeyForGhost --->|No| ghostMsgBeforeKey
 
-hasKey -->|Yes| unlock
-hasKey -->|No| locked --> game
+
+
+clickDoor --> hasKeyForDoor
+
+hasKeyForDoor -->|Yes| unlock
+hasKeyForDoor -->|No| locked --> game
 
 unlock --> exit
 
