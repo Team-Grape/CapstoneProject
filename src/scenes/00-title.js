@@ -1,4 +1,4 @@
-import { getCurrentRoom, setOnTitleScene, clearLocalStorage } from "../core";
+import { getCurrentRoom, setOnTitleScene, clearLocalStorage, getOption, setOption } from "../core";
 
 export const titleScene = () => {
   scene("title", () => {
@@ -27,8 +27,8 @@ export const titleScene = () => {
       area(),
       "startNewGame",
     ]);
-    console.log('Get Current Room -->',getCurrentRoom())
-    if (getCurrentRoom() != 'title') {
+ 
+    if (getCurrentRoom()) {
       add([
         text("Continue"),
         color(255, 0, 0),
@@ -53,5 +53,8 @@ export const titleScene = () => {
     onClick("options", () => {
       go("options");
     });
+
+ 
+
   });
 };

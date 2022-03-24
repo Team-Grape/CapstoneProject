@@ -1,37 +1,51 @@
+import { 
+  getOption, 
+  getBackgroundMusicVolume,
+  getSoundEffectVolume
+ } from "./core";
+
 class Music {
   static PLAY_SOUND = true;
   static SOUNDS = ["gong", "bookcaseMoving", "horror", "falling", "spooky", "kidMusic"];
 
   constructor() {
+    this.soundEffectVolume = 1.5;
+    this.backgroundMusicVolume = 1.5
     this.sound = {
       spooky: {
+        type: 'background',
         url: "spookyBgMusic.mp3",
-        vol: 0.5,
-        loadInitally: true,
+        vol: this.backgroundMusicVolume,
+        // loadInitally: true,
       },
       gong: {
+        type: 'soundEffect',
         url: "clockGong.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       bookcaseMoving: {
+        type: 'soundEffect',
         url: "bookcaseMoving.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       horror: {
+        type: 'background',
         url: "horrorAmbiance.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       falling: {
+        type: 'soundEffect',
         url: "paintingFalling.wav",
-        vol: 0.5,
+        vol: this.soundEffectVolume,
         loadInitally: false,
       },
       kidMusic: {
+        type: 'background',
         url: "kidMusic.wav",
-        vol: 0.5,
+        vol: this.backgroundMusicVolume,
         loadInitally: true
       }
     };
@@ -44,6 +58,7 @@ class Music {
       this.currentlyPlaying.stop();
       this.currentlyPlaying = null;
       this.currentlyPlayingName = null;
+
     }
   }
 
@@ -52,9 +67,13 @@ class Music {
   }
 
   async play(soundName) {
-    if (this.currentlyPlayingName === soundName) {
-      return;
+    if (this.currentlyPlayingName) {
+      this.stop()
     }
+     if (this.currentlyPlayingName === soundName) {
+        console.log('I think its this one lol')
+       return;
+     }
     if (Music.PLAY_SOUND === false) {
       return;
     }
@@ -63,19 +82,27 @@ class Music {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
     const soundFile = this.sound[soundName];
-    console.log("what is this????",this)
-    console.log("what is this sound??????",soundFile)
+ 
     try {
       this.currentlyPlayingName = soundName;
       await this.loadSoundEffect(soundName, soundFile);
       if (this.currentlyPlayingName !== soundName) {
         stop(soundName);
       } else {
-        this.currentlyPlaying = play(soundName, {
-          volume: soundFile.vol,
-          loop: soundFile.loop === false ? false : true,
-        });
-        return this.currentlyPlaying;
+        if (soundFile.type === 'background') {
+          this.currentlyPlaying = await play(soundName, {
+            volume: getBackgroundMusicVolume(),
+            loop: soundFile.loop === false ? false : true,
+          });
+          
+          return this.currentlyPlaying;
+        } else if (soundFile.type === 'soundEffect') {
+          this.currentlyPlaying = play(soundName, {
+            volume: getSoundEffectVolume(),
+            loop: soundFile.loop === false
+          });
+          return this.currentlyPlaying;
+        }
       }
     } catch (e) {
       console.log(e);
@@ -91,6 +118,17 @@ class Music {
       this.stopCurrentlyPlaying();
     }
   }
+
+  changeVolume(soundType, soundLevel) {
+    if (soundType === 'backgroundMusic') {
+
+      this.backgroundMusicVolume = soundLevel
+
+    } else {
+      this.soundEffectVolume = soundLevel
+
+    }
+  }
 }
 
 let soundEffect = null;
@@ -101,6 +139,7 @@ export default () => {
   }
   if (soundEffect === null) {
     soundEffect = new Music();
+
   }
   return soundEffect;
 };

@@ -1,13 +1,18 @@
-import { InGameMenu } from './menu.js'
+import { InGameMenu } from "./menu.js";
 
-const inGameMenu = new InGameMenu()
+const inGameMenu = new InGameMenu();
+
+export const playSFX = (sndNameStr) => {
+  play(sndNameStr, {volume: getSoundEffectVolume(), loop: false});
+}
+
 
 export const checkInventoryForItem = (item) => {
-  if (!window.localStorage.getItem('inventory')) {
+  if (!window.localStorage.getItem("inventory")) {
     // you dont even have an inventory yet!
     return false;
   }
-  const currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  const currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
   if (currentInventory.filter((i) => i.name === item.name).length > 0) {
     // item is in the inventory!
     return true;
@@ -18,73 +23,110 @@ export const checkInventoryForItem = (item) => {
 };
 
 export const addToInventory = (item) => {
-  if (!window.localStorage.getItem('inventory')) {
-    window.localStorage.setItem('inventory', JSON.stringify([]));
+  if (!window.localStorage.getItem("inventory")) {
+    window.localStorage.setItem("inventory", JSON.stringify([]));
   }
-  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
   if (currentInventory.filter((i) => i.name === item.name).length === 0) {
     // this item is not in the inventory. So add it to the inventory below:
     localStorage.setItem(
-      'inventory',
+      "inventory",
       JSON.stringify([...currentInventory, item])
     );
   }
 };
 
 export function saveCurrentRoom(currentRoom) {
-  if (!window.localStorage.getItem('currentRoom')) {
-    window.localStorage.setItem('currentRoom', '')
+  if (!window.localStorage.getItem("currentRoom")) {
+    window.localStorage.setItem("currentRoom", "");
   }
-  localStorage.setItem('currentRoom', currentRoom)
+  localStorage.setItem("currentRoom", currentRoom);
 }
 
 export function getCurrentRoom() {
-  const currentRoom = localStorage.getItem('currentRoom')
-  if (currentRoom === '') {
-    return 'title'
-  } return currentRoom 
+  const currentRoom = localStorage.getItem("currentRoom");
+  if (!currentRoom) {
+    return null;
+  }
+  return currentRoom;
 }
 
 export function setOnTitleScene(bool) {
-  localStorage.setItem('onTitleScene', JSON.stringify(bool))
+  localStorage.setItem("onTitleScene", JSON.stringify(bool));
 }
 
 export function getOnTitleScene() {
-  if (localStorage.getItem('onTitleScene')) {
-    return JSON.parse(localStorage.getItem('onTitleScene'))
+  if (localStorage.getItem("onTitleScene")) {
+    return JSON.parse(localStorage.getItem("onTitleScene"));
   }
 }
 
 export function clearLocalStorage() {
-  // initializes or resets inventory in local storage
   window.localStorage.setItem("inventory", JSON.stringify([]));
-
-  // initializes or resets gameState in local storage
-  window.localStorage.setItem("gameState", JSON.stringify({}));
-
-  // initializes or resets messageLog in local storage
   window.localStorage.setItem("messageLog", JSON.stringify([]));
+  window.localStorage.setItem("gameState", JSON.stringify({}));
+  window.localStorage.setItem("currentRoom", "");
+}
 
-  // resets the save state
-  window.localStorage.setItem('currentRoom', '')
+// ========================== Options =================================================================
+
+export const setOption = (option, value) => {
+  if (!window.localStorage.getItem("options")) {
+    window.localStorage.setItem("options", JSON.stringify({}));
+  }
+  let currentOptions = JSON.parse(window.localStorage.getItem("options"));
+
+  currentOptions[option] = value;
+
+  // save the updated options to local storage
+  localStorage.setItem("options", JSON.stringify(currentOptions));
+};
+
+export function getOption(option) {
+  if (!window.localStorage.getItem("options")) {
+    window.localStorage.setItem("options", JSON.stringify({}));
+  }
+  const currentOptions = JSON.parse(localStorage.getItem("options"));
+
+  if (currentOptions) {
+    return currentOptions[option];
+  } else {
+
+  }
+}
+
+export function setBackgroundMusicVolume(value) {
+  setOption("backgroundMusicVolume", value);
+}
+
+export function getBackgroundMusicVolume() {
+  return getOption("backgroundMusicVolume");
+}
+
+export function setSoundEffectVolume(value) {
+  setOption("soundEffectVolume", value);
+}
+
+export function getSoundEffectVolume() {
+  return getOption("soundEffectVolume");
 }
 
 // ===================================================================================================
 
 export const addToMessageLog = (msg) => {
-  if (!window.localStorage.getItem('messageLog')) {
-    window.localStorage.setItem('messageLog', JSON.stringify([]));
+  if (!window.localStorage.getItem("messageLog")) {
+    window.localStorage.setItem("messageLog", JSON.stringify([]));
   }
-  let currentMessageLog = JSON.parse(window.localStorage.getItem('messageLog'));
+  let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
 
   currentMessageLog.push(msg);
 
-  localStorage.setItem('messageLog', JSON.stringify(currentMessageLog));
+  localStorage.setItem("messageLog", JSON.stringify(currentMessageLog));
 };
 
 export function displayMessageLog() {
   const viewPastMessage = add([
-    text('Message Log', { size: 20 }),
+    text("Message Log", { size: 20 }),
     pos(1100, 500),
     area(),
   ]);
@@ -96,18 +138,18 @@ export function displayMessageLog() {
 export function openMessageLog() {
   const messageBox = add([
     rect(width() / 2, height() - 200, { radius: 32 }),
-    origin('center'),
+    origin("center"),
     pos(center().x, center().y),
   ]);
 
-  const closeButton = add([text('X', { size: 30 }), pos(890, 400), area()]);
+  const closeButton = add([text("X", { size: 30 }), pos(890, 400), area()]);
   closeButton.onClick(() => {
     messageBox.destroy();
     closeButton.destroy();
   });
 
   let msgY = height() / 2 - 160;
-  let currentMessageLog = JSON.parse(window.localStorage.getItem('messageLog'));
+  let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
   currentMessageLog.forEach((message) => {
     message.forEach((currentMessage) => {
       msgY = msgY + 20;
@@ -115,7 +157,7 @@ export function openMessageLog() {
         text(currentMessage, { size: 12 }),
         pos(width() / 2 - 280, msgY),
       ]);
-      console.log(currentMessage);
+    
       closeButton.onClick(() => {
         cm.destroy();
       });
@@ -126,15 +168,15 @@ export function openMessageLog() {
 // ==============================================================================================
 
 export const removeFromInventory = (item) => {
-  if (!window.localStorage.getItem('inventory')) {
-    window.localStorage.setItem('inventory', JSON.stringify([]));
+  if (!window.localStorage.getItem("inventory")) {
+    window.localStorage.setItem("inventory", JSON.stringify([]));
   }
 
-  let currentInventory = JSON.parse(window.localStorage.getItem('inventory'));
+  let currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
 
   // this does not care about quantity! just removes if exists
   currentInventory = currentInventory.filter((i) => i.name != item.name);
-  localStorage.setItem('inventory', JSON.stringify(currentInventory));
+  localStorage.setItem("inventory", JSON.stringify(currentInventory));
 };
 
 export const setGameState = (roomName, gameEvent, value) => {
@@ -177,74 +219,72 @@ export const getGameState = (roomName, gameEvent) => {
 };
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
-  inGameMenu.display()
+  inGameMenu.display();
   displayMessageLog();
 
   for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
     let direction = arrayOfDirectionsStrings[i];
-    if (direction === 'left') {
+    if (direction === "left") {
       add([
-        sprite('left-arrow'),
+        sprite("left-arrow"),
         pos(7.5, 250),
         scale(1),
         area(),
-        'left-arrow',
+        "left-arrow",
       ]);
     }
-    if (direction === 'right') {
+    if (direction === "right") {
       add([
-        sprite('right-arrow'),
+        sprite("right-arrow"),
         pos(1190, 250),
         scale(1),
         area(),
-        'right-arrow',
+        "right-arrow",
       ]);
     }
-    if (direction === 'up') {
-      add([sprite('up-arrow'), pos(600, 15), scale(1), area(), 'up-arrow']);
+    if (direction === "up") {
+      add([sprite("up-arrow"), pos(600, 15), scale(1), area(), "up-arrow"]);
     }
-    if (direction === 'down') {
+    if (direction === "down") {
       add([
-        sprite('down-arrow'),
+        sprite("down-arrow"),
         pos(575, 475),
         scale(1),
         area(),
-        'down-arrow',
+        "down-arrow",
       ]);
     }
   }
 }
 
 export const navArrows = (roomName) => (d) => {
-
-  saveCurrentRoom(roomName + d)
+  saveCurrentRoom(roomName + d);
   if (d == "Up") {
     onClick("right-arrow", () => {
       go(roomName + "Right");
-
     });
-    onClick('left-arrow', () => {
-      go(roomName + 'Left');
+    onClick("left-arrow", () => {
+      go(roomName + "Left");
     });
-    onClick('down-arrow', () => {
-      go(roomName + 'Down');
+    onClick("down-arrow", () => {
+      go(roomName + "Down");
     });
-    displayNavArrows(['left', 'right', 'down']);
-  } else if (d == 'Right') {
-    onClick('left-arrow', () => {
-      go(roomName + 'Up');
+    displayNavArrows(["left", "right", "down"]);
+  } else if (d == "Right") {
+    onClick("left-arrow", () => {
+      go(roomName + "Up");
     });
-    displayNavArrows(['left']);
-  } else if (d == 'Down') {
-    onClick('up-arrow', () => {
-      go(roomName + 'Up');
+    displayNavArrows(["left"]);
+  } else if (d == "Down") {
+    onClick("up-arrow", () => {
+      go(roomName + "Up");
     });
-    displayNavArrows(['up']);
-  } else if (d == 'Left') {
-    onClick('right-arrow', () => {
-      go(roomName + 'Up');
+    displayNavArrows(["up"]);
+  } else if (d == "Left") {
+    onClick("right-arrow", () => {
+      go(roomName + "Up");
     });
-    displayNavArrows(['right']);
+    displayNavArrows(["right"]);
   }
 };
 
@@ -255,7 +295,7 @@ export const textBubble = (dialogs, onFinish) => {
   // Text bubble
   const textbox = add([
     rect(width() - 200, 120, { radius: 32 }),
-    origin('center'),
+    origin("center"),
     pos(center().x, height() - 100),
     outline(2),
     color(100, 100, 100),
@@ -263,21 +303,21 @@ export const textBubble = (dialogs, onFinish) => {
 
   // Text
   const txt = add([
-    text('', { size: 32, width: width() - 230, font: 'sink' }),
+    text("", { size: 32, width: width() - 230, font: "sink" }),
     pos(textbox.pos),
-    origin('center'),
+    origin("center"),
   ]);
 
   //   console.log(txt)
 
   // NextButton
   const nextButton = add([
-    text('Next', { size: 20, font: 'sink' }),
+    text("Next", { size: 20, font: "sink" }),
     pos(1050, 475),
     area(),
   ]);
   if (dialogs.length === 1) {
-    nextButton.text = 'Close';
+    nextButton.text = "Close";
   }
   nextButton.onClick(() => {
     /*  if (curDialog === dialogs.length - 2) {
@@ -304,7 +344,6 @@ export const textBubble = (dialogs, onFinish) => {
 
   updateDialog();
 };
-
 
 // ==================== Change Color ===============================//
 export function changeComponentColor(componentName, red, green, blue) {
@@ -335,8 +374,8 @@ export function changeComponentColor(componentName, red, green, blue) {
 // }
 
 export function displayMenu() {
-  add([sprite('menu-button'), pos(1150, 10), scale(1), area(), 'menu-button']);
-  onClick('menu-button', () => {
+  add([sprite("menu-button"), pos(1150, 10), scale(1), area(), "menu-button"]);
+  onClick("menu-button", () => {
     openMenu();
   });
 }
@@ -351,25 +390,25 @@ function restart() {
     color(100, 100, 100),
   ]);
   const areYouSure = add([
-    text('Are You Sure?', { size: 40 }),
+    text("Are You Sure?", { size: 40 }),
     pos(450, 105),
     area(),
-    'are-you-sure',
+    "are-you-sure",
   ]);
-  const yes = add([text('Yes', { size: 30 }), pos(480, 150), area(), 'yes']);
-  const no = add([text('No', { size: 30 }), pos(670, 150), area(), 'no']);
+  const yes = add([text("Yes", { size: 30 }), pos(480, 150), area(), "yes"]);
+  const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
 
-  onClick('no', () => {
+  onClick("no", () => {
     restartPrompt.destroy();
     areYouSure.destroy();
     yes.destroy();
     no.destroy();
   });
 
-  onClick('yes', () => {
-    window.localStorage.setItem('gameState', JSON.stringify({}));
-    window.localStorage.setItem('inventory', JSON.stringify([]));
-    go('title');
+  onClick("yes", () => {
+    window.localStorage.setItem("options", JSON.stringify({}));
+    window.localStorage.setItem("inventory", JSON.stringify([]));
+    go("title");
   });
 }
 
@@ -382,40 +421,40 @@ export function openMenu() {
     area(),
   ]);
   const continueButton = add([
-    text('Continue', { size: 20, font: 'sink' }),
+    text("Continue", { size: 20, font: "sink" }),
     pos(1080, 60),
     color(255, 255, 255),
     area(),
-    'continue',
+    "continue",
   ]);
   const optionsButton = add([
-    text('Options', { size: 20, font: 'sink' }),
+    text("Options", { size: 20, font: "sink" }),
     pos(1080, 100),
     color(255, 255, 255),
     area(),
-    'options',
+    "options",
   ]);
   const restartButton = add([
-    text('Restart', { size: 20, font: 'sink' }),
+    text("Restart", { size: 20, font: "sink" }),
     pos(1080, 140),
     area(),
-    'restart',
+    "restart",
   ]);
 
-  onHover('continue', () => {
+  onHover("continue", () => {
     changeComponentColor(continueButton, 246, 207, 27);
     // maybe write some if logic so that color reverts
     // return changeComponentColor(continueButton, 0, 0, 0)
   });
 
-  onClick('continue', () => {
+  onClick("continue", () => {
     gameMenu.destroy();
     continueButton.destroy();
     optionsButton.destroy();
     restartButton.destroy();
   });
 
-  onClick('restart', () => {
+  onClick("restart", () => {
     gameMenu.destroy();
     continueButton.destroy();
     optionsButton.destroy();
@@ -423,6 +462,5 @@ export function openMenu() {
     restart();
   });
 
-  onClick('options', () => {});
+  onClick("options", () => {});
 }
-
