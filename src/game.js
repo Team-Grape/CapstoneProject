@@ -7,6 +7,7 @@ import { winScene } from "./scenes/00-win.js";
 import { createBasementRoomOne } from './scenes/01-basement.js';
 import { createBasementRoomTwo } from './scenes/02-basement.js';
 import { createBasementRoomThree } from './scenes/03-room.js';
+import { createTestScene } from './scenes/00-test.js';
 
 kaboom({
   global: true,
@@ -124,6 +125,7 @@ winScene();
 createBasementRoomOne();
 createBasementRoomTwo();
 createBasementRoomThree();
+createTestScene();
 
 //go("basementRoomTwoUp");
 

@@ -34,6 +34,18 @@ export const titleScene = () => {
       area(),
       "startNewGame",
     ]);
+
+    add([
+      text("testScene", { size: 20 }),
+      color(255, 255, 255),
+      pos(100, 500),
+      origin("center"),
+      area(),
+      "testScene",
+    ]);
+    onClick("testScene", () => {
+      go("test");
+    });
  
     if (getCurrentRoom()) {
       add([
