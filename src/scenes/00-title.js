@@ -1,10 +1,10 @@
-import { 
+import {
   getCurrentRoom,
   setOnTitleScene,
   clearLocalStorage,
   getOption,
   setOption,
-  displayInventoryDiv
+  displayInventoryDiv,
 } from "../core";
 
 export const titleScene = () => {
@@ -34,7 +34,7 @@ export const titleScene = () => {
       area(),
       "startNewGame",
     ]);
- 
+
     if (getCurrentRoom()) {
       add([
         text("Continue"),
@@ -47,7 +47,7 @@ export const titleScene = () => {
 
       onClick("continue", () => {
         setOnTitleScene(false);
-        displayInventoryDiv()
+        displayInventoryDiv();
         go(getCurrentRoom());
       });
     }
@@ -61,8 +61,5 @@ export const titleScene = () => {
     onClick("options", () => {
       go("options");
     });
-
- 
-
   });
 };

@@ -25,13 +25,11 @@ export const createBasementRoomTwo = async () => {
   // ======================================================== //
   // const bgMusic = getMusicManager();
   const bgMusic = MusicManager();
-  const soundEffects = MusicManager()
- 
+  const soundEffects = MusicManager();
+
   let spookyMusic;
 
-
   scene(roomName + "Up", () => {
-    
     const direction = "Up";
     let fruitPaintingY;
     onLoad(async () => {
@@ -81,11 +79,11 @@ export const createBasementRoomTwo = async () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-      soundEffects.stop()
-      bgMusic.stop()
+      soundEffects.stop();
+      bgMusic.stop();
       soundEffects.play("gong");
     });
-  
+
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
@@ -98,12 +96,11 @@ export const createBasementRoomTwo = async () => {
   // ======================================================== //
 
   scene(roomName + "Down", async () => {
-
-//    if (bgMusic.currentlyPlaying) {
-//
-//      bgMusic.sound.kidMusic.vol = .1
-//    
-//    }
+    //    if (bgMusic.currentlyPlaying) {
+    //
+    //      bgMusic.sound.kidMusic.vol = .1
+    //
+    //    }
 
     const direction = "Down";
     onLoad(() => {
@@ -111,9 +108,9 @@ export const createBasementRoomTwo = async () => {
       add([sprite("door"), pos(440, 150), scale(4), area(), "door"]);
     });
     onClick("door", async () => {
-      console.log('Bg Music -->', bgMusic)
+      console.log("Bg Music -->", bgMusic);
       bgMusic.stop("spooky");
-     // await spookyMusic.stop()
+      // await spookyMusic.stop()
       // soundEffects.stop()
       go("basementRoomOneUp");
     });
@@ -151,7 +148,7 @@ export const createBasementRoomTwo = async () => {
       setGameState(roomName, "bookCaseMoved", true);
       bookcase.pos.x = 180;
       //play("bookcaseMoving", {volume: getSoundEffectVolume(), loop: false});
-      playSFX("bookcaseMoving")
+      playSFX("bookcaseMoving");
     });
     onClick("key", (key) => {
       textBubble([["a key was added to your inventory"]]);

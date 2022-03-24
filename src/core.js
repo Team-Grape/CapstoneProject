@@ -3,15 +3,14 @@ import { InGameMenu } from "./menu.js";
 const inGameMenu = new InGameMenu();
 
 export const playSFX = (sndNameStr) => {
-  play(sndNameStr, {volume: getSoundEffectVolume(), loop: false});
-}
-
+  play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
+};
 
 export const removeInventoryDiv = () => {
-  if (document.getElementById('inventoryPanel')) {
-    document.getElementById('inventoryPanel').remove()
+  if (document.getElementById("inventoryPanel")) {
+    document.getElementById("inventoryPanel").remove();
   }
-}
+};
 
 export const displayInventoryDiv = () => {
   if (!window.localStorage.getItem("inventory")) {
@@ -19,20 +18,20 @@ export const displayInventoryDiv = () => {
   }
   const currentInventory = JSON.parse(window.localStorage.getItem("inventory"));
 
-  removeInventoryDiv()
+  removeInventoryDiv();
 
   if (currentInventory.length <= 0) {
-    return
+    return;
   }
 
   const inventoryContainerDiv = document.createElement("div");
-//  inventoryContainer.style['border'] = '2px solid blue'
-  inventoryContainerDiv.style['display'] = 'flex'
-  inventoryContainerDiv.style['position'] = 'absolute'
-  inventoryContainerDiv.style['bottom'] = '0'
-  inventoryContainerDiv.id = "inventoryPanel"
+  //  inventoryContainer.style['border'] = '2px solid blue'
+  inventoryContainerDiv.style["display"] = "flex";
+  inventoryContainerDiv.style["position"] = "absolute";
+  inventoryContainerDiv.style["bottom"] = "0";
+  inventoryContainerDiv.id = "inventoryPanel";
 
-/*
+  /*
   const headingTextNode = document.createTextNode('Inventory:');
   const headingContainer = document.createElement("div");
   headingContainer.appendChild(headingTextNode);
@@ -46,21 +45,20 @@ export const displayInventoryDiv = () => {
     const tmpItemImg = document.createElement("img");
     tmpItemImg.src = "./assets/" + item.image;
     //tmpItemImg.alt = `${item.name}: ${item.description}`
-    tmpItemImg.title = `${item.name}: \n  ${item.description}`
-    tmpItemImg.style['border'] = '3px solid grey'
-    tmpItemImg.style['width'] = '32'
-    tmpItemImg.style['height'] = '32'
+    tmpItemImg.title = `${item.name}: \n  ${item.description}`;
+    tmpItemImg.style["border"] = "3px solid grey";
+    tmpItemImg.style["width"] = "32";
+    tmpItemImg.style["height"] = "32";
     tmpItemImg.classList.add("inventoryItem");
-    
-    inventoryContainerDiv.appendChild(tmpItemImg)
-  })
+
+    inventoryContainerDiv.appendChild(tmpItemImg);
+  });
 
   //let aaa = document.getElementsByTagName('body')[0]
   //let aaa = document.getElementById("chartParent")
 
   document.body.appendChild(inventoryContainerDiv);
-}
-
+};
 
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem("inventory")) {
@@ -147,7 +145,6 @@ export function getOption(option) {
   if (currentOptions) {
     return currentOptions[option];
   } else {
-
   }
 }
 
@@ -213,7 +210,7 @@ export function openMessageLog() {
         text(currentMessage, { size: 12 }),
         pos(width() / 2 - 280, msgY),
       ]);
-    
+
       closeButton.onClick(() => {
         cm.destroy();
       });
@@ -237,10 +234,10 @@ export const removeFromInventory = (item) => {
 };
 
 export const setGameState = (roomName, gameEvent, value) => {
-  if (!window.localStorage.getItem('gameState')) {
-    window.localStorage.setItem('gameState', JSON.stringify({}));
+  if (!window.localStorage.getItem("gameState")) {
+    window.localStorage.setItem("gameState", JSON.stringify({}));
   }
-  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
+  let currentGameState = JSON.parse(window.localStorage.getItem("gameState"));
 
   // check if roomName has been created
   if (Object.entries(currentGameState).some((room) => room[0] == roomName)) {
@@ -254,16 +251,16 @@ export const setGameState = (roomName, gameEvent, value) => {
   }
 
   // save the updated gameState to local storage
-  localStorage.setItem('gameState', JSON.stringify(currentGameState));
+  localStorage.setItem("gameState", JSON.stringify(currentGameState));
 };
 
 export const getGameState = (roomName, gameEvent) => {
   // if gameState does not exist
-  if (!window.localStorage.getItem('gameState')) {
+  if (!window.localStorage.getItem("gameState")) {
     return false;
   }
 
-  let currentGameState = JSON.parse(window.localStorage.getItem('gameState'));
+  let currentGameState = JSON.parse(window.localStorage.getItem("gameState"));
 
   // if roomName does not exist
   if (!Object.entries(currentGameState).some((room) => room[0] == roomName)) {

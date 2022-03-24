@@ -1,53 +1,60 @@
-import { 
-  getOption, 
+import {
+  getOption,
   getBackgroundMusicVolume,
-  getSoundEffectVolume
- } from "./core";
+  getSoundEffectVolume,
+} from "./core";
 
 class Music {
   static PLAY_SOUND = true;
-  static SOUNDS = ["gong", "bookcaseMoving", "horror", "falling", "spooky", "kidMusic"];
+  static SOUNDS = [
+    "gong",
+    "bookcaseMoving",
+    "horror",
+    "falling",
+    "spooky",
+    "kidMusic",
+  ];
 
   constructor() {
     this.soundEffectVolume = 1.5;
-    this.backgroundMusicVolume = 1.5
+    this.backgroundMusicVolume = 1.5;
     this.sound = {
       spooky: {
-        type: 'background',
+        type: "background",
         url: "spookyBgMusic.mp3",
         vol: this.backgroundMusicVolume,
         // loadInitally: true,
       },
       gong: {
-        type: 'soundEffect',
+        type: "soundEffect",
         url: "clockGong.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       bookcaseMoving: {
-        type: 'soundEffect',
+        type: "soundEffect",
         url: "bookcaseMoving.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       horror: {
-        type: 'background',
+        type: "background",
         url: "horrorAmbiance.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       falling: {
-        type: 'soundEffect',
+        type: "soundEffect",
         url: "paintingFalling.wav",
         vol: this.soundEffectVolume,
         loadInitally: false,
       },
       kidMusic: {
-        type: 'background',
+        type: "background",
         url: "kidMusic.wav",
         vol: this.backgroundMusicVolume,
-        loadInitally: true
-      }
+        loadInitally: true,
+      },
     };
     this.currentlyPlaying = null;
     this.currentlyPlayingName = null;
@@ -58,7 +65,6 @@ class Music {
       this.currentlyPlaying.stop();
       this.currentlyPlaying = null;
       this.currentlyPlayingName = null;
-
     }
   }
 
@@ -68,12 +74,12 @@ class Music {
 
   async play(soundName) {
     if (this.currentlyPlayingName) {
-      this.stop()
+      this.stop();
     }
-     if (this.currentlyPlayingName === soundName) {
-        console.log('I think its this one lol')
-       return;
-     }
+    if (this.currentlyPlayingName === soundName) {
+      console.log("I think its this one lol");
+      return;
+    }
     if (Music.PLAY_SOUND === false) {
       return;
     }
@@ -82,24 +88,24 @@ class Music {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
     const soundFile = this.sound[soundName];
- 
+
     try {
       this.currentlyPlayingName = soundName;
       await this.loadSoundEffect(soundName, soundFile);
       if (this.currentlyPlayingName !== soundName) {
         this.stop(soundName);
       } else {
-        if (soundFile.type === 'background') {
+        if (soundFile.type === "background") {
           this.currentlyPlaying = await play(soundName, {
             volume: getBackgroundMusicVolume(),
             loop: soundFile.loop === false ? false : true,
           });
-          
+
           return this.currentlyPlaying;
-        } else if (soundFile.type === 'soundEffect') {
+        } else if (soundFile.type === "soundEffect") {
           this.currentlyPlaying = play(soundName, {
             volume: getSoundEffectVolume(),
-            loop: soundFile.loop === false
+            loop: soundFile.loop === false,
           });
           return this.currentlyPlaying;
         }
@@ -120,13 +126,10 @@ class Music {
   }
 
   changeVolume(soundType, soundLevel) {
-    if (soundType === 'backgroundMusic') {
-
-      this.backgroundMusicVolume = soundLevel
-
+    if (soundType === "backgroundMusic") {
+      this.backgroundMusicVolume = soundLevel;
     } else {
-      this.soundEffectVolume = soundLevel
-
+      this.soundEffectVolume = soundLevel;
     }
   }
 }
@@ -139,7 +142,6 @@ export default () => {
   }
   if (soundEffect === null) {
     soundEffect = new Music();
-
   }
   return soundEffect;
 };
