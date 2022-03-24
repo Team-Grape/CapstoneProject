@@ -45,8 +45,8 @@ export function saveCurrentRoom(currentRoom) {
 
 export function getCurrentRoom() {
   const currentRoom = localStorage.getItem("currentRoom");
-  if (currentRoom === "") {
-    return "title";
+  if (!currentRoom) {
+    return null;
   }
   return currentRoom;
 }
@@ -62,13 +62,9 @@ export function getOnTitleScene() {
 }
 
 export function clearLocalStorage() {
-  // initializes or resets inventory in local storage
   window.localStorage.setItem("inventory", JSON.stringify([]));
-
-  // initializes or resets messageLog in local storage
   window.localStorage.setItem("messageLog", JSON.stringify([]));
-
-  // resets the save state
+  window.localStorage.setItem("gameState", JSON.stringify({}));
   window.localStorage.setItem("currentRoom", "");
 }
 

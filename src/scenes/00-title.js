@@ -28,7 +28,7 @@ export const titleScene = () => {
       "startNewGame",
     ]);
  
-    if (getCurrentRoom() != 'title') {
+    if (getCurrentRoom()) {
       add([
         text("Continue"),
         color(255, 0, 0),

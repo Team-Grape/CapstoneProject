@@ -16,6 +16,7 @@ const roomNavArrows = navArrows(roomName);
 export const createBasementRoomThree = () => {
   // ======================================================== //
   scene(roomName + 'Up', () => {
+    const direction = 'Up';
     onLoad(() => {
       add([sprite('room-three-background'), scale(1), area()]);
       add([sprite('seats'), scale(3), pos(20, 400)]);
@@ -26,9 +27,11 @@ export const createBasementRoomThree = () => {
       add([sprite('flower'), scale(3), pos(360, 230)]);
       add([sprite('books'), scale(3), pos(475, 250)]);
     });
+    roomNavArrows(direction);
   });
   // ======================================================== //
   scene(roomName + 'Right', () => {
+    const direction = 'Right';
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
       add([sprite('red-carpet'), scale(1.5), pos(100, 500)]);
@@ -43,9 +46,11 @@ export const createBasementRoomThree = () => {
       add([sprite('empty-picture'), scale(2.4), pos(950, 140)]);
       add([sprite('books-on-chair'), scale(2.2), pos(710, 370)]);
     });
+    roomNavArrows(direction);
   });
   // ======================================================== //
   scene(roomName + 'Down', () => {
+    const direction = 'Down';
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
       add([sprite('orange-carpet'), scale(3), pos(800, 400)]);
@@ -54,10 +59,16 @@ export const createBasementRoomThree = () => {
       add([sprite('cycle-chair'), scale(3.5), pos(165, 400)]);
       add([sprite('land-scape-painting'), scale(3), pos(600, 120)]);
       add([sprite('red-flower'), scale(3.5), pos(1200, 300)]);
+      add([sprite('woodenDoor'), pos(900, 100), scale(3), area(), 'woodenDoor']);
     });
+    onClick("woodenDoor", () => {
+      go("basementRoomTwoLeft");
+    });
+    roomNavArrows(direction);
   });
   // ======================================================== //
   scene(roomName + 'Left', () => {
+    const direction = 'Left';
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
       add([sprite('orange-big-carpet'), scale(3), pos(200, 350)]);
@@ -68,6 +79,7 @@ export const createBasementRoomThree = () => {
       add([sprite('seats'), scale(3), pos(1200, 400)]);
       add([sprite('wood-door'), scale(4), pos(880, 185)]);
     });
+    roomNavArrows(direction);
   });
   // ======================================================== //
 };
