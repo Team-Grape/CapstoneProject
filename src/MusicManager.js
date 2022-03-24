@@ -70,10 +70,10 @@ class Music {
     if (this.currentlyPlayingName) {
       this.stop()
     }
-    // if (this.currentlyPlayingName === soundName) {
-    //   // console.log('I think its this one lol')
-    //   return;
-    // }
+     if (this.currentlyPlayingName === soundName) {
+        console.log('I think its this one lol')
+       return;
+     }
     if (Music.PLAY_SOUND === false) {
       return;
     }

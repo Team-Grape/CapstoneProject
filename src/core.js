@@ -2,6 +2,11 @@ import { InGameMenu } from "./menu.js";
 
 const inGameMenu = new InGameMenu();
 
+export const playSFX = (sndNameStr) => {
+  play(sndNameStr, {volume: getSoundEffectVolume(), loop: false});
+}
+
+
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem("inventory")) {
     // you dont even have an inventory yet!

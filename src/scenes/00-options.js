@@ -6,7 +6,8 @@ import {
   setBackgroundMusicVolume, 
   getBackgroundMusicVolume, 
   getSoundEffectVolume,
-  setSoundEffectVolume
+  setSoundEffectVolume,
+  playSFX
  } from "../core";
 import MusicManager from "../MusicManager";
 
@@ -14,7 +15,7 @@ import MusicManager from "../MusicManager";
 
 export const options = () => {
 const music = MusicManager();
-const soundEffects = MusicManager()
+//const soundEffects = MusicManager()
 
   scene("options", () => {
    
@@ -191,9 +192,9 @@ const soundEffects = MusicManager()
           0
         )}%`;
 
-        if (soundEffects.currentlyPlaying) {
-          soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        }
+        //if (soundEffects.currentlyPlaying) {
+        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
+        //}
    
         readd(currentSFXVolumeDisplay);
       }
@@ -208,9 +209,9 @@ const soundEffects = MusicManager()
           0
         )}%`;
 
-        if (soundEffects.currentlyPlaying) {
-          soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        }
+        //if (soundEffects.currentlyPlaying) {
+        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
+        //}
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -290,8 +291,9 @@ const soundEffects = MusicManager()
 
     onClick("playSoundEffect", () => {
       console.log('SoundEffects instance')
-      console.dir(soundEffects, { depth: null });
-      soundEffects.play("falling");
+      //console.dir(soundEffects, { depth: null });
+      //soundEffects.play("falling");
+      playSFX("falling")
     });
 
     // add([

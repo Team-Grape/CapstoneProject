@@ -7,6 +7,7 @@ import {
   getGameState,
   textBubble,
   addToMessageLog,
+  playSFX,
 } from "../core.js";
 import { cellarKey } from "../items.js";
 import MusicManager from "../MusicManager.js";
@@ -29,7 +30,7 @@ export const createBasementRoomTwo = async () => {
   let spookyMusic;
 
 
-  scene(roomName + "Up", async () => {
+  scene(roomName + "Up", () => {
     
     const direction = "Up";
     let fruitPaintingY;
@@ -43,12 +44,13 @@ export const createBasementRoomTwo = async () => {
         area(),
         "grandfather-clock",
       ]);
-      spookyMusic = await bgMusic.play("spooky");
+      bgMusic.play("spooky");
+      //spookyMusic = await bgMusic.play("spooky");
       // bgMusic.stop()
     });
 
     // spookyMusic = await bgMusic.play("spooky");
-    console.log('Spooky Music', spookyMusic)
+    //console.log('Spooky Music', spookyMusic)
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,11 +99,11 @@ export const createBasementRoomTwo = async () => {
 
   scene(roomName + "Down", async () => {
 
-    if (bgMusic.currentlyPlaying) {
-
-      bgMusic.sound.kidMusic.vol = .1
-    
-    }
+//    if (bgMusic.currentlyPlaying) {
+//
+//      bgMusic.sound.kidMusic.vol = .1
+//    
+//    }
 
     const direction = "Down";
     onLoad(() => {
@@ -110,7 +112,8 @@ export const createBasementRoomTwo = async () => {
     });
     onClick("door", async () => {
       console.log('Bg Music -->', bgMusic)
-      await spookyMusic.stop()
+      bgMusic.stop("spooky");
+     // await spookyMusic.stop()
       // soundEffects.stop()
       go("basementRoomOneUp");
     });
@@ -147,7 +150,8 @@ export const createBasementRoomTwo = async () => {
     onClick("bookcase", (bookcase) => {
       setGameState(roomName, "bookCaseMoved", true);
       bookcase.pos.x = 180;
-      soundEffects.play("bookcaseMoving");
+      //play("bookcaseMoving", {volume: getSoundEffectVolume(), loop: false});
+      playSFX("bookcaseMoving")
     });
     onClick("key", (key) => {
       textBubble([["a key was added to your inventory"]]);
