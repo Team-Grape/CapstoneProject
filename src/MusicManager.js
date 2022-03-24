@@ -87,7 +87,7 @@ class Music {
       this.currentlyPlayingName = soundName;
       await this.loadSoundEffect(soundName, soundFile);
       if (this.currentlyPlayingName !== soundName) {
-        stop(soundName);
+        this.stop(soundName);
       } else {
         if (soundFile.type === 'background') {
           this.currentlyPlaying = await play(soundName, {
