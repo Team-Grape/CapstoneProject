@@ -36,6 +36,23 @@ loadSprite("down-arrow", "./assets/nav_arrows/downArrow.png");
 
 //Basement Room 01
 loadSprite(
+  "basementRoomOneUp",
+  "./assets/room_backgrounds/basement/basementRoomOneUp.png"
+);
+loadSprite(
+  "basementRoomOneLeft",
+  "./assets/room_backgrounds/basement/basementRoomOneLeft.png"
+);
+loadSprite(
+  "basementRoomOneRight",
+  "./assets/room_backgrounds/basement/basementRoomOneRight.png"
+);
+loadSprite(
+  "basementRoomOneDown",
+  "./assets/room_backgrounds/basement/basementRoomOneDown.png"
+);
+
+loadSprite(
   "background-tile",
   "./assets/room_backgrounds/basement/basementTemplate.png"
 );
@@ -65,6 +82,8 @@ loadSprite(
 
 // ===================== DECORATIONS ==========================//
 
+//Blankets ===============
+loadSprite('blanket-cream', "./assets/decorations/blankets/blanketCream1.png")
 
 //Bookcases =================
 loadSprite("bookcase", "./assets/decorations/bookcases/bookcase.png");
@@ -78,6 +97,9 @@ loadSprite("books-on-chair", "./assets/decorations/books/booksonchair.png");
 //Beds =================
 loadSprite("pink-bed", "./assets/decorations/furniture/beds/pinkbed.png");
 
+//Benches ==============
+loadSprite('wooden-bench1', "./assets/decorations/furniture/benches/woodenBench1.png")
+
 //Candles =================
 loadSprite(
   "candle",
@@ -86,7 +108,7 @@ loadSprite(
 
 //Chairs =================
 loadSprite("cycle-chair", "./assets/decorations/furniture/chairs/cyclechair.png");
-
+loadSprite('wooden-chair', '/assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png')
 //Doors =================
 loadSprite("door", "./assets/decorations/doors/evilDoor.png");
 loadSprite("wood-door", "./assets/decorations/doors/wooddoor.png");
@@ -126,6 +148,12 @@ loadSprite("pile-of-bones", "./assets/decorations/misc/pileOfBones.png");
 loadSprite("help-me", "./assets/decorations/misc/helpMe.png");
 loadSprite("cob-webs", "./assets/decorations/misc/cobweb_down_right.png");
 loadSprite("chained-skeleton", "./assets/decorations/misc/chainedSkeleton.png");
+loadSprite('wall-crack','assets/decorations/misc/wallCrack.png')
+loadSprite('dirt', 'assets/decorations/misc/dirt.png')
+loadSprite('puddle', 'assets/decorations/misc/greenPuddle.png')
+loadSprite('paper', 'assets/decorations/misc/paper.png')
+loadSprite('paper2', 'assets/decorations/misc/paper2.png')
+
 
 //Paintings ================
 loadSprite(
