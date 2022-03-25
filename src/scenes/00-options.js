@@ -78,7 +78,6 @@ export const options = () => {
 
     onClick("decreaseBgMusicButton", () => {
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
-      console.log("Current BgMusic Volume", currentBackgroundMusicVolume);
       if (currentBackgroundMusicVolume > 0) {
         currentBgVolumeDisplay.text = `${(
           (currentBackgroundMusicVolume / 3) *
@@ -86,7 +85,6 @@ export const options = () => {
         ).toFixed(0)}%`;
 
         // sets volume on local storage 'options' key
-        console.log(typeof currentBackgroundMusicVolume);
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
 
         music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
@@ -99,10 +97,6 @@ export const options = () => {
 
     onClick("increaseBgMusicButton", () => {
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
-      console.log(
-        "current level in increase on click",
-        currentBackgroundMusicVolume
-      );
       if (currentBackgroundMusicVolume < 3.0) {
         currentBgVolumeDisplay.text = `${(
           (currentBackgroundMusicVolume / 3) *
@@ -110,7 +104,6 @@ export const options = () => {
         ).toFixed(0)}%`;
 
         // sets volume on local storage 'options' key
-        console.log(typeof currentBackgroundMusicVolume);
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
 
         music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
@@ -196,7 +189,6 @@ export const options = () => {
     onClick("increaseSFXButton", () => {
       let currentSoundEffectVolume = getSoundEffectVolume();
       if (currentSoundEffectVolume < 3.0) {
-        console.log("current sound effect volume ->", currentSoundEffectVolume);
         setSoundEffectVolume((currentSoundEffectVolume += 0.1));
         currentSFXVolumeDisplay.text = `${(
           (currentSoundEffectVolume / 3) *
@@ -278,7 +270,7 @@ export const options = () => {
     ]);
 
     onClick("playSoundEffect", () => {
-      console.log("SoundEffects instance");
+
       playSFX("falling");
     });
   });
