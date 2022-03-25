@@ -109,8 +109,8 @@ loadSprite("poof", "./assets/poof/poof.png", {
 // ===================== DECORATIONS ==========================//
 
 //Barrels
-loadSprite("barrel1", "./assets/barrels/Barrels1.png");
-loadSprite("barrel3", "./assets/barrels/Barrels3.png");
+loadSprite("barrel1", "./assets/decorations/barrels/Barrels1.png");
+loadSprite("barrel3", "./assets/decorations/barrels/Barrels3.png");
 
 //Blankets ===============
 loadSprite('blanket-cream', "./assets/decorations/blankets/blanketCream1.png")
