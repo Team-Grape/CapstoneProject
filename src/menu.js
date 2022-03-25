@@ -1,12 +1,9 @@
-import { clearLocalStorage, removeInventoryDiv} from "./core";
+import { clearLocalStorage, removeInventoryDiv } from "./core";
+import { changeComponentColor } from "./changeColor";
+
 // ==================== In Game Menu ====================================== //
 
 export class InGameMenu {
-  constructor() {
-    this.backgroundMusicVolume = 0,
-    this.soundEffectsVolume = 0
-  }
-
   display() {
     add([
       sprite("menu-button"),
@@ -49,76 +46,65 @@ export class InGameMenu {
       "restart",
     ]);
 
-    const saveAndQuit= add([
+    const saveAndQuit = add([
       text("Save\nand Quit", { size: 20, font: "sink" }),
       pos(1080, 175),
       area(),
       "saveAndQuit",
     ]);
 
-    // const andQuit = add([
-    //   text("And Quit", { size: 20, font: "sink" }),
-    //   pos(1080, 205),
-    //   area(),
-    //   "saveAndQuit",
-    // ]);
-
-
     onClick("continue", () => {
-      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
+      this.close([
+        gameMenu,
+        continueButton,
+        restartButton,
+        optionsButton,
+        saveAndQuit,
+      ]);
     });
 
     onClick("restart", () => {
-      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
+      this.close([
+        gameMenu,
+        continueButton,
+        restartButton,
+        optionsButton,
+        saveAndQuit,
+      ]);
       this.restart();
     });
 
     onClick("options", () => {
-      removeInventoryDiv()
-      go('options')
+      removeInventoryDiv();
+      go("options");
     });
 
-    onClick('saveAndQuit', () => {
-      this.close([gameMenu, continueButton, restartButton,optionsButton, saveAndQuit])
-      this.saveAndQuit()
-    })
+    onClick("saveAndQuit", () => {
+      this.close([
+        gameMenu,
+        continueButton,
+        restartButton,
+        optionsButton,
+        saveAndQuit,
+      ]);
+      this.saveAndQuit();
+    });
   }
 
   close(arrayOfComponents) {
-    arrayOfComponents.forEach(component => component.destroy())
+    arrayOfComponents.forEach((component) => component.destroy());
   }
 
   restart() {
-    const restartPrompt = add([
-      pos(430, 100),
-      rect(350, 100),
-      color(0, 0, 255),
-      outline(4),
-      area(),
-      color(100, 100, 100),
-    ]);
-    const areYouSure = add([
-      text("Are You Sure?", { size: 40 }),
-      pos(450, 105),
-      area(),
-      "are-you-sure",
-    ]);
-    const yes = add([text("Yes", { size: 30 }), pos(480, 150), area(), "yes"]);
-    const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
-
-    onClick("no", () => {
-      this.close([restartPrompt, areYouSure, yes, no])
-    });
-
-    onClick("yes", () => {
-      clearLocalStorage()
-      removeInventoryDiv()
-      go("title");
-    });
+    this.areYouSure("restart");
   }
 
   saveAndQuit() {
-    const saveAndQuit = add([
+    this.areYouSure("saveAndQuit");
+  }
+
+  areYouSure(actionType) {
+    const areYouSurePrompt = add([
       pos(430, 100),
       rect(350, 100),
       color(0, 0, 255),
@@ -126,7 +112,7 @@ export class InGameMenu {
       area(),
       color(100, 100, 100),
     ]);
-    const areYouSure = add([
+    const areYouSureText = add([
       text("Are You Sure?", { size: 40 }),
       pos(450, 105),
       area(),
@@ -136,30 +122,17 @@ export class InGameMenu {
     const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
 
     onClick("no", () => {
-      this.close([saveAndQuit, areYouSure, yes, no])
+      this.close([areYouSurePrompt, areYouSureText, yes, no]);
     });
 
     onClick("yes", () => {
-      go("title");
+      if (actionType === "restart") {
+        clearLocalStorage();
+        removeInventoryDiv();
+        go("title");
+      } else {
+        go("title");
+      }
     });
   }
 }
-
-// ==================== Change Color ===============================//
-/* Below is some basic functionality I wrote for changing 
-the color of a component. I also have a 'onHover' function that 
-is commented out below which calls that function. It works
-but it does not revert the color when the mouse is no longer hovering
-*/
-
-export function changeComponentColor(componentName, red, green, blue) {
-  componentName.color.r = red;
-  componentName.color.g = green;
-  componentName.color.b = blue;
-}
-
-// onHover("continue", () => {
-//   changeComponentColor(continueButton, 246, 207, 27);
-//   // maybe write some if logic so that color reverts
-//   // return changeComponentColor(continueButton, 0, 0, 0)
-// });
