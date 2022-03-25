@@ -80,7 +80,35 @@ loadSprite(
   "./assets/room_backgrounds/roomThreeBackgroundSide.png"
 );
 
+// ===================== ANIMATIONS ==========================//
+
+loadSprite("ghost1", "./assets/ghost/ghost.png", {
+  sliceX: 4,
+  sliceY: 1,
+  anims: {
+      idle: {
+          from: 0,
+          to: 3,
+      },
+  },
+})
+
+loadSprite("poof", "./assets/poof/poof.png", {
+  sliceX: 6,
+  sliceY: 1,
+  anims: {
+      main: {
+          from: 0,
+          to: 5,
+      },
+  },
+})
+
 // ===================== DECORATIONS ==========================//
+
+//Barrels
+loadSprite("barrel1", "./assets/barrels/Barrels1.png");
+loadSprite("barrel3", "./assets/barrels/Barrels3.png");
 
 //Blankets ===============
 loadSprite('blanket-cream', "./assets/decorations/blankets/blanketCream1.png")
@@ -173,6 +201,9 @@ loadSprite(
   "flower-painting",
   "./assets/decorations/paintings/flowerpainting.png"
 );
+
+//Pry-Bar
+loadSprite('pryBar', '/assets/items/pry-bar.png')
 
 //Rugs =================
 loadSprite("orange-carpet", "./assets/decorations/rugs/orangecarpet.png");
