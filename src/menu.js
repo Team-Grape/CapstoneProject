@@ -20,7 +20,7 @@ export class InGameMenu {
   open() {
     const gameMenu = add([
       pos(1070, 50),
-      rect(160, 180),
+      rect(160, 150),
       outline(4),
       color(100, 100, 100),
       area(),
@@ -39,16 +39,16 @@ export class InGameMenu {
       area(),
       "options",
     ]);
-    const restartButton = add([
-      text("Restart", { size: 20, font: "sink" }),
-      pos(1080, 140),
-      area(),
-      "restart",
-    ]);
+    // const restartButton = add([
+    //   text("Restart", { size: 20, font: "sink" }),
+    //   pos(1080, 140),
+    //   area(),
+    //   "restart",
+    // ]);
 
     const saveAndQuit = add([
       text("Save\nand Quit", { size: 20, font: "sink" }),
-      pos(1080, 175),
+      pos(1080, 135),
       area(),
       "saveAndQuit",
     ]);
@@ -57,7 +57,7 @@ export class InGameMenu {
       this.close([
         gameMenu,
         continueButton,
-        restartButton,
+        // restartButton,
         optionsButton,
         saveAndQuit,
       ]);
@@ -67,7 +67,7 @@ export class InGameMenu {
       this.close([
         gameMenu,
         continueButton,
-        restartButton,
+        // restartButton,
         optionsButton,
         saveAndQuit,
       ]);
@@ -83,7 +83,7 @@ export class InGameMenu {
       this.close([
         gameMenu,
         continueButton,
-        restartButton,
+        // restartButton,
         optionsButton,
         saveAndQuit,
       ]);
