@@ -129,5 +129,6 @@ createTestScene();
 
 //go("basementRoomTwoUp");
 
-go("entry");
+//go("entry");
+go("test");
 
