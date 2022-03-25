@@ -47,8 +47,8 @@ export const displayInventoryDiv = () => {
     //tmpItemImg.alt = `${item.name}: ${item.description}`
     tmpItemImg.title = `${item.name}: \n  ${item.description}`;
     tmpItemImg.style["border"] = "3px solid grey";
-    tmpItemImg.style["width"] = "32";
-    tmpItemImg.style["height"] = "32";
+    tmpItemImg.style["width"] = "64px";
+    tmpItemImg.style["height"] = "64px";
     tmpItemImg.classList.add("inventoryItem");
 
     inventoryContainerDiv.appendChild(tmpItemImg);
