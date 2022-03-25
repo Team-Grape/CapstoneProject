@@ -1,0 +1,11 @@
+Model Information:
+* title:	Old Kitchen Shelf
+* source:	https://sketchfab.com/3d-models/old-kitchen-shelf-5da9ec510dfe453b8504e5fd206b062c
+* author:	GameDev Nick (https://sketchfab.com/GameDevNick)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Old Kitchen Shelf" (https://sketchfab.com/3d-models/old-kitchen-shelf-5da9ec510dfe453b8504e5fd206b062c) by GameDev Nick (https://sketchfab.com/GameDevNick) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
