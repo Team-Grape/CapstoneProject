@@ -29,23 +29,20 @@ export const createBasementRoomOne = () => {
     //scene("room-1-wall-1", () => {
     const direction = 'Up';
     onLoad(() => {
-      add([sprite('background-tile'), scale(1), area()]);
-      add([sprite('door'), pos(900, 150), scale(4), area(), 'door']);
+      add([sprite('basementRoomOneUp'), scale(1), area()]);
+      // add([sprite('blanket-cream'), scale(4),  pos(700, 320), area()]);
+      // add([sprite('wooden-bench1'), scale(4),  pos(800, 320), area()]);
+      // add([sprite('wooden-chair'), scale(4),  pos(400, 320), area()]);      // add([sprite('background-tile'), scale(1), area()]);
+      // add([sprite('wall-crack'), scale(4),  pos(300, 100), area()]);
+      // add([sprite('puddle'), scale(4),  pos(300, 100), area()]);
+      // add([sprite('dirt'), scale(4),  pos(300, 100), area()]);
+      // add([sprite('paper'), scale(4),  pos(200, 150), area()]);
+      // add([sprite('paper2'), scale(4),  pos(200, 150), area()]);
+
+
     });
 
-    //Door click handler
-    onClick("door", (door) => {
-      const bgMusic = getMusicManager();
-      bgMusic.play("spooky");
-      if ((getGameState(roomName, "doorUnlocked")) || (checkInventoryForItem(cellarKey))) {
-        setGameState(roomName, 'doorUnlocked', true)
-        removeFromInventory(cellarKey)
-        go("basementRoomTwoUp");
-      } else {
-        textBubble([["it doesn't open, it seems like it needs a key"]]);
-      }
-    });
-
+  
     if (!getGameState(roomName, 'introMessageRead')) {
       textBubble(introMessage, () => {
         setGameState(roomName, 'introMessageRead', true);
@@ -55,7 +52,8 @@ export const createBasementRoomOne = () => {
     } else {
       roomNavArrows(direction);
     }
-  });
+
+
 
   // ======================================================== //
 
@@ -63,14 +61,14 @@ export const createBasementRoomOne = () => {
     const direction = 'Right';
 
     onLoad(() => {
-      add([sprite('background-tile'), scale(1), area()]);
-      add([
-        sprite('fruit-painting'),
-        pos(500, 150),
-        scale(4),
-        area(),
-        'fruit-painting',
-      ]);
+      add([sprite('basementRoomOneRight'), scale(1), area()]);
+      // add([
+      //   sprite('fruit-painting'),
+      //   pos(500, 150),
+      //   scale(4),
+      //   area(),
+      //   'fruit-painting',
+      // ]);
     });
 
     roomNavArrows(direction);
@@ -82,30 +80,31 @@ export const createBasementRoomOne = () => {
     const direction = 'Down';
 
     onLoad(() => {
-      add([sprite('background-tile'), scale(1), area()]);
-      add([
-        sprite('basement-window'),
-        pos(1000, 30),
-        scale(4),
-        area(),
-        'basement-window',
-      ]);
+      add([sprite('basementRoomOneDown'), scale(1), area()]);
 
-      add([
-        sprite('basement-window'),
-        pos(200, 30),
-        scale(4),
-        area(),
-        'basement-window',
-      ]);
+      // add([
+      //   sprite('basement-window'),
+      //   pos(1000, 30),
+      //   scale(4),
+      //   area(),
+      //   'basement-window',
+      // ]);
 
-      add([
-        sprite('chained-skeleton'),
-        pos(500, 150),
-        scale(4),
-        area(),
-        'chained-skeleton',
-      ]);
+      // add([
+      //   sprite('basement-window'),
+      //   pos(200, 30),
+      //   scale(4),
+      //   area(),
+      //   'basement-window',
+      // ]);
+
+      // add([
+      //   sprite('chained-skeleton'),
+      //   pos(500, 150),
+      //   scale(4),
+      //   area(),
+      //   'chained-skeleton',
+      // ]);
     });
 
     //Key click handler
@@ -130,17 +129,35 @@ export const createBasementRoomOne = () => {
 
     //Sprite Loaders
     onLoad(() => {
-      add([sprite('background-tile'), scale(1), area()]);
-      add([
-        sprite('pile-of-bones'),
-        pos(500, 350),
-        scale(3),
-        area(),
-        'pile-of-bones',
-      ]);
+      add([sprite('basementRoomOneLeft'), scale(1), area()]);
+
+      // add([
+      //   sprite('pile-of-bones'),
+      //   pos(500, 350),
+      //   scale(3),
+      //   area(),
+      //   'pile-of-bones',
+      // ]);
+      add([sprite('woodenDoor'), pos(500, 14), scale(4), area(), 'door']);
     });
 
+    //Door click handler
+    onClick("door", (door) => {
+      const bgMusic = getMusicManager();
+      bgMusic.play("spooky");
+      if ((getGameState(roomName, "doorUnlocked")) || (checkInventoryForItem(cellarKey))) {
+        setGameState(roomName, 'doorUnlocked', true)
+        removeFromInventory(cellarKey)
+        go("basementRoomTwoUp");
+      } else {
+        textBubble([["it doesn't open, it seems like it needs a key"]]);
+      }
+    });
     roomNavArrows(direction);
+    
+  });
+
+
   });
 
   // ======================================================== //

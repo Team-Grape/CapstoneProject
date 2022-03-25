@@ -129,7 +129,7 @@ export class InGameMenu {
       if (actionType === "restart") {
         clearLocalStorage();
         removeInventoryDiv();
-        go("title");
+        go("basementRoomOneUp");
       } else {
         go("title");
       }

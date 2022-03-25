@@ -35,7 +35,7 @@ export const createBasementRoomTwo = async () => {
     const direction = "Up";
     let fruitPaintingY;
     onLoad(async () => {
-      add([sprite("room-two-background"), scale(1), area()]);
+      add([sprite("background-tile"), scale(1), area()]);
       add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
       add([
         sprite("grandfather-clock"),
@@ -107,7 +107,7 @@ export const createBasementRoomTwo = async () => {
 
     const direction = "Down";
     onLoad(() => {
-      add([sprite("room-two-background"), scale(1), area()]);
+      add([sprite("background-tile"), scale(1), area()]);
       add([sprite("door"), pos(440, 150), scale(4), area(), "door"]);
     });
     onClick("door", async () => {
@@ -126,7 +126,7 @@ export const createBasementRoomTwo = async () => {
     const direction = "Left";
     let bookCaseX;
     onLoad(() => {
-      add([sprite("room-two-background-left"), scale(1), area()]);
+      add([sprite("background-tile"), scale(1), area()]);
     });
     if (!getGameState(roomName, "keyPickedUp")) {
       onLoad(() => {
@@ -167,7 +167,7 @@ export const createBasementRoomTwo = async () => {
   scene(roomName + "Right", () => {
     const direction = "Right";
     onLoad(() => {
-      add([sprite("room-two-background-right"), scale(1), area()]);
+      add([sprite("background-tile"), scale(1), area()]);
       add([
         sprite("woodenDoor"),
         pos(900, 100),
