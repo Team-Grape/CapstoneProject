@@ -14,6 +14,8 @@ kaboom({
   width: 1246,
   height: 546,
   scale: 1,
+  stretch: true,
+  letterbox: true,
   debug: true,
   background: [35, 35, 35],
 });

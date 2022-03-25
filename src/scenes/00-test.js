@@ -19,6 +19,19 @@ loadSprite("froggy", "./assets/ghost.png", {
     },
 })
 
+
+loadSprite("smoke", "./assets/SmokeAndFire.png", {
+    sliceX: 4,
+    sliceY: 4,
+    anims: {
+        main: {
+            from: 0,
+            to: 7,
+        },
+    },
+})
+
+
 loadSprite("poof", "./assets/death.png", {
     sliceX: 6,
     sliceY: 1,
@@ -83,6 +96,28 @@ loadSprite("flame", "./assets/Fire16px.png", {
 //        'fruit-painting',
 //      ]);
     });
+
+    const ps = async () => { 
+    for(let x = 1100; x > 100; x -= 20) {
+    const smoke = add([
+      sprite("smoke"),
+      opacity(0.6),
+      pos(x, 100),
+      scale(3),
+    ])
+    smoke.play('main',  {loop: false, speed: 8, onEnd: () => {smoke.destroy()}})
+    await new Promise(resolve => setTimeout(resolve, (.1 * 1000)));
+    }}
+
+    ps()
+//    const smoke = add([
+//      sprite("smoke"),
+//      opacity(0.6),
+//      pos(200, 100),
+//      scale(1),
+//    ])
+//    smoke.play('main',  {loop: false, speed: 8, onEnd: () => {smoke.destroy()}})
+
 
         const bookcase =  add([
         sprite("bookcase"),
