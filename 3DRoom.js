@@ -18,8 +18,8 @@ document.body.appendChild(renderer.domElement);
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 //create controls for camera
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-camera.position.set(0, 20, 100);
+camera.position.set(0, 10, 100);
+controls.enableZoom = false;
 controls.update();
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -130,22 +130,23 @@ class Ghost {
       scene.add(gltf.scene);
       const scale = 0.5;
       gltf.scene.scale.set(scale, scale, scale);
-      gltf.scene.position.set(30, 20, -200);
+      gltf.scene.position.set(30, 20, -180);
       this.ghost = gltf.scene;
     });
   }
 }
 loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
-  const scale = 0.7;
+  const scale = 0.8;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(-100, -110, -180);
+  gltf.scene.position.set(0, -110, 160);
+  gltf.scene.rotation.y = -Math.PI;
 });
 loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 50;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(10, -60, -180);
+  gltf.scene.position.set(10, -60, -160);
   gltf.scene.rotation.y = -1.6;
 });
 loader.load('./dist/assets/3DModels/oldFridge/scene.gltf', (gltf) => {
@@ -165,17 +166,17 @@ loader.load('./dist/assets/3DModels/purpleDoor/scene.gltf', (gltf) => {
 
 loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
-  const scale = 0.08;
+  const scale = 0.09;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(117, -45, 160);
+  gltf.scene.position.set(100, -45, 150);
   gltf.scene.rotation.y = -Math.PI / 2;
 });
 
 loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
-  const scale = 0.08;
+  const scale = 0.09;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(-135, -45, 160);
+  gltf.scene.position.set(-125, -45, 150);
   gltf.scene.rotation.y = -Math.PI / 2;
 });
 
@@ -203,7 +204,8 @@ loader.load('./dist/assets/3DModels/kitchenKnife/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.2;
   gltf.scene.scale.set(scale, scale, scale);
-  // gltf.scene.rotation.y = Math.PI / 2;
+  gltf.scene.rotation.x = Math.PI / 2;
+  gltf.scene.rotation.y = Math.PI / 2;
   gltf.scene.position.set(100, -110, 20);
 });
 
@@ -226,5 +228,34 @@ function onWindowResize() {
 }
 
 window.addEventListener('resize', onWindowResize, false);
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
+function onPointerMove(event) {
+  // calculate pointer position in normalized device coordinates
+  // (-1 to +1) for both components
+
+  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+
+function render() {
+  // update the picking ray with the camera and pointer position
+  raycaster.setFromCamera(pointer, camera);
+
+  // calculate objects intersecting the picking ray
+  const intersects = raycaster.intersectObjects(scene.children);
+
+  for (let i = 0; i < intersects.length; i++) {
+    intersects[i].object.material.color.set(0xff0000);
+  }
+
+  renderer.render(scene, camera);
+}
+
+window.addEventListener('pointermove', onPointerMove);
+
+window.requestAnimationFrame(render);
 
 animate();
