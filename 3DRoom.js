@@ -265,50 +265,30 @@ loader.load("./dist/assets/3DModels/lantern/scene.gltf", (gltf) => {
   gltf.scene.rotation.y = -Math.PI / 4;
 });
 
-loader.load("./dist/assets/3DModels/pitcher/scene.gltf", (gltf) => {
-  scene.add(gltf.scene);
-  const scale = 0.5;
-  gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(-60, -41, -80);
-  gltf.scene.rotation.y = -Math.PI / 4;
-  let model = gltf.scene;
-  model.name = 'pitcher';
-});
-
-loader.load("./dist/assets/3DModels/blackKey/scene.gltf", (gltf) => {
-  scene.add(gltf.scene);
-  const scale = 0.02;
-  gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(0, -110, 0);
-  gltf.scene.rotation.x = Math.PI / 2;
-  let model = gltf.scene;
-  model.name = 'blackKey';
-});
-
 function resetMaterials() {
-  for (let i = 0; i < model.children.length; i++) {
-    if (model.children[i].materail) {
-      model.children[i].material.opacity = 1.0;
+  for (let i = 0; i < scene.children.length; i++) {
+    if (scene.children[i].material) {
+      scene.children[i].material.opacity = 1.0;
     }
   }
 }
 
 
 
-let intersects = raycaster.intersectObjects(scene, true);
-if (intersects.length > 0) {
-  container = getContainerObjByChild(intersects[0].objects);
-}
+// let intersects = raycaster.intersectObjects(scene, true);
+// if (intersects.length > 0) {
+//   container = getContainerObjByChild(intersects[0].objects);
+// }
 
-function getContainerObjByChild(child) {
-  if (scene.userData.isContainer) return scene
-  else if(scene.parent != null) return this.getContainerObjByChild(scene.parent)
-  else return null
-}
+// function getContainerObjByChild(child) {
+//   if (scene.userData.isContainer) return scene
+//   else if(scene.parent != null) return this.getContainerObjByChild(obj.parent)
+//   else return null
+// }
 
 function hoverPieces() {
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObjects(objs, true);
+  const intersects = raycaster.intersectObjects(scene.children);
   for (let i = 0; i < intersects.length; i++) {
     intersects[i].object.material.transparent = true;
     intersects[i].object.material.opacity = 0.5;
@@ -337,7 +317,6 @@ function onMouseMove(event) {
 function animate() {
   renderer.render(scene, camera);
   controls.update();
-  getContainerObjByChild();
   resetMaterials();
   hoverPieces();
   requestAnimationFrame(animate);
