@@ -25,6 +25,7 @@ canvas {
   transform: translate(-50%, -50%);
   background-color: #000;
   position:relative;
+  -webkit-filter: grayscale(30%);
  }
 
 nav {
@@ -39,7 +40,12 @@ nav {
 
 
 .inventoryItem {
-
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 /*

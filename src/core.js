@@ -10,6 +10,9 @@ export const removeInventoryDiv = () => {
   if (document.getElementById("inventoryPanel")) {
     document.getElementById("inventoryPanel").remove();
   }
+  const canvas = document.getElementsByTagName("canvas")[0]
+  canvas.style['cursor'] = 'auto';
+  delete window.selectedItem;
 };
 
 export const displayInventoryDiv = () => {
@@ -41,6 +44,15 @@ export const displayInventoryDiv = () => {
   inventoryContainerDiv.appendChild(headingContainer);
 */
 
+  const cancelButton = {
+    name: "None",
+    description: "Deselect Item",
+    image: "buttons/cancel.png",
+    clickFunction: () => {resetCursor}
+  }
+
+  currentInventory.unshift(cancelButton)
+
   currentInventory.map((item) => {
     const tmpItemImg = document.createElement("img");
     tmpItemImg.src = "./assets/" + item.image;
@@ -49,7 +61,21 @@ export const displayInventoryDiv = () => {
     tmpItemImg.style["border"] = "3px solid grey";
     tmpItemImg.style["width"] = "64px";
     tmpItemImg.style["height"] = "64px";
+    tmpItemImg.style["user-select"] = "none";
+    tmpItemImg.style["user-drag"] = "none";
     tmpItemImg.classList.add("inventoryItem");
+    if (item.name === "None") {
+      tmpItemImg.onclick = () => {
+        const canvas = document.getElementsByTagName("canvas")[0]
+        canvas.style['cursor'] = 'auto';
+        delete window.selectedItem;
+      };
+    } else {
+      tmpItemImg.onclick = () => {
+        setCursor(tmpItemImg.src);
+        window.selectedItem = item.name
+      };
+    }
 
     inventoryContainerDiv.appendChild(tmpItemImg);
   });
@@ -106,13 +132,16 @@ export function getCurrentRoom() {
 }
 
 export function setOnTitleScene(bool) {
-  localStorage.setItem("onTitleScene", JSON.stringify(bool));
+  // Global variable instead of localStorage
+  window.onTitleScene = bool;
+//  localStorage.setItem("onTitleScene", JSON.stringify(bool));
 }
 
 export function getOnTitleScene() {
-  if (localStorage.getItem("onTitleScene")) {
-    return JSON.parse(localStorage.getItem("onTitleScene"));
-  }
+  return window.onTitleScene
+//  if (localStorage.getItem("onTitleScene")) {
+//    return JSON.parse(localStorage.getItem("onTitleScene"));
+//  }
 }
 
 export function clearLocalStorage() {
@@ -348,6 +377,17 @@ export const destroyNavArrows = () => {
   every("left-arrow", destroy)
   every("right-arrow", destroy)
 }
+
+export const setCursor = (imgUrl) => {
+  const canvas = document.getElementsByTagName("canvas")[0]
+  canvas.style['cursor'] = `url('${imgUrl}') 16 16, auto`
+}
+
+export const resetCursor = () => {
+  const canvas = document.getElementsByTagName("canvas")[0]
+  canvas.style['cursor'] = 'auto'
+}
+
 
 export const textBubble = (dialogs, onFinish) => {
   // Current dialog
