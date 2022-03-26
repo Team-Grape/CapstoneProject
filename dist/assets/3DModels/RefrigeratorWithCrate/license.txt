@@ -1,0 +1,11 @@
+Model Information:
+* title:	An old refrigerator and a wooden crate
+* source:	https://sketchfab.com/3d-models/an-old-refrigerator-and-a-wooden-crate-9664f9f194ae4256a64ab168f74f8b9b
+* author:	Eugen S. (https://sketchfab.com/eugen.storozhuk)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "An old refrigerator and a wooden crate" (https://sketchfab.com/3d-models/an-old-refrigerator-and-a-wooden-crate-9664f9f194ae4256a64ab168f74f8b9b) by Eugen S. (https://sketchfab.com/eugen.storozhuk) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

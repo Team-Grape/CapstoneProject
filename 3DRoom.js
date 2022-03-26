@@ -19,7 +19,7 @@ document.body.appendChild(renderer.domElement);
 //create controls for camera
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 10, 100);
-controls.enableZoom = false;
+// controls.enableZoom = false;
 controls.update();
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -135,6 +135,7 @@ class Ghost {
     });
   }
 }
+
 loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.8;
@@ -144,18 +145,39 @@ loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
 });
 loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
-  const scale = 50;
+  const scale = 52;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(10, -60, -160);
-  gltf.scene.rotation.y = -1.6;
-});
-loader.load('./dist/assets/3DModels/oldFridge/scene.gltf', (gltf) => {
-  scene.add(gltf.scene);
-  const scale = 70;
-  gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(80, -110, -150);
+  gltf.scene.position.set(170, -60, -10);
+  // gltf.scene.rotation.y = -1.6;
   gltf.scene.rotation.y = Math.PI;
 });
+// loader.load('./dist/assets/3DModels/oldFridge/scene.gltf', (gltf) => {
+//   scene.add(gltf.scene);
+//   const scale = 70;
+//   gltf.scene.scale.set(scale, scale, scale);
+//   gltf.scene.position.set(80, -110, -150);
+//   gltf.scene.rotation.y = Math.PI;
+// });
+
+loader.load(
+  './dist/assets/3DModels/RefrigeratorWithCrate/scene.gltf',
+  (gltf) => {
+    scene.add(gltf.scene);
+    const scale = 1.8;
+    gltf.scene.scale.set(scale, scale, scale);
+    gltf.scene.position.set(150, -110, -113);
+    // gltf.scene.rotation.y = Math.PI;
+  }
+);
+
+loader.load('./dist/assets/3DModels/diningTableSet/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.25;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(-50, -110, -113);
+  gltf.scene.rotation.y = Math.PI / 2;
+});
+
 loader.load('./dist/assets/3DModels/purpleDoor/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.8;
@@ -182,9 +204,9 @@ loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
 
 loader.load('./dist/assets/3DModels/kitchenShelf/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
-  const scale = 0.08;
+  const scale = 0.15;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(-120, 40, 190);
+  gltf.scene.position.set(-120, 40, 185);
   gltf.scene.rotation.y = -Math.PI;
 });
 
@@ -193,7 +215,7 @@ loader.load(
   './dist/assets/3DModels/hangingKitchenCupboards/scene.gltf',
   (gltf) => {
     scene.add(gltf.scene);
-    const scale = 20;
+    const scale = 100;
     gltf.scene.scale.set(scale, scale, scale);
     gltf.scene.position.set(-120, 40, 160);
     gltf.scene.rotation.y = -Math.PI;
