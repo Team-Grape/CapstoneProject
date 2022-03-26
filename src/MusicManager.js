@@ -67,13 +67,16 @@ class Music {
   }
 
   async play(soundName) {
-    if (this.currentlyPlayingName) {
+
+    if (this.currentlyPlayingName === soundName) {
+      // if you try to play the same thing that is currently playing, bail
+      return;
+    } else if (this.currentlyPlayingName) {
+      // if currently playing anything, STOP IT, then proceed
       this.stop()
     }
-     if (this.currentlyPlayingName === soundName) {
-        console.log('I think its this one lol')
-       return;
-     }
+
+
     if (Music.PLAY_SOUND === false) {
       return;
     }
