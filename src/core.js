@@ -2,6 +2,30 @@ import { InGameMenu } from "./menu.js";
 
 const inGameMenu = new InGameMenu();
 
+
+export const flickerOpacity = (GameObj) => {
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+  let counter = 0;
+  onUpdate(() => {
+    //    if (counter === 1) {
+    if (counter++ % (60 / 3) === 1) {
+      // only update 3x per second{
+      if (Math.random() < 0.5) {
+        // randomly choose
+        if (GameObj.opacity < 0.7)
+          GameObj.opacity += getRandomArbitrary(0.01, 0.1);
+      } else {
+        if (GameObj.opacity > 0.4)
+          GameObj.opacity -= getRandomArbitrary(0.01, 0.1);
+      }
+    }
+  });
+}
+
+
+
 export const playSFX = (sndNameStr) => {
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
 };
