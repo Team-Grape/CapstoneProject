@@ -1,0 +1,11 @@
+Model Information:
+* title:	Copper coffee pot
+* source:	https://sketchfab.com/3d-models/copper-coffee-pot-4d4f126e6a0d4988bf2d05027576def1
+* author:	Lassi Kaukonen (https://sketchfab.com/thesidekick)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Copper coffee pot" (https://sketchfab.com/3d-models/copper-coffee-pot-4d4f126e6a0d4988bf2d05027576def1) by Lassi Kaukonen (https://sketchfab.com/thesidekick) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

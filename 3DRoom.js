@@ -130,7 +130,7 @@ class Ghost {
       scene.add(gltf.scene);
       const scale = 0.5;
       gltf.scene.scale.set(scale, scale, scale);
-      gltf.scene.position.set(30, 20, -180);
+      gltf.scene.position.set(0, -60, -160);
       this.ghost = gltf.scene;
     });
   }
@@ -143,6 +143,7 @@ loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
   gltf.scene.position.set(0, -110, 160);
   gltf.scene.rotation.y = -Math.PI;
 });
+
 loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 52;
@@ -151,13 +152,6 @@ loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
   // gltf.scene.rotation.y = -1.6;
   gltf.scene.rotation.y = Math.PI;
 });
-// loader.load('./dist/assets/3DModels/oldFridge/scene.gltf', (gltf) => {
-//   scene.add(gltf.scene);
-//   const scale = 70;
-//   gltf.scene.scale.set(scale, scale, scale);
-//   gltf.scene.position.set(80, -110, -150);
-//   gltf.scene.rotation.y = Math.PI;
-// });
 
 loader.load(
   './dist/assets/3DModels/RefrigeratorWithCrate/scene.gltf',
@@ -210,18 +204,6 @@ loader.load('./dist/assets/3DModels/kitchenShelf/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI;
 });
 
-// could't see this one
-loader.load(
-  './dist/assets/3DModels/hangingKitchenCupboards/scene.gltf',
-  (gltf) => {
-    scene.add(gltf.scene);
-    const scale = 100;
-    gltf.scene.scale.set(scale, scale, scale);
-    gltf.scene.position.set(-120, 40, 160);
-    gltf.scene.rotation.y = -Math.PI;
-  }
-);
-
 loader.load('./dist/assets/3DModels/kitchenKnife/scene.gltf', (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.2;
@@ -230,6 +212,75 @@ loader.load('./dist/assets/3DModels/kitchenKnife/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = Math.PI / 2;
   gltf.scene.position.set(100, -110, 20);
 });
+
+loader.load('./dist/assets/3DModels/brokenDish3/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 70;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(40, 40, -140);
+  // gltf.scene.rotation.y = -1.6;
+  gltf.scene.rotation.x = -Math.PI / 2;
+});
+
+loader.load('./dist/assets/3DModels/brokenDish2/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 50;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(0, 0, 0);
+  // gltf.scene.rotation.y = -1.6;
+  gltf.scene.rotation.x = -Math.PI / 2;
+});
+
+loader.load(
+  './dist/assets/3DModels/hangingKitchenCupboards/scene.gltf',
+  (gltf) => {
+    scene.add(gltf.scene);
+    const scale = 2500;
+    gltf.scene.scale.set(scale, scale, scale);
+    gltf.scene.position.set(120, 40, 170);
+    gltf.scene.rotation.y = Math.PI / 2;
+  }
+);
+
+loader.load('./dist/assets/3DModels/copperCoffeePot/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 6;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(-15, -30, 150);
+  gltf.scene.rotation.y = -Math.PI / 4;
+});
+
+loader.load('./dist/assets/3DModels/lantern/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.5;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(-100, -47, 130);
+  gltf.scene.rotation.y = -Math.PI / 4;
+});
+
+loader.load('./dist/assets/3DModels/ghostModel/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.25;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(60, -60, -110);
+  gltf.scene.rotation.y = -Math.PI / 2;
+});
+
+loader.load('./dist/assets/3DModels/pitcher/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.4;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(-60, -41, -80);
+  gltf.scene.rotation.y = -Math.PI / 4;
+});
+
+// loader.load('./dist/assets/3DModels/blackKey/scene.gltf', (gltf) => {
+//   scene.add(gltf.scene);
+//   const scale = 200;
+//   gltf.scene.scale.set(scale, scale, scale);
+//   // gltf.scene.position.set(-60, -41, -80);
+//   // gltf.scene.rotation.y = -Math.PI / 4;
+// });
 
 const ghost = new Ghost();
 

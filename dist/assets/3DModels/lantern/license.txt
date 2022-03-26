@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lantern from Substance Painter tutorial
+* source:	https://sketchfab.com/3d-models/lantern-from-substance-painter-tutorial-5935df91f7c94075b8d20e6d0daa2186
+* author:	bartshoot (https://sketchfab.com/bartshoot)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lantern from Substance Painter tutorial" (https://sketchfab.com/3d-models/lantern-from-substance-painter-tutorial-5935df91f7c94075b8d20e6d0daa2186) by bartshoot (https://sketchfab.com/bartshoot) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
