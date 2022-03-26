@@ -7,6 +7,7 @@ import {
   getGameState,
   textBubble,
   addToMessageLog,
+  destroyNavArrows,
 } from "../core.js";
 import { cellarKey, pryBarObj } from "../items.js";
 import getMusicManager from "../MusicManager.js";
@@ -43,6 +44,7 @@ export const createBasementRoomOne = () => {
     } else {
       roomNavArrows(direction);
     }
+});
 
     // ======================================================== //
 
@@ -91,7 +93,6 @@ export const createBasementRoomOne = () => {
             'ghost1'
           ]);
           ghost1.play("idle", { loop: true, pingpong: true, speed: 4 });
-          ghost1.opacity = 0.2;
           let counter = 0;
           onUpdate(() => {
             //    if (counter === 1) {
@@ -178,7 +179,8 @@ export const createBasementRoomOne = () => {
         textBubble([message]);
         } else {
           message = noKeyMessage
-          textBubble([message]);
+          destroyNavArrows()
+          textBubble([message], () => {roomNavArrows(direction)});
         }
       });
       roomNavArrows(direction);
@@ -230,7 +232,6 @@ export const createBasementRoomOne = () => {
       });
       roomNavArrows(direction);
     });
-  });
 
   // ======================================================== //
 };

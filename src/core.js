@@ -342,6 +342,13 @@ export const navArrows = (roomName) => (d) => {
   }
 };
 
+export const destroyNavArrows = () => {
+  every("up-arrow", destroy)
+  every("down-arrow", destroy)
+  every("left-arrow", destroy)
+  every("right-arrow", destroy)
+}
+
 export const textBubble = (dialogs, onFinish) => {
   // Current dialog
   let curDialog = 0;

@@ -60,7 +60,8 @@ export const titleScene = () => {
       onClick("continue", () => {
         setOnTitleScene(false);
         displayInventoryDiv();
-        go(getCurrentRoom());
+        const room = getCurrentRoom()
+        go(room);
       });
     }
 
