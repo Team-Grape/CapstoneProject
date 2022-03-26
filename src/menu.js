@@ -131,6 +131,7 @@ export class InGameMenu {
         removeInventoryDiv();
         go("basementRoomOneUp");
       } else {
+        removeInventoryDiv();
         go("title");
       }
     });
