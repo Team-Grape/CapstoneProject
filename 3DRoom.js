@@ -11,8 +11,14 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
+// create raycasting for mouse to keep track of it
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0xffffff);
 document.body.appendChild(renderer.domElement);
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -33,7 +39,7 @@ const textureLoader = new THREE.TextureLoader();
 
 //loading first wall
 textureLoader.load(
-  './dist/assets/room_backgrounds/brick.jpeg',
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -49,7 +55,7 @@ textureLoader.load(
 
 //loading second wall
 textureLoader.load(
-  './dist/assets/room_backgrounds/brick.jpeg',
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -66,7 +72,7 @@ textureLoader.load(
 
 // loading third wall
 textureLoader.load(
-  './dist/assets/room_backgrounds/brick.jpeg',
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -83,7 +89,7 @@ textureLoader.load(
 
 // loading fourth wall
 textureLoader.load(
-  './dist/assets/room_backgrounds/brick.jpeg',
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -101,7 +107,7 @@ textureLoader.load(
 
 //loading floor
 textureLoader.load(
-  './dist/assets/room_backgrounds/floor.jpeg',
+  "./dist/assets/room_backgrounds/floor.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -124,19 +130,23 @@ textureLoader.load(
 
 const loader = new THREE.GLTFLoader();
 
-class Ghost {
-  constructor() {
-    loader.load('./dist/assets/3DModels/ghostModel/scene.gltf', (gltf) => {
-      scene.add(gltf.scene);
-      const scale = 0.5;
-      gltf.scene.scale.set(scale, scale, scale);
-      gltf.scene.position.set(0, -60, -160);
-      this.ghost = gltf.scene;
-    });
-  }
-}
 
-loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/ghostModel/scene.gltf", (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.5;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(0, -60, -160);
+});
+
+loader.load("./dist/assets/3DModels/ghostModel/scene.gltf", (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.25;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(60, -60, -110);
+  gltf.scene.rotation.y = -Math.PI / 2;
+});
+
+loader.load("./dist/assets/3DModels/gasStove/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.8;
   gltf.scene.scale.set(scale, scale, scale);
@@ -144,7 +154,7 @@ loader.load('./dist/assets/3DModels/gasStove/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI;
 });
 
-loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/kitchenCounter/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 52;
   gltf.scene.scale.set(scale, scale, scale);
@@ -154,7 +164,7 @@ loader.load('./dist/assets/3DModels/kitchenCounter/scene.gltf', (gltf) => {
 });
 
 loader.load(
-  './dist/assets/3DModels/RefrigeratorWithCrate/scene.gltf',
+  "./dist/assets/3DModels/RefrigeratorWithCrate/scene.gltf",
   (gltf) => {
     scene.add(gltf.scene);
     const scale = 1.8;
@@ -164,7 +174,7 @@ loader.load(
   }
 );
 
-loader.load('./dist/assets/3DModels/diningTableSet/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/diningTableSet/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.25;
   gltf.scene.scale.set(scale, scale, scale);
@@ -172,15 +182,14 @@ loader.load('./dist/assets/3DModels/diningTableSet/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = Math.PI / 2;
 });
 
-loader.load('./dist/assets/3DModels/purpleDoor/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/purpleDoor/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.8;
   gltf.scene.scale.set(scale, scale, scale);
-  // gltf.scene.rotation.y = (Math.PI / 2)
   gltf.scene.position.set(-196, -30, 0);
 });
 
-loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/kitchenCabinet/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.09;
   gltf.scene.scale.set(scale, scale, scale);
@@ -188,7 +197,7 @@ loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI / 2;
 });
 
-loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/kitchenCabinet/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.09;
   gltf.scene.scale.set(scale, scale, scale);
@@ -196,7 +205,7 @@ loader.load('./dist/assets/3DModels/kitchenCabinet/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI / 2;
 });
 
-loader.load('./dist/assets/3DModels/kitchenShelf/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/kitchenShelf/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.15;
   gltf.scene.scale.set(scale, scale, scale);
@@ -204,7 +213,7 @@ loader.load('./dist/assets/3DModels/kitchenShelf/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI;
 });
 
-loader.load('./dist/assets/3DModels/kitchenKnife/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/kitchenKnife/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.2;
   gltf.scene.scale.set(scale, scale, scale);
@@ -213,7 +222,7 @@ loader.load('./dist/assets/3DModels/kitchenKnife/scene.gltf', (gltf) => {
   gltf.scene.position.set(100, -110, 20);
 });
 
-loader.load('./dist/assets/3DModels/brokenDish3/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/brokenDish3/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 70;
   gltf.scene.scale.set(scale, scale, scale);
@@ -222,17 +231,15 @@ loader.load('./dist/assets/3DModels/brokenDish3/scene.gltf', (gltf) => {
   gltf.scene.rotation.x = -Math.PI / 2;
 });
 
-loader.load('./dist/assets/3DModels/brokenDish2/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/dirtyPlate/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
-  const scale = 50;
+  const scale = 5;
   gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(0, 0, 0);
-  // gltf.scene.rotation.y = -1.6;
-  gltf.scene.rotation.x = -Math.PI / 2;
+  gltf.scene.position.set(-60, -45, 180);
 });
 
 loader.load(
-  './dist/assets/3DModels/hangingKitchenCupboards/scene.gltf',
+  "./dist/assets/3DModels/hangingKitchenCupboards/scene.gltf",
   (gltf) => {
     scene.add(gltf.scene);
     const scale = 2500;
@@ -242,7 +249,7 @@ loader.load(
   }
 );
 
-loader.load('./dist/assets/3DModels/copperCoffeePot/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/copperCoffeePot/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 6;
   gltf.scene.scale.set(scale, scale, scale);
@@ -250,7 +257,7 @@ loader.load('./dist/assets/3DModels/copperCoffeePot/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI / 4;
 });
 
-loader.load('./dist/assets/3DModels/lantern/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/lantern/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   const scale = 0.5;
   gltf.scene.scale.set(scale, scale, scale);
@@ -258,40 +265,54 @@ loader.load('./dist/assets/3DModels/lantern/scene.gltf', (gltf) => {
   gltf.scene.rotation.y = -Math.PI / 4;
 });
 
-loader.load('./dist/assets/3DModels/ghostModel/scene.gltf', (gltf) => {
+loader.load("./dist/assets/3DModels/pitcher/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
-  const scale = 0.25;
-  gltf.scene.scale.set(scale, scale, scale);
-  gltf.scene.position.set(60, -60, -110);
-  gltf.scene.rotation.y = -Math.PI / 2;
-});
-
-loader.load('./dist/assets/3DModels/pitcher/scene.gltf', (gltf) => {
-  scene.add(gltf.scene);
-  const scale = 0.4;
+  const scale = 0.5;
   gltf.scene.scale.set(scale, scale, scale);
   gltf.scene.position.set(-60, -41, -80);
   gltf.scene.rotation.y = -Math.PI / 4;
+  let model = gltf.scene;
+  model.name = 'pitcher';
 });
 
-// loader.load('./dist/assets/3DModels/blackKey/scene.gltf', (gltf) => {
-//   scene.add(gltf.scene);
-//   const scale = 200;
-//   gltf.scene.scale.set(scale, scale, scale);
-//   // gltf.scene.position.set(-60, -41, -80);
-//   // gltf.scene.rotation.y = -Math.PI / 4;
-// });
+loader.load("./dist/assets/3DModels/blackKey/scene.gltf", (gltf) => {
+  scene.add(gltf.scene);
+  const scale = 0.02;
+  gltf.scene.scale.set(scale, scale, scale);
+  gltf.scene.position.set(0, -110, 0);
+  gltf.scene.rotation.x = Math.PI / 2;
+  let model = gltf.scene;
+  model.name = 'blackKey';
+});
 
-const ghost = new Ghost();
+function resetMaterials() {
+  for (let i = 0; i < model.children.length; i++) {
+    if (model.children[i].materail) {
+      model.children[i].material.opacity = 1.0;
+    }
+  }
+}
 
-function animate() {
-  renderer.render(scene, camera);
-  // ghost.position.y += 0.01;
-  // setTimeout(function(){
-  //   ghost.position.y += -0.02
-  // }, 1000);
-  controls.update();
-  requestAnimationFrame(animate);
+
+
+let intersects = raycaster.intersectObjects(scene, true);
+if (intersects.length > 0) {
+  container = getContainerObjByChild(intersects[0].objects);
+}
+
+function getContainerObjByChild(child) {
+  if (scene.userData.isContainer) return scene
+  else if(scene.parent != null) return this.getContainerObjByChild(scene.parent)
+  else return null
+}
+
+function hoverPieces() {
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(objs, true);
+  for (let i = 0; i < intersects.length; i++) {
+    intersects[i].object.material.transparent = true;
+    intersects[i].object.material.opacity = 0.5;
+  }
 }
 
 function onWindowResize() {
@@ -300,35 +321,30 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('resize', onWindowResize, false);
-
-const raycaster = new THREE.Raycaster();
-const pointer = new THREE.Vector2();
-
-function onPointerMove(event) {
-  // calculate pointer position in normalized device coordinates
-  // (-1 to +1) for both components
-
-  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+function onMouseMove(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
-function render() {
-  // update the picking ray with the camera and pointer position
-  raycaster.setFromCamera(pointer, camera);
+// function onClick(event) {
+//   raycaster.setFromCamera(mouse, camera);
+//   let intersects = raycaster.intersectObjects(scene.children, true);
+//   if (intersects > 0) {
+//     selectedPiece = intersects[0].object.userData.currentSquare;
+//   }
+// }
 
-  // calculate objects intersecting the picking ray
-  const intersects = raycaster.intersectObjects(scene.children);
-
-  for (let i = 0; i < intersects.length; i++) {
-    intersects[i].object.material.color.set(0xff0000);
-  }
-
+function animate() {
   renderer.render(scene, camera);
+  controls.update();
+  getContainerObjByChild();
+  resetMaterials();
+  hoverPieces();
+  requestAnimationFrame(animate);
 }
 
-window.addEventListener('pointermove', onPointerMove);
+window.addEventListener("resize", onWindowResize, false);
 
-window.requestAnimationFrame(render);
+window.addEventListener("mousemove", onMouseMove, false);
 
 animate();

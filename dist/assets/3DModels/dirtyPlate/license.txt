@@ -1,0 +1,11 @@
+Model Information:
+* title:	Majolica Plate 1986.008.0677
+* source:	https://sketchfab.com/3d-models/majolica-plate-19860080677-9475245ab95e4874adac77d47631e3b2
+* author:	The Mel Fisher Maritime Museum (https://sketchfab.com/mfmaritimemuseum)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Majolica Plate 1986.008.0677" (https://sketchfab.com/3d-models/majolica-plate-19860080677-9475245ab95e4874adac77d47631e3b2) by The Mel Fisher Maritime Museum (https://sketchfab.com/mfmaritimemuseum) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
