@@ -1,7 +1,4 @@
 import {
-  addToInventory,
-  checkInventoryForItem,
-  removeFromInventory,
   navArrows,
   setGameState,
   getGameState,
@@ -10,6 +7,13 @@ import {
   destroyNavArrows,
   flickerOpacity,
 } from "../core.js";
+
+import {
+  addToInventory,
+  checkInventoryForItem,
+  removeFromInventory,
+} from "../inventory.js";
+
 import { cellarKey, pryBarObj } from "../items.js";
 import getMusicManager from "../MusicManager.js";
 

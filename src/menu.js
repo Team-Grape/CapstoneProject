@@ -1,4 +1,5 @@
-import { clearLocalStorage, removeInventoryDiv } from "./core";
+import { clearLocalStorage } from "./core";
+import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
 
 // ==================== In Game Menu ====================================== //

@@ -1,7 +1,4 @@
 import {
-  addToInventory,
-  checkInventoryForItem,
-  removeFromInventory,
   navArrows,
   setGameState,
   getGameState,
@@ -9,6 +6,13 @@ import {
   addToMessageLog,
   playSFX,
 } from "../core.js";
+
+import {
+  addToInventory,
+  checkInventoryForItem,
+  removeFromInventory,
+} from "../inventory.js";
+
 import { cellarKey } from "../items.js";
 import MusicManager from "../MusicManager.js";
 

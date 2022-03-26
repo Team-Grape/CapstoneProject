@@ -8,8 +8,10 @@ import {
   getSoundEffectVolume,
   setSoundEffectVolume,
   playSFX,
-  displayInventoryDiv,
 } from "../core";
+
+import { displayInventoryDiv } from "../inventory";
+
 import MusicManager from "../MusicManager";
 
 export const options = () => {

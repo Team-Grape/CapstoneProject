@@ -4,8 +4,9 @@ import {
   clearLocalStorage,
   getOption,
   setOption,
-  displayInventoryDiv,
 } from "../core";
+
+import { displayInventoryDiv } from "../inventory";
 
 import MusicManager from "../MusicManager";
 
