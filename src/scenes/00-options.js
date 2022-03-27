@@ -1,6 +1,5 @@
-import { playSFX } from "../sounds";
-import { playBGM, stopBGM, setCurrentlyPlayingBGMVolume } from "../music";
-
+import { displayInventoryDiv } from "../inventory";
+import { playBGM, stopBGM, playSFX, setCurrentlyPlayingBGMVolume } from "../sounds";
 import {
   getCurrentRoom,
   getOption,
@@ -10,8 +9,6 @@ import {
   getSoundEffectVolume,
   setSoundEffectVolume,
 } from "../state";
-
-import { displayInventoryDiv } from "../inventory";
 
 export const options = () => {
   scene("options", () => {

@@ -1,13 +1,11 @@
+import { displayInventoryDiv } from "../inventory";
+import { stopBGM } from "../sounds";
 import {
   getCurrentRoom,
   clearLocalStorage,
   getOption,
   setOption,
 } from "../state";
-
-import { displayInventoryDiv } from "../inventory";
-
-import { stopBGM } from "../music";
 
 export const titleScene = () => {
   scene("title", () => {

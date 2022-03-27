@@ -1,19 +1,14 @@
 import { navArrows } from "../buttons";
-
 import { textBubble, addToMessageLog } from "../message";
-
-import { playSFX } from "../sounds";
-import { playBGM, stopBGM } from "../music";
-
+import { playBGM, stopBGM, playSFX } from "../sounds";
 import { setGameState, getGameState } from "../state.js";
+import { cellarKey } from "../items.js";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
 } from "../inventory.js";
-
-import { cellarKey } from "../items.js";
 
 const roomName = "basementRoomTwo";
 const roomNavArrows = navArrows(roomName);

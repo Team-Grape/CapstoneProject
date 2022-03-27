@@ -8,7 +8,7 @@ import { setGameState, getGameState } from "../state";
 
 import { textBubble, addToMessageLog } from "../message";
 
-import { playBGM, stopBGM } from "../music";
+import { playBGM, stopBGM } from "../sounds";
 import { navArrows } from "../buttons";
 
 const roomName = "basementRoomThree";
