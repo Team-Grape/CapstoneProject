@@ -75,6 +75,29 @@ textureLoader.load(
   }
 );
 
+textureLoader.load(
+  "./dist/assets/room_backgrounds/floor.jpeg",
+  function (texture) {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.x = 1;
+    texture.repeat.y = 1;
+    // const geometry = new THREE.PlaneGeometry(400, 225);
+    const geometry = new THREE.PlaneGeometry(400, 400);
+    const material = new THREE.MeshLambertMaterial({ map: texture });
+    const plane = new THREE.Mesh(geometry, material);
+    scene.add(plane);
+    plane.rotation.x = -1.57;
+    plane.position.y = -112;
+  }
+);
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+//load gltf models
+const loader = new GLTFLoader();
+
+loader.load("scaryGhost")
+
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
