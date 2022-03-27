@@ -42,14 +42,14 @@ export const removeFromInventory = (item) => {
 };
 
 export const setCursor = (imgUrl) => {
-  const canvas = document.getElementsByTagName("canvas")[0]
-  canvas.style['cursor'] = `url('${imgUrl}') 16 16, auto`
-}
+  const canvas = document.getElementsByTagName("canvas")[0];
+  canvas.style["cursor"] = `url('${imgUrl}') 16 16, auto`;
+};
 
 export const resetCursor = () => {
-  const canvas = document.getElementsByTagName("canvas")[0]
-  canvas.style['cursor'] = 'auto'
-}
+  const canvas = document.getElementsByTagName("canvas")[0];
+  canvas.style["cursor"] = "auto";
+};
 
 export const displayInventoryDiv = () => {
   if (!window.localStorage.getItem("inventory")) {
@@ -83,10 +83,12 @@ export const displayInventoryDiv = () => {
     name: "None",
     description: "Deselect Item",
     image: "buttons/cancel.png",
-    clickFunction: () => {resetCursor}
-  }
+    clickFunction: () => {
+      resetCursor;
+    },
+  };
 
-  currentInventory.unshift(cancelButton)
+  currentInventory.unshift(cancelButton);
 
   currentInventory.map((item) => {
     const tmpItemImg = document.createElement("img");
@@ -102,14 +104,14 @@ export const displayInventoryDiv = () => {
     tmpItemImg.classList.add("inventoryItem");
     if (item.name === "None") {
       tmpItemImg.onclick = () => {
-        const canvas = document.getElementsByTagName("canvas")[0]
-        canvas.style['cursor'] = 'auto';
+        const canvas = document.getElementsByTagName("canvas")[0];
+        canvas.style["cursor"] = "auto";
         delete window.selectedItem;
       };
     } else {
       tmpItemImg.onclick = () => {
         setCursor(tmpItemImg.src);
-        window.selectedItem = item.name
+        window.selectedItem = item.name;
       };
     }
 
@@ -122,7 +124,7 @@ export const removeInventoryDiv = () => {
   if (document.getElementById("inventoryPanel")) {
     document.getElementById("inventoryPanel").remove();
   }
-  const canvas = document.getElementsByTagName("canvas")[0]
-  canvas.style['cursor'] = 'auto';
+  const canvas = document.getElementsByTagName("canvas")[0];
+  canvas.style["cursor"] = "auto";
   delete window.selectedItem;
 };

@@ -2,8 +2,8 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    'gameBundle': "./src/game.js",
-    'flow/puzzleChartBundle': "./src/flowcharts/puzzleChart.js",
+    gameBundle: "./src/game.js",
+    "flow/puzzleChartBundle": "./src/flowcharts/puzzleChart.js",
   },
   output: {
     filename: "[name].js",
@@ -14,10 +14,8 @@ module.exports = {
     rules: [
       {
         test: /\.mmd/,
-        type: 'asset/source',
+        type: "asset/source",
       },
     ],
   },
-
-
 };

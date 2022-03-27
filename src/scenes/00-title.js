@@ -11,7 +11,7 @@ import { stopBGM } from "../music";
 
 export const titleScene = () => {
   scene("title", () => {
-    stopBGM()
+    stopBGM();
     window.onTitleScene = true;
     add([
       text("Haunted House Adventure Game"),
@@ -42,7 +42,7 @@ export const titleScene = () => {
 
     function startNewGame() {
       clearLocalStorage();
-      delete window.onTitleScene
+      delete window.onTitleScene;
       go("basementRoomOneUp");
     }
 
@@ -57,9 +57,9 @@ export const titleScene = () => {
       ]);
 
       onClick("continue", () => {
-        delete window.onTitleScene
+        delete window.onTitleScene;
         displayInventoryDiv();
-        const room = getCurrentRoom()
+        const room = getCurrentRoom();
         go(room);
       });
     }
@@ -90,15 +90,14 @@ export const titleScene = () => {
         const no = add([text("No", { size: 50 }), pos(670, 370), area(), "no"]);
 
         onClick("no", () => {
-          go('title')
+          go("title");
         });
 
         onClick("yes", () => {
-         startNewGame()
+          startNewGame();
         });
-
       } else {
-        startNewGame()
+        startNewGame();
       }
     });
 

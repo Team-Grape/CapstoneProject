@@ -1,21 +1,20 @@
-import { 
-  getOption, 
-  setOption, 
-  setBackgroundMusicVolume, 
-  getBackgroundMusicVolume, 
-  getSoundEffectVolume, 
-  setSoundEffectVolume
+import {
+  getOption,
+  setOption,
+  setBackgroundMusicVolume,
+  getBackgroundMusicVolume,
+  getSoundEffectVolume,
+  setSoundEffectVolume,
 } from "../state";
 
 export const entry = () => {
   scene("entry", () => {
-
     if (!getBackgroundMusicVolume()) {
-      setBackgroundMusicVolume(1.5)
+      setBackgroundMusicVolume(1.5);
     }
 
     if (!getSoundEffectVolume()) {
-      setSoundEffectVolume(1.5)
+      setSoundEffectVolume(1.5);
     }
 
     add([
@@ -24,11 +23,11 @@ export const entry = () => {
       pos(width() / 2, height() / 2),
       origin("center"),
       area(),
-      'goToTitleButton'
+      "goToTitleButton",
     ]);
-  
+
     onClick(() => {
       go("title");
     });
   });
-}
+};

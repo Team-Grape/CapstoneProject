@@ -1,17 +1,11 @@
 import { navArrows } from "../buttons";
 
-import {
-  textBubble,
-  addToMessageLog,
-} from "../message";
+import { textBubble, addToMessageLog } from "../message";
 
 import { playSFX } from "../sounds";
 import { playBGM, stopBGM } from "../music";
 
-import {
-  setGameState,
-  getGameState,
-} from "../state.js";
+import { setGameState, getGameState } from "../state.js";
 
 import {
   addToInventory,
@@ -32,12 +26,10 @@ const introMessage = [
 
 export const createBasementRoomTwo = async () => {
   // ======================================================== //
- 
+
   let spookyMusic;
 
-
   scene(roomName + "Up", () => {
-    
     const direction = "Up";
     let fruitPaintingY;
     onLoad(async () => {
@@ -52,7 +44,6 @@ export const createBasementRoomTwo = async () => {
       ]);
       playBGM("spooky");
     });
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,11 +76,11 @@ export const createBasementRoomTwo = async () => {
     onClick("grandfather-clock", () => {
       playBGM("gong");
     });
-  
+
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
-      playSFX("falling")
+      playSFX("falling");
       playBGM("horror");
     });
     roomNavArrows(direction);
@@ -140,7 +131,7 @@ export const createBasementRoomTwo = async () => {
     onClick("bookcase", (bookcase) => {
       setGameState(roomName, "bookCaseMoved", true);
       bookcase.pos.x = 180;
-      playSFX("bookcaseMoving")
+      playSFX("bookcaseMoving");
     });
     onClick("key", (key) => {
       textBubble([["a key was added to your inventory"]]);

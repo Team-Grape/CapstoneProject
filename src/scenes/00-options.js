@@ -13,9 +13,7 @@ import {
 
 import { displayInventoryDiv } from "../inventory";
 
-
 export const options = () => {
-
   scene("options", () => {
     add(
       [
@@ -87,7 +85,7 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
-        setCurrentlyPlayingBGMVolume()
+        setCurrentlyPlayingBGMVolume();
         readd(currentBgVolumeDisplay);
       }
     });
@@ -102,7 +100,7 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
-        setCurrentlyPlayingBGMVolume()
+        setCurrentlyPlayingBGMVolume();
         readd(currentBgVolumeDisplay);
       }
     });
@@ -169,7 +167,6 @@ export const options = () => {
           (currentSoundEffectVolume / 3) *
           100
         ).toFixed(0)}%`;
-
 
         readd(currentSFXVolumeDisplay);
       }

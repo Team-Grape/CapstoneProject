@@ -10,7 +10,7 @@ export const loadAllSounds = () => {
   loadSound("gong", "./assets/sounds/clockGong.wav");
   loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
   loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
-}
+};
 
 export const playSFX = (sndNameStr) => {
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
