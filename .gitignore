@@ -3,3 +3,5 @@ node_modules
 package-lock.json
 dist/gameBundle.js
 dist/flow/puzzleChartBundle.js
+dist/bundle.js 
+dist/puzzleChartBundle.js
