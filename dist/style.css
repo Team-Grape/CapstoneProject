@@ -4,19 +4,18 @@
  */
 * {
   font-family: arial, sans-serif;
-/*
+  /*
   border: 1px solid black;
 */
 }
 
-body{
+body {
   background-color: #000000;
   overflow: hidden;
 }
 
-
 canvas {
-/*  width: 1248px;
+  /*  width: 1248px;
   height: 546px;
 */
   position: absolute;
@@ -24,22 +23,25 @@ canvas {
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: #000;
-  position:relative;
- }
+  position: relative;
+  -webkit-filter: grayscale(30%);
+}
 
 nav {
-
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
   height: 46px;
   width: 1248px;
   background-color: #222222;
-  }
-
-
+}
 
 .inventoryItem {
-
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 /*

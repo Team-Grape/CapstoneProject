@@ -1,20 +1,21 @@
+import { displayInventoryDiv } from "../inventory";
+import {
+  playBGM,
+  stopBGM,
+  playSFX,
+  setCurrentlyPlayingBGMVolume,
+} from "../sounds";
 import {
   getCurrentRoom,
-  getOnTitleScene,
   getOption,
   setOption,
   setBackgroundMusicVolume,
   getBackgroundMusicVolume,
   getSoundEffectVolume,
   setSoundEffectVolume,
-  playSFX,
-  displayInventoryDiv,
-} from "../core";
-import MusicManager from "../MusicManager";
+} from "../state";
 
 export const options = () => {
-  const music = MusicManager();
-
   scene("options", () => {
     add(
       [
@@ -86,11 +87,7 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
-
-        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
-        if (music.currentlyPlaying) {
-          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
-        }
+        setCurrentlyPlayingBGMVolume();
         readd(currentBgVolumeDisplay);
       }
     });
@@ -105,12 +102,7 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
-
-        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
-
-        if (music.currentlyPlaying) {
-          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
-        }
+        setCurrentlyPlayingBGMVolume();
         readd(currentBgVolumeDisplay);
       }
     });
@@ -178,10 +170,6 @@ export const options = () => {
           100
         ).toFixed(0)}%`;
 
-        //if (soundEffects.currentlyPlaying) {
-        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        //}
-
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -195,9 +183,6 @@ export const options = () => {
           100
         ).toFixed(0)}%`;
 
-        //if (soundEffects.currentlyPlaying) {
-        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        //}
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -216,11 +201,11 @@ export const options = () => {
     ]);
 
     onClick("return", () => {
-      if (getOnTitleScene()) {
-        music.stop();
+      if (window.onTitleScene) {
+        stopBGM();
         go("title");
       } else {
-        music.stop();
+        stopBGM();
         displayInventoryDiv();
         go(getCurrentRoom());
       }
@@ -249,11 +234,11 @@ export const options = () => {
     ]);
 
     onClick("playMusic", () => {
-      music.play("kidMusic");
+      playBGM("kidMusic");
     });
 
     onClick("stopMusic", () => {
-      music.stop();
+      stopBGM();
     });
 
     // ============== Sound Effect Test Buttons =========================
@@ -270,7 +255,6 @@ export const options = () => {
     ]);
 
     onClick("playSoundEffect", () => {
-
       playSFX("falling");
     });
   });

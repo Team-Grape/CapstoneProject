@@ -1,27 +1,33 @@
-import { getOption, setOption, setBackgroundMusicVolume, getBackgroundMusicVolume, getSoundEffectVolume, setSoundEffectVolume} from "../core";
+import {
+  getOption,
+  setOption,
+  setBackgroundMusicVolume,
+  getBackgroundMusicVolume,
+  getSoundEffectVolume,
+  setSoundEffectVolume,
+} from "../state";
 
 export const entry = () => {
   scene("entry", () => {
-
     if (!getBackgroundMusicVolume()) {
-      setBackgroundMusicVolume(1.5)
+      setBackgroundMusicVolume(1.5);
     }
 
     if (!getSoundEffectVolume()) {
-      setSoundEffectVolume(1.5)
+      setSoundEffectVolume(1.5);
     }
 
     add([
-      text("Click me to start"),
+      text("Click here to start"),
       color(255, 0, 0),
       pos(width() / 2, height() / 2),
       origin("center"),
       area(),
-      'goToTitleButton'
+      "goToTitleButton",
     ]);
-  
-    onClick('goToTitleButton', () => {
+
+    onClick(() => {
       go("title");
     });
   });
-}
+};

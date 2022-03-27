@@ -1,19 +1,16 @@
+import { displayInventoryDiv } from "../inventory";
+import { stopBGM } from "../sounds";
 import {
   getCurrentRoom,
-  setOnTitleScene,
   clearLocalStorage,
   getOption,
   setOption,
-  displayInventoryDiv,
-} from "../core";
-
-import MusicManager from "../MusicManager";
+} from "../state";
 
 export const titleScene = () => {
-  const music = MusicManager()
   scene("title", () => {
-    music.stop()
-    setOnTitleScene(true);
+    stopBGM();
+    window.onTitleScene = true;
     add([
       text("Haunted House Adventure Game"),
       color(255, 255, 255),
@@ -43,7 +40,7 @@ export const titleScene = () => {
 
     function startNewGame() {
       clearLocalStorage();
-      setOnTitleScene(false);
+      delete window.onTitleScene;
       go("basementRoomOneUp");
     }
 
@@ -58,9 +55,9 @@ export const titleScene = () => {
       ]);
 
       onClick("continue", () => {
-        setOnTitleScene(false);
+        delete window.onTitleScene;
         displayInventoryDiv();
-        const room = getCurrentRoom()
+        const room = getCurrentRoom();
         go(room);
       });
     }
@@ -91,15 +88,14 @@ export const titleScene = () => {
         const no = add([text("No", { size: 50 }), pos(670, 370), area(), "no"]);
 
         onClick("no", () => {
-          go('title')
+          go("title");
         });
 
         onClick("yes", () => {
-         startNewGame()
+          startNewGame();
         });
-
       } else {
-        startNewGame()
+        startNewGame();
       }
     });
 

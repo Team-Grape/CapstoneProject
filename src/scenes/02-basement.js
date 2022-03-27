@@ -1,16 +1,14 @@
+import { navArrows } from "../buttons";
+import { textBubble, addToMessageLog } from "../message";
+import { playBGM, stopBGM, playSFX } from "../sounds";
+import { setGameState, getGameState } from "../state.js";
+import { cellarKey } from "../items.js";
+
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-  navArrows,
-  setGameState,
-  getGameState,
-  textBubble,
-  addToMessageLog,
-  playSFX,
-} from "../core.js";
-import { cellarKey } from "../items.js";
-import MusicManager from "../MusicManager.js";
+} from "../inventory.js";
 
 const roomName = "basementRoomTwo";
 const roomNavArrows = navArrows(roomName);
@@ -23,15 +21,10 @@ const introMessage = [
 
 export const createBasementRoomTwo = async () => {
   // ======================================================== //
-  // const bgMusic = getMusicManager();
-  const bgMusic = MusicManager();
-  const soundEffects = MusicManager()
- 
+
   let spookyMusic;
 
-
   scene(roomName + "Up", () => {
-    
     const direction = "Up";
     let fruitPaintingY;
     onLoad(async () => {
@@ -44,13 +37,8 @@ export const createBasementRoomTwo = async () => {
         area(),
         "grandfather-clock",
       ]);
-      bgMusic.play("spooky");
-      //spookyMusic = await bgMusic.play("spooky");
-      // bgMusic.stop()
+      playBGM("spooky");
     });
-
-    // spookyMusic = await bgMusic.play("spooky");
-    //console.log('Spooky Music', spookyMusic)
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,7 +58,7 @@ export const createBasementRoomTwo = async () => {
       if (!getGameState(roomName, "fruitPaintingMoved")) {
         fruitPaintingY = 100;
       } else {
-        fruitPaintingY = 300;
+        fruitPaintingY = 350;
       }
       add([
         sprite("fruit-painting"),
@@ -81,16 +69,14 @@ export const createBasementRoomTwo = async () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-      soundEffects.stop()
-      bgMusic.stop()
-      soundEffects.play("gong");
+      playBGM("gong");
     });
-  
+
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
-      soundEffects.play("falling");
-      bgMusic.play("horror");
+      playSFX("falling");
+      playBGM("horror");
     });
     roomNavArrows(direction);
   });
@@ -98,23 +84,13 @@ export const createBasementRoomTwo = async () => {
   // ======================================================== //
 
   scene(roomName + "Down", async () => {
-
-//    if (bgMusic.currentlyPlaying) {
-//
-//      bgMusic.sound.kidMusic.vol = .1
-//    
-//    }
-
     const direction = "Down";
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
       add([sprite("door"), pos(440, 150), scale(4), area(), "door"]);
     });
     onClick("door", async () => {
-      console.log('Bg Music -->', bgMusic)
-      bgMusic.stop("spooky");
-     // await spookyMusic.stop()
-      // soundEffects.stop()
+      stopBGM();
       go("basementRoomOneUp");
     });
     roomNavArrows(direction);
@@ -150,8 +126,7 @@ export const createBasementRoomTwo = async () => {
     onClick("bookcase", (bookcase) => {
       setGameState(roomName, "bookCaseMoved", true);
       bookcase.pos.x = 180;
-      //play("bookcaseMoving", {volume: getSoundEffectVolume(), loop: false});
-      playSFX("bookcaseMoving")
+      playSFX("bookcaseMoving");
     });
     onClick("key", (key) => {
       textBubble([["a key was added to your inventory"]]);
@@ -180,7 +155,7 @@ export const createBasementRoomTwo = async () => {
       add([sprite("cob-webs"), pos(640, 280), scale(2), area()]);
     });
     onClick("woodenDoor", (woodenDoor) => {
-      bgMusic.play("kidMusic");
+      playBGM("kidMusic");
       if (
         getGameState(roomName, "doorUnlocked") ||
         checkInventoryForItem(cellarKey)
