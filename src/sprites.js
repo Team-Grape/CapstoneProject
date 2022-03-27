@@ -21,24 +21,24 @@ export const loadAllSprites = () => {
 
   loadSprite(
     "basementRoomOneUp",
-    "./assets/room_backgrounds/basement/basementRoomOneUp.png"
+    "./assets/room_backgrounds/basement/roomOne/basementRoomOneUp.png"
   );
   loadSprite(
     "basementRoomOneLeft",
-    "./assets/room_backgrounds/basement/basementRoomOneLeft.png"
+    "./assets/room_backgrounds/basement/roomOne/basementRoomOneLeft.png"
   );
   loadSprite(
     "basementRoomOneRight",
-    "./assets/room_backgrounds/basement/basementRoomOneRight.png"
+    "./assets/room_backgrounds/basement/roomOne/basementRoomOneRight.png"
   );
   loadSprite(
     "basementRoomOneDown",
-    "./assets/room_backgrounds/basement/basementRoomOneDown.png"
+    "./assets/room_backgrounds/basement/roomOne/basementRoomOneDown.png"
   );
 
   loadSprite(
     "background-tile",
-    "./assets/room_backgrounds/basement/basementTemplate.png"
+    "./assets/room_backgrounds/basement/template/basementTemplate.png"
   );
 
   loadSprite(
