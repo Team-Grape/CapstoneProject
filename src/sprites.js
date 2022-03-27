@@ -236,6 +236,17 @@ export const loadAllSprites = () => {
   );
 };
 
+
+export const fadeOutOpacity = async (GameObj) => {
+  let i = 1.0
+  while ( i > 0 ) {
+    GameObj.opacity = i;
+    i -= .05
+    await new Promise(resolve => setTimeout(resolve, (.1 * 1000)));
+  }
+  GameObj.destroy()
+}
+
 export const flickerOpacity = (GameObj) => {
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;

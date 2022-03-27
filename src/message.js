@@ -1,3 +1,5 @@
+import { navArrows, destroyNavArrows } from "./buttons";
+
 export const addToMessageLog = (msg) => {
   if (!window.localStorage.getItem("messageLog")) {
     window.localStorage.setItem("messageLog", JSON.stringify([]));
@@ -40,6 +42,10 @@ export function openMessageLog() {
 }
 
 export const textBubble = (dialogs, onFinish) => {
+  const roomNavArrows = navArrows(window.roomName);
+
+  destroyNavArrows();
+
   // Current dialog
   let curDialog = 0;
 
@@ -78,10 +84,13 @@ export const textBubble = (dialogs, onFinish) => {
       txt.destroy();
       nextButton.destroy();
       curDialog = 0;
+
+      roomNavArrows(window.viewDirection);
       if (onFinish) {
         onFinish();
       }
       return;
+
     }
     curDialog = curDialog + 1;
     updateDialog();
