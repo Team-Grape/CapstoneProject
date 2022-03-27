@@ -2,8 +2,8 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    gameBundle: "./src/game.js",
-    puzzleChartBundle: "./src/puzzleChart.js",
+    'gameBundle': "./src/game.js",
+    'flow/puzzleChartBundle': "./src/flowcharts/puzzleChart.js",
   },
   output: {
     filename: "[name].js",
