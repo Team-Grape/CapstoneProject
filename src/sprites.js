@@ -41,6 +41,18 @@ export const loadAllSprites = () => {
     "./assets/room_backgrounds/basement/template/basementTemplate.png"
   );
 
+  //Basement Hallway
+  loadSprite(
+    "basementHallway",
+    "./assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png"
+  );
+
+  loadSprite(
+    "basementHallwayDoor",
+    "./assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png"
+  );
+
+
   loadSprite(
     "room-two-background",
     "./assets/room_backgrounds/basement/roomTwoBackground.png"

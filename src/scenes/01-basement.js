@@ -180,7 +180,7 @@ export const createBasementRoomOne = () => {
 
     onClick("door", (door) => {
       if (getGameState(roomName, "doorUnlocked")) {
-        go("basementRoomTwoUp");
+        go("basementHallwayDown");
       } else if (
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
