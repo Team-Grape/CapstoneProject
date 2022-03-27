@@ -90,7 +90,6 @@ export const textBubble = (dialogs, onFinish) => {
         onFinish();
       }
       return;
-
     }
     curDialog = curDialog + 1;
     updateDialog();

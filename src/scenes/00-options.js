@@ -1,5 +1,10 @@
 import { displayInventoryDiv } from "../inventory";
-import { playBGM, stopBGM, playSFX, setCurrentlyPlayingBGMVolume } from "../sounds";
+import {
+  playBGM,
+  stopBGM,
+  playSFX,
+  setCurrentlyPlayingBGMVolume,
+} from "../sounds";
 import {
   getCurrentRoom,
   getOption,

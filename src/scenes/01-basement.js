@@ -26,7 +26,7 @@ export const createBasementRoomOne = () => {
   // ======================================================== //
 
   scene(roomName + "Up", () => {
-    window.roomName = roomName
+    window.roomName = roomName;
     window.viewDirection = "Up";
 
     onLoad(() => {
@@ -45,7 +45,7 @@ export const createBasementRoomOne = () => {
   // ======================================================== //
 
   scene(roomName + "Right", () => {
-    window.roomName = roomName
+    window.roomName = roomName;
     window.viewDirection = "Right";
 
     onLoad(() => {
@@ -64,7 +64,7 @@ export const createBasementRoomOne = () => {
           textBubble([["a key was added to your inventory"]]);
           addToInventory(cellarKey);
           setGameState(roomName, "keyPickedUp", true);
-        })()
+        })();
       }
     });
     roomNavArrows(window.viewDirection);
@@ -73,7 +73,7 @@ export const createBasementRoomOne = () => {
   // ======================================================== //
 
   scene(roomName + "Down", () => {
-    window.roomName = roomName
+    window.roomName = roomName;
     window.viewDirection = "Down";
 
     onLoad(() => {
@@ -99,7 +99,7 @@ export const createBasementRoomOne = () => {
       }
       onClick("chained-skeleton", () => {
         if (!getGameState(roomName, "skeleton1Clicked")) {
-          destroyNavArrows()
+          destroyNavArrows();
           setGameState(roomName, "skeleton1Clicked", true);
           const poof = add([
             sprite("poof"),
@@ -152,7 +152,7 @@ export const createBasementRoomOne = () => {
   // ======================================================== //
 
   scene(roomName + "Left", () => {
-    window.roomName = roomName
+    window.roomName = roomName;
     window.viewDirection = "Left";
 
     //Sprite Loaders
@@ -179,15 +179,18 @@ export const createBasementRoomOne = () => {
     }
 
     onClick("door", (door) => {
-      if ( getGameState(roomName, "doorUnlocked") ) {
+      if (getGameState(roomName, "doorUnlocked")) {
         go("basementRoomTwoUp");
-      } else if (checkInventoryForItem(cellarKey) && window.selectedItem == "cellar key") {
+      } else if (
+        checkInventoryForItem(cellarKey) &&
+        window.selectedItem == "cellar key"
+      ) {
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
-      } else if (window.selectedItem == "pry bar") { 
+      } else if (window.selectedItem == "pry bar") {
         textBubble([["it doesn't work"]]);
-      } else { 
+      } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
     });
