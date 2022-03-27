@@ -2,13 +2,20 @@ import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-  navArrows,
+} from '../inventory';
+
+import {
   setGameState,
   getGameState,
+} from '../state';
+
+import {
   textBubble,
   addToMessageLog,
-} from '../core.js';
-import { cellarKey } from '../items.js';
+} from '../message';
+
+
+import { navArrows } from '../buttons';
 
 const roomName = 'basementRoomThree';
 const roomNavArrows = navArrows(roomName);

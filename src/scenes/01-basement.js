@@ -1,10 +1,10 @@
+import { navArrows, destroyNavArrows } from "../buttons";
+import { flickerOpacity } from "../sprites";
+
 import {
-  navArrows,
   textBubble,
   addToMessageLog,
-  destroyNavArrows,
-  flickerOpacity,
-} from "../core.js";
+} from "../message";
 
 import {
   setGameState,

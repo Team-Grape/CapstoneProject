@@ -1,9 +1,11 @@
+import { navArrows } from "../buttons";
+
 import {
-  navArrows,
   textBubble,
   addToMessageLog,
-  playSFX,
-} from "../core.js";
+} from "../message";
+
+import { playSFX } from "../sounds";
 
 import {
   setGameState,

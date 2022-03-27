@@ -1,8 +1,6 @@
-import {
-  playSFX,
-} from "../core";
+import { playSFX } from "../sounds";
 
-import { 
+import {
   getCurrentRoom,
   getOption,
   setOption,
@@ -274,7 +272,6 @@ export const options = () => {
     ]);
 
     onClick("playSoundEffect", () => {
-
       playSFX("falling");
     });
   });
