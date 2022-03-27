@@ -1,10 +1,9 @@
 import {
   getCurrentRoom,
-  setOnTitleScene,
   clearLocalStorage,
   getOption,
   setOption,
-} from "../core";
+} from "../state";
 
 import { displayInventoryDiv } from "../inventory";
 
@@ -14,7 +13,7 @@ export const titleScene = () => {
   const music = MusicManager()
   scene("title", () => {
     music.stop()
-    setOnTitleScene(true);
+    window.onTitleScene = true;
     add([
       text("Haunted House Adventure Game"),
       color(255, 255, 255),
@@ -44,7 +43,7 @@ export const titleScene = () => {
 
     function startNewGame() {
       clearLocalStorage();
-      setOnTitleScene(false);
+      delete window.onTitleScene
       go("basementRoomOneUp");
     }
 
@@ -59,7 +58,7 @@ export const titleScene = () => {
       ]);
 
       onClick("continue", () => {
-        setOnTitleScene(false);
+        delete window.onTitleScene
         displayInventoryDiv();
         const room = getCurrentRoom()
         go(room);

@@ -1,8 +1,7 @@
 import { 
-  getOption, 
   getBackgroundMusicVolume,
   getSoundEffectVolume
- } from "./core";
+ } from "./state";
 
 class Music {
   static PLAY_SOUND = true;

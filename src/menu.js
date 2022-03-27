@@ -1,4 +1,4 @@
-import { clearLocalStorage } from "./core";
+import { clearLocalStorage } from "./state";
 import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
 

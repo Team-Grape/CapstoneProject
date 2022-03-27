@@ -1,14 +1,16 @@
 import {
+  playSFX,
+} from "../core";
+
+import { 
   getCurrentRoom,
-  getOnTitleScene,
   getOption,
   setOption,
   setBackgroundMusicVolume,
   getBackgroundMusicVolume,
   getSoundEffectVolume,
   setSoundEffectVolume,
-  playSFX,
-} from "../core";
+} from "../state";
 
 import { displayInventoryDiv } from "../inventory";
 
@@ -218,7 +220,7 @@ export const options = () => {
     ]);
 
     onClick("return", () => {
-      if (getOnTitleScene()) {
+      if (window.onTitleScene) {
         music.stop();
         go("title");
       } else {

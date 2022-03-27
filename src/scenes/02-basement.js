@@ -1,11 +1,14 @@
 import {
   navArrows,
-  setGameState,
-  getGameState,
   textBubble,
   addToMessageLog,
   playSFX,
 } from "../core.js";
+
+import {
+  setGameState,
+  getGameState,
+} from "../state.js";
 
 import {
   addToInventory,

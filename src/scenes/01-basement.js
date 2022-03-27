@@ -1,12 +1,15 @@
 import {
   navArrows,
-  setGameState,
-  getGameState,
   textBubble,
   addToMessageLog,
   destroyNavArrows,
   flickerOpacity,
 } from "../core.js";
+
+import {
+  setGameState,
+  getGameState,
+} from "../state.js";
 
 import {
   addToInventory,
