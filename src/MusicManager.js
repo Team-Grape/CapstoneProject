@@ -61,9 +61,9 @@ class Music {
     }
   }
 
-  loadSoundEffect(soundName, soundFile) {
-    return loadSound(soundName, `/assets/sounds/${soundFile.url}`);
-  }
+//  loadSoundEffect(soundName, soundFile) {
+//    return loadSound(soundName, `/assets/sounds/${soundFile.url}`);
+//  }
 
   async play(soundName) {
 
@@ -79,7 +79,7 @@ class Music {
     if (Music.PLAY_SOUND === false) {
       return;
     }
-    this.stopCurrentlyPlaying();
+    //this.stopCurrentlyPlaying();
     if (!Music.SOUNDS.includes(soundName)) {
       throw new Error(`Unknown sound effect name: ${soundName}`);
     }
@@ -87,7 +87,7 @@ class Music {
  
     try {
       this.currentlyPlayingName = soundName;
-      await this.loadSoundEffect(soundName, soundFile);
+//      await this.loadSoundEffect(soundName, soundFile);
       if (this.currentlyPlayingName !== soundName) {
         this.stop(soundName);
       } else {
@@ -121,16 +121,16 @@ class Music {
     }
   }
 
-  changeVolume(soundType, soundLevel) {
-    if (soundType === 'backgroundMusic') {
-
-      this.backgroundMusicVolume = soundLevel
-
-    } else {
-      this.soundEffectVolume = soundLevel
-
-    }
-  }
+//  changeVolume(soundType, soundLevel) {
+//    if (soundType === 'backgroundMusic') {
+//
+//      this.backgroundMusicVolume = soundLevel
+//
+//    } else {
+//      this.soundEffectVolume = soundLevel
+//
+//    }
+//  }
 }
 
 let soundEffect = null;

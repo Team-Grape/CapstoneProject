@@ -18,7 +18,7 @@ import {
 } from "../inventory.js";
 
 import { cellarKey, pryBarObj } from "../items.js";
-import getMusicManager from "../MusicManager.js";
+//import getMusicManager from "../MusicManager.js";
 
 const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);
@@ -176,8 +176,8 @@ export const createBasementRoomOne = () => {
     }
 
     onClick("door", (door) => {
-      const bgMusic = getMusicManager();
-      bgMusic.play("spooky");
+      //const bgMusic = getMusicManager();
+      //bgMusic.play("spooky");
       if (
         getGameState(roomName, "doorUnlocked") ||
         checkInventoryForItem(cellarKey)

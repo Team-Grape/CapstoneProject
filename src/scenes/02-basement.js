@@ -6,6 +6,7 @@ import {
 } from "../message";
 
 import { playSFX } from "../sounds";
+import { playBGM, stopBGM } from "../music";
 
 import {
   setGameState,
@@ -33,8 +34,8 @@ const introMessage = [
 export const createBasementRoomTwo = async () => {
   // ======================================================== //
   // const bgMusic = getMusicManager();
-  const bgMusic = MusicManager();
-  const soundEffects = MusicManager()
+//  const bgMusic = MusicManager();
+//  const soundEffects = MusicManager()
  
   let spookyMusic;
 
@@ -53,7 +54,8 @@ export const createBasementRoomTwo = async () => {
         area(),
         "grandfather-clock",
       ]);
-      bgMusic.play("spooky");
+      //bgMusic.play("spooky");
+      playBGM("spooky");
       //spookyMusic = await bgMusic.play("spooky");
       // bgMusic.stop()
     });
@@ -90,16 +92,18 @@ export const createBasementRoomTwo = async () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-      soundEffects.stop()
-      bgMusic.stop()
-      soundEffects.play("gong");
+      //soundEffects.stop()
+      //bgMusic.stop()
+      //soundEffects.play("gong");
     });
   
     onClick("fruit-painting", (fruitPainting) => {
       setGameState(roomName, "fruitPaintingMoved", true);
       fruitPainting.pos.y = 350;
-      soundEffects.play("falling");
-      bgMusic.play("horror");
+      //soundEffects.play("falling");
+      playSFX("falling")
+      //bgMusic.play("horror");
+      playBGM("horror");
     });
     roomNavArrows(direction);
   });
@@ -120,8 +124,9 @@ export const createBasementRoomTwo = async () => {
       add([sprite("door"), pos(440, 150), scale(4), area(), "door"]);
     });
     onClick("door", async () => {
-      console.log('Bg Music -->', bgMusic)
-      bgMusic.stop("spooky");
+//      console.log('Bg Music -->', bgMusic)
+      //bgMusic.stop("spooky");
+      stopBGM();
      // await spookyMusic.stop()
       // soundEffects.stop()
       go("basementRoomOneUp");
@@ -189,7 +194,8 @@ export const createBasementRoomTwo = async () => {
       add([sprite("cob-webs"), pos(640, 280), scale(2), area()]);
     });
     onClick("woodenDoor", (woodenDoor) => {
-      bgMusic.play("kidMusic");
+      //bgMusic.play("kidMusic");
+      playBGM("kidMusic");
       if (
         getGameState(roomName, "doorUnlocked") ||
         checkInventoryForItem(cellarKey)

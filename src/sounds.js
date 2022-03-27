@@ -1,3 +1,5 @@
+import { getSoundEffectVolume } from "./state";
+
 export const loadAllSounds = () => {
   //Background Music ============
   loadSound("horror", "./assets/sounds/horrorAmbiance.wav");

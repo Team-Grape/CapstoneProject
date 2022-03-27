@@ -1,4 +1,5 @@
 import { playSFX } from "../sounds";
+import { playBGM, stopBGM, setCurrentlyPlayingBGMVolume } from "../music";
 
 import {
   getCurrentRoom,
@@ -12,10 +13,10 @@ import {
 
 import { displayInventoryDiv } from "../inventory";
 
-import MusicManager from "../MusicManager";
+//import MusicManager from "../MusicManager";
 
 export const options = () => {
-  const music = MusicManager();
+  //const music = MusicManager();
 
   scene("options", () => {
     add(
@@ -88,11 +89,11 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
-
-        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
-        if (music.currentlyPlaying) {
-          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
-        }
+        setCurrentlyPlayingBGMVolume()
+//        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
+//        if (window.currentlyPlayingBGM) {
+//          window.currentlyPlayingBGM.volume(currentBackgroundMusicVolume);
+//        }
         readd(currentBgVolumeDisplay);
       }
     });
@@ -107,12 +108,13 @@ export const options = () => {
 
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
+        setCurrentlyPlayingBGMVolume()
 
-        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
+//        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
 
-        if (music.currentlyPlaying) {
-          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
-        }
+//        if (window.currentlyPlayingBGM) {
+//          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
+//        }
         readd(currentBgVolumeDisplay);
       }
     });
@@ -219,10 +221,12 @@ export const options = () => {
 
     onClick("return", () => {
       if (window.onTitleScene) {
-        music.stop();
+        //music.stop();
+        stopBGM();
         go("title");
       } else {
-        music.stop();
+        //music.stop();
+        stopBGM();
         displayInventoryDiv();
         go(getCurrentRoom());
       }
@@ -251,11 +255,13 @@ export const options = () => {
     ]);
 
     onClick("playMusic", () => {
-      music.play("kidMusic");
+      //music.play("kidMusic");
+      playBGM("kidMusic");
     });
 
     onClick("stopMusic", () => {
-      music.stop();
+      //music.stop();
+      stopBGM();
     });
 
     // ============== Sound Effect Test Buttons =========================
