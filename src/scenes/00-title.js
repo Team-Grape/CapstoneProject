@@ -7,12 +7,11 @@ import {
 
 import { displayInventoryDiv } from "../inventory";
 
-import MusicManager from "../MusicManager";
+import { stopBGM } from "../music";
 
 export const titleScene = () => {
-  const music = MusicManager()
   scene("title", () => {
-    music.stop()
+    stopBGM()
     window.onTitleScene = true;
     add([
       text("Haunted House Adventure Game"),

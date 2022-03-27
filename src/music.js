@@ -19,7 +19,9 @@ export const playBGM = (sndNameStr) => {
 }
 
 export const stopBGM = () => {
-  window.currentlyPlayingBGM.stop();
+  if (window.currentlyPlayingBGM) {
+    window.currentlyPlayingBGM.stop();
+  }
   delete window.currentlyPlayingBGM;
 }
 
@@ -28,9 +30,3 @@ export const setCurrentlyPlayingBGMVolume = () => {
     window.currentlyPlayingBGM.volume(getBackgroundMusicVolume());
   }
 }
-
-
-
-
-
-

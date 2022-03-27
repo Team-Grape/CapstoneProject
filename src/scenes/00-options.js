@@ -13,10 +13,8 @@ import {
 
 import { displayInventoryDiv } from "../inventory";
 
-//import MusicManager from "../MusicManager";
 
 export const options = () => {
-  //const music = MusicManager();
 
   scene("options", () => {
     add(
@@ -90,10 +88,6 @@ export const options = () => {
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1));
         setCurrentlyPlayingBGMVolume()
-//        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
-//        if (window.currentlyPlayingBGM) {
-//          window.currentlyPlayingBGM.volume(currentBackgroundMusicVolume);
-//        }
         readd(currentBgVolumeDisplay);
       }
     });
@@ -109,12 +103,6 @@ export const options = () => {
         // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1));
         setCurrentlyPlayingBGMVolume()
-
-//        music.changeVolume("backgroundMusic", currentBackgroundMusicVolume);
-
-//        if (window.currentlyPlayingBGM) {
-//          music.currentlyPlaying.volume(currentBackgroundMusicVolume);
-//        }
         readd(currentBgVolumeDisplay);
       }
     });
@@ -182,9 +170,6 @@ export const options = () => {
           100
         ).toFixed(0)}%`;
 
-        //if (soundEffects.currentlyPlaying) {
-        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        //}
 
         readd(currentSFXVolumeDisplay);
       }
@@ -199,9 +184,6 @@ export const options = () => {
           100
         ).toFixed(0)}%`;
 
-        //if (soundEffects.currentlyPlaying) {
-        //  soundEffects.currentlyPlaying.volume(currentSoundEffectVolume);
-        //}
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -221,11 +203,9 @@ export const options = () => {
 
     onClick("return", () => {
       if (window.onTitleScene) {
-        //music.stop();
         stopBGM();
         go("title");
       } else {
-        //music.stop();
         stopBGM();
         displayInventoryDiv();
         go(getCurrentRoom());
@@ -255,12 +235,10 @@ export const options = () => {
     ]);
 
     onClick("playMusic", () => {
-      //music.play("kidMusic");
       playBGM("kidMusic");
     });
 
     onClick("stopMusic", () => {
-      //music.stop();
       stopBGM();
     });
 

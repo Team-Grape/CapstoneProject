@@ -14,7 +14,7 @@ import {
   addToMessageLog,
 } from '../message';
 
-
+import { playBGM, stopBGM } from "../music"
 import { navArrows } from '../buttons';
 
 const roomName = 'basementRoomThree';
@@ -33,6 +33,7 @@ export const createBasementRoomThree = () => {
       add([sprite('flower-painting'), scale(4), pos(320, 90)]);
       add([sprite('flower'), scale(3), pos(360, 230)]);
       add([sprite('books'), scale(3), pos(475, 250)]);
+      playBGM("kidMusic");
     });
     roomNavArrows(direction);
   });
