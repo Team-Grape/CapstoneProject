@@ -4,32 +4,32 @@
 .chartAndHeadingContainer {
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   display: none;
 }
 
-.lbl-toggle{
+.lbl-toggle {
   display: flex;
   cursor: pointer;
 }
 
 .lbl-toggle:hover {
-  color: #7C5A0B;
+  color: #7c5a0b;
 }
 
 .lbl-toggle::before {
-  content: ' ';
+  content: " ";
   display: inline-block;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 5px solid currentColor;
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
 }
 
 .collapsible-content {
   max-height: 0px;
   overflow: hidden;
-  transition: max-height .25s ease-in-out;
+  transition: max-height 0.25s ease-in-out;
 }
 
 .toggle:checked + .lbl-toggle + .collapsible-content {
