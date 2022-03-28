@@ -3,6 +3,7 @@ import { textBubble, addToMessageLog } from "../message";
 import { playBGM, stopBGM, playSFX } from "../sounds";
 import { setGameState, getGameState } from "../state.js";
 import { cellarKey } from "../items.js";
+import { debugRectSize } from "../debug.js";
 
 import {
   addToInventory,
@@ -20,33 +21,69 @@ const introMessage = [
 ];
 
 export const createBasementHallway = async () => {
-  // ======================================================== //
-
-  let spookyMusic;
-
   scene(roomName + "Down", () => {
     window.roomName = roomName;
-    window.viewDirection = "singleViewRoom"
+    window.viewDirection = "singleViewRoom";
 
-    // let fruitPaintingY;
-    onLoad(async () => {
-      add([sprite("basementHallway"), scale(1), area()]);
-      add([sprite('basementHallwayDoor'), scale(.85), area(), pos(30, 180), 'basementHallwayDoorLeftClose'])
-      add([sprite('basementHallwayDoor'), scale(.58), area(), pos(240, 180) , 'basementHallwayDoorLeftFar'])
-      add([sprite('basementHallwayDoor', { flipX: true }), scale(.85), area(), pos(1060, 180), 'basementHallwayDoorRightClose'])
-      add([sprite('basementHallwayDoor', { flipX: true }), scale(.58), area(), pos(890, 180), 'basementHallwayDoorRightFar'])
+    onLoad(() => {
+      add([sprite("basementHallway"), scale(1)]);
 
-      add([sprite('barrel1'), scale(3.7), area(), pos(185, 325) , 'barrelLeft'])
-      add([sprite('barrel1'), scale(3.7), area(), pos(960, 325) , 'barrelRight'])
+      // left-near-door
+      add([sprite("basementHallwayDoor"), scale(0.85), pos(30, 180)]);
+      add([rect(156, 270), opacity(0), pos(30, 180), area(), "left-near-door"]);
 
-      //   add([sprite("help-me"), pos(500, 100), scale(0.2), area()]);
-    //   add([
-    //     sprite("grandfather-clock"),
-    //     pos(900, 100),
-    //     scale(4),
-    //     area(),
-    //     "grandfather-clock",
-    //   ]);
+      // left-far-door
+      add([sprite("basementHallwayDoor"), scale(0.58), pos(240, 180)]);
+      add([rect(108, 145), opacity(0), pos(240, 180), area(), "left-far-door"]);
+      add([rect(62, 39), opacity(0), pos(287, 327), area(), "left-far-door"]);
+
+      // right-near-door
+      add([
+        sprite("basementHallwayDoor", { flipX: true }),
+        scale(0.85),
+        pos(1060, 180),
+      ]);
+      add([
+        rect(160, 280),
+        opacity(0),
+        pos(1060, 180),
+        area(),
+        "right-near-door",
+      ]);
+
+      // right-far-door
+      add([
+        sprite("basementHallwayDoor", { flipX: true }),
+        scale(0.58),
+        pos(890, 180),
+      ]);
+      add([
+        rect(105, 145),
+        opacity(0),
+        pos(890, 180),
+        area(),
+        "right-far-door",
+      ]);
+      add([rect(70, 40), opacity(0), pos(890, 325), area(), "right-far-door"]);
+
+      // center-door
+      add([
+        sprite("door2", { flipX: true }),
+        scale(0.8),
+        pos(577, 170),
+        area(),
+        "center-door",
+      ]);
+
+      add([sprite("barrel1"), scale(3.7), area(), pos(185, 325), "barrelLeft"]);
+      add([
+        sprite("barrel1"),
+        scale(3.7),
+        area(),
+        pos(960, 325),
+        "barrelRight",
+      ]);
+
       playBGM("spooky");
     });
 
@@ -57,46 +94,33 @@ export const createBasementHallway = async () => {
         setGameState(roomName, "introMessageRead", true);
         addToMessageLog(introMessage);
       });
-      singleViewNavArrow('basementHallwayDown', 'basementRoomOneLeft')
+      singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     } else {
-     singleViewNavArrow('basementHallwayDown', 'basementRoomOneLeft')
+      singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    // onLoad(() => {
-    //   if (!getGameState(roomName, "fruitPaintingMoved")) {
-    //     fruitPaintingY = 100;
-    //   } else {
-    //     fruitPaintingY = 350;
-    //   }
-    //   add([
-    //     sprite("fruit-painting"),
-    //     pos(500, fruitPaintingY),
-    //     scale(5),
-    //     area(),
-    //     "fruit-painting",
-    //   ]);
-    // });
-
-    onClick("grandfather-clock", () => {
-      playBGM("gong");
+    onClick("left-near-door", () => {
+      textBubble([["it won't open"]]);
     });
 
-    onClick('basementHallwayDoor', () => {
-        console.log('near')
-    })
-
-    onClick('basementHallwayDoorLeftFar', () => {
-        console.log('far')
-    })
-
-    onClick("fruit-painting", (fruitPainting) => {
-      setGameState(roomName, "fruitPaintingMoved", true);
-      fruitPainting.pos.y = 350;
-      playSFX("falling");
-      playBGM("horror");
+    onClick("left-far-door", () => {
+      textBubble([["it won't open"]]);
     });
-  //  singleViewNavArrow('basementRoomOneLeft')
+
+    onClick("right-near-door", () => {
+      textBubble([["it won't open"]]);
+    });
+
+    onClick("right-far-door", () => {
+      textBubble([["it won't open"]]);
+    });
+
+    onClick("center-door", () => {
+      textBubble([["it won't open"]]);
+    });
+
+    //debugRectSize();
   });
-}
+};
