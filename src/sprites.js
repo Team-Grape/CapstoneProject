@@ -3,8 +3,8 @@ export const loadAllSprites = () => {
 
   loadSprite('key', './assets/items/key_gold.png');
   //Pry-Bar
-  loadSprite('pryBar', '/assets/items/pry-bar.png');
-  loadSprite('rag', '/assets/items/rag.png');
+  loadSprite('pryBar', './assets/items/pry-bar.png');
+  loadSprite('rag', './assets/items/rag.png');
 
   // ==================== BUTTONS =============================//
 
@@ -200,7 +200,7 @@ export const loadAllSprites = () => {
   );
   loadSprite(
     'wooden-chair',
-    '/assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
+    './assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
   );
   //Doors =================
 
