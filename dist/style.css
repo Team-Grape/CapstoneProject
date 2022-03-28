@@ -25,6 +25,7 @@ canvas {
   background-color: #000;
   position: relative;
   -webkit-filter: grayscale(30%);
+  border: 200px;
 }
 
 nav {

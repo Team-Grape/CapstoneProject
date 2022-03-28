@@ -41,14 +41,15 @@ export const removeFromInventory = (item) => {
   displayInventoryDiv();
 };
 
-export const setCursor = (imgUrl) => {
-  const canvas = document.getElementsByTagName("canvas")[0];
-  canvas.style["cursor"] = `url('${imgUrl}') 16 16, auto`;
-};
+//export const setCursor = (imgUrl) => {
+//  const canvas = document.getElementsByTagName("canvas")[0];
+//  canvas.style["cursor"] = `url('${imgUrl}') 16 16, auto`;
+//};
 
 export const resetCursor = () => {
   const canvas = document.getElementsByTagName("canvas")[0];
   canvas.style["cursor"] = "auto";
+  delete window.selectedItem;
 };
 
 export const displayInventoryDiv = () => {
@@ -83,9 +84,6 @@ export const displayInventoryDiv = () => {
     name: "None",
     description: "Deselect Item",
     image: "buttons/cancel.png",
-    clickFunction: () => {
-      resetCursor;
-    },
   };
 
   currentInventory.unshift(cancelButton);
@@ -104,13 +102,30 @@ export const displayInventoryDiv = () => {
     tmpItemImg.classList.add("inventoryItem");
     if (item.name === "None") {
       tmpItemImg.onclick = () => {
-        const canvas = document.getElementsByTagName("canvas")[0];
-        canvas.style["cursor"] = "auto";
-        delete window.selectedItem;
+        resetCursor()
       };
     } else {
-      tmpItemImg.onclick = () => {
-        setCursor(tmpItemImg.src);
+      tmpItemImg.onclick = async () => {
+        // set the cursor over the canvas
+        const canvas = document.getElementsByTagName("canvas")[0];
+//        const canvas = document.body;
+        canvas.style["cursor"] = `url('${tmpItemImg.src}') 16 16, auto`;
+
+        // we need to adjust the "point" to the center of the image
+        let aaaimg = new Image();
+        aaaimg.src = tmpItemImg.src
+        while ( aaaimg.width == 0 ) {
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
+//        console.log("src", tmpItemImg.src)
+//        console.log("width", aaaimg.width)
+//        console.log("height", aaaimg.height)
+//        console.log("width/2", Math.ceil(aaaimg.width/2))
+//        console.log("height/2", Math.ceil(aaaimg.height/2))
+
+//        const canvas = document.getElementsByTagName("canvas")[0];
+        canvas.style["cursor"] = `url('${tmpItemImg.src}') ${Math.ceil(aaaimg.width/2)} ${aaaimg.height/2}, auto`;
+
         window.selectedItem = item.name;
       };
     }
