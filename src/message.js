@@ -1,4 +1,4 @@
-import { navArrows, destroyNavArrows } from "./buttons";
+import { navArrows, destroyNavArrows, singleViewNavArrow } from "./buttons";
 
 export const addToMessageLog = (msg) => {
   if (!window.localStorage.getItem("messageLog")) {
@@ -85,7 +85,9 @@ export const textBubble = (dialogs, onFinish) => {
       nextButton.destroy();
       curDialog = 0;
 
-      if (window.viewDirection !== 'singleViewRoom') {
+      if (window.viewDirection === 'singleViewRoom') {
+        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
+      } else {
         roomNavArrows(window.viewDirection);
       }
     

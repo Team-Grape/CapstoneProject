@@ -10,6 +10,7 @@ import { createBasementRoomTwo } from "./scenes/02-basement";
 import { createBasementRoomThree } from "./scenes/03-room";
 import { createBasementHallway } from './scenes/03-basementHallway.js'
 
+
 kaboom({
   global: true,
   width: 1246,
@@ -20,6 +21,7 @@ kaboom({
   debug: true,
   background: [35, 35, 35],
 });
+
 
 // initialize components
 loadAllSprites();
