@@ -1,4 +1,3 @@
-
 import kaboom from 'kaboom';
 import { loadAllSprites } from './sprites';
 import { loadAllSounds } from './sounds';
@@ -6,12 +5,12 @@ import { entry } from './scenes/00-entry';
 import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
+import { gameover } from "./scenes/00-gameover"
 import { createBasementRoomOne } from './scenes/01-basement';
 import { createBasementRoomTwo } from './scenes/02-basement';
 import { createBasementRoomThree } from './scenes/03-room';
 import { createBedroom } from './scenes/04-bedroom';
 import { createBasementHallway } from './scenes/03-basementHallway.js'
-
 
 kaboom({
   global: true,
@@ -32,6 +31,7 @@ entry();
 titleScene();
 options();
 winScene();
+gameover();
 
 createBasementRoomOne();
 createBasementRoomTwo();
