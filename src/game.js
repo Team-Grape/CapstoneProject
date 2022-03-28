@@ -1,3 +1,4 @@
+
 import kaboom from 'kaboom';
 import { loadAllSprites } from './sprites';
 import { loadAllSounds } from './sounds';
@@ -9,6 +10,8 @@ import { createBasementRoomOne } from './scenes/01-basement';
 import { createBasementRoomTwo } from './scenes/02-basement';
 import { createBasementRoomThree } from './scenes/03-room';
 import { createBedroom } from './scenes/04-bedroom';
+import { createBasementHallway } from './scenes/03-basementHallway.js'
+
 
 kaboom({
   global: true,
@@ -34,5 +37,6 @@ createBasementRoomOne();
 createBasementRoomTwo();
 createBasementRoomThree();
 createBedroom();
+createBasementHallway();
 
 go('entry');
