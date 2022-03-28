@@ -26,11 +26,59 @@ export const createBasementHallway = async () => {
     window.viewDirection = "singleViewRoom";
 
     onLoad(() => {
-      add([sprite("basementHallway"), scale(1)]);
+//      add([sprite("basementHallway"), scale(1)]);
 
       // left-near-door
-      add([sprite("basementHallwayDoor"), scale(0.85), pos(30, 180)]);
-      add([rect(156, 270), opacity(0), pos(30, 180), area(), "left-near-door"]);
+/*
+      add([
+        sprite("basementHallwayDoor"),
+        scale(0.85),
+        pos(30, 180),
+        area({
+          area: {
+            pos: { x: 100, y: 80 },
+            shape: "polygon",
+          },
+          pts: [
+            { x: 100, y: 80 },
+            { x: 100, y: 80 },
+            { x: 100, y: 80 },
+            { x: 100, y: 80 },
+
+//            vec2(-12),
+//            vec2(10, 10),
+//            vec2(20, 10),
+//            vec2(20, 20),
+//            vec2(10, 20),
+//            vec2(-8),
+          ],
+        }),
+        "left-near-door",
+      ]);
+*/
+
+//            add([sprite("basementHallwayDoor"), scale(0.85), pos(30, 180)]);
+  //          add([
+drawPolygon({
+    pts: [
+           {x:30, y:450},
+           {x:190, y:450},
+           {x:30, y:530},
+
+//        vec2(-12),
+//        vec2(0, 16),
+//        vec2(12, 4),
+//        vec2(0, -2),
+//        vec2(-8),
+    ],
+})
+//,opacity(1), color([255,255,255]), pos(30, 180), "left-near-door"]);
+
+
+
+      // left-near-door
+      //      add([sprite("basementHallwayDoor"), scale(0.85), pos(30, 180)]);
+      //      add([rect(156, 270), opacity(0), pos(30, 180), area(), "left-near-door"]);
 
       // left-far-door
       add([sprite("basementHallwayDoor"), scale(0.58), pos(240, 180)]);
@@ -101,9 +149,9 @@ export const createBasementHallway = async () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    onClick("left-near-door", () => {
-      textBubble([["it won't open"]]);
-    });
+//    onClick("left-near-door", () => {
+//      textBubble([["it won't open"]]);
+//    });
 
     onClick("left-far-door", () => {
       textBubble([["it won't open"]]);
@@ -121,6 +169,6 @@ export const createBasementHallway = async () => {
       textBubble([["it won't open"]]);
     });
 
-    //debugRectSize();
+    debugRectSize();
   });
 };
