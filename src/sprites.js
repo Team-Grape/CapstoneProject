@@ -5,6 +5,8 @@ export const loadAllSprites = () => {
   //Pry-Bar
   loadSprite('pryBar', '/assets/items/pry-bar.png');
   loadSprite('rag', '/assets/items/rag.png');
+  //Lighter ======================
+  loadSprite('lighter', '/assets/items/lighter.png')
 
   // ==================== BUTTONS =============================//
 
@@ -153,6 +155,16 @@ export const loadAllSprites = () => {
     },
   });
 
+  loadSprite('flame', './assets/flame/flame.png', {
+    sliceX: 6,
+    sliceY: 1,
+    anims: {
+      fire: {
+        from: 0,
+        to: 5,
+      },
+    },
+  })
   // ===================== DECORATIONS ==========================//
 
   //Barrels
@@ -244,6 +256,7 @@ export const loadAllSprites = () => {
   loadSprite('pile-of-bones', './assets/decorations/misc/pileOfBones.png');
   loadSprite('help-me', './assets/decorations/misc/helpMe.png');
   loadSprite('cob-webs', './assets/decorations/misc/cobweb_down_right.png');
+  loadSprite('whole-web', './assets/decorations/misc/wholeWeb.png');
   loadSprite(
     'chained-skeleton',
     './assets/decorations/misc/chainedSkeleton.png'
@@ -307,6 +320,8 @@ export const loadAllSprites = () => {
     'basement-window',
     './assets/decorations/windows/basementWindow.png'
   );
+
+  
 };
 
 export const fadeOutOpacity = async (GameObj) => {

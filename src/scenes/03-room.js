@@ -59,7 +59,7 @@ export const createBasementRoomThree = () => {
         speed: 3,
         onEnd: () => {
           const bookFallingMessage = [
-            'The books fall down and a piece of paper shows up.',
+            'The books fell down and a piece of paper shows up.',
           ];
           textBubble([bookFallingMessage]);
           onClick('fallingBook', () => {
@@ -171,7 +171,7 @@ export const createBasementRoomThree = () => {
       skeletonAttack.play('attack', { speed: 5, loop: true });
       const skeletonMessage = [
         [
-          'Oh no, the skeleton is awake, must find the way to destroy this skeleton!',
+          'Oh no, the skeleton is awake, must find a way to destroy this skeleton!',
         ],
       ];
       textBubble([skeletonMessage]);
