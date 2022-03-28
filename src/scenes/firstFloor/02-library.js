@@ -7,6 +7,8 @@ import { setGameState, getGameState } from "../../state.js";
 
 import { debugRectSize } from "../../debug";
 
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+
 import {
   addToInventory,
   checkInventoryForItem,
@@ -34,13 +36,14 @@ export const createLibrary = () => {
   // ======================================================== //
 
   scene(roomName + "Down", () => {
+    playBGM("ambience");
     window.roomName = roomName;
     window.viewDirection = "Down";
 
     onLoad(() => {
       add([sprite("library-down"), scale(1), area()]);
       add([sprite("door2"), pos(537, 65), scale(1.37), area(), "door"]);
-      add([rect(15, 20), opacity(0), pos(30, 185), area(), "hauntedHousesBook"]);
+      add([rect(15, 20), opacity(0), pos(30, 185), area(), "uninterestingBook"]);
       add([rect(15, 20), opacity(0), pos(400, 306), area(), "uninterestingBook"]);
       add([rect(15, 20), opacity(0), pos(950, 103), area(), "uninterestingBook"]);
     });
@@ -51,6 +54,7 @@ export const createLibrary = () => {
 
     onClick('door', () => {
         console.log('door clicked')
+        go('basementHallwayDown')
     })
 
     onClick('fascinatingBook', (libraryBook) => {
@@ -63,6 +67,7 @@ export const createLibrary = () => {
   })
 
   onClick('uninterestingBook', () => {
+    console.log('clicked')
     textBubble(uninterestingBookText)
   })
 
@@ -74,6 +79,7 @@ export const createLibrary = () => {
   // ======================================================== //
 
   scene(roomName + "Right", () => {
+    playBGM("ambience");
     window.roomName = roomName;
     window.viewDirection = "Right";
 
@@ -86,14 +92,38 @@ export const createLibrary = () => {
   // ======================================================== //
 
   scene(roomName + "Up", () => {
+    playBGM("ambience");
     window.roomName = roomName;
     window.viewDirection = "Up";
 
     onLoad(() => {
       add([sprite("library-up"), scale(1), area()]);
+   
+      
     });
 
+    if (getGameState(roomName, "openedLibraryGlassDoor", true)) {
+      add([sprite("openGlassDoors"), scale(1.008), area(), pos(545, 89), "glassDoorOpen"]);
+    } else {
+      add([sprite("closedGlassDoors"), scale(1.008), area(), pos(545, 89), "glassDoorClosed"]);
+    }
+
+    onClick('glassDoorClosed', (door) => {
+      setGameState(roomName, "openedLibraryGlassDoor", true)
+      door.destroy()
+      add([sprite("openGlassDoors"), scale(1.008), area(), pos(545, 89), "glassDoorOpen"]);
+    })
+
+    onClick('glassDoorOpen', (door) => {
+      setGameState(roomName, "openedLibraryGlassDoor", false)
+      door.destroy()
+      add([sprite("closedGlassDoors"), scale(1.008), area(), pos(545, 89), "glassDoorClosed"]);
+    })
+
+
+
     roomNavArrows(window.viewDirection);
+    // debugRectSize()
   });
 
   // ======================================================== //
@@ -101,7 +131,7 @@ export const createLibrary = () => {
   scene(roomName + "Left", () => {
     window.roomName = roomName;
     window.viewDirection = "Left";
-
+    playBGM("ambience");
     //Sprite Loaders
     onLoad(() => {
       add([sprite("library-left"), scale(1), area()]);

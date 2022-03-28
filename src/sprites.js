@@ -248,6 +248,10 @@ export const loadAllSprites = () => {
     './assets/decorations/flowers-plants/whiteflowers.png'
   );
 
+  //Glass Cabinet Doors ===========
+  loadSprite('closedGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png')
+  loadSprite('openGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png')
+
   //Lamps =================
   loadSprite('deng', './assets/decorations/lamps/deng.png');
 

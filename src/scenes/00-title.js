@@ -1,5 +1,5 @@
 import { displayInventoryDiv } from "../inventory";
-import { stopBGM } from "../sounds";
+import { playBGM, stopBGM, playSFX } from "../sounds";
 import {
   getCurrentRoom,
   clearLocalStorage,
@@ -10,6 +10,7 @@ import {
 export const titleScene = () => {
   scene("title", () => {
     stopBGM();
+    playBGM("title");
     window.onTitleScene = true;
     add([
       text("Haunted House Adventure Game"),
@@ -41,6 +42,7 @@ export const titleScene = () => {
     function startNewGame() {
       clearLocalStorage();
       delete window.onTitleScene;
+      stopBGM();
       go("basementRoomOneUp");
     }
 
@@ -58,11 +60,14 @@ export const titleScene = () => {
         delete window.onTitleScene;
         displayInventoryDiv();
         const room = getCurrentRoom();
+        playSFX('click')
+        stopBGM();
         go(room);
       });
     }
 
     onClick("startNewGame", () => {
+      playSFX('click')
       if (getCurrentRoom()) {
         optionsButton.destroy();
         continueButton.destroy();
@@ -88,10 +93,12 @@ export const titleScene = () => {
         const no = add([text("No", { size: 50 }), pos(670, 370), area(), "no"]);
 
         onClick("no", () => {
+          playSFX('click')
           go("title");
         });
 
         onClick("yes", () => {
+          playSFX('click')
           startNewGame();
         });
       } else {
@@ -100,6 +107,8 @@ export const titleScene = () => {
     });
 
     onClick("options", () => {
+      playSFX('click')
+      stopBGM();
       go("options");
     });
   });
