@@ -203,9 +203,11 @@ export const loadAllSprites = () => {
     '/assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
   );
   //Doors =================
-  loadSprite('door', './assets/decorations/doors/evilDoor.png');
-  loadSprite('wood-door', './assets/decorations/doors/wooddoor.png');
-  loadSprite('woodenDoor', './assets/decorations/doors/woodenDoor.png');
+
+  loadSprite("door", "./assets/decorations/doors/evilDoor.png");
+  loadSprite("door2", "./assets/decorations/doors/door2.png");
+  loadSprite("wood-door", "./assets/decorations/doors/wooddoor.png");
+  loadSprite("woodenDoor", "./assets/decorations/doors/woodenDoor.png");
 
   //Drawers =================
   loadSprite('drawer', './assets/decorations/bookcases/drawer.png');

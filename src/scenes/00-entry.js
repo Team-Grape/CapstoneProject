@@ -22,11 +22,11 @@ export const entry = () => {
       color(255, 0, 0),
       pos(width() / 2, height() / 2),
       origin("center"),
-      area(),
-      "goToTitleButton",
     ]);
 
-    onClick(() => {
+    add([rect(width(), height()), opacity(0), pos(0,0), area(), 'clickBox'])
+
+    onClick('clickBox', () => {
       go("title");
     });
   });
