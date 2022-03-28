@@ -68,7 +68,7 @@ export const createLibrary = () => {
 
   roomNavArrows(window.viewDirection)
 
-       debugRectSize();
+      //  debugRectSize();
   });
 
   // ======================================================== //
