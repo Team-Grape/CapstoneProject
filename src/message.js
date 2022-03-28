@@ -85,7 +85,10 @@ export const textBubble = (dialogs, onFinish) => {
       nextButton.destroy();
       curDialog = 0;
 
-      roomNavArrows(window.viewDirection);
+      if (window.viewDirection !== 'singleViewRoom') {
+        roomNavArrows(window.viewDirection);
+      }
+    
       if (onFinish) {
         onFinish();
       }
