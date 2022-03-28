@@ -129,6 +129,7 @@ loader.load("./dist/assets/transparentGhost/scene.gltf", (gltf) => {
   const clips = gltf.animations;
   const clip = THREE.AnimationClip.findByName(clips, "Take 001")
   const action = mixer.clipAction(clip);
+  console.log(action)
   action.play();
 });
 
@@ -149,5 +150,6 @@ function animate() {
 }
 
 window.addEventListener("resize", onWindowResize, false);
+
 
 animate();
