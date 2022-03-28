@@ -3,8 +3,8 @@
 ##git clone git@github.com:Team-Grape/CapstoneProject.git
 ##cd CapstoneProject
 
-# make sure you are on main!
-git checkout main || exit 99
+# make sure you are on main! if not, bail!
+git checkout main || { echo 'failed to switch to main' ; exit 1; }
 
 # delete the local gh-pages branch (if it exists)
 git branch -D gh-pages
