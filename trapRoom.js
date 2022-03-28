@@ -1,5 +1,8 @@
 const scene = new THREE.Scene();
 
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
+
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -15,8 +18,8 @@ document.body.appendChild(renderer.domElement);
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 // create controls for camera
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-camera.position.set(0, 10, 250);
-// controls.enableZoom = false;
+camera.position.set(0, 10, 150);
+controls.enableZoom = false;
 controls.update();
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -29,7 +32,7 @@ scene.add(light);
 const textureLoader = new THREE.TextureLoader();
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg", 
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -44,7 +47,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg", 
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -60,7 +63,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg", 
+  "./dist/assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -92,16 +95,51 @@ textureLoader.load(
   }
 );
 
+textureLoader.load(
+  "./dist/assets/room_backgrounds/grayCeiling.jpeg",
+  function (texture) {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.x = 1;
+    texture.repeat.y = 1;
+    const geometry = new THREE.PlaneGeometry(400, 400);
+    const material = new THREE.MeshLambertMaterial({ map: texture });
+    const plane = new THREE.Mesh(geometry, material);
+    scene.add(plane);
+    plane.rotation.x = Math.PI / 2;
+    plane.position.y = 112;
+  }
+);
+
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 //load gltf models
-const loader = new GLTFLoader();
+const loader = new THREE.GLTFLoader();
 
-loader.load("scaryGhost")
+let mixer;
+
+loader.load("./dist/assets/transparentGhost/scene.gltf", (gltf) => {
+  const model = gltf.scene
+  scene.add(model);
+
+  const scale = 5;
+  model.scale.set(scale, scale, scale);
+  model.position.set(0, -160, 0);
+
+  mixer = new THREE.AnimationMixer(model)
+  const clips = gltf.animations;
+  const clip = THREE.AnimationClip.findByName(clips, "Take 001")
+  const action = mixer.clipAction(clip);
+  action.play();
+});
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function update () {
+  mixer.update( deltaSeconds )
 }
 
 function animate() {
