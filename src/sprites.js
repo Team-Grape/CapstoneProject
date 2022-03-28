@@ -165,6 +165,17 @@ export const loadAllSprites = () => {
       },
     },
   })
+
+  loadSprite('cuteGhost', './assets/cuteGhost/ghost.png', {
+    sliceX: 4,
+    sliceY: 1,
+    anims: {
+      move: {
+        from: 0,
+        to: 3,
+      },
+    },
+  })
   // ===================== DECORATIONS ==========================//
 
   //Barrels

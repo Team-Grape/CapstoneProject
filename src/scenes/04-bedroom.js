@@ -39,6 +39,7 @@ export const createBedroom = () => {
     window.viewDirection = "Down";
     onLoad(() => {
       add([sprite("bedroom-one-down"), scale(1)]);
+      add([sprite("skeletonStand"), scale(5), area(), 'skeletonStand'])
     });
     if (!getGameState(roomName, "lighterPickedUp")) {
       const lighter = add([
@@ -56,6 +57,40 @@ export const createBedroom = () => {
         lighter.destroy();
       });
     }
+
+    onClick("skeletonStand", (skeletonStand) => {
+      skeletonStand.destroy();
+      const skeletonAttack = add([
+        sprite("skeleton-attack"),
+        scale(7),
+        pos(60, 280),
+        area(),
+        "skeletonAttack",
+      ]);
+      skeletonAttack.play("attack", { speed: 5, loop: true });
+      const skeletonMessage = [
+        [
+          "Oh no, the skeleton is awake, must find a way to destroy this skeleton!",
+        ],
+      ];
+      textBubble([skeletonMessage]);
+
+      onClick("skeletonAttack", (skeletonAttack) => {
+        //if (getGameState(roomName, "pryBarPickedUp")) {
+        if (window.selectedItem == "pry bar") {
+          skeletonAttack.destroy();
+          const skeletonDead = add([
+            sprite("skeleton-dead"),
+            scale(7),
+            pos(60, 280),
+            "skeletonDead",
+          ]);
+          skeletonDead.play("dead", { speed: 20 });
+          textBubble([["......"]]);
+        }
+      });
+    });
+
     roomNavArrows(viewDirection);
   });
   // ======================================================== //
@@ -73,6 +108,7 @@ export const createBedroom = () => {
         });
       }
     });
+
     onClick("wholeWeb", (wholeWeb) => {
       if (window.selectedItem == "lighter") {
         const flame = add([

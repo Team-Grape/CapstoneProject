@@ -41,4 +41,4 @@ createBasementRoomThree();
 createBedroom();
 createBasementHallway();
 
-go('bedroomLeft');
+go('basementRoomThreeLeft');
