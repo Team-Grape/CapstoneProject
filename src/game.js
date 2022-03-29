@@ -6,11 +6,13 @@ import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
 import { gameover } from './scenes/00-gameover';
-import { createBasementRoomOne } from './scenes/01-basement';
-import { createBasementRoomTwo } from './scenes/02-basement';
-import { createBasementRoomThree } from './scenes/03-room';
+import { createBasementRoomOne } from './scenes/basement/01-basement';
+import { createBasementRoomTwo } from './scenes/basement/02-basement';
+import { createBasementStorageOne } from './scenes/basement/00-basementStorage';
+import { createBasementStorageTwo } from './scenes/basement/00-basementStorageTwo';
+import { createBasementRoomThree } from './scenes/03-kidRoom';
 import { createBedroom } from './scenes/04-bedroom';
-import { createBasementHallway } from './scenes/03-basementHallway.js'
+import { createBasementHallway } from './scenes/basement/03-basementHallway.js'
 import { createFirstFloorHallway } from './scenes/03-firstFloorHallway.js'
 import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
 import { createLivingRoom } from './scenes/05-livingRoom';
@@ -42,6 +44,8 @@ gameover();
 createBasementRoomOne();
 createBasementRoomTwo();
 createBasementRoomThree();
+createBasementStorageOne();
+createBasementStorageTwo();
 createBedroom();
 createBasementHallway();
 createFirstFloorHallway();
@@ -51,5 +55,5 @@ createLivingRoom();
 createMainEntrance();
 
 
-go('entry');
+go('basementStorageTwoDown');
 
