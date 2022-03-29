@@ -1,27 +1,27 @@
-import { navArrows, destroyNavArrows } from "../buttons";
-import { fadeOutOpacity, flickerOpacity } from "../sprites";
+import { navArrows, destroyNavArrows } from "../../buttons";
+import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
-import { textBubble, addToMessageLog } from "../message";
+import { textBubble, addToMessageLog } from "../../message";
 
-import { setGameState, getGameState } from "../state.js";
+import { setGameState, getGameState } from "../../state.js";
 
-import { playBGM, stopBGM, playSFX } from "../sounds";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
-import { cellarKey, pryBarObj } from "../items.js";
+import { cellarKey, pryBarObj } from "../../items.js";
 
 const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  ["when you woke up you found yourself in an strange room"],
-  ["the door is locked and you are trapped in the room"],
-  ["look around the room to see if you can find the key to open the door"],
+  ["You woke up and found yourself in an strange room"],
+  ["The door is locked and you are trapped in the room"],
+  ["Look around the room to see if you can find the key to open the door"],
 ];
 
 export const createBasementRoomOne = () => {
@@ -63,7 +63,7 @@ export const createBasementRoomOne = () => {
       if (window.selectedItem == "pry bar") {
         (async () => {
           await fadeOutOpacity(barrel);
-          textBubble([["a key was added to your inventory"]]);
+          textBubble([["A key was added to your inventory"]]);
           addToInventory(cellarKey);
           setGameState(roomName, "keyPickedUp", true);
         })();
@@ -172,7 +172,7 @@ export const createBasementRoomOne = () => {
         "pryBar",
       ]);
       onClick("pryBar", (pryBar) => {
-        textBubble([["a Pry Bar was added to your inventory"]]);
+        textBubble([["A Pry Bar was added to your inventory"]]);
 
         addToInventory(pryBarObj);
         setGameState(roomName, "pryBarPickedUp", true);
@@ -191,9 +191,9 @@ export const createBasementRoomOne = () => {
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
       } else if (window.selectedItem == "pry bar") {
-        textBubble([["it doesn't work"]]);
+        textBubble([["It doesn't work"]]);
       } else {
-        textBubble([["it doesn't open, it seems like it needs a key"]]);
+        textBubble([["It doesn't open, it seems like it needs a key"]]);
       }
     });
     roomNavArrows(window.viewDirection);

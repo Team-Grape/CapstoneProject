@@ -1,15 +1,15 @@
-import { navArrows, singleViewNavArrow } from "../buttons";
-import { textBubble, addToMessageLog } from "../message";
-import { playBGM, stopBGM, playSFX } from "../sounds";
-import { setGameState, getGameState } from "../state.js";
-import { cellarKey } from "../items.js";
-import { debugRectSize } from "../debug.js";
+import { navArrows, singleViewNavArrow } from "../../buttons";
+import { textBubble, addToMessageLog } from "../../message";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+import { setGameState, getGameState } from "../../state.js";
+import { cellarKey, silverKey } from "../../items.js";
+import { debugRectSize } from "../../debug.js";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
 const roomName = "basementHallway";
 const roomNavArrows = navArrows(roomName);
@@ -106,20 +106,33 @@ export const createBasementHallway = async () => {
     });
 
     onClick("left-far-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementRoomTwoUp')
     });
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementStorageOneDown')
     });
 
     onClick("right-far-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementStorageTwoDown')
     });
 
     onClick("center-door", () => {
-      go('firstFloorHallwayDown')
-      // textBubble([["it won't open"]]);
+        if (getGameState(roomName, "doorUnlocked")) {
+          go("firstFloorHallwayDown");
+        } else if (
+          checkInventoryForItem(silverKey) &&
+          window.selectedItem == "silver key"
+        ) {
+          setGameState(roomName, "doorUnlocked", true);
+          removeFromInventory(silverKey);
+          textBubble([["The key unlocked the door!"]]);
+        } else if (window.selectedItem == "pry bar") {
+          textBubble([["It doesn't work"]]);
+        } else {
+          textBubble([["It doesn't open, it seems like it needs a key"]]);
+        }
+   
     });
 
     //debugRectSize();
