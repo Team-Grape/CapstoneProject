@@ -43,4 +43,4 @@ createBasementHallway();
 createLibrary();
 createKitchen();
 
-go('kitchenUp');
+go('kitchenRight');
