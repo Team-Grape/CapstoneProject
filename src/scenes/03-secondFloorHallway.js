@@ -1,5 +1,5 @@
 import { navArrows, singleViewNavArrow } from "../buttons";
-import { textBubble, addToMessageLog } from "../message";
+import { Message, textBubble, addToMessageLog } from "../message";
 import { playBGM, stopBGM, playSFX } from "../sounds";
 import { setGameState, getGameState } from "../state.js";
 import { cellarKey } from "../items.js";
@@ -13,7 +13,7 @@ import {
 
 const roomName = "secondFloorHallway";
 const roomNavArrows = navArrows(roomName);
-
+const message = new Message();
 const introMessage = [
   ["You've made it to the second floor!  "],
 ];
@@ -43,12 +43,10 @@ export const createSecondFloorHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     if (!getGameState(roomName, "introMessageRead")) {
-      textBubble(introMessage, () => {
+      message.textBubble(introMessage, () => {
         setGameState(roomName, "introMessageRead", true);
-        addToMessageLog(introMessage);
-//        singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
+        message.addToMessageLog(introMessage);
       });
-  //    singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     } else {
       singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
     }
@@ -57,11 +55,11 @@ export const createSecondFloorHallway = async () => {
 
 
     onClick("left-door", () => {
-      textBubble([["it won't open"]]);
+      message.textBubble([["it won't open"]]);
     });
 
     onClick("center-door", () => {
-      textBubble([["it won't open"]]);
+      message.textBubble([["it won't open"]]);
     });
 
     onClick("right-door", () => {

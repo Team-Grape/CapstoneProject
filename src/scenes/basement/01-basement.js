@@ -26,7 +26,7 @@ const introMessage = [
 
 export const createBasementRoomOne = () => {
   // ======================================================== //
-
+  // window.localStorage.setItem('menuIsOpen', false);
   scene(roomName + "Up", () => {
     window.roomName = roomName;
     window.viewDirection = "Up";
@@ -100,9 +100,12 @@ export const createBasementRoomOne = () => {
         flickerOpacity(ghost1);
       }
       onClick("chained-skeleton", () => {
+       
         if (!getGameState(roomName, "skeleton1Clicked")) {
           destroyNavArrows();
           setGameState(roomName, "skeleton1Clicked", true);
+          playSFX('poof')
+          playSFX('sparkle')
           const poof = add([
             sprite("poof"),
             opacity(0.6),
@@ -166,7 +169,7 @@ export const createBasementRoomOne = () => {
     if (!getGameState(roomName, "pryBarPickedUp")) {
       const pryBar = add([
         sprite("pryBar"),
-        scale(4),
+        scale(.8),
         pos(100, 400),
         area(),
         "pryBar",
