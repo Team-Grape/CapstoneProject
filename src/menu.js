@@ -15,8 +15,21 @@ export class InGameMenu {
       "menu-button",
     ]);
     onClick("menu-button", () => {
-      playSFX('click')
-      this.open();
+      if (!window.localStorage.getItem('menuIsOpen')) {
+        window.localStorage.setItem('menuIsOpen', true)
+        playSFX('click')
+        this.open();
+      } else {
+        window.localStorage.setItem('menuIsOpen', false)
+        this.close([
+          gameMenu,
+          continueButton,
+          // restartButton,
+          optionsButton,
+          saveAndQuit,
+        ]);
+      }
+     
     });
   }
 
@@ -25,7 +38,6 @@ export class InGameMenu {
   // }
 
   open() {
-    // window.localStorage.setItem('menuIsOpen', true);
     const gameMenu = add([
       pos(1070, 50),
       rect(160, 150),
