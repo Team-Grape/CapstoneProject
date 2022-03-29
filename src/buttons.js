@@ -1,4 +1,4 @@
-import { saveCurrentRoom } from "./state";
+import { saveCurrentRoom, savePreviousRoom } from "./state";
 import { openMessageLog } from "./message";
 import { InGameMenu } from "./menu.js";
 const inGameMenu = new InGameMenu();
@@ -42,13 +42,9 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
 }
 
 export const singleViewNavArrow = (roomName, previousRoom) => {
-  // console.log(previousRoom)
-  let prev = previousRoom
   saveCurrentRoom(roomName);
   onClick("down-arrow", () => {
-    console.log('this should be basementroomoneleft',prev)
-
-    go(prev);
+    go(previousRoom);
   });
   displayNavArrows(["down"]);
 }

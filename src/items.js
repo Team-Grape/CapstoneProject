@@ -1,22 +1,44 @@
 export let cellarKey = {
   name: 'cellar key',
-  description: 'an old rusty key to the cellar door',
+  description: 'An old rusty key to the cellar door',
   quantity: 1,
   image: '/items/key_gold.png',
 };
 
+export let silverKey = {
+  name: 'silver key',
+  description: 'An old rusty key to open main doors',
+  quantity: 1,
+  image: '/items/key_silver.png'
+}
+
 export let pryBarObj = {
   name: 'pry bar',
-  description: 'a regular old pry bar',
+  description: 'A regular old pry bar',
   quantity: 1,
   image: '/items/pry-bar.png',
 };
 
 export let ragObj = {
   name: 'rag',
-  description: 'an old dirty rag',
+
+  description: 'A old dirty rag',
   quantity: 1,
   image: '/items/rag.png',
+};
+
+export let lighterObj = {
+  name: 'lighter',
+  description: 'A regular lighter',
+  quantity: 1,
+  image: '/items/lighter.png'
+}
+
+export let hammerObj = {
+  name: 'hammer',
+  description: 'a hammer to broke the glass',
+  quantity: 1,
+  image: '/items/hammer.png',
 };
 
 export let fascinatingBook = {
@@ -32,3 +54,4 @@ export let meat = {
   quantity: 1,
   image: '/items/meat.png',
 };
+

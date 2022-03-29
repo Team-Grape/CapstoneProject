@@ -12,6 +12,8 @@ export const loadAllSounds = () => {
   loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
   loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
   loadSound('click', './assets/sounds/click.wav')
+  loadSound('poof', './assets/sounds/poof.wav')
+  loadSound('sparkle', './assets/sounds/sparkle.wav')
 };
 
 //  ================================================================= //
