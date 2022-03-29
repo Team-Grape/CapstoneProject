@@ -102,12 +102,30 @@ export const createBasementRoomThree = () => {
       add([sprite("books-on-chair"), scale(2.2), pos(710, 370)]);
     });
 
-    onClick("largeEmptyPicture", (largeEmptyPicture) => {
-      textBubble([["There are so much dust on the picture"]]);
+    onClick('largeEmptyPicture', (largeEmptyPicture) => {
+      textBubble([['There are so much dust on the picture']]);
+      if (window.selectedItem == 'rag') {
+        largeEmptyPicture.destroy();
+        const pictureOneWithNumber = add([
+          sprite('painting-one-with-number'),
+          scale(2.7),
+          pos(850, 110),
+        ]);
+        textBubble([['something display on the picture']]);
+      }
     });
 
-    onClick("smallEmptyPicture", (smallEmptyPicture) => {
-      textBubble([["There are so much dust on the picture"]]);
+    onClick('smallEmptyPicture', (smallEmptyPicture) => {
+      textBubble([['There are so much dust on the picture']]);
+      if (window.selectedItem == 'rag') {
+        smallEmptyPicture.destroy();
+        const pictureTwoWithNumber = add([
+          sprite('painting-two-with-number'),
+          scale(2.4),
+          pos(950, 140),
+        ]);
+        textBubble([['something display on the picture']]);
+      }
     });
     roomNavArrows(viewDirection);
   });
@@ -185,10 +203,11 @@ export const createBasementRoomThree = () => {
       onKeyPressRepeat("backspace", () => {
         input.text = input.text.substring(0, input.text.length - 1);
       });
-      onKeyPressRepeat("enter", () => {
-        if (input.text === "1234") {
-          textBubble([["Passcode is correct, enter the next room"]]);
-          go("bedroomUp");
+
+      onKeyPressRepeat('enter', () => {
+        if (input.text === '0815') {
+          textBubble([['Passcode is correct, enter the next room']]);
+          go('bedroomUp');
         } else {
           input.text = "";
           textBubble([["Passcode is incorrect, try again"]]);

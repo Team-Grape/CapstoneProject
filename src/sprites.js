@@ -2,11 +2,10 @@ export const loadAllSprites = () => {
   //Items =================
 
   loadSprite('key', './assets/items/key_gold.png');
-  //Pry-Bar
-  loadSprite('pryBar', '/assets/items/pry-bar.png');
-  loadSprite('rag', '/assets/items/rag.png');
-  //Lighter ======================
-  loadSprite('lighter', '/assets/items/lighter.png')
+  loadSprite('lighter', './assets/items/lighter.png')
+  loadSprite('pryBar', './assets/items/pry-bar.png');
+  loadSprite('rag', './assets/items/rag.png');
+  loadSprite('hammer', './assets/items/hammer.png');
 
   // ==================== BUTTONS =============================//
 
@@ -16,6 +15,10 @@ export const loadAllSprites = () => {
     'orange-passcode-button',
     './assets/buttons/orangePasscodeButton.png'
   );
+  loadSprite('redBTN', './assets/buttons/redBTN.png');
+  loadSprite('blueBTN', './assets/buttons/blueBTN.png');
+  loadSprite('greenBTN', './assets/buttons/greenBTN.png');
+  loadSprite('purpleBTN', './assets/buttons/purpleBTN.png');
 
   // ==================== NAV ARROWS ==========================//
 
@@ -52,15 +55,14 @@ export const loadAllSprites = () => {
 
   //Basement Hallway ===============//
   loadSprite(
-    "basementHallway",
-    "./assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png"
+    'basementHallway',
+    './assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png'
   );
 
   loadSprite(
-    "basementHallwayDoor",
-    "./assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png"
+    'basementHallwayDoor',
+    './assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png'
   );
-
 
   loadSprite(
     'room-two-background',
@@ -99,7 +101,27 @@ export const loadAllSprites = () => {
     'bedroom-one-right',
     './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png'
   );
+  loadSprite(
+    'living-room-up',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithDoor/firstFloorLivingRoomUp.png'
+  );
+  loadSprite(
+    'living-room-left',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomLeft.png'
+  );
+  loadSprite(
+    'living-room-down',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomDown.png'
+  );
+  loadSprite(
+    'living-room-right',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
+  );
 
+  // First Floor Hallway
+loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png');
+  // Second Floor Hallway
+loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/secondFloorHallway/secondFloorHallway.png');
 
   //Library ===========//
 
@@ -238,10 +260,10 @@ export const loadAllSprites = () => {
   );
   //Doors =================
 
-  loadSprite("door", "./assets/decorations/doors/evilDoor.png");
-  loadSprite("door2", "./assets/decorations/doors/door2.png");
-  loadSprite("wood-door", "./assets/decorations/doors/wooddoor.png");
-  loadSprite("woodenDoor", "./assets/decorations/doors/woodenDoor.png");
+  loadSprite('door', './assets/decorations/doors/evilDoor.png');
+  loadSprite('door2', './assets/decorations/doors/door2.png');
+  loadSprite('wood-door', './assets/decorations/doors/wooddoor.png');
+  loadSprite('woodenDoor', './assets/decorations/doors/woodenDoor.png');
 
   //Drawers =================
   loadSprite('drawer', './assets/decorations/bookcases/drawer.png');
@@ -315,6 +337,16 @@ export const loadAllSprites = () => {
     'flower-painting',
     './assets/decorations/paintings/flowerpainting.png'
   );
+  loadSprite(
+    'painting-one-with-number',
+    './assets/decorations/paintings/pictureOneWithNumber.png'
+  );
+  loadSprite(
+    'painting-two-with-number',
+    './assets/decorations/paintings/pictureTwoWithNumber.png'
+  );
+  loadSprite('painting5', './assets/decorations/paintings/painting5.png');
+  loadSprite('painting10', './assets/decorations/paintings/painting10.png');
 
   //Rugs =================
   loadSprite('orange-carpet', './assets/decorations/rugs/orangecarpet.png');
@@ -346,8 +378,31 @@ export const loadAllSprites = () => {
     'basement-window',
     './assets/decorations/windows/basementWindow.png'
   );
-
   
+  loadSprite('window', './assets/decorations/windows/window.png');
+
+  // Sofas =================
+  loadSprite(
+    'white-formal-sofa-one',
+    './assets/decorations/furniture/sofas/whiteFormalSofa1.png'
+  );
+
+  // Curtains =================
+  loadSprite(
+    'white-curtains-closed',
+    './assets/decorations/curtains/whiteCurtainsClosed.png'
+  );
+  loadSprite(
+    'white-curtains-open',
+    './assets/decorations/curtains/whiteCurtainsOpen.png'
+  );
+
+  // Lambs =================
+  loadSprite('lamp-turned-on', './assets/decorations/lamps/lampTurnedOn.png');
+  loadSprite('lamp-turned-off', './assets/decorations/lamps/lampTurnedOff.png');
+
+  // paper =================
+  loadSprite('notebook', './assets/decorations/paper/notebook.png');
 };
 
 export const fadeOutOpacity = async (GameObj) => {
