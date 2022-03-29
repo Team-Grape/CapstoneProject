@@ -1,6 +1,7 @@
 import kaboom from 'kaboom';
 import { loadAllSprites } from './sprites';
 import { loadAllSounds } from './sounds';
+import { createCursorDiv } from './inventory';
 import { entry } from './scenes/00-entry';
 import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
@@ -19,6 +20,7 @@ import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
 import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance'
 
+//window.SETCURSORDIVTOPLEFT = true
 
 kaboom({
   global: true,
@@ -34,6 +36,7 @@ kaboom({
 // initialize components
 loadAllSprites();
 loadAllSounds();
+createCursorDiv()
 
 entry();
 titleScene();
@@ -55,5 +58,4 @@ createLivingRoom();
 createMainEntrance();
 
 
-go('basementStorageTwoDown');
-
+go('entry');

@@ -169,7 +169,7 @@ export const createBasementRoomOne = () => {
     if (!getGameState(roomName, "pryBarPickedUp")) {
       const pryBar = add([
         sprite("pryBar"),
-        scale(4),
+        scale(.8),
         pos(100, 400),
         area(),
         "pryBar",
