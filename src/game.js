@@ -10,7 +10,9 @@ import { createBasementRoomOne } from './scenes/01-basement';
 import { createBasementRoomTwo } from './scenes/02-basement';
 import { createBasementRoomThree } from './scenes/03-room';
 import { createBedroom } from './scenes/04-bedroom';
-import { createBasementHallway } from './scenes/03-basementHallway.js';
+import { createBasementHallway } from './scenes/03-basementHallway.js'
+import { createFirstFloorHallway } from './scenes/03-firstFloorHallway.js'
+import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
 import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
 
@@ -41,8 +43,11 @@ createBasementRoomTwo();
 createBasementRoomThree();
 createBedroom();
 createBasementHallway();
+createFirstFloorHallway();
+createSecondFloorHallway();
+createLibrary();
 createLivingRoom();
-createLibrary()
+
 
 go('livingRoomUp');
 // go('entry');

@@ -117,6 +117,10 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
   );
 
+  // First Floor Hallway
+loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png');
+  // Second Floor Hallway
+loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/secondFloorHallway/secondFloorHallway.png');
 
   //Library ===========//
 

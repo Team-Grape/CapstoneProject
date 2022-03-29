@@ -93,8 +93,8 @@ export const createBasementHallway = async () => {
       textBubble(introMessage, () => {
         setGameState(roomName, "introMessageRead", true);
         addToMessageLog(introMessage);
+      //  singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
       });
-      singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     } else {
       singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     }
@@ -118,7 +118,7 @@ export const createBasementHallway = async () => {
     });
 
     onClick("center-door", () => {
-      go('libraryUp')
+      go('firstFloorHallwayDown')
       // textBubble([["it won't open"]]);
     });
 
