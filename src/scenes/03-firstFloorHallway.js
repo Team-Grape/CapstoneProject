@@ -62,7 +62,7 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("left-far-door", () => {
-      textBubble([["it won't open"]]);
+      go('mainEntranceDown')
     });
 
     onClick("right-near-door", () => {

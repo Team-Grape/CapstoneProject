@@ -84,7 +84,7 @@ export const createBasementHallway = async () => {
         "barrelRight",
       ]);
 
-      playBGM("spooky");
+      playBGM("ambience");
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -125,3 +125,7 @@ export const createBasementHallway = async () => {
     //debugRectSize();
   });
 };
+
+
+
+

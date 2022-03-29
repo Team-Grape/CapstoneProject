@@ -1,5 +1,6 @@
 import { navArrows, destroyNavArrows, singleViewNavArrow } from "./buttons";
 
+
 export const addToMessageLog = (msg) => {
   if (!window.localStorage.getItem("messageLog")) {
     window.localStorage.setItem("messageLog", JSON.stringify([]));

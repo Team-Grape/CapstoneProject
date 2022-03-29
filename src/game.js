@@ -15,6 +15,7 @@ import { createFirstFloorHallway } from './scenes/03-firstFloorHallway.js'
 import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
 import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
+import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance'
 
 
 kaboom({
@@ -47,6 +48,7 @@ createFirstFloorHallway();
 createSecondFloorHallway();
 createLibrary();
 createLivingRoom();
+createMainEntrance();
 
 
 go('entry');

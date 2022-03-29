@@ -1,4 +1,4 @@
-import { clearLocalStorage } from "./state";
+import { clearLocalStorage, setGameState, getGameState } from "./state";
 import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
 import { playSFX } from "./sounds";
@@ -20,7 +20,12 @@ export class InGameMenu {
     });
   }
 
+  // isOpen() {
+  //  return window.localStorage.getItem('menuIsOpen')
+  // }
+
   open() {
+    // window.localStorage.setItem('menuIsOpen', true);
     const gameMenu = add([
       pos(1070, 50),
       rect(160, 150),
@@ -65,6 +70,7 @@ export class InGameMenu {
         optionsButton,
         saveAndQuit,
       ]);
+      // window.localStorage.setItem('menuIsOpen', false);
     });
 
     onClick("restart", () => {
@@ -77,12 +83,14 @@ export class InGameMenu {
         saveAndQuit,
       ]);
       this.restart();
+      // window.localStorage.setItem('menuIsOpen', false);
     });
 
     onClick("options", () => {
       playSFX('click')
       removeInventoryDiv();
       go("options");
+      // window.localStorage.setItem('menuIsOpen', false);
     });
 
     onClick("saveAndQuit", () => {
@@ -95,6 +103,7 @@ export class InGameMenu {
         saveAndQuit,
       ]);
       this.saveAndQuit();
+     
     });
   }
 
@@ -131,9 +140,11 @@ export class InGameMenu {
     onClick("no", () => {
       playSFX('click')
       this.close([areYouSurePrompt, areYouSureText, yes, no]);
+      // window.localStorage.setItem('menuIsOpen', false);
     });
 
     onClick("yes", () => {
+      // window.localStorage.setItem('menuIsOpen', false);
       playSFX('click')
       if (actionType === "restart") {
         clearLocalStorage();

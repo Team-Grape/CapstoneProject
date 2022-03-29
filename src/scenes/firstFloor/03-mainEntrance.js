@@ -1,0 +1,99 @@
+import { navArrows, singleViewNavArrow, destroyNavArrows } from "../../buttons";
+import { fadeOutOpacity, flickerOpacity } from "../../sprites";
+
+import { textBubble, addToMessageLog } from "../../message";
+
+import { setGameState, getGameState } from "../../state.js";
+
+import { debugRectSize } from "../../debug";
+
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+
+import { InGameMenu } from "../../menu";
+
+import {
+  addToInventory,
+  checkInventoryForItem,
+  removeFromInventory,
+} from "../../inventory.js";
+
+const roomName = "mainEntrance";
+const roomNavArrows = navArrows(roomName);
+
+
+console.log(InGameMenu);
+
+const mainEntranceMessage = [
+  [
+    "You feel your excitement swell when you see what looks like the front door to the house.",
+  ],
+  ["You pause for a moment."],
+  ["It would be too easy if the door was unlocked, wouldn't it?"],
+];
+
+const doorMessage = [
+  ["You reach your trembling hand out to the doorknob."],
+  ["You grip it firmly in your hand."],
+  ["You give it a turn."],
+];
+
+const doorIsLocked = [["It's locked."]];
+
+export const createMainEntrance = async () => {
+  scene(roomName + "Down", () => {
+    window.roomName = roomName;
+    window.viewDirection = "singleViewRoom";
+
+    onLoad(() => {
+      add([sprite("main-entrance"), scale(1)]);
+
+      add([rect(155, 240), opacity(0), pos(533, 110), area(), "center-door"]);
+
+      add([
+        rect(200, 280),
+        opacity(0),
+        pos(1040, 150),
+        area(),
+        "right-near-door",
+      ]);
+      stopBGM();
+      playBGM("ambience");
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    if (!getGameState(roomName, "mainEntranceMessageRead")) {
+      textBubble(mainEntranceMessage, () => {
+        setGameState(roomName, "introMessageRead", true);
+        addToMessageLog(mainEntranceMessage);
+      });
+    } else {
+      singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    onClick("right-near-door", () => {
+      textBubble([["it won't open"]]);
+    });
+
+    onClick("center-door", () => {
+      if (getGameState(roomName, "centerDoorClicked", false)) {
+        textBubble(doorMessage);
+        textBubble(doorIsLocked);
+        setGameState(roomName, "centerDoorClicked", true);
+      } else {
+        textBubble(doorIsLocked);
+      }
+    });
+
+    // if (!InGameMenu.isOpen()) {
+    //     onClick("right-near-door", () => {
+
+    //         textBubble([["it won't open"]]);
+    //       });
+    // }
+
+    //debugRectSize();
+  });
+};
