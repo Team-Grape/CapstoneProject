@@ -149,7 +149,7 @@ export const loadAllSprites = () => {
     sliceY: 1,
     anims: {
       dead: {
-        from: 0,
+        from: 10,
         to: 14,
       },
     },

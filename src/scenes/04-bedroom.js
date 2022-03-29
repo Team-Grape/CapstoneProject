@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from "../inventory";
 
-import { lighterObj } from "../items";
+import { cellarKey, lighterObj } from "../items";
 
 import { setGameState, getGameState } from "../state";
 import { textBubble, addToMessageLog } from "../message";
@@ -39,7 +39,7 @@ export const createBedroom = () => {
     window.viewDirection = "Down";
     onLoad(() => {
       add([sprite("bedroom-one-down"), scale(1)]);
-      add([sprite("skeletonStand"), scale(5), area(), 'skeletonStand'])
+      add([sprite("skeleton-stand"), pos(250, 250),scale(5), area(), 'skeletonStand'])
     });
     if (!getGameState(roomName, "lighterPickedUp")) {
       const lighter = add([
@@ -62,8 +62,8 @@ export const createBedroom = () => {
       skeletonStand.destroy();
       const skeletonAttack = add([
         sprite("skeleton-attack"),
-        scale(7),
-        pos(60, 280),
+        scale(5),
+        pos(250, 250),
         area(),
         "skeletonAttack",
       ]);
@@ -79,14 +79,39 @@ export const createBedroom = () => {
         //if (getGameState(roomName, "pryBarPickedUp")) {
         if (window.selectedItem == "pry bar") {
           skeletonAttack.destroy();
+        
           const skeletonDead = add([
             sprite("skeleton-dead"),
-            scale(7),
-            pos(60, 280),
+            scale(5),
+            pos(250, 250),
             "skeletonDead",
           ]);
           skeletonDead.play("dead", { speed: 20 });
           textBubble([["......"]]);
+          if (!getGameState(roomName, "keyPickedUp")) {
+            if (skeletonDead) {
+           
+              setInterval(() => {
+                if (!getGameState(roomName, "keyPickedUp")) {
+                const key = add([
+                  sprite('key'),
+                  scale(1),
+                  pos(300, 400),
+                  area(),
+                  'key'
+                ])}
+              }, 2000)
+            
+              onClick('key', (key) => {
+                textBubble([['A key was added to your inventory.']])
+
+                addToInventory(cellarKey);
+                setGameState(roomName, "keyPickedUp", true);
+                key.destroy()
+              })
+          }
+
+          }
         }
       });
     });

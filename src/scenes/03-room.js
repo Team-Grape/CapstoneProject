@@ -156,7 +156,7 @@ export const createBasementRoomThree = () => {
       sprite("cuteGhost"), 
       scale(5), 
       pos(60, 280), 
-      area(), 
+      area(),
       "cuteGhost"
     ]);
     onClick("cuteGhost", (cuteGhost) => {
