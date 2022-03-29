@@ -98,8 +98,8 @@ export const loadAllSprites = () => {
     "./assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneLeft.png"
   );
   loadSprite(
-    "bedroom-one-down",
-    "./assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneDown.png"
+    'bedroom-one-down',
+    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneDown-DoorRemoved.png'
   );
   loadSprite(
     "bedroom-one-right",
