@@ -7,6 +7,8 @@ import {
   setSoundEffectVolume,
 } from "../state";
 
+
+
 export const entry = () => {
   scene("entry", () => {
     if (!getBackgroundMusicVolume()) {
@@ -27,6 +29,7 @@ export const entry = () => {
     add([rect(width(), height()), opacity(0), pos(0,0), area(), 'clickBox'])
 
     onClick('clickBox', () => {
+
       go("title");
     });
   });

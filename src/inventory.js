@@ -1,3 +1,5 @@
+import { textBubble } from "./message";
+
 export const checkInventoryForItem = (item) => {
   if (!window.localStorage.getItem("inventory")) {
     // you dont even have an inventory yet!
@@ -107,6 +109,16 @@ export const displayInventoryDiv = () => {
         const canvas = document.getElementsByTagName("canvas")[0];
         canvas.style["cursor"] = "auto";
         delete window.selectedItem;
+      };
+    } 
+    else if (item.name === '\'The Aesthetics of Fire-Hydrant Design: Volume IX\'') {
+      let fascinatingBookMessage = [
+        ['This book sure does look fascinating but this doesn\'t seem the like right time to read it.']
+      ]
+      tmpItemImg.onclick = () => {
+        textBubble(fascinatingBookMessage, () => {
+          
+        })
       };
     } else {
       tmpItemImg.onclick = () => {

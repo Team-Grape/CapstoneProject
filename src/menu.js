@@ -1,6 +1,7 @@
 import { clearLocalStorage } from "./state";
 import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
+import { playSFX } from "./sounds";
 
 // ==================== In Game Menu ====================================== //
 
@@ -14,6 +15,7 @@ export class InGameMenu {
       "menu-button",
     ]);
     onClick("menu-button", () => {
+      playSFX('click')
       this.open();
     });
   }
@@ -55,6 +57,7 @@ export class InGameMenu {
     ]);
 
     onClick("continue", () => {
+      playSFX('click')
       this.close([
         gameMenu,
         continueButton,
@@ -65,6 +68,7 @@ export class InGameMenu {
     });
 
     onClick("restart", () => {
+      playSFX('click')
       this.close([
         gameMenu,
         continueButton,
@@ -76,11 +80,13 @@ export class InGameMenu {
     });
 
     onClick("options", () => {
+      playSFX('click')
       removeInventoryDiv();
       go("options");
     });
 
     onClick("saveAndQuit", () => {
+      playSFX('click')
       this.close([
         gameMenu,
         continueButton,
@@ -123,10 +129,12 @@ export class InGameMenu {
     const no = add([text("No", { size: 30 }), pos(670, 150), area(), "no"]);
 
     onClick("no", () => {
+      playSFX('click')
       this.close([areYouSurePrompt, areYouSureText, yes, no]);
     });
 
     onClick("yes", () => {
+      playSFX('click')
       if (actionType === "restart") {
         clearLocalStorage();
         removeInventoryDiv();

@@ -118,7 +118,8 @@ export const createBasementHallway = async () => {
     });
 
     onClick("center-door", () => {
-      textBubble([["it won't open"]]);
+      go('libraryUp')
+      // textBubble([["it won't open"]]);
     });
 
     //debugRectSize();

@@ -5,11 +5,13 @@ export const loadAllSounds = () => {
   loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
   loadSound("falling", "./assets/sounds/paintingFalling.wav");
   loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
-
+  loadSound('ambience', './assets/sounds/ambience/houseAmbience.wav')
+  loadSound('title', './assets/sounds/titleTrack/titleTrack.wav')
   // Sound Effects ================
   loadSound("gong", "./assets/sounds/clockGong.wav");
   loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
   loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
+  loadSound('click', './assets/sounds/click.wav')
 };
 
 //  ================================================================= //

@@ -2,10 +2,9 @@ export const loadAllSprites = () => {
   //Items =================
 
   loadSprite('key', './assets/items/key_gold.png');
-  //Pry-Bar
-  loadSprite('pryBar', '/assets/items/pry-bar.png');
-  loadSprite('rag', '/assets/items/rag.png');
-  loadSprite('hammer', '/assets/items/hammer.png');
+  loadSprite('pryBar', './assets/items/pry-bar.png');
+  loadSprite('rag', './assets/items/rag.png');
+  loadSprite('hammer', './assets/items/hammer.png');
 
   // ==================== BUTTONS =============================//
 
@@ -29,6 +28,8 @@ export const loadAllSprites = () => {
 
   // ==================== ROOM BACKGROUNDS =====================//
 
+
+  // Basement Room 01 ============//
   loadSprite(
     'basementRoomOneUp',
     './assets/room_backgrounds/basement/roomOne/basementRoomOneUp.png'
@@ -51,7 +52,7 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/basement/template/basementTemplate.png'
   );
 
-  //Basement Hallway
+  //Basement Hallway ===============//
   loadSprite(
     'basementHallway',
     './assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png'
@@ -115,6 +116,14 @@ export const loadAllSprites = () => {
     'living-room-right',
     './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
   );
+
+
+  //Library ===========//
+
+  loadSprite('library-up', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryUp.png')
+  loadSprite('library-down', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryDown.png')
+  loadSprite('library-left', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryLeft.png')
+  loadSprite('library-right', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryRight.png')
 
   // ===================== ANIMATIONS ==========================//
 
@@ -197,6 +206,7 @@ export const loadAllSprites = () => {
     'falling-book-on-floor',
     './assets/fallingBook/fallingBookOnFloor.png'
   );
+  loadSprite('fascinatingBook', './assets/room_backgrounds/firstFloor/library/libraryBook.png')
 
   //Beds =================
   loadSprite('pink-bed', './assets/decorations/furniture/beds/pinkbed.png');
@@ -220,7 +230,7 @@ export const loadAllSprites = () => {
   );
   loadSprite(
     'wooden-chair',
-    '/assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
+    './assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
   );
   //Doors =================
 
@@ -256,6 +266,10 @@ export const loadAllSprites = () => {
     'white-flowers',
     './assets/decorations/flowers-plants/whiteflowers.png'
   );
+
+  //Glass Cabinet Doors ===========
+  loadSprite('closedGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png')
+  loadSprite('openGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png')
 
   //Lamps =================
   loadSprite('deng', './assets/decorations/lamps/deng.png');
