@@ -1,6 +1,7 @@
 import kaboom from 'kaboom';
 import { loadAllSprites } from './sprites';
 import { loadAllSounds } from './sounds';
+import { createCursorDiv } from './inventory';
 import { entry } from './scenes/00-entry';
 import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
@@ -16,6 +17,7 @@ import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
 import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
 
+//window.SETCURSORDIVTOPLEFT = true
 
 kaboom({
   global: true,
@@ -31,6 +33,7 @@ kaboom({
 // initialize components
 loadAllSprites();
 loadAllSounds();
+createCursorDiv()
 
 entry();
 titleScene();
@@ -50,4 +53,3 @@ createLivingRoom();
 
 
 go('entry');
-

@@ -53,6 +53,56 @@ export const resetCursor = () => {
   canvas.style["cursor"] = "auto";
 };
 
+export const createCursorDiv = (imgURL) => {
+  const cursorItem = document.createElement("img");
+  cursorItem.id = "cursorItem"
+  cursorItem.classList.add('cursor')
+  document.body.appendChild(cursorItem)
+  canvas.addEventListener('mousemove', (e) => {
+    if (window.selectedItem) {
+    cursorItem.style['display'] = 'block';
+    cursorItem.style.left = (e.clientX - window.selectedItemOffset.x) + 'px';
+    cursorItem.style.top = (e.clientY - window.selectedItemOffset.y) + 'px';
+    }
+  })
+  canvas.addEventListener('mouseleave', (e) => {
+    cursorItem.style['display'] = 'none';
+  })
+}
+
+
+export const setCursorDivCenter = async (imgURL) => {
+  const cursorItem = document.getElementById('cursorItem')
+  cursorItem.src = imgURL;
+
+  const canvas = document.getElementsByTagName("canvas")[0];
+  canvas.style["cursor"] = 'none';
+//  canvas.style["cursor"] = 'crosshair';
+
+  // we need to adjust the "point" to the center of the image
+  let aaaimg = new Image();
+  aaaimg.src = imgURL
+
+  // have to wait until picture fetched, fix later
+  while ( aaaimg.width == 0 ) {
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
+  window.selectedItemOffset = {x: Math.ceil(aaaimg.width/2), y: Math.ceil(aaaimg.height/2)} 
+//  window.selectedItemOffset = {x: 0, y: 0} 
+};
+
+export const setCursorDivTopLeft = async (imgURL) => {
+  const cursorItem = document.getElementById('cursorItem')
+  cursorItem.src = imgURL;
+  window.selectedItemOffset = {x: 0, y: 0} 
+};
+
+export const resetCursorDiv = () => {
+  const cursorItem = document.getElementById('cursorItem')
+  cursorItem.src = '';
+  delete window.selectedItemOffset;
+}
+
 export const displayInventoryDiv = () => {
   if (!window.localStorage.getItem("inventory")) {
     window.localStorage.setItem("inventory", JSON.stringify([]));
@@ -102,7 +152,7 @@ export const displayInventoryDiv = () => {
     tmpItemImg.style["height"] = "64px";
     tmpItemImg.style["user-select"] = "none";
     tmpItemImg.style["user-drag"] = "none";
-    tmpItemImg.style["cursor"] = "pointer";
+//    tmpItemImg.style["cursor"] = "pointer";
     tmpItemImg.classList.add("inventoryItem");
     if (item.name === "None") {
       tmpItemImg.onclick = () => {
@@ -122,7 +172,12 @@ export const displayInventoryDiv = () => {
       };
     } else {
       tmpItemImg.onclick = () => {
-        setCursor(tmpItemImg.src);
+        //setCursor(tmpItemImg.src);
+        if (window.SETCURSORDIVTOPLEFT) {
+          setCursorDivTopLeft(tmpItemImg.src)
+        } else {
+          setCursorDivCenter(tmpItemImg.src);
+        }
         window.selectedItem = item.name;
       };
     }
@@ -139,4 +194,5 @@ export const removeInventoryDiv = () => {
   const canvas = document.getElementsByTagName("canvas")[0];
   canvas.style["cursor"] = "auto";
   delete window.selectedItem;
+  resetCursorDiv();
 };
