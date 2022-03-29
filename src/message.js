@@ -86,7 +86,7 @@ export const textBubble = (dialogs, onFinish) => {
       curDialog = 0;
 
       if (window.viewDirection === 'singleViewRoom') {
-        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
+        singleViewNavArrow("basementHallwayDown", "basementHallwayDown");
       } else {
         roomNavArrows(window.viewDirection);
       }

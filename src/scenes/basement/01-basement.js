@@ -19,9 +19,9 @@ const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  ["when you woke up you found yourself in an strange room"],
-  ["the door is locked and you are trapped in the room"],
-  ["look around the room to see if you can find the key to open the door"],
+  ["You woke up and found yourself in an strange room"],
+  ["The door is locked and you are trapped in the room"],
+  ["Look around the room to see if you can find the key to open the door"],
 ];
 
 export const createBasementRoomOne = () => {
@@ -63,7 +63,7 @@ export const createBasementRoomOne = () => {
       if (window.selectedItem == "pry bar") {
         (async () => {
           await fadeOutOpacity(barrel);
-          textBubble([["a key was added to your inventory"]]);
+          textBubble([["A key was added to your inventory"]]);
           addToInventory(cellarKey);
           setGameState(roomName, "keyPickedUp", true);
         })();
@@ -172,7 +172,7 @@ export const createBasementRoomOne = () => {
         "pryBar",
       ]);
       onClick("pryBar", (pryBar) => {
-        textBubble([["a Pry Bar was added to your inventory"]]);
+        textBubble([["A Pry Bar was added to your inventory"]]);
 
         addToInventory(pryBarObj);
         setGameState(roomName, "pryBarPickedUp", true);

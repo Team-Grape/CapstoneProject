@@ -5,6 +5,13 @@ export let cellarKey = {
   image: '/items/key_gold.png',
 };
 
+export let silverKey = {
+  name: 'silver key',
+  description: 'An old rusty key to open main doors',
+  quantity: 1,
+  image: '/items/key_silver.png'
+}
+
 export let pryBarObj = {
   name: 'pry bar',
   description: 'A regular old pry bar',

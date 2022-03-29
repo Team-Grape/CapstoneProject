@@ -2,6 +2,7 @@ export const loadAllSprites = () => {
   //Items =================
 
   loadSprite('key', './assets/items/key_gold.png');
+  loadSprite('key-silver', './assets/items/key_silver.png')
   loadSprite('lighter', './assets/items/lighter.png')
   loadSprite('pryBar', './assets/items/pry-bar.png');
   loadSprite('rag', './assets/items/rag.png');
