@@ -24,7 +24,6 @@ export const loadAllSprites = () => {
 
   // ==================== ROOM BACKGROUNDS =====================//
 
-
   // Basement Room 01 ============//
   loadSprite(
     'basementRoomOneUp',
@@ -50,15 +49,14 @@ export const loadAllSprites = () => {
 
   //Basement Hallway ===============//
   loadSprite(
-    "basementHallway",
-    "./assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png"
+    'basementHallway',
+    './assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png'
   );
 
   loadSprite(
-    "basementHallwayDoor",
-    "./assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png"
+    'basementHallwayDoor',
+    './assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png'
   );
-
 
   loadSprite(
     'room-two-background',
@@ -97,14 +95,33 @@ export const loadAllSprites = () => {
     'bedroom-one-right',
     './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png'
   );
-
+  loadSprite(
+    'kitchen-up',
+    './assets/room_backgrounds/firstFloor/kitchen/Kitchen.png'
+  );
+  loadSprite(
+    'kitchen-left',
+    './assets/room_backgrounds/firstFloor/kitchen/Pantry.png'
+  );
 
   //Library ===========//
 
-  loadSprite('library-up', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryUp.png')
-  loadSprite('library-down', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryDown.png')
-  loadSprite('library-left', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryLeft.png')
-  loadSprite('library-right', './assets/room_backgrounds/firstFloor/library/firstFloorLibraryRight.png')
+  loadSprite(
+    'library-up',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryUp.png'
+  );
+  loadSprite(
+    'library-down',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryDown.png'
+  );
+  loadSprite(
+    'library-left',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryLeft.png'
+  );
+  loadSprite(
+    'library-right',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryRight.png'
+  );
 
   // ===================== ANIMATIONS ==========================//
 
@@ -187,7 +204,10 @@ export const loadAllSprites = () => {
     'falling-book-on-floor',
     './assets/fallingBook/fallingBookOnFloor.png'
   );
-  loadSprite('fascinatingBook', './assets/room_backgrounds/firstFloor/library/libraryBook.png')
+  loadSprite(
+    'fascinatingBook',
+    './assets/room_backgrounds/firstFloor/library/libraryBook.png'
+  );
 
   //Beds =================
   loadSprite('pink-bed', './assets/decorations/furniture/beds/pinkbed.png');
@@ -215,10 +235,10 @@ export const loadAllSprites = () => {
   );
   //Doors =================
 
-  loadSprite("door", "./assets/decorations/doors/evilDoor.png");
-  loadSprite("door2", "./assets/decorations/doors/door2.png");
-  loadSprite("wood-door", "./assets/decorations/doors/wooddoor.png");
-  loadSprite("woodenDoor", "./assets/decorations/doors/woodenDoor.png");
+  loadSprite('door', './assets/decorations/doors/evilDoor.png');
+  loadSprite('door2', './assets/decorations/doors/door2.png');
+  loadSprite('wood-door', './assets/decorations/doors/wooddoor.png');
+  loadSprite('woodenDoor', './assets/decorations/doors/woodenDoor.png');
 
   //Drawers =================
   loadSprite('drawer', './assets/decorations/bookcases/drawer.png');
@@ -249,8 +269,14 @@ export const loadAllSprites = () => {
   );
 
   //Glass Cabinet Doors ===========
-  loadSprite('closedGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png')
-  loadSprite('openGlassDoors', './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png')
+  loadSprite(
+    'closedGlassDoors',
+    './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png'
+  );
+  loadSprite(
+    'openGlassDoors',
+    './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png'
+  );
 
   //Lamps =================
   loadSprite('deng', './assets/decorations/lamps/deng.png');
@@ -322,6 +348,24 @@ export const loadAllSprites = () => {
     'basement-window',
     './assets/decorations/windows/basementWindow.png'
   );
+
+  // kitchenStuff =================
+  loadSprite(
+    'fridge-close',
+    './assets/decorations/kitchenStuff/fridgeClose.png'
+  );
+  loadSprite('fridge-open', './assets/decorations/kitchenStuff/fridgeOpen.png');
+  loadSprite(
+    'kitchen-carbinet-closed',
+    './assets/decorations/kitchenStuff/kitchenCarbinetClosed.png'
+  );
+  loadSprite(
+    'kitchen-carbinet-opened',
+    './assets/decorations/kitchenStuff/kitchenCarbinetOpened.png'
+  );
+  loadSprite('board', './assets/decorations/kitchenStuff/board.png');
+  loadSprite('cupBoard', './assets/decorations/kitchenStuff/cupBoard.png');
+  loadSprite('dishBoard', './assets/decorations/kitchenStuff/dishBoard.png');
 };
 
 export const fadeOutOpacity = async (GameObj) => {
