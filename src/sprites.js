@@ -2,7 +2,6 @@ export const loadAllSprites = () => {
   //Items =================
 
   loadSprite('key', './assets/items/key_gold.png');
-  //Pry-Bar
   loadSprite('pryBar', './assets/items/pry-bar.png');
   loadSprite('rag', './assets/items/rag.png');
 
@@ -98,6 +97,10 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png'
   );
 
+  // First Floor Hallway
+loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png');
+  // Second Floor Hallway
+loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/secondFloorHallway/secondFloorHallway.png');
 
   //Library ===========//
 
