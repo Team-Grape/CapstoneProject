@@ -118,6 +118,15 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
   );
 
+
+  //Storgae Rooms
+  loadSprite(
+    'storage-room-one', './assets/room_backgrounds/basement/roomFive/basementRoomFiveUp-Grey.png'
+  )
+  loadSprite(
+    'storage-room-two', './assets/room_backgrounds/basement/roomFour/basementRoomFourUp-Grey.png'
+  )
+
   // First Floor Hallway
 loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png');
   // Second Floor Hallway

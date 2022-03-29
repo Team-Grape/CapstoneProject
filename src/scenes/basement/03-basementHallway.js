@@ -1,15 +1,15 @@
-import { navArrows, singleViewNavArrow } from "../buttons";
-import { textBubble, addToMessageLog } from "../message";
-import { playBGM, stopBGM, playSFX } from "../sounds";
-import { setGameState, getGameState } from "../state.js";
-import { cellarKey } from "../items.js";
-import { debugRectSize } from "../debug.js";
+import { navArrows, singleViewNavArrow } from "../../buttons";
+import { textBubble, addToMessageLog } from "../../message";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+import { setGameState, getGameState } from "../../state.js";
+import { cellarKey } from "../../items.js";
+import { debugRectSize } from "../../debug.js";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
 const roomName = "basementHallway";
 const roomNavArrows = navArrows(roomName);
@@ -110,11 +110,11 @@ export const createBasementHallway = async () => {
     });
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementStorageOneDown')
     });
 
     onClick("right-far-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementStorageTwoDown')
     });
 
     onClick("center-door", () => {

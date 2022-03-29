@@ -1,19 +1,19 @@
-import { navArrows, destroyNavArrows } from "../buttons";
-import { fadeOutOpacity, flickerOpacity } from "../sprites";
+import { navArrows, destroyNavArrows } from "../../buttons";
+import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
-import { textBubble, addToMessageLog } from "../message";
+import { textBubble, addToMessageLog } from "../../message";
 
-import { setGameState, getGameState } from "../state.js";
+import { setGameState, getGameState } from "../../state.js";
 
-import { playBGM, stopBGM, playSFX } from "../sounds";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
-import { cellarKey, pryBarObj } from "../items.js";
+import { cellarKey, pryBarObj } from "../../items.js";
 
 const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);

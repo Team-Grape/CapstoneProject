@@ -13,7 +13,7 @@ import { textBubble, addToMessageLog } from "../message";
 import { playBGM, stopBGM } from "../sounds";
 import { navArrows } from "../buttons";
 
-const roomName = "basementRoomThree";
+const roomName = "kidRoom";
 const roomNavArrows = navArrows(roomName);
 
 export const createBasementRoomThree = () => {
