@@ -104,10 +104,28 @@ export const createBasementRoomThree = () => {
 
     onClick('largeEmptyPicture', (largeEmptyPicture) => {
       textBubble([['There are so much dust on the picture']]);
+      if (window.selectedItem == 'rag') {
+        largeEmptyPicture.destroy();
+        const pictureOneWithNumber = add([
+          sprite('painting-one-with-number'),
+          scale(2.7),
+          pos(850, 110),
+        ]);
+        textBubble([['something display on the picture']]);
+      }
     });
 
     onClick('smallEmptyPicture', (smallEmptyPicture) => {
       textBubble([['There are so much dust on the picture']]);
+      if (window.selectedItem == 'rag') {
+        smallEmptyPicture.destroy();
+        const pictureTwoWithNumber = add([
+          sprite('painting-two-with-number'),
+          scale(2.4),
+          pos(950, 140),
+        ]);
+        textBubble([['something display on the picture']]);
+      }
     });
     roomNavArrows(viewDirection);
   });
@@ -177,7 +195,6 @@ export const createBasementRoomThree = () => {
       textBubble([skeletonMessage]);
 
       onClick('skeletonAttack', (skeletonAttack) => {
-        //if (getGameState(roomName, "pryBarPickedUp")) {
         if (window.selectedItem == 'pry bar') {
           skeletonAttack.destroy();
           const skeletonDead = add([
@@ -209,7 +226,7 @@ export const createBasementRoomThree = () => {
         input.text = input.text.substring(0, input.text.length - 1);
       });
       onKeyPressRepeat('enter', () => {
-        if (input.text === '1234') {
+        if (input.text === '0815') {
           textBubble([['Passcode is correct, enter the next room']]);
           go('bedroomUp');
         } else {
