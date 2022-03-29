@@ -25,6 +25,19 @@ canvas {
   background-color: #000;
   position: relative;
   -webkit-filter: grayscale(30%);
+  cursor: none;
+}
+
+.cursor {
+  position: absolute;
+  cursor: none;
+  pointer-events: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 nav {
