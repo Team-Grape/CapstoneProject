@@ -5,7 +5,7 @@ import { entry } from './scenes/00-entry';
 import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
-import { gameover } from "./scenes/00-gameover"
+import { gameover } from './scenes/00-gameover';
 import { createBasementRoomOne } from './scenes/01-basement';
 import { createBasementRoomTwo } from './scenes/02-basement';
 import { createBasementRoomThree } from './scenes/03-room';
@@ -13,6 +13,7 @@ import { createBedroom } from './scenes/04-bedroom';
 import { createBasementHallway } from './scenes/03-basementHallway.js'
 import { createFirstFloorHallway } from './scenes/03-firstFloorHallway.js'
 import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
+import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
 
 
@@ -26,7 +27,6 @@ kaboom({
   debug: true,
   background: [35, 35, 35],
 });
-
 
 // initialize components
 loadAllSprites();
@@ -46,5 +46,8 @@ createBasementHallway();
 createFirstFloorHallway();
 createSecondFloorHallway();
 createLibrary();
+createLivingRoom();
 
-go('entry');
+
+go('livingRoomUp');
+// go('entry');
