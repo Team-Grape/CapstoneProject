@@ -133,6 +133,7 @@ export const loadAllSprites = () => {
   loadSprite(
     'kitchen-left',
     './assets/room_backgrounds/firstFloor/kitchen/Pantry.png'
+  )
   loadSprite(
     "living-room-down",
     "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomDown.png"

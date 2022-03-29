@@ -1,6 +1,6 @@
 
 import { navArrows, singleViewNavArrow } from "../../buttons";
-import { Message, textBubble, addToMessageLog } from "../message";
+import { Message, textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { setGameState, getGameState } from "../../state.js";
 import { cellarKey, silverKey } from "../../items.js";
