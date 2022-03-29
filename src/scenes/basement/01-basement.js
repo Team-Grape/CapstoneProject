@@ -1,19 +1,19 @@
-import { navArrows, destroyNavArrows } from "../buttons";
-import { fadeOutOpacity, flickerOpacity } from "../sprites";
+import { navArrows, destroyNavArrows } from "../../buttons";
+import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
-import { textBubble, addToMessageLog } from "../message";
+import { textBubble, addToMessageLog } from "../../message";
 
-import { setGameState, getGameState } from "../state.js";
+import { setGameState, getGameState } from "../../state.js";
 
-import { playBGM, stopBGM, playSFX } from "../sounds";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
-import { cellarKey, pryBarObj } from "../items.js";
+import { cellarKey, pryBarObj } from "../../items.js";
 
 const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);
@@ -191,9 +191,9 @@ export const createBasementRoomOne = () => {
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
       } else if (window.selectedItem == "pry bar") {
-        textBubble([["it doesn't work"]]);
+        textBubble([["It doesn't work"]]);
       } else {
-        textBubble([["it doesn't open, it seems like it needs a key"]]);
+        textBubble([["It doesn't open, it seems like it needs a key"]]);
       }
     });
     roomNavArrows(window.viewDirection);
