@@ -201,6 +201,7 @@ export const options = () => {
     ]);
 
     onClick("return", () => {
+      playSFX('click')
       if (window.onTitleScene) {
         stopBGM();
         go("title");

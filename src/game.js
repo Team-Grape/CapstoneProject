@@ -11,6 +11,7 @@ import { createBasementRoomTwo } from './scenes/02-basement';
 import { createBasementRoomThree } from './scenes/03-room';
 import { createBedroom } from './scenes/04-bedroom';
 import { createBasementHallway } from './scenes/03-basementHallway.js'
+import { createLibrary } from './scenes/firstFloor/02-library'
 
 
 kaboom({
@@ -40,5 +41,6 @@ createBasementRoomTwo();
 createBasementRoomThree();
 createBedroom();
 createBasementHallway();
+createLibrary()
 
 go('bedroomDown');

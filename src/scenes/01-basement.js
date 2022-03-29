@@ -5,6 +5,8 @@ import { textBubble, addToMessageLog } from "../message";
 
 import { setGameState, getGameState } from "../state.js";
 
+import { playBGM, stopBGM, playSFX } from "../sounds";
+
 import {
   addToInventory,
   checkInventoryForItem,
@@ -28,7 +30,7 @@ export const createBasementRoomOne = () => {
   scene(roomName + "Up", () => {
     window.roomName = roomName;
     window.viewDirection = "Up";
-
+    playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneUp"), scale(1), area()]);
     });
@@ -47,7 +49,7 @@ export const createBasementRoomOne = () => {
   scene(roomName + "Right", () => {
     window.roomName = roomName;
     window.viewDirection = "Right";
-
+    playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneRight"), scale(1), area()]);
       add([sprite("barrel3"), scale(4), pos(1150, 300), area(), "barrel3"]);
@@ -75,7 +77,7 @@ export const createBasementRoomOne = () => {
   scene(roomName + "Down", () => {
     window.roomName = roomName;
     window.viewDirection = "Down";
-
+    playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneDown"), scale(1), area()]);
       add([
@@ -154,11 +156,11 @@ export const createBasementRoomOne = () => {
   scene(roomName + "Left", () => {
     window.roomName = roomName;
     window.viewDirection = "Left";
-
+    playBGM("ambience");
     //Sprite Loaders
     onLoad(() => {
       add([sprite("basementRoomOneLeft"), scale(1), area()]);
-      add([sprite("woodenDoor"), pos(500, 14), scale(4), area(), "door"]);
+      add([sprite("door2"), pos(520, 50), scale(1.37), area(), "door"]);
     });
 
     if (!getGameState(roomName, "pryBarPickedUp")) {

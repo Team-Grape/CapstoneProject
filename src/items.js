@@ -19,9 +19,18 @@ export let ragObj = {
   image: '/items/rag.png',
 };
 
+
 export let lighterObj = {
   name: 'lighter',
   description: 'A regular lighter',
   quantity: 1,
   image: '/items/lighter.png'
 }
+
+export let fascinatingBook = {
+  name: '\'The Aesthetics of Fire-Hydrant Design: Volume IX\'',
+  description: 'a fascinating book! you can\'t wait to get home and read it.',
+  quantity: 1,
+  image: '/items/books/book_yellow_mini.png'
+}
+
