@@ -1,9 +1,14 @@
 import { navArrows, singleViewNavArrow, destroyNavArrows } from "../../buttons";
 import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
-import { textBubble, addToMessageLog } from "../../message";
+import { Message, textBubble, addToMessageLog } from "../../message";
 
-import { setGameState, getGameState } from "../../state.js";
+import {
+  setGameState,
+  getGameState,
+  saveCurrentRoom,
+  setPreviousRoom,
+} from "../../state.js";
 
 import { debugRectSize } from "../../debug";
 
@@ -18,10 +23,9 @@ import {
 } from "../../inventory.js";
 
 const roomName = "mainEntrance";
+saveCurrentRoom(roomName + "Down");
 const roomNavArrows = navArrows(roomName);
-
-
-console.log(InGameMenu);
+const message = new Message();
 
 const mainEntranceMessage = [
   [
@@ -35,6 +39,7 @@ const doorMessage = [
   ["You reach your trembling hand out to the doorknob."],
   ["You grip it firmly in your hand."],
   ["You give it a turn."],
+  ["it's locked."],
 ];
 
 const doorIsLocked = [["It's locked."]];
@@ -56,16 +61,16 @@ export const createMainEntrance = async () => {
         area(),
         "right-near-door",
       ]);
-      stopBGM();
+
       playBGM("ambience");
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     if (!getGameState(roomName, "mainEntranceMessageRead")) {
-      textBubble(mainEntranceMessage, () => {
-        setGameState(roomName, "introMessageRead", true);
-        addToMessageLog(mainEntranceMessage);
+      message.textBubble(mainEntranceMessage, () => {
+        setGameState(roomName, "mainEntranceMessageRead", true);
+        message.addToMessageLog(mainEntranceMessage);
       });
     } else {
       singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
@@ -74,16 +79,15 @@ export const createMainEntrance = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]]);
+      go("libraryDown");
     });
 
     onClick("center-door", () => {
-      if (getGameState(roomName, "centerDoorClicked", false)) {
-        textBubble(doorMessage);
-        textBubble(doorIsLocked);
+      if (!getGameState(roomName, "centerDoorClicked")) {
+        message.textBubble(doorMessage);
         setGameState(roomName, "centerDoorClicked", true);
       } else {
-        textBubble(doorIsLocked);
+        message.textBubble(doorIsLocked);
       }
     });
 

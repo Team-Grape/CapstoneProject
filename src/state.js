@@ -13,11 +13,27 @@ export function getCurrentRoom() {
   return currentRoom;
 }
 
+export function setPreviousRoom(previousRoom) {
+  if (!window.localStorage.getItem("previousRoom")) {
+    window.localStorage.setItem("previousRoom", "");
+  }
+  localStorage.setItem("previousRoom", previousRoom);
+}
+
+export function getPreviousRoom() {
+  const previousRoom = localStorage.getItem("previousRoom");
+  if (!previousRoom) {
+    return null;
+  }
+  return previousRoom;
+}
+
 export function clearLocalStorage() {
   window.localStorage.setItem("inventory", JSON.stringify([]));
   window.localStorage.setItem("messageLog", JSON.stringify([]));
   window.localStorage.setItem("gameState", JSON.stringify({}));
   window.localStorage.setItem("currentRoom", "");
+  window.localStorage.setItem('previousRoom', '')
 }
 
 const setOption = (option, value) => {
