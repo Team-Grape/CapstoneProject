@@ -2,6 +2,7 @@ export const loadAllSprites = () => {
   //Items =================
 
   loadSprite('key', './assets/items/key_gold.png');
+  loadSprite('lighter', './assets/items/lighter.png')
   loadSprite('pryBar', './assets/items/pry-bar.png');
   loadSprite('rag', './assets/items/rag.png');
   loadSprite('hammer', './assets/items/hammer.png');
@@ -180,12 +181,33 @@ loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/second
     sliceY: 1,
     anims: {
       dead: {
-        from: 0,
+        from: 10,
         to: 14,
       },
     },
   });
 
+  loadSprite('flame', './assets/flame/flame.png', {
+    sliceX: 6,
+    sliceY: 1,
+    anims: {
+      fire: {
+        from: 0,
+        to: 5,
+      },
+    },
+  })
+
+  loadSprite('cuteGhost', './assets/cuteGhost/ghost.png', {
+    sliceX: 4,
+    sliceY: 1,
+    anims: {
+      move: {
+        from: 0,
+        to: 3,
+      },
+    },
+  })
   // ===================== DECORATIONS ==========================//
 
   //Barrels
@@ -282,6 +304,7 @@ loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/second
   loadSprite('pile-of-bones', './assets/decorations/misc/pileOfBones.png');
   loadSprite('help-me', './assets/decorations/misc/helpMe.png');
   loadSprite('cob-webs', './assets/decorations/misc/cobweb_down_right.png');
+  loadSprite('whole-web', './assets/decorations/misc/wholeWeb.png');
   loadSprite(
     'chained-skeleton',
     './assets/decorations/misc/chainedSkeleton.png'
@@ -355,7 +378,7 @@ loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/second
     'basement-window',
     './assets/decorations/windows/basementWindow.png'
   );
-
+  
   loadSprite('window', './assets/decorations/windows/window.png');
 
   // Sofas =================

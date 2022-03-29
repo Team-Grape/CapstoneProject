@@ -49,5 +49,5 @@ createLibrary();
 createLivingRoom();
 
 
-go('livingRoomUp');
-// go('entry');
+go('entry');
+
