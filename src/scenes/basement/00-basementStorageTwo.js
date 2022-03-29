@@ -1,5 +1,13 @@
 import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
+import { setGameState, getGameState } from "../../state.js";
+import { silverKey } from "../../items.js";
+
+import {
+  addToInventory,
+  checkInventoryForItem,
+  removeFromInventory,
+} from "../../inventory.js";
 
 const roomName = "basementStorageTwo";
 const roomNavArrows = navArrows(roomName);
@@ -11,6 +19,19 @@ export const createBasementStorageTwo = async () => {
 
     onLoad(() => {
       add([sprite("storage-room-two"), scale(1)]);
+    });
+
+    if (!getGameState(roomName, "silverKeyPickedUp")) {
+      onLoad(() => {
+        add([sprite("key-silver"), pos(200, 300), scale(.8), area(), "keySilver"]);
+      });
+    }
+
+    onClick("keySilver", (keySilver) => {
+      textBubble([["A key was added to your inventory"]]);
+      addToInventory(silverKey);
+      setGameState(roomName, "silverKeyPickedUp", true);
+      keySilver.destroy();
     });
 
     const monster = add([

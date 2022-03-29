@@ -162,7 +162,7 @@ export const createBasementRoomTwo = async () => {
       playSFX("bookcaseMoving");
     });
     onClick("key", (key) => {
-      textBubble([["a key was added to your inventory"]]);
+      textBubble([["A key was added to your inventory"]]);
       addToInventory(cellarKey);
       setGameState(roomName, "keyPickedUp", true);
       key.destroy();
