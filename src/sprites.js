@@ -96,7 +96,7 @@ export const loadAllSprites = () => {
   );
   loadSprite(
     'bedroom-one-down',
-    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneDown.png'
+    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneDown-DoorRemoved.png'
   );
   loadSprite(
     'bedroom-one-right',

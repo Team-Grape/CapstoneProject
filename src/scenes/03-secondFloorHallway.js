@@ -65,7 +65,7 @@ export const createSecondFloorHallway = async () => {
     });
 
     onClick("right-door", () => {
-      textBubble([["it won't open"]]);
+      go("bedroomLeft")
     });
 
 //    onClick("right-far-door", () => {

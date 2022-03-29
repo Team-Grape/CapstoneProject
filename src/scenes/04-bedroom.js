@@ -14,6 +14,10 @@ import { navArrows } from "../buttons";
 const roomName = "bedroom";
 const roomNavArrows = navArrows(roomName);
 
+const introMessage = [
+  ["Spiders have blocked the door with thier webs. Find a way to get rid of it."],
+];
+
 export const createBedroom = () => {
   // ======================================================== //
   scene(roomName + "Up", () => {
@@ -24,6 +28,9 @@ export const createBedroom = () => {
     });
     roomNavArrows(viewDirection);
   });
+
+
+
   // ======================================================== //
   scene(roomName + "Right", () => {
     window.roomName = roomName;
@@ -33,6 +40,9 @@ export const createBedroom = () => {
     });
     roomNavArrows(viewDirection);
   });
+
+
+
   // ======================================================== //
   scene(roomName + "Down", () => {
     window.roomName = roomName;
@@ -118,21 +128,45 @@ export const createBedroom = () => {
 
     roomNavArrows(viewDirection);
   });
+
+
+
+
   // ======================================================== //
   scene(roomName + "Left", () => {
     window.roomName = roomName;
     window.viewDirection = "Left";
+
+    const door2CallBack = (door2) => {
+      if (getGameState(roomName, "doorUnlocked")) {
+        go("secondFloorHallwayDown")
+      } else if (checkInventoryForItem(cellarKey) && window.selectedItem == "cellar key") {
+        setGameState(roomName, "doorUnlocked", true);
+        removeFromInventory(cellarKey);
+        textBubble([["The key unlocked the door!"]])
+      } else if (window.selectedItem == "pry bar") {
+        textBubble([["It doesnt't work"]])
+      } else {
+        textBubble([["This door seems to be locked."]]);
+      }
+    };
+
     onLoad(() => {
       add([sprite("bedroom-one-left"), scale(1)]);
       add([sprite("door2"), pos(295, 75), scale(1.3), area(), "door2"]);
       if (!getGameState(roomName, "webBurned")) {
         add([sprite("whole-web"), pos(220, 50), scale(8), area(), "wholeWeb"]);
       } else {
-        onClick("door2", (door2) => {
-          textBubble([["This door seems to be locked."]]);
-        });
+        onClick("door2", door2CallBack)
       }
     });
+
+    if (!getGameState(roomName, "introMessageRead")) {
+      textBubble(introMessage, () => {
+        setGameState(roomName, "introMessageRead", true);
+        addToMessageLog(introMessage);
+      });
+    } 
 
     onClick("wholeWeb", (wholeWeb) => {
       if (window.selectedItem == "lighter") {
@@ -147,9 +181,7 @@ export const createBedroom = () => {
         setInterval(() => {
           wholeWeb.destroy();
           setGameState(roomName, "webBurned", true);
-          onClick("door2", (door2) => {
-            textBubble([["This door seems to be locked."]]);
-          });
+          onClick("door2", door2CallBack)
         }, 3000);
         setInterval(() => {
           flame.destroy();
