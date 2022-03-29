@@ -7,6 +7,7 @@ import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
 import { gameover } from './scenes/00-gameover';
+
 import { createBasementRoomOne } from './scenes/basement/01-basement';
 import { createBasementRoomTwo } from './scenes/basement/02-basement';
 import { createBasementStorageOne } from './scenes/basement/00-basementStorage';
@@ -19,8 +20,10 @@ import { createSecondFloorHallway } from './scenes/03-secondFloorHallway.js'
 import { createLivingRoom } from './scenes/05-livingRoom';
 import { createLibrary } from './scenes/firstFloor/02-library'
 import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance'
+import { createKitchen } from './scenes/firstFloor/03-kitchen';
 
 //window.SETCURSORDIVTOPLEFT = true
+
 
 kaboom({
   global: true,
@@ -56,7 +59,7 @@ createSecondFloorHallway();
 createLibrary();
 createLivingRoom();
 createMainEntrance();
-
+createKitchen();
 
 go('entry');
 

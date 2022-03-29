@@ -42,9 +42,16 @@ export let hammerObj = {
 };
 
 export let fascinatingBook = {
-  name: '\'The Aesthetics of Fire-Hydrant Design: Volume IX\'',
-  description: 'a fascinating book! you can\'t wait to get home and read it.',
+  name: "'The Aesthetics of Fire-Hydrant Design: Volume IX'",
+  description: "a fascinating book! you can't wait to get home and read it.",
   quantity: 1,
-  image: '/items/books/book_yellow_mini.png'
-}
+  image: '/items/books/book_yellow_mini.png',
+};
+
+export let meat = {
+  name: 'meat',
+  description: 'can eat',
+  quantity: 1,
+  image: '/items/meat.png',
+};
 

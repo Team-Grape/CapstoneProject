@@ -8,7 +8,7 @@ export const loadAllSprites = () => {
   loadSprite('pryBar', './assets/items/pry-bar.png');
   loadSprite('rag', './assets/items/rag.png');
   loadSprite('hammer', './assets/items/hammer.png');
-
+  loadSprite('meat', './assets/items/meat.png');
 
   // ==================== BUTTONS =============================//
 
@@ -57,13 +57,13 @@ export const loadAllSprites = () => {
 
   //Basement Hallway ===============//
   loadSprite(
-    "basementHallway",
-    "./assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png"
+    'basementHallway',
+    './assets/room_backgrounds/basement/hallway/basementHallway-NoDoors.png'
   );
 
   loadSprite(
-    "basementHallwayDoor",
-    "./assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png"
+    'basementHallwayDoor',
+    './assets/room_backgrounds/basement/hallway/basementHallwayDoorLeft.png'
   );
 
   loadSprite(
@@ -126,6 +126,13 @@ export const loadAllSprites = () => {
     "living-room-left",
     "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomLeft.png"
   );
+  loadSprite(
+    'kitchen-up',
+    './assets/room_backgrounds/firstFloor/kitchen/Kitchen.png'
+  );
+  loadSprite(
+    'kitchen-left',
+    './assets/room_backgrounds/firstFloor/kitchen/Pantry.png'
   loadSprite(
     "living-room-down",
     "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomDown.png"
@@ -319,10 +326,10 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
   );
   //Doors =================
 
-  loadSprite("door", "./assets/decorations/doors/evilDoor.png");
-  loadSprite("door2", "./assets/decorations/doors/door2.png");
-  loadSprite("wood-door", "./assets/decorations/doors/wooddoor.png");
-  loadSprite("woodenDoor", "./assets/decorations/doors/woodenDoor.png");
+  loadSprite('door', './assets/decorations/doors/evilDoor.png');
+  loadSprite('door2', './assets/decorations/doors/door2.png');
+  loadSprite('wood-door', './assets/decorations/doors/wooddoor.png');
+  loadSprite('woodenDoor', './assets/decorations/doors/woodenDoor.png');
 
   //Drawers =================
   loadSprite("drawer", "./assets/decorations/bookcases/drawer.png");
@@ -443,7 +450,6 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     "basement-window",
     "./assets/decorations/windows/basementWindow.png"
   );
-
   loadSprite("window", "./assets/decorations/windows/window.png");
 
   // Sofas =================
@@ -468,6 +474,86 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
 
   // paper =================
   loadSprite("notebook", "./assets/decorations/paper/notebook.png");
+
+  // kitchenStuff =================
+  loadSprite(
+    'fridge-close',
+    './assets/decorations/kitchenStuff/fridgeClose.png'
+  );
+  loadSprite('fridge-open', './assets/decorations/kitchenStuff/fridgeOpen.png');
+  loadSprite(
+    'kitchen-carbinet-closed',
+    './assets/decorations/kitchenStuff/kitchenCarbinetClosed.png'
+  );
+  loadSprite(
+    'kitchen-carbinet-opened',
+    './assets/decorations/kitchenStuff/kitchenCarbinetOpened.png'
+  );
+  loadSprite('board', './assets/decorations/kitchenStuff/board.png');
+  loadSprite('cup-board', './assets/decorations/kitchenStuff/cupBoard.png');
+  loadSprite('dish-board', './assets/decorations/kitchenStuff/dishBoard.png');
+  loadSprite(
+    'spatula-on-wall',
+    './assets/decorations/kitchenStuff/spatulaOnWall.png'
+  );
+  loadSprite(
+    'dinning-table',
+    './assets/decorations/kitchenStuff/dinningTable.png'
+  );
+  loadSprite(
+    'orange-juice',
+    './assets/decorations/kitchenStuff/foods/orange_juice.png'
+  );
+  loadSprite(
+    'potatochip-green',
+    './assets/decorations/kitchenStuff/foods/potatochip_green.png'
+  );
+  loadSprite(
+    'orange-juice',
+    './assets/decorations/kitchenStuff/foods/orange_juice.png'
+  );
+  loadSprite(
+    'soft-drink-blue',
+    './assets/decorations/kitchenStuff/foods/soft_drink_blue.png'
+  );
+  loadSprite(
+    'soft-drink-green',
+    './assets/decorations/kitchenStuff/foods/soft_drink_green.png'
+  );
+  loadSprite(
+    'soft-drink-red',
+    './assets/decorations/kitchenStuff/foods/soft_drink_red.png'
+  );
+  loadSprite(
+    'soft-drink-yellow',
+    './assets/decorations/kitchenStuff/foods/soft_drink_yellow.png'
+  );
+  loadSprite('water', './assets/decorations/kitchenStuff/foods/water.png');
+  loadSprite(
+    'milk-bottle',
+    './assets/decorations/kitchenStuff/foods/milk_bottle.png'
+  );
+  loadSprite('egg-box', './assets/decorations/kitchenStuff/foods/egg_box.png');
+  loadSprite(
+    'potatoes',
+    './assets/decorations/kitchenStuff/foods/potato_p.png'
+  );
+  loadSprite(
+    'apples',
+    './assets/decorations/kitchenStuff/foods/red_apple_p.png'
+  );
+  loadSprite('salmon', './assets/decorations/kitchenStuff/foods/salmon.png');
+  loadSprite(
+    'sausage',
+    './assets/decorations/kitchenStuff/foods/sausage_p.png'
+  );
+
+  loadSprite(
+    'bread',
+    './assets/decorations/kitchenStuff/foods/sliced_bread_p.png'
+  );
+
+  loadSprite('water', './assets/decorations/kitchenStuff/foods/water.png');
 };
 
 export const fadeOutOpacity = async (GameObj) => {
