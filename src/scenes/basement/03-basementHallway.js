@@ -106,7 +106,7 @@ export const createBasementHallway = async () => {
     });
 
     onClick("left-far-door", () => {
-      textBubble([["it won't open"]]);
+      go('basementRoomTwoUp')
     });
 
     onClick("right-near-door", () => {

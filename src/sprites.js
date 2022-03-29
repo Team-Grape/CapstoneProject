@@ -50,7 +50,7 @@ export const loadAllSprites = () => {
 
   loadSprite(
     'background-tile',
-    './assets/room_backgrounds/basement/template/basementTemplate.png'
+    './assets/room_backgrounds/basement/roomTwo/basementRoomTwoUp.png'
   );
 
   //Basement Hallway ===============//
@@ -118,7 +118,7 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
   );
 
-
+  
   //Storgae Rooms
   loadSprite(
     'storage-room-one', './assets/room_backgrounds/basement/roomFive/basementRoomFiveUp-Grey.png'
@@ -217,10 +217,22 @@ loadSprite('second-floor-hallway', './assets/room_backgrounds/secondFloor/second
       },
     },
   })
+
+  loadSprite('monster', './assets/monster/monster.png', {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      move: {
+        from: 0,
+        to: 1
+      }
+    }
+  })
   // ===================== DECORATIONS ==========================//
 
   //Barrels
   loadSprite('barrel1', './assets/decorations/barrels/Barrels1.png');
+  loadSprite('barrel2', './assets/decorations/barrels/Barrels3.png');
   loadSprite('barrel3', './assets/decorations/barrels/Barrels3.png');
 
   //Blankets ===============

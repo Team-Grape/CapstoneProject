@@ -53,5 +53,5 @@ createLibrary();
 createLivingRoom();
 
 
-go('basementHallwayDown');
+go('basementRoomTwoUp');
 

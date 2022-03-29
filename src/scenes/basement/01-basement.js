@@ -191,9 +191,9 @@ export const createBasementRoomOne = () => {
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
       } else if (window.selectedItem == "pry bar") {
-        textBubble([["it doesn't work"]]);
+        textBubble([["It doesn't work"]]);
       } else {
-        textBubble([["it doesn't open, it seems like it needs a key"]]);
+        textBubble([["It doesn't open, it seems like it needs a key"]]);
       }
     });
     roomNavArrows(window.viewDirection);
