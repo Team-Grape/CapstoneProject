@@ -1,9 +1,11 @@
+
 import { navArrows, singleViewNavArrow } from "../../buttons";
-import { textBubble, addToMessageLog } from "../../message";
+import { Message, textBubble, addToMessageLog } from "../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { setGameState, getGameState } from "../../state.js";
 import { cellarKey, silverKey } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
+
 
 import {
   addToInventory,
@@ -13,6 +15,7 @@ import {
 
 const roomName = "basementHallway";
 const roomNavArrows = navArrows(roomName);
+const message = new Message();
 
 const introMessage = [
   ["You step out of the room and into a hallway"],
@@ -84,16 +87,16 @@ export const createBasementHallway = async () => {
         "barrelRight",
       ]);
 
-      playBGM("spooky");
+      playBGM("ambience");
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     if (!getGameState(roomName, "introMessageRead")) {
-      textBubble(introMessage, () => {
+      message.textBubble(introMessage, () => {
         setGameState(roomName, "introMessageRead", true);
-        addToMessageLog(introMessage);
-      //  singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
+        message.addToMessageLog(introMessage);
+        //  singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
       });
     } else {
       singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
@@ -118,6 +121,7 @@ export const createBasementHallway = async () => {
     });
 
     onClick("center-door", () => {
+
         if (getGameState(roomName, "doorUnlocked")) {
           go("firstFloorHallwayDown");
         } else if (
@@ -132,7 +136,6 @@ export const createBasementHallway = async () => {
         } else {
           textBubble([["It doesn't open, it seems like it needs a key"]]);
         }
-   
     });
 
     //debugRectSize();

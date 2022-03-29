@@ -1,7 +1,7 @@
 import { navArrows, singleViewNavArrow } from "../buttons";
-import { textBubble, addToMessageLog } from "../message";
+import { Message, textBubble, addToMessageLog } from "../message";
 import { playBGM, stopBGM, playSFX } from "../sounds";
-import { setGameState, getGameState } from "../state.js";
+import { setGameState, getGameState, setPreviousRoom } from "../state.js";
 import { cellarKey } from "../items.js";
 import { debugRectSize } from "../debug.js";
 
@@ -13,6 +13,7 @@ import {
 
 const roomName = "firstFloorHallway";
 const roomNavArrows = navArrows(roomName);
+const message = new Message();
 
 const introMessage = [
   ["You found stairs and followed them out of the basement.  "],
@@ -37,15 +38,15 @@ export const createFirstFloorHallway = async () => {
       add([ rect(162, 235), opacity(0), pos(998, 158), area(), "right-near-door", ]);
       add([ rect(80, 47), opacity(0), pos(1088, 392), area(), "right-near-door", ]);
 
-      playBGM("spooky");
+      playBGM("ambience");
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     if (!getGameState(roomName, "introMessageRead")) {
-      textBubble(introMessage, () => {
+      message.textBubble(introMessage, () => {
         setGameState(roomName, "introMessageRead", true);
-        addToMessageLog(introMessage);
+        message.addToMessageLog(introMessage);
         //singleViewNavArrow(roomName + "Down", "basementHallwayDown");
       });
   //    singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
@@ -58,23 +59,25 @@ export const createFirstFloorHallway = async () => {
 
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]]);
+      message.textBubble([["it won't open"]]);
     });
 
     onClick("left-far-door", () => {
-      textBubble([["it won't open"]]);
+      console.log('Room Name and Direction',window.roomName, window.viewDirection)
+      setPreviousRoom(roomName + 'Down')
+      go('mainEntranceDown')
     });
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]]);
+      message.textBubble([["it won't open"]]);
     });
 
     onClick("right-far-door", () => {
       go('secondFloorHallwayDown')
+      setPreviousRoom(roomName + 'Down')
       //go('libraryUp')
       // textBubble([["it won't open"]]);
     });
-
 //    debugRectSize();
   });
 };
