@@ -25,6 +25,7 @@ export const createStudy = async () => {
 
     const nunInterval = setInterval(() => {
       const nun = add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
+      textBubble([["Boooooo!!"]])
     }, 5000);
 
     const gameoverInterval = setInterval(() => {

@@ -2,7 +2,7 @@ import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { setGameState, getGameState } from "../../state.js";
-import { cellarKey } from "../../items.js";
+import { cellarKey, silverKey } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
 
 import {
@@ -97,10 +97,20 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("right-far-door", () => {
-      go("secondFloorHallwayDown");
-      //go('libraryUp')
-      // textBubble([["it won't open"]]);
+      if (getGameState(roomName, "doorUnlocked")) {
+        go("secondFloorHallwayDown");
+      } else if (
+        checkInventoryForItem(silverKey) &&
+        window.selectedItem == "silver key"
+      ) {
+        setGameState(roomName, "doorUnlocked", true);
+        removeFromInventory(silverKey);
+        textBubble([["The key unlocked the door!"]]);
+      } else if (window.selectedItem == "pry bar") {
+        textBubble([["It doesn't work"]]);
+      } else {
+        textBubble([["It doesn't open, it seems like it needs a key"]]);
+      }
     });
-    //    debugRectSize();
   });
 };

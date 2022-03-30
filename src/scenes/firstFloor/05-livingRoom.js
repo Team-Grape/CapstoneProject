@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from '../../inventory';
 
-import { hammerObj } from '../../items.js';
+import { hammerObj, silverKey } from '../../items.js';
 
 import { setGameState, getGameState } from '../../state';
 
@@ -154,7 +154,7 @@ export const createLivingRoom = () => {
       onKeyPressRepeat('enter', () => {
         if (input.text === '7312') {
           textBubble([['Passcode is correct, enter the next room']]);
-          // go('bedroomUp');
+          go('firstFloorHallwayDown');
         } else {
           input.text = '';
           textBubble([['Passcode is incorrect, try again']]);
@@ -174,7 +174,30 @@ export const createLivingRoom = () => {
       add([sprite('redBTN'), scale(0.1), pos(1020, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(980, 120)]);
       add([sprite('painting10'), scale(4), area(), pos(980, 80), 'painting10']);
+      add([sprite('monster'), scale(1), area(), pos(80, 100), 'monster'])
     });
+
+    onClick('monster', (monster) => {
+      monster.play('move');
+      if (!getGameState(roomName, 'silverKeyPickedUp')) {
+        const keySilver = add([
+          sprite('key-silver'),
+          pos(130, 130),
+          scale(.8),
+          area(),
+          'keySilver'
+        ])
+        textBubble([["This key is not my face. Would you like to have it?"]])
+        onClick('keySilver', (keySilver) => {
+        textBubble([["A key was added to your inventory"]])
+        addToInventory(silverKey);
+        setGameState(roomName, "silverKeyPickedUp", true);
+        keySilver.destroy();
+      })
+      }
+      
+    })
+
     onClick('painting10', (painting10) => {
       setGameState(roomName, 'paintingMoved', true);
       painting10.pos.y = 220;
