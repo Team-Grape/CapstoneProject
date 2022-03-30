@@ -81,7 +81,7 @@ export class InGameMenu {
     // ]);
 
   const saveAsURL = add([
-    text("Save Game\nas URL", { size: 20, font: "sink" }),
+    text("Save Game\nas URL", { size: 20, font: "sinko" }),
     pos(1080, 130),
     area(),
     "saveAsURL",
@@ -90,7 +90,7 @@ export class InGameMenu {
     const saveAndQuit = add([
 
       text("Save\nand Quit", { size: 20, font: "sinko" }),
-      pos(1080, 135),
+      pos(1080, 180),
 
       area(),
       "saveAndQuit",
