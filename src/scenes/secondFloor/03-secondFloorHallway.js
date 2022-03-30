@@ -4,7 +4,7 @@ import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { setGameState, getGameState } from "../../state.js";
-import { cellarKey, silverKey } from "../../items.js";
+import { cellarKey, lockPick } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
 
 
@@ -71,22 +71,18 @@ export const createSecondFloorHallway = async () => {
           playSFX('doorClose')
         go("studyDown");
       } else if (
-        checkInventoryForItem(silverKey) &&
-        window.selectedItem == "silver key"
+        checkInventoryForItem(lockPick) &&
+        window.selectedItem == "lock pick"
       ) {
         setGameState(roomName, "doorUnlocked", true);
-        removeFromInventory(silverKey);
-        textBubble([["The key unlocked the door!"]], () => {
-           singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
-        })
+        removeFromInventory(lockPick);
+        textBubble([["You picked the lock!"]]);
       } else if (window.selectedItem == "pry bar") {
         textBubble([["It doesn't work"]], () => {
          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
         })
       } else {
-        textBubble([["It doesn't open, it seems like it needs a key"]], () => {
-         singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
-        })
+        textBubble([["It doesn't open, looks like the lock can be picked."]]);
       }
     });
 
