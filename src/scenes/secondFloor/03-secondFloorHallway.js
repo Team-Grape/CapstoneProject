@@ -62,9 +62,7 @@ export const createSecondFloorHallway = async () => {
     });
 
     onClick("center-door", () => {
-      textBubble([["it won't open"]], () => {
-        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
-      });
+      go("studyDown")
     });
 
     onClick("right-door", () => {
