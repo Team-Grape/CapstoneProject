@@ -24,7 +24,31 @@ export const createKitchen = () => {
     onLoad(() => {
       add([sprite('kitchen-up'), scale(1)]);
       add([sprite('egg-box'), scale(2.5), pos(950, 380)]);
-      add([sprite('potatoes'), scale(2.5), pos(100, 400)]);
+    });
+    const potatoes = add([
+      sprite('potatoes'),
+      scale(2.5),
+      pos(100, 400),
+      area(),
+      solid(),
+      'potatoes',
+    ]);
+    const cabbage = add([
+      sprite('cabbage'),
+      scale(2.5),
+      pos(600, 380),
+      area(),
+      solid(),
+      rotate(),
+      'cabbage',
+    ]);
+
+    onClick('cabbage', (cabbage) => {
+      textBubble([['Bye']]);
+      cabbage.onUpdate(() => {
+        cabbage.angle += 120 * dt();
+        cabbage.pos.x -= 2;
+      });
     });
     roomNavArrows(viewDirection);
   });

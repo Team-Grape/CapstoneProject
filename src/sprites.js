@@ -111,7 +111,10 @@ export const loadAllSprites = () => {
   );
 
   // Study =================== //
-  loadSprite("study", "./assets/room_backgrounds/secondFloor/study/secondFloorOffice.png")
+  loadSprite(
+    'study',
+    './assets/room_backgrounds/secondFloor/study/secondFloorOffice.png'
+  );
 
   //First Floor ============ //
 
@@ -568,11 +571,11 @@ export const loadAllSprites = () => {
   );
 
   loadSprite('water', './assets/decorations/kitchenStuff/foods/water.png');
-
+  loadSprite('cabbage', './assets/decorations/kitchenStuff/foods/cabbage.png');
 
   // Ghost Image ===============//
 
-  loadSprite('nun', './assets/monster/nun.jpg')
+  loadSprite('nun', './assets/monster/nun.jpg');
 };
 
 export const fadeOutOpacity = async (GameObj) => {
