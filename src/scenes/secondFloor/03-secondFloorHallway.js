@@ -1,15 +1,17 @@
-import { navArrows, singleViewNavArrow } from "../buttons";
-import { textBubble, addToMessageLog } from "../message";
-import { playBGM, stopBGM, playSFX } from "../sounds";
-import { setGameState, getGameState } from "../state.js";
-import { cellarKey } from "../items.js";
-import { debugRectSize } from "../debug.js";
+
+import { navArrows, singleViewNavArrow } from "../../buttons";
+import { textBubble, addToMessageLog } from "../../message";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+import { setGameState, getGameState } from "../../state.js";
+import { cellarKey } from "../../items.js";
+import { debugRectSize } from "../../debug.js";
+
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
 const roomName = "secondFloorHallway";
 const roomNavArrows = navArrows(roomName);
@@ -56,11 +58,13 @@ export const createSecondFloorHallway = async () => {
 
 
     onClick("left-door", () => {
-      textBubble([["it won't open"]]);
+      go("kidRoomUp")
     });
 
     onClick("center-door", () => {
-      textBubble([["it won't open"]]);
+      textBubble([["it won't open"]], () => {
+        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+      });
     });
 
     onClick("right-door", () => {

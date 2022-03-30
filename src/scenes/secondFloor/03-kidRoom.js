@@ -2,21 +2,21 @@ import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory";
+} from "../../inventory.js";
 
-import { ragObj } from "../items.js";
+import { ragObj } from "../../items.js";
 
-import { setGameState, getGameState } from "../state";
+import { setGameState, getGameState } from "../../state";
 
-import { textBubble, addToMessageLog } from "../message";
+import { textBubble, addToMessageLog } from "../../message";
 
-import { playBGM, stopBGM } from "../sounds";
-import { navArrows } from "../buttons";
+import { playBGM, stopBGM } from "../../sounds";
+import { navArrows } from "../../buttons";
 
 const roomName = "kidRoom";
 const roomNavArrows = navArrows(roomName);
 
-export const createBasementRoomThree = () => {
+export const createKidRoom = () => {
   // ======================================================== //
   scene(roomName + "Up", () => {
     window.roomName = roomName;
@@ -36,7 +36,7 @@ export const createBasementRoomThree = () => {
     if (!getGameState(roomName, "ragPickedUp")) {
       const rag = add([sprite("rag"), scale(1), pos(900, 380), area(), "rag"]);
       onClick("rag", (rag) => {
-        textBubble([["an old rag was added to your inventory"]]);
+        textBubble([["An old rag was added to your inventory"]]);
 
         addToInventory(ragObj);
         setGameState(roomName, "ragPickedUp", true);
@@ -111,7 +111,7 @@ export const createBasementRoomThree = () => {
           scale(2.7),
           pos(850, 110),
         ]);
-        textBubble([['something display on the picture']]);
+        textBubble([['Something displayed on the picture']]);
       }
     });
 
@@ -124,7 +124,7 @@ export const createBasementRoomThree = () => {
           scale(2.4),
           pos(950, 140),
         ]);
-        textBubble([['something display on the picture']]);
+        textBubble([['Something displayed on the picture']]);
       }
     });
     roomNavArrows(viewDirection);
@@ -141,16 +141,6 @@ export const createBasementRoomThree = () => {
       add([sprite("cycle-chair"), scale(3.5), pos(165, 400)]);
       add([sprite("land-scape-painting"), scale(3), pos(600, 120)]);
       add([sprite("red-flower"), scale(3.5), pos(1200, 300)]);
-      add([
-        sprite("woodenDoor", { flipX: true }),
-        pos(900, 106),
-        scale(3),
-        area(),
-        "woodenDoor",
-      ]);
-    });
-    onClick("woodenDoor", () => {
-      go("basementRoomTwoLeft");
     });
     roomNavArrows(viewDirection);
   });
@@ -166,8 +156,8 @@ export const createBasementRoomThree = () => {
       add([sprite("another-painting"), scale(3), pos(600, 120)]);
       add([sprite("white-flowers"), scale(3), pos(650, 300)]);
       add([sprite("seats"), scale(3), pos(1200, 400)]);
-      add([sprite("wood-door"), scale(4), pos(880, 185), area(), "wood-door"]);
-      add([sprite("orange-passcode-button"), scale(0.17), pos(1050, 240)]);
+      add([sprite("door2"), pos(875, 75), scale(1.3), area(), "door2"]);
+      add([sprite("orange-passcode-button"), scale(0.17), pos(1050, 140)]);
     });
 
     const cuteGhost = add([
@@ -187,10 +177,10 @@ export const createBasementRoomThree = () => {
       cuteGhost.play('move', { loop: true });
     }
     
-    onClick("wood-door", () => {
-      textBubble([["Please enter the passcode to exit."]]);
+    onClick("door2", () => {
+      textBubble([["The door locked behind you. Please enter a passcode to exit."]]);
       const input = add([
-        pos(1057, 240),
+        pos(1057, 140),
         text("", {
           font: "apl386",
           size: 20,
@@ -207,7 +197,7 @@ export const createBasementRoomThree = () => {
       onKeyPressRepeat('enter', () => {
         if (input.text === '0815') {
           textBubble([['Passcode is correct, enter the next room']]);
-          go('bedroomUp');
+          go('secondFloorHallwayDown');
         } else {
           input.text = "";
           textBubble([["Passcode is incorrect, try again"]]);

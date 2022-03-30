@@ -9,7 +9,7 @@ import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
 const roomName = "firstFloorHallway";
 const roomNavArrows = navArrows(roomName);
@@ -76,7 +76,9 @@ export const createFirstFloorHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]]);
+      textBubble([["it won't open"]], () => {
+        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+      });
     });
 
     onClick("left-far-door", () => {
@@ -89,7 +91,9 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]]);
+      textBubble([["it won't open"]], () => {
+        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+      });
     });
 
     onClick("right-far-door", () => {
