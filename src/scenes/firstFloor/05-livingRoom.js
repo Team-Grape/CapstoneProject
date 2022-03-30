@@ -2,16 +2,16 @@ import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from '../inventory';
+} from '../../inventory';
 
-import { hammerObj } from '../items.js';
+import { hammerObj } from '../../items.js';
 
-import { setGameState, getGameState } from '../state';
+import { setGameState, getGameState } from '../../state';
 
-import { textBubble, addToMessageLog } from '../message';
+import { textBubble, addToMessageLog } from '../../message';
 
-import { playBGM, stopBGM } from '../sounds';
-import { navArrows } from '../buttons';
+import { playBGM, stopBGM } from '../../sounds';
+import { navArrows } from '../../buttons';
 
 const roomName = 'livingRoom';
 const roomNavArrows = navArrows(roomName);

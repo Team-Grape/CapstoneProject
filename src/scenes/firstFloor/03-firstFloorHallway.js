@@ -1,15 +1,15 @@
-import { navArrows, singleViewNavArrow } from "../buttons";
-import { Message, textBubble, addToMessageLog } from "../message";
-import { playBGM, stopBGM, playSFX } from "../sounds";
-import { setGameState, getGameState, setPreviousRoom } from "../state.js";
-import { cellarKey } from "../items.js";
-import { debugRectSize } from "../debug.js";
+import { navArrows, singleViewNavArrow } from "../../buttons";
+import { Message, textBubble, addToMessageLog } from "../../message";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+import { setGameState, getGameState, setPreviousRoom } from "../../state.js";
+import { cellarKey } from "../../items.js";
+import { debugRectSize } from "../../debug.js";
 
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../inventory.js";
+} from "../../inventory.js";
 
 const roomName = "firstFloorHallway";
 const roomNavArrows = navArrows(roomName);
