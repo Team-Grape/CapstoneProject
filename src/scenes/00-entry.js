@@ -29,7 +29,7 @@ export const entry = () => {
     add([rect(width(), height()), opacity(0), pos(0,0), area(), 'clickBox'])
 
     onClick('clickBox', () => {
-
+      window.localStorage.setItem('menuIsOpen', false)
       go("title");
     });
   });

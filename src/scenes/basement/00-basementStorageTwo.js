@@ -28,7 +28,9 @@ export const createBasementStorageTwo = async () => {
     }
 
     onClick("keySilver", (keySilver) => {
-      textBubble([["A key was added to your inventory"]]);
+      textBubble([["A key was added to your inventory"]], () => {
+        singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
+      });
       addToInventory(silverKey);
       setGameState(roomName, "silverKeyPickedUp", true);
       keySilver.destroy();
@@ -46,9 +48,12 @@ export const createBasementStorageTwo = async () => {
       monster.play("move");
       textBubble([
         [`I dont't know where my face went. Please help me find it.`],
-      ]);
+      ], () => {
+        singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
+      });
+
     });
 
-    singleViewNavArrow("basementStorageTwo", "basementHallwayDown");
+    singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
   });
 };

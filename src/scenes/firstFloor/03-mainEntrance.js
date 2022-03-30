@@ -1,13 +1,12 @@
 import { navArrows, singleViewNavArrow, destroyNavArrows } from "../../buttons";
 import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
-import { Message, textBubble, addToMessageLog } from "../../message";
+import { textBubble, addToMessageLog } from "../../message";
 
 import {
   setGameState,
   getGameState,
   saveCurrentRoom,
-  setPreviousRoom,
 } from "../../state.js";
 
 import { debugRectSize } from "../../debug";
@@ -23,9 +22,8 @@ import {
 } from "../../inventory.js";
 
 const roomName = "mainEntrance";
-saveCurrentRoom(roomName + "Down");
 const roomNavArrows = navArrows(roomName);
-const message = new Message();
+
 
 const mainEntranceMessage = [
   [
@@ -68,9 +66,10 @@ export const createMainEntrance = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     if (!getGameState(roomName, "mainEntranceMessageRead")) {
-      message.textBubble(mainEntranceMessage, () => {
+      textBubble(mainEntranceMessage, () => {
         setGameState(roomName, "mainEntranceMessageRead", true);
-        message.addToMessageLog(mainEntranceMessage);
+        addToMessageLog(mainEntranceMessage);
+        singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
       });
     } else {
       singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
@@ -84,10 +83,14 @@ export const createMainEntrance = async () => {
 
     onClick("center-door", () => {
       if (!getGameState(roomName, "centerDoorClicked")) {
-        message.textBubble(doorMessage);
+        textBubble(doorMessage, () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
         setGameState(roomName, "centerDoorClicked", true);
       } else {
-        message.textBubble(doorIsLocked);
+        textBubble(doorIsLocked, () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
       }
     });
 

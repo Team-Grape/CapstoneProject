@@ -6,6 +6,7 @@ import { setGameState, getGameState } from "../../state.js";
 const roomName = 'basementStorageOne';
 const roomNavArrows = navArrows(roomName);
 
+
 export const createBasementStorageOne = async () => {
     scene(roomName + "Down", () => {
         window.roomName = roomName;
@@ -26,13 +27,15 @@ export const createBasementStorageOne = async () => {
           onClick("cuteGhost", (cuteGhost) => {
             cuteGhost.play('move', { loop: true });
             setGameState(roomName, "ghostMoved", true)
-            textBubble([['What are you doing hanging around this closet? Hurry and get out of here before the evil Ghost finds you.']])
+            textBubble([['What are you doing hanging around this closet? Hurry and get out of here before the evil Ghost finds you.']], () => {
+              singleViewNavArrow("basementStorageOneDown", "basementHallwayDown")
+            })
           })
       
           if (getGameState(roomName, "ghostMoved")) {
             cuteGhost.play('move', { loop: true });
           }
-        singleViewNavArrow("basementStorageOne", "basementHallwayDown")
+        singleViewNavArrow("basementStorageOneDown", "basementHallwayDown")
 
     })
 }

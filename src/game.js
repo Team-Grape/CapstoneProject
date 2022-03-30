@@ -22,7 +22,7 @@ import { createLibrary } from './scenes/firstFloor/02-library'
 import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance'
 import { createKitchen } from './scenes/firstFloor/03-kitchen';
 
-//window.SETCURSORDIVTOPLEFT = true
+// window.SETCURSORDIVTOPLEFT = true
 
 
 kaboom({
