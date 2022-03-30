@@ -36,22 +36,28 @@ export let lighterObj = {
 
 export let hammerObj = {
   name: 'hammer',
-  description: 'a hammer to broke the glass',
+  description: 'A hammer to break the glass',
   quantity: 1,
   image: '/items/hammer.png',
 };
 
 export let fascinatingBook = {
   name: "'The Aesthetics of Fire-Hydrant Design: Volume IX'",
-  description: "a fascinating book! you can't wait to get home and read it.",
+  description: "A fascinating book! you can't wait to get home and read it.",
   quantity: 1,
   image: '/items/books/book_yellow_mini.png',
 };
 
 export let meat = {
   name: 'meat',
-  description: 'can eat',
+  description: 'Can eat',
   quantity: 1,
   image: '/items/meat.png',
 };
 
+export let lockPick = {
+  name: 'lock pick',
+  description: 'A rusty lock pick. Can be used to pick the lock of a door.',
+  quantity: 1,
+  image: '/items/lockpick_brown.png'
+};
