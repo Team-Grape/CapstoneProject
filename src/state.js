@@ -13,20 +13,25 @@ export function getCurrentRoom() {
   return currentRoom;
 }
 
-export function setPreviousRoom(previousRoom) {
-  if (!window.localStorage.getItem("previousRoom")) {
-    window.localStorage.setItem("previousRoom", "");
-  }
-  localStorage.setItem("previousRoom", previousRoom);
-}
+//======================
+//I don't think we need these anymore but I'm going to
+//leave them until I am sure
 
-export function getPreviousRoom() {
-  const previousRoom = localStorage.getItem("previousRoom");
-  if (!previousRoom) {
-    return null;
-  }
-  return previousRoom;
-}
+// export function setPreviousRoom(previousRoom) {
+//   if (!window.localStorage.getItem("previousRoom")) {
+//     window.localStorage.setItem("previousRoom", "");
+//   }
+//   localStorage.setItem("previousRoom", previousRoom);
+// }
+
+// export function getPreviousRoom() {
+//   const previousRoom = localStorage.getItem("previousRoom");
+//   if (!previousRoom) {
+//     return null;
+//   }
+//   return previousRoom;
+// }
+//=========================
 
 export function clearLocalStorage() {
   window.localStorage.setItem("inventory", JSON.stringify([]));

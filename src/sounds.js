@@ -19,6 +19,7 @@ export const loadAllSounds = () => {
 //  ================================================================= //
 
 export const playSFX = (sndNameStr) => {
+  console.log('playingSFX')
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
 };
 

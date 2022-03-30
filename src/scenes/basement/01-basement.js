@@ -176,7 +176,6 @@ export const createBasementRoomOne = () => {
       ]);
       onClick("pryBar", (pryBar) => {
         textBubble([["A Pry Bar was added to your inventory"]]);
-
         addToInventory(pryBarObj);
         setGameState(roomName, "pryBarPickedUp", true);
         pryBar.destroy();

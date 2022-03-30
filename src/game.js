@@ -61,5 +61,5 @@ createLivingRoom();
 createMainEntrance();
 createKitchen();
 
-go('kidRoomUp');
+go('entry');
 

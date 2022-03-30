@@ -1,10 +1,12 @@
-import { saveCurrentRoom, savePreviousRoom } from "./state";
+import { saveCurrentRoom, savePreviousRoom, getPreviousRoom } from "./state";
 import { openMessageLog } from "./message";
 import { InGameMenu } from "./menu.js";
+// import { createInGameMenu } from "./menu.js";
 const inGameMenu = new InGameMenu();
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
   inGameMenu.display();
+  // createInGameMenu()
   displayMessageLog();
   for (let i = 0; i < arrayOfDirectionsStrings.length; i++) {
     let direction = arrayOfDirectionsStrings[i];
@@ -42,11 +44,16 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
 }
 
 export const singleViewNavArrow = (roomName, previousRoom) => {
+  console.log('previousRoom', typeof previousRoom)
+  function goPreviousRoom(previousRoom) {
+    go(previousRoom)
+  }
   saveCurrentRoom(roomName);
+  displayNavArrows(["down"]);
   onClick("down-arrow", () => {
+    console.log('PreviousRoom',previousRoom)
     go(previousRoom);
   });
-  displayNavArrows(["down"]);
 }
 
 export const navArrows = (roomName) => (d) => {
