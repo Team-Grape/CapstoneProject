@@ -221,6 +221,7 @@ export const createKitchen = () => {
     });
 
     onClick('key', (key) => {
+      playSFX('keyNoise')
       textBubble([['a key was added to your inventory']]);
       addToInventory(cellarKey);
       setGameState(roomName, 'keyPickedUp', true);

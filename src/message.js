@@ -150,6 +150,37 @@ export function openMessageLog() {
     closeButton.destroy();
   });
 
+  /*
+    message.forEach((currentMessage) => {
+      let shortenedCurrentMessage = []
+      if (currentMessage[0].length > 25) {
+        for (let i = 25; i > 0; i--) {
+          let currentCharacter = currentMessage[0][i];
+          if (currentCharacter == ' ') {
+            shortenedCurrentMessage.push(currentMessage[0].slice(0, i), currentMessage[0].slice(i + 1))
+            console.log('Shortened Current Message', shortenedCurrentMessage)
+            break
+          }
+        }
+        msgY = msgY + 20;
+        const cm = add([
+          text(shortenedCurrentMessage[0], { size: 25, font: 'sinko', lineSpacing: 5 }),
+          pos(width() / 2 - 280, msgY),
+        ]);
+        msgY = msgY + 20;
+        const cm2 = add([
+          text(shortenedCurrentMessage[1], { size: 25, font: 'sinko', lineSpacing: 5 }),
+          pos(width() / 2 - 280, msgY),
+        ]);
+      } else {
+        msgY = msgY + 20;
+        const cm = add([
+          text(currentMessage, { size: 25, font: 'sinko', lineSpacing: 5 }),
+          pos(width() / 2 - 280, msgY),
+        ]);
+      }
+  */
+
   let msgY = height() / 2 - 160;
   let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
   currentMessageLog.forEach((message) => {

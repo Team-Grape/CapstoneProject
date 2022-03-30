@@ -19,8 +19,8 @@ const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
   ["You step out of the room and into a hallway"],
-  ["The challanges will increase  "],
-  ["If you can't escape from the room, then stay here in my tummy forever~~~ "],
+  ["The challanges will increase"],
+  ["If you can't escape from the room, then stay here in my tummy forever~~~"],
 ];
 
 export const createBasementHallway = async () => {
@@ -107,24 +107,30 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]]);
+      textBubble([["it won't open"]], () => {
+        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+      });
     });
 
     onClick("left-far-door", () => {
+      playSFX('doorClose')
       go('basementRoomTwoUp')
     });
 
     onClick("right-near-door", () => {
+      playSFX('doorClose')
       go('basementStorageOneDown')
     });
 
     onClick("right-far-door", () => {
+      playSFX('doorClose')
       go('basementStorageTwoDown')
     });
 
     onClick("center-door", () => {
 
         if (getGameState(roomName, "doorUnlocked")) {
+          playSFX('doorClose')
           go("firstFloorHallwayDown");
         } else if (
           checkInventoryForItem(silverKey) &&
@@ -134,9 +140,13 @@ export const createBasementHallway = async () => {
           removeFromInventory(silverKey);
           textBubble([["The key unlocked the door!"]]);
         } else if (window.selectedItem == "pry bar") {
-          textBubble([["It doesn't work"]]);
+          textBubble([["It doesn't work"]], () => {
+            singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+          });
         } else {
-          textBubble([["It doesn't open, it seems like it needs a key"]]);
+          textBubble([["It doesn't open, it seems like it needs a key."]], () => {
+            singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+          });
         }
     });
 

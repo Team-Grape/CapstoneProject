@@ -28,11 +28,13 @@ export const createBasementStorageTwo = async () => {
     }
 
     onClick("keySilver", (keySilver) => {
-      textBubble([["A key was added to your inventory"]], () => {
+      playSFX('keyNoise')
+      textBubble([["A key was added to your inventory."]], () => {
         singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
       });
       addToInventory(silverKey);
       setGameState(roomName, "silverKeyPickedUp", true);
+  
       keySilver.destroy();
     });
 
