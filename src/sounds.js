@@ -14,11 +14,21 @@ export const loadAllSounds = () => {
   loadSound('click', './assets/sounds/click.wav')
   loadSound('poof', './assets/sounds/poof.wav')
   loadSound('sparkle', './assets/sounds/sparkle.wav')
+  loadSound('footSteps', './assets/sounds/stairs.wav')
+  loadSound('doorClose', './assets/sounds/doorClosingNoise.wav')
+  loadSound('fireSound', './assets/sounds/fireSound.wav')
+  loadSound('swordSound', './assets/sounds/swordSound.wav')
+  loadSound('keyNoise', './assets/sounds/keyNoise.wav')
+  loadSound('crumble', "./assets/sounds/crumble.wav")
+  loadSound('cabbage', './assets/sounds/openChestSound.wav')
 };
 
 //  ================================================================= //
 
 export const playSFX = (sndNameStr) => {
+  if (window.currentlyPlayingSFX) {
+    
+  }
   console.log('playingSFX')
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
 };

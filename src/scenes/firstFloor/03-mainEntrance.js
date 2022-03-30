@@ -80,6 +80,7 @@ export const createMainEntrance = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("right-near-door", () => {
+      playSFX('doorClose')
       go("libraryDown");
     });
 

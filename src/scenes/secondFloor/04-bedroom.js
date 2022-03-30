@@ -8,16 +8,14 @@ import { cellarKey, lighterObj, lockPick } from "../../items";
 
 import { setGameState, getGameState } from "../../state";
 import { textBubble, addToMessageLog } from "../../message";
-import { playBGM, stopBGM } from "../../sounds";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { navArrows } from "../../buttons";
 
 const roomName = "bedroom";
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  [
-    "Spiders have blocked the door with thier webs. Find a way to get rid of it.",
-  ],
+  ["Spiders have blocked the door with their webs. Find a way to get rid of it."],
 ];
 
 export const createBedroom = () => {
@@ -87,6 +85,7 @@ export const createBedroom = () => {
     }
 
     onClick("skeletonStand", (skeletonStand) => {
+
       skeletonStand.destroy();
       const skeletonAttack = add([
         sprite("skeleton-attack"),
@@ -96,6 +95,7 @@ export const createBedroom = () => {
         "skeletonAttack",
       ]);
       skeletonAttack.play("attack", { speed: 5, loop: true });
+      playSFX('swordSound')
       const skeletonMessage = [
         [
           "Oh no, the skeleton is awake, must find a way to destroy this skeleton!",
@@ -106,6 +106,7 @@ export const createBedroom = () => {
       onClick("skeletonAttack", (skeletonAttack) => {
         //if (getGameState(roomName, "pryBarPickedUp")) {
         if (window.selectedItem == "pry bar") {
+          playSFX('crumble')
           skeletonAttack.destroy();
 
           const skeletonDead = add([
@@ -131,8 +132,8 @@ export const createBedroom = () => {
               }, 2000);
 
               onClick("key", (key) => {
-                textBubble([["A key was added to your inventory."]]);
-
+                playSFX("keyNoise")
+                textBubble([["A key was added to your inventory."]])
                 addToInventory(cellarKey);
                 setGameState(roomName, "keyPickedUp", true);
                 key.destroy();

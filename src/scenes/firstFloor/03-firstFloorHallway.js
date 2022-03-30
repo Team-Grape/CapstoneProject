@@ -18,8 +18,8 @@ const roomNavArrows = navArrows(roomName);
 // const message = new Message();
 
 const introMessage = [
-  ['You found stairs and followed them out of the basement.  '],
-  ["You've made it to the first floor!  "],
+  ["You found stairs and followed them out of the basement."],
+  ["You've made it to the first floor!"],
 ];
 
 export const createFirstFloorHallway = async () => {
@@ -103,6 +103,7 @@ export const createFirstFloorHallway = async () => {
 
     onClick("right-far-door", () => {
       if (getGameState(roomName, "doorUnlocked")) {
+          playSFX('doorClose')
         go("secondFloorHallwayDown");
       } else if (
         checkInventoryForItem(silverKey) &&

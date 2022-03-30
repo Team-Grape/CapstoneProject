@@ -19,9 +19,9 @@ const roomName = "basementRoomOne";
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  ["You woke up and found yourself in an strange room"],
-  ["The door is locked and you are trapped in the room"],
-  ["Look around the room to see if you can find the key to open the door"],
+  ["You woke up and found yourself in an strange room."],
+  ["The door is locked and you are trapped in the room."],
+  ["Look around the room to see if you can find the key to open the door."],
 ];
 
 export const createBasementRoomOne = () => {
@@ -63,6 +63,7 @@ export const createBasementRoomOne = () => {
       if (window.selectedItem == "pry bar") {
         (async () => {
           await fadeOutOpacity(barrel);
+          playSFX('keyNoise')
           textBubble([["A key was added to your inventory"]]);
           addToInventory(cellarKey);
           setGameState(roomName, "keyPickedUp", true);
@@ -117,7 +118,8 @@ export const createBasementRoomOne = () => {
             onEnd: () => {
               poof.destroy();
               const beginMessage = [
-                "Oh no. Not another one. I was trapped here just like you and never made it out.",
+                ['"Oh no. Not another one!'],
+                [' I was trapped here just like you and never made it out.']
               ];
               textBubble([beginMessage]);
               let ghost1 = add([

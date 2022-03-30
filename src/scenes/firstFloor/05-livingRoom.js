@@ -37,7 +37,7 @@ export const createLivingRoom = () => {
         'hammer',
       ]);
       onClick('hammer', (hammer) => {
-        textBubble([['a hammer was added to your inventory']]);
+        textBubble([['a hammer was added to your inventory.']]);
 
         addToInventory(hammerObj);
         setGameState(roomName, 'hammerPickedUp', true);
@@ -254,6 +254,7 @@ export const createLivingRoom = () => {
 
     onClick('woodenDoor', () => {
       textBubble([['Please enter the passcode to exit.']]);
+
       if (
         numberLabel1.text === 7 &&
         numberLabel2.text === 3 &&

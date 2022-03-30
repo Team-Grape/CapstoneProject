@@ -57,23 +57,24 @@ export class InGameMenu {
       area(),
     ]);
     let continueButton = add([
-      text("Continue", { size: 20, font: "sink" }),
+      text("Continue", { size: 20, font: "sinko" }),
       pos(1080, 60),
       color(255, 255, 255),
       area(),
       "continue",
     ]);
     const optionsButton = add([
-      text("Options", { size: 20, font: "sink" }),
-      //pos(1080, 100),
-      pos(1080, 95),
+
+      text("Options", { size: 20, font: "sinko" }),
+      pos(1080, 100),
+
       color(255, 255, 255),
       area(),
       "options",
     ]);
   
     // const restartButton = add([
-    //   text("Restart", { size: 20, font: "sink" }),
+    //   text("Restart", { size: 20, font: "sinko" }),
     //   pos(1080, 140),
     //   area(),
     //   "restart",
@@ -87,9 +88,10 @@ export class InGameMenu {
   ]);
 
     const saveAndQuit = add([
-      text("Save\nand Quit", { size: 20, font: "sink" }),
-      //pos(1080, 135),
-      pos(1080, 180),
+
+      text("Save\nand Quit", { size: 20, font: "sinko" }),
+      pos(1080, 135),
+
       area(),
       "saveAndQuit",
     ]);
@@ -229,14 +231,14 @@ function createMenuButtons() {
     area(),
   ]);
   let continueButton = add([
-    text("Continue", { size: 20, font: "sink" }),
+    text("Continue", { size: 20, font: "sinko" }),
     pos(1080, 60),
     color(255, 255, 255),
     area(),
     "continue",
   ]);
   const optionsButton = add([
-    text("Options", { size: 20, font: "sink" }),
+    text("Options", { size: 20, font: "sinko" }),
     pos(1080, 100),
     color(255, 255, 255),
     area(),
@@ -244,7 +246,7 @@ function createMenuButtons() {
   ]);
 
   // const restartButton = add([
-  //   text("Restart", { size: 20, font: "sink" }),
+  //   text("Restart", { size: 20, font: "sinko" }),
   //   pos(1080, 140),
   //   area(),
   //   "restart",
@@ -252,7 +254,7 @@ function createMenuButtons() {
 
 
   const saveAndQuit = add([
-    text("Save\nand Quit", { size: 20, font: "sink" }),
+    text("Save\nand Quit", { size: 20, font: "sinko" }),
     pos(1080, 135),
     area(),
     "saveAndQuit",

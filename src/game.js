@@ -63,4 +63,3 @@ createKitchen();
 createStudy();
 
 go('entry');
-

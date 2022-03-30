@@ -32,10 +32,12 @@ export const createKidRoom = () => {
       // playBGM('kidMusic');
     });
 
-    if (!getGameState(roomName, 'ragPickedUp')) {
-      const rag = add([sprite('rag'), scale(1), pos(900, 380), area(), 'rag']);
-      onClick('rag', (rag) => {
-        textBubble([['An old rag was added to your inventory']]);
+
+    if (!getGameState(roomName, "ragPickedUp")) {
+      const rag = add([sprite("rag"), scale(1), pos(900, 380), area(), "rag"]);
+      onClick("rag", (rag) => {
+        textBubble([["An old rag was added to your inventory."]]);
+
 
         addToInventory(ragObj);
         setGameState(roomName, 'ragPickedUp', true);
@@ -125,7 +127,7 @@ export const createKidRoom = () => {
     }
 
     onClick('largeEmptyPicture', (largeEmptyPicture) => {
-      textBubble([['There are so much dust on the picture']]);
+      textBubble([['There are so much dust on the picture.']]);
       if (window.selectedItem == 'rag') {
         largeEmptyPicture.destroy();
         const pictureOneWithNumber = add([
@@ -133,13 +135,15 @@ export const createKidRoom = () => {
           scale(2.7),
           pos(850, 110),
         ]);
+
         textBubble([['Something displayed on the picture']]);
         setGameState(roomName, 'largeEmptyPictureRemoveDust', true);
+
       }
     });
 
     onClick('smallEmptyPicture', (smallEmptyPicture) => {
-      textBubble([['There are so much dust on the picture']]);
+      textBubble([['There are so much dust on the picture.']]);
       if (window.selectedItem == 'rag') {
         smallEmptyPicture.destroy();
         const pictureTwoWithNumber = add([
@@ -147,8 +151,10 @@ export const createKidRoom = () => {
           scale(2.4),
           pos(950, 140),
         ]);
+
         textBubble([['Something displayed on the picture']]);
         setGameState(roomName, 'smallEmptyPictureRemoveDust', true);
+
       }
     });
     roomNavArrows(viewDirection);
@@ -256,6 +262,7 @@ export const createKidRoom = () => {
         ['The door locked behind you. Please enter a passcode to exit.'],
       ]);
 
+
       if (
         numberLabel1.text === 0 &&
         numberLabel2.text === 8 &&
@@ -275,6 +282,7 @@ export const createKidRoom = () => {
         let number4 = 0;
         textBubble([['Passcode is incorrect, try again']]);
       }
+
     });
 
     function createNumberLabel1() {

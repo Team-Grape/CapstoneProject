@@ -18,7 +18,7 @@ const roomName = 'secondFloorHallway';
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  ["You've made it to the second floor!  "],
+  ["You've made it to the second floor!"],
 ];
 
 
@@ -59,17 +59,16 @@ export const createSecondFloorHallway = async () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    // onClick('down-arrow', () => {
-    //   go('firstFloorHallwayDown');
-    // });
-
-    onClick('left-door', () => {
-      go('kidRoomUp');
+    onClick("left-door", () => {
+      playSFX('doorClose')
+      go("kidRoomUp")
     });
 
 
     onClick("center-door", () => {
+
       if (getGameState(roomName, "doorUnlocked")) {
+          playSFX('doorClose')
         go("studyDown");
       } else if (
         checkInventoryForItem(lockPick) &&
@@ -79,7 +78,9 @@ export const createSecondFloorHallway = async () => {
         removeFromInventory(lockPick);
         textBubble([["You picked the lock!"]]);
       } else if (window.selectedItem == "pry bar") {
-        textBubble([["It doesn't work"]]);
+        textBubble([["It doesn't work"]], () => {
+         singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
+        })
       } else {
         textBubble([["It doesn't open, looks like the lock can be picked."]]);
       }
@@ -87,6 +88,7 @@ export const createSecondFloorHallway = async () => {
 
     onClick('right-door', () => {
       go('bedroomLeft');
+
     });
 
     //    onClick("right-far-door", () => {
