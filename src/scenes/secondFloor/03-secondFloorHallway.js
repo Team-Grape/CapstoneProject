@@ -78,15 +78,15 @@ export const createSecondFloorHallway = async () => {
         removeFromInventory(silverKey);
         textBubble([["The key unlocked the door!"]], () => {
            singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
-        };
+        })
       } else if (window.selectedItem == "pry bar") {
         textBubble([["It doesn't work"]], () => {
          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
-        };
+        })
       } else {
         textBubble([["It doesn't open, it seems like it needs a key"]], () => {
          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
-        };
+        })
       }
     });
 
