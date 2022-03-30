@@ -7,10 +7,17 @@ export let cellarKey = {
 
 export let silverKey = {
   name: 'silver key',
-  description: 'An old rusty key to open main doors',
+  description: 'An old rusty key to open doors.',
   quantity: 1,
   image: '/items/key_silver.png'
 }
+
+export let rustyKey = {
+  name: 'rusty key',
+  description: 'An old rusty key to open the main door.',
+  quantity: 1,
+  image: '/items/key_rusty.png'
+} 
 
 export let pryBarObj = {
   name: 'pry bar',

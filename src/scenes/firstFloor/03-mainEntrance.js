@@ -3,6 +3,8 @@ import { fadeOutOpacity, flickerOpacity } from "../../sprites";
 
 import { textBubble, addToMessageLog } from "../../message";
 
+import { rustyKey } from "../../items";
+
 import {
   setGameState,
   getGameState,
@@ -87,6 +89,27 @@ export const createMainEntrance = async () => {
           singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
         });
         setGameState(roomName, "centerDoorClicked", true);
+      } else {
+        textBubble(doorIsLocked, () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
+      }
+      
+      if (getGameState(roomName, "doorUnlocked")) {
+        go("win");
+      } else if (
+        checkInventoryForItem(rustyKey) &&
+        window.selectedItem == "rusty key"
+      ) {
+        setGameState(roomName, "doorUnlocked", true);
+        removeFromInventory(rustyKey);
+        textBubble([["The key unlocked the door!"]], () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
+      } else if (window.selectedItem == "pry bar") {
+        textBubble([["It doesn't work"]], () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
       } else {
         textBubble(doorIsLocked, () => {
           singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");

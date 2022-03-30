@@ -62,5 +62,5 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
-go('bedroomRight');
+go('entry');
 
