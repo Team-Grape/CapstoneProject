@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from '../../inventory';
 
-import { hammerObj } from '../../items.js';
+import { hammerObj, silverKey } from '../../items.js';
 
 import { setGameState, getGameState } from '../../state';
 
@@ -62,13 +62,9 @@ export const createLivingRoom = () => {
       add([sprite('blueBTN'), scale(0.1), pos(1040, 195)]);
       add([sprite('blueBTN'), scale(0.1), pos(1070, 180)]);
       add([sprite('blueBTN'), scale(0.1), pos(1080, 210)]);
-      add([
-        sprite('white-curtains-closed'),
-        scale(1),
-        pos(60, 80),
-        area(),
-        'leftWhiteCurtains',
-      ]);
+    });
+
+    if (!getGameState(roomName, 'RightWhiteCurtainsIsOpen')) {
       add([
         sprite('white-curtains-closed'),
         scale(1),
@@ -76,7 +72,33 @@ export const createLivingRoom = () => {
         area(),
         'rightWhiteCurtains',
       ]);
-    });
+    } else {
+      add([
+        sprite('white-curtains-open'),
+        scale(1),
+        pos(970, 80),
+        area(),
+        'RightWhiteCurtainsOpen',
+      ]);
+    }
+
+    if (!getGameState(roomName, 'leftWhiteCurtainsIsOpen')) {
+      add([
+        sprite('white-curtains-closed'),
+        scale(1),
+        pos(60, 80),
+        area(),
+        'leftWhiteCurtains',
+      ]);
+    } else {
+      add([
+        sprite('white-curtains-open'),
+        scale(1),
+        pos(60, 80),
+        area(),
+        'leftWhiteCurtainsOpen',
+      ]);
+    }
 
     onClick('leftWhiteCurtains', (leftWhiteCurtains) => {
       leftWhiteCurtains.destroy();
@@ -84,7 +106,22 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(60, 80),
+        area(),
+        'leftWhiteCurtainsOpen',
       ]);
+      setGameState(roomName, 'leftWhiteCurtainsIsOpen', true);
+    });
+
+    onClick('leftWhiteCurtainsOpen', (leftWhiteCurtainsOpen) => {
+      leftWhiteCurtainsOpen.destroy();
+      const whiteCurtainsClose = add([
+        sprite('white-curtains-closed'),
+        scale(1),
+        pos(60, 80),
+        area(),
+        'leftWhiteCurtains',
+      ]);
+      setGameState(roomName, 'leftWhiteCurtainsIsOpen', false);
     });
 
     onClick('rightWhiteCurtains', (rightWhiteCurtains) => {
@@ -93,8 +130,24 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(970, 80),
+        area(),
+        'RightWhiteCurtainsOpen',
       ]);
+      setGameState(roomName, 'RightWhiteCurtainsIsOpen', true);
     });
+
+    onClick('rightWhiteCurtainsOpen', (rightWhiteCurtainsOpen) => {
+      rightWhiteCurtainsOpen.destroy();
+      const whiteCurtainsClose = add([
+        sprite('white-curtains-closed'),
+        scale(1),
+        pos(970, 80),
+        area(),
+        'rightWhiteCurtains',
+      ]);
+      setGameState(roomName, 'RightWhiteCurtainsIsOpen', false);
+    });
+
     roomNavArrows(viewDirection);
   });
   // ======================================================== //
@@ -103,19 +156,10 @@ export const createLivingRoom = () => {
     window.viewDirection = 'Down';
     onLoad(() => {
       add([sprite('living-room-down'), scale(1), area()]);
-      add([sprite('orange-passcode-button'), scale(0.17), pos(640, 160)]);
-      add([sprite('blueBTN'), scale(0.06), pos(642, 140)]);
-      add([sprite('redBTN'), scale(0.06), pos(662, 140)]);
-      add([sprite('greenBTN'), scale(0.06), pos(682, 140)]);
-      add([sprite('purpleBTN'), scale(0.06), pos(702, 140)]);
-      add([
-        sprite('lamp-turned-off'),
-        scale(5),
-        pos(200, 130),
-        area(),
-        'lampTurnedOff',
-      ]);
-
+      add([sprite('blueDot'), scale(0.17), pos(642, 140)]);
+      add([sprite('redDot'), scale(0.17), pos(663, 140)]);
+      add([sprite('greenDot'), scale(0.17), pos(684, 140)]);
+      add([sprite('purpleDot'), scale(0.17), pos(705, 140)]);
       add([
         sprite('woodenDoor'),
         scale(3),
@@ -125,42 +169,154 @@ export const createLivingRoom = () => {
       ]);
     });
 
+    if (!getGameState(roomName, 'lampOff')) {
+      add([
+        sprite('lamp-turned-off'),
+        scale(5),
+        pos(200, 130),
+        area(),
+        'lampTurnedOff',
+      ]);
+    } else {
+      add([sprite('lamp-turned-on'), scale(5), pos(200, 130), area()]);
+      add([sprite('greenBTN'), scale(0.1), pos(230, 180)]);
+    }
+
     onClick('lampTurnedOff', (lampTurnedOff) => {
       lampTurnedOff.destroy();
+      setGameState(roomName, 'lampOff', true);
       const lampTurnedOn = add([
         sprite('lamp-turned-on'),
         scale(5),
         pos(200, 130),
+        area(),
+        'lampTurnedOn',
       ]);
       const greenBTN = add([sprite('greenBTN'), scale(0.1), pos(230, 180)]);
     });
 
+    onClick('lampTurnedOn', (lampTurnedOn) => {
+      lampTurnedOn.destroy();
+      setGameState(roomName, 'lampOff', false);
+      const lampTurnedOff = add([
+        sprite('lamp-turned-off'),
+        scale(5),
+        pos(200, 130),
+        area(),
+        'lampTurnedOff',
+      ]);
+    });
+
+    const numberLabel1 = createNumberLabel1();
+    const numberLabel2 = createNumberLabel2();
+    const numberLabel3 = createNumberLabel3();
+    const numberLabel4 = createNumberLabel4();
+    numberLabel1.text = 0;
+    numberLabel2.text = 0;
+    numberLabel3.text = 0;
+    numberLabel4.text = 0;
+    let number1 = 0;
+    let number2 = 0;
+    let number3 = 0;
+    let number4 = 0;
+
+    onClick('numberLabel1', (numberLabel1) => {
+      number1++;
+      while (number1 > 9) {
+        number1 = 0;
+      }
+      numberLabel1.text = number1;
+    });
+
+    onClick('numberLabel2', (numberLabel2) => {
+      number2++;
+      while (number2 > 9) {
+        number2 = 0;
+      }
+      numberLabel2.text = number2;
+    });
+
+    onClick('numberLabel3', (numberLabel3) => {
+      number3++;
+      while (number3 > 9) {
+        number3 = 0;
+      }
+      numberLabel3.text = number3;
+    });
+
+    onClick('numberLabel4', (numberLabel4) => {
+      number4++;
+      while (number4 > 9) {
+        number4 = 0;
+      }
+      numberLabel4.text = number4;
+    });
+
     onClick('woodenDoor', () => {
       textBubble([['Please enter the passcode to exit.']]);
-      const input = add([
-        pos(650, 160),
-        text('', {
-          font: 'apl386',
-          size: 20,
-          width: 200,
-        }),
-      ]);
-      onCharInput((ch) => {
-        input.text += ch;
-      });
-      onKeyPressRepeat('backspace', () => {
-        input.text = input.text.substring(0, input.text.length - 1);
-      });
-      onKeyPressRepeat('enter', () => {
-        if (input.text === '7312') {
-          textBubble([['Passcode is correct, enter the next room.']]);
-          // go('bedroomUp');
-        } else {
-          input.text = '';
-          textBubble([['Passcode is incorrect, try again.']]);
-        }
-      });
+
+      if (
+        numberLabel1.text === 7 &&
+        numberLabel2.text === 3 &&
+        numberLabel3.text === 1 &&
+        numberLabel4.text === 2
+      ) {
+        textBubble([['Passcode is correct, enter the next room']]);
+        go('secondFloorHallwayDown');
+      } else {
+        numberLabel1.text = 0;
+        numberLabel2.text = 0;
+        numberLabel3.text = 0;
+        numberLabel4.text = 0;
+        let number1 = 0;
+        let number2 = 0;
+        let number3 = 0;
+        let number4 = 0;
+        textBubble([['Passcode is incorrect, try again']]);
+      }
     });
+
+    function createNumberLabel1() {
+      let number1 = 0;
+      const numberLabel1 = add([
+        text(number1, { font: 'apl386', size: 20, width: 18 }),
+        pos(650, 141),
+        area(),
+        'numberLabel1',
+      ]);
+      return numberLabel1;
+    }
+
+    function createNumberLabel2() {
+      let number2 = 0;
+      const numberLabel2 = add([
+        text(number2, { font: 'apl386', size: 20, width: 18 }),
+        pos(670, 141),
+        area(),
+        'numberLabel2',
+      ]);
+      return numberLabel2;
+    }
+    function createNumberLabel3() {
+      let number3 = 0;
+      const numberLabel3 = add([
+        text(number3, { font: 'apl386', size: 20, width: 18 }),
+        pos(690, 141),
+        area(),
+        'numberLabel3',
+      ]);
+      return numberLabel3;
+    }
+    function createNumberLabel4() {
+      let number4 = 0;
+      const numberLabel4 = add([
+        text(number4, { font: 'apl386', size: 20, width: 18 }),
+        pos(710, 141),
+        area(),
+        'numberLabel4',
+      ]);
+      return numberLabel4;
+    }
     roomNavArrows(viewDirection);
   });
   // ======================================================== //
@@ -173,11 +329,51 @@ export const createLivingRoom = () => {
       add([sprite('redBTN'), scale(0.1), pos(980, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(1020, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(980, 120)]);
-      add([sprite('painting10'), scale(4), area(), pos(980, 80), 'painting10']);
+      add([sprite('monster'), scale(1), area(), pos(80, 100), 'monster']);
     });
+
+    onClick('monster', (monster) => {
+      monster.play('move');
+      if (!getGameState(roomName, 'silverKeyPickedUp')) {
+        const keySilver = add([
+          sprite('key-silver'),
+          pos(130, 130),
+          scale(0.8),
+          area(),
+          'keySilver',
+        ]);
+        textBubble([['This key is not my face. Would you like to have it?']]);
+        onClick('keySilver', (keySilver) => {
+          textBubble([['A key was added to your inventory']]);
+          addToInventory(silverKey);
+          setGameState(roomName, 'silverKeyPickedUp', true);
+          keySilver.destroy();
+        });
+      }
+    });
+
+    if (!getGameState(roomName, 'paintingMoved')) {
+      add([sprite('painting10'), scale(4), area(), pos(980, 80), 'painting10']);
+    } else {
+      add([
+        sprite('painting10'),
+        scale(4),
+        area(),
+        pos(980, 220),
+        'painting10',
+      ]);
+    }
+
     onClick('painting10', (painting10) => {
+      painting10.destroy();
       setGameState(roomName, 'paintingMoved', true);
-      painting10.pos.y = 220;
+      add([
+        sprite('painting10'),
+        scale(4),
+        area(),
+        pos(980, 220),
+        'painting10',
+      ]);
     });
     roomNavArrows(viewDirection);
   });

@@ -51,7 +51,7 @@ export class InGameMenu {
   open() {
     let gameMenu = add([
       pos(1070, 50),
-      rect(160, 150),
+      rect(160, 180),
       outline(4),
       color(100, 100, 100),
       area(),
@@ -64,8 +64,10 @@ export class InGameMenu {
       "continue",
     ]);
     const optionsButton = add([
+
       text("Options", { size: 20, font: "sinko" }),
       pos(1080, 100),
+
       color(255, 255, 255),
       area(),
       "options",
@@ -78,9 +80,18 @@ export class InGameMenu {
     //   "restart",
     // ]);
 
+  const saveAsURL = add([
+    text("Save Game\nas URL", { size: 20, font: "sink" }),
+    pos(1080, 130),
+    area(),
+    "saveAsURL",
+  ]);
+
     const saveAndQuit = add([
+
       text("Save\nand Quit", { size: 20, font: "sinko" }),
       pos(1080, 135),
+
       area(),
       "saveAndQuit",
     ]);
@@ -92,6 +103,7 @@ export class InGameMenu {
         continueButton,
         // restartButton,
         optionsButton,
+        saveAsURL,
         saveAndQuit,
       ]);
       window.localStorage.setItem('menuIsOpen', false)
@@ -104,6 +116,7 @@ export class InGameMenu {
         continueButton,
         // restartButton,
         optionsButton,
+        saveAsURL,
         saveAndQuit,
       ]);
       this.restart();
@@ -124,11 +137,29 @@ export class InGameMenu {
         continueButton,
         // restartButton,
         optionsButton,
+        saveAsURL,
         saveAndQuit,
       ]);
       this.saveAndQuit();
     });
+
+    onClick("saveAsURL", () => {
+      playSFX('click')
+      const shareURL = window.location.origin + '/?s=' + encodeURIComponent(JSON.stringify({ ...localStorage }));
+      console.log("Save URL: ", shareURL)
+      window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
+      this.close([
+        gameMenu,
+        continueButton,
+        // restartButton,
+        optionsButton,
+        saveAsURL,
+        saveAndQuit,
+      ]);
+    });
+
   }
+
 
   close(arrayOfComponents) {
     console.log('close')
@@ -138,6 +169,7 @@ export class InGameMenu {
   restart() {
     this.areYouSure("restart");
   }
+
 
   saveAndQuit() {
     this.areYouSure("saveAndQuit");
@@ -219,6 +251,7 @@ function createMenuButtons() {
   //   area(),
   //   "restart",
   // ]);
+
 
   const saveAndQuit = add([
     text("Save\nand Quit", { size: 20, font: "sinko" }),

@@ -24,7 +24,31 @@ export const createKitchen = () => {
     onLoad(() => {
       add([sprite('kitchen-up'), scale(1)]);
       add([sprite('egg-box'), scale(2.5), pos(950, 380)]);
-      add([sprite('potatoes'), scale(2.5), pos(100, 400)]);
+    });
+    const potatoes = add([
+      sprite('potatoes'),
+      scale(2.5),
+      pos(100, 400),
+      area(),
+      solid(),
+      'potatoes',
+    ]);
+    const cabbage = add([
+      sprite('cabbage'),
+      scale(2.5),
+      pos(600, 380),
+      area(),
+      solid(),
+      rotate(),
+      'cabbage',
+    ]);
+
+    onClick('cabbage', (cabbage) => {
+      textBubble([['Bye']]);
+      cabbage.onUpdate(() => {
+        cabbage.angle += 120 * dt();
+        cabbage.pos.x -= 2;
+      });
     });
     roomNavArrows(viewDirection);
   });
@@ -86,11 +110,11 @@ export const createKitchen = () => {
         'woodenDoor',
       ]);
 
-      if (!getGameState(roomName, 'keyPickedUp')) {
-        onLoad(() => {
-          add([sprite('key'), pos(400, 117), scale(0.8), area(), 'key']);
-        });
-      }
+      // if (!getGameState(roomName, 'keyPickedUp')) {
+      //   onLoad(() => {
+      //     add([sprite('key'), pos(400, 117), scale(0.8), area(), 'key']);
+      //   });
+      // }
 
       // first board
       if (getGameState(roomName, 'Can1Fell')) {
@@ -190,7 +214,7 @@ export const createKitchen = () => {
       ) {
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        go('basementRoomThreeUp');
+        go('firstFloorHallwayDown');
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
@@ -236,6 +260,13 @@ export const createKitchen = () => {
 
     onClick('SFyellow', (SFyellow) => {
       setGameState(roomName, 'Can4Fell', true);
+      setTimeout(() => {
+        if (!getGameState(roomName, 'keyPickedUp')) {
+          onLoad(() => {
+            add([sprite('key'), pos(400, 118), scale(1), area(), 'key']);
+          });
+        }
+      }, 50);
       SFyellow.destroy();
       const SFyellowFall = add([
         sprite('soft-drink-yellow'),
