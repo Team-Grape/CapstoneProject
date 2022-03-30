@@ -110,6 +110,9 @@ export const loadAllSprites = () => {
     './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png'
   );
 
+  // Study =================== //
+  loadSprite("study", "./assets/room_backgrounds/secondFloor/study/secondFloorOffice.png")
+
   //First Floor ============ //
 
   //Main Entrance
@@ -565,6 +568,11 @@ export const loadAllSprites = () => {
   );
 
   loadSprite('water', './assets/decorations/kitchenStuff/foods/water.png');
+
+
+  // Ghost Image ===============//
+
+  loadSprite('nun', './assets/monster/nun.jpg')
 };
 
 export const fadeOutOpacity = async (GameObj) => {

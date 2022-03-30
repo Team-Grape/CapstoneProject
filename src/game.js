@@ -13,6 +13,7 @@ import { createBasementRoomTwo } from './scenes/basement/02-basement';
 import { createBasementStorageOne } from './scenes/basement/00-basementStorage';
 import { createBasementStorageTwo } from './scenes/basement/00-basementStorageTwo';
 import { createKidRoom } from './scenes/secondFloor/03-kidRoom';
+import { createStudy } from './scenes/secondFloor/01-study';
 import { createBedroom } from './scenes/secondFloor/04-bedroom';
 import { createBasementHallway } from './scenes/basement/03-basementHallway.js';
 import { createFirstFloorHallway } from './scenes/firstFloor/03-firstFloorHallway.js';
@@ -59,6 +60,6 @@ createLibrary();
 createLivingRoom();
 createMainEntrance();
 createKitchen();
+createStudy();
 
-// go('kidRoomUp');
-go('livingRoomDown');
+go('entry');

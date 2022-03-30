@@ -1,9 +1,12 @@
-import { navArrows, singleViewNavArrow } from '../../buttons';
-import { Message, textBubble, addToMessageLog } from '../../message';
-import { playBGM, stopBGM, playSFX } from '../../sounds';
-import { setGameState, getGameState } from '../../state.js';
-import { cellarKey } from '../../items.js';
-import { debugRectSize } from '../../debug.js';
+
+
+import { navArrows, singleViewNavArrow } from "../../buttons";
+import { textBubble, addToMessageLog } from "../../message";
+import { playBGM, stopBGM, playSFX } from "../../sounds";
+import { setGameState, getGameState } from "../../state.js";
+import { cellarKey } from "../../items.js";
+import { debugRectSize } from "../../debug.js";
+
 
 import {
   addToInventory,
@@ -13,8 +16,11 @@ import {
 
 const roomName = 'secondFloorHallway';
 const roomNavArrows = navArrows(roomName);
-const message = new Message();
-const introMessage = [["You've made it to the second floor!  "]];
+
+const introMessage = [
+  ["You've made it to the second floor!  "],
+];
+
 
 export const createSecondFloorHallway = async () => {
   scene(roomName + 'Down', () => {
@@ -40,10 +46,12 @@ export const createSecondFloorHallway = async () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    if (!getGameState(roomName, 'introMessageRead')) {
-      message.textBubble(introMessage, () => {
-        setGameState(roomName, 'introMessageRead', true);
-        message.addToMessageLog(introMessage);
+
+    if (!getGameState(roomName, "introMessageRead")) {
+      textBubble(introMessage, () => {
+        setGameState(roomName, "introMessageRead", true);
+        addToMessageLog(introMessage);
+        singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
       });
     } else {
       singleViewNavArrow(roomName + 'Down', 'firstFloorHallwayDown');
@@ -59,8 +67,9 @@ export const createSecondFloorHallway = async () => {
       go('kidRoomUp');
     });
 
-    onClick('center-door', () => {
-      message.textBubble([["it won't open"]]);
+
+    onClick("center-door", () => {
+      go("studyDown")
     });
 
     onClick('right-door', () => {
