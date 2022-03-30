@@ -7,16 +7,27 @@ export const gameover = () => {
             origin("center"),
         ])
         add([
-            text("The evil ghost"),
+            text("The evil ghost", {size: 48}),
             color(255, 0, 0),
-            pos(width() / 2, 250),
+            pos(width() / 2, 230),
             origin("center"),
         ])
         add([
-            text("has caught you."),
+            text("has caught you.", {size: 48}),
             color(255, 0, 0),
-            pos(width() / 2, 400),
+            pos(width() / 2, 330),
             origin("center"),
         ])
+        add([
+            text("click here to restart", {size: 36}),
+            color(255, 255, 255),
+            pos(width() / 2, 460),
+            origin("center"),
+            area(),
+            "restartButton"
+        ])
+        onClick("restartButton", () => {
+          go("title")
+        })
     })
 }
