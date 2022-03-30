@@ -20,7 +20,7 @@ export const entry = () => {
     }
 
     add([
-      text("Click here to start"),
+      text("Click here to start", {size: 60, font: 'sinko'}),
       color(255, 0, 0),
       pos(width() / 2, height() / 2),
       origin("center"),

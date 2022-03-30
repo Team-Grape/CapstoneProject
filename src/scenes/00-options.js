@@ -1,14 +1,11 @@
 import { displayInventoryDiv } from "../inventory";
 import {
   playBGM,
-  stopBGM,
   playSFX,
   setCurrentlyPlayingBGMVolume,
 } from "../sounds";
 import {
   getCurrentRoom,
-  getOption,
-  setOption,
   setBackgroundMusicVolume,
   getBackgroundMusicVolume,
   getSoundEffectVolume,
@@ -17,24 +14,19 @@ import {
 
 export const options = () => {
   scene("options", () => {
-    add(
-      [
-        text("Game Options", { size: 54, width: width() - 230, font: "sink" }),
-        color(255, 0, 0),
-        pos(width() / 2, 75),
-        origin("center"),
-      ],
-      [
-        text("Background Music Volume", {
-          size: 32,
-          font: "sink",
-        }),
-        pos(width() / 2, 200),
-        color(255, 255, 255),
-        origin("center"),
+    add([
+      text("Game Options", { size: 54, width: width() - 230, font: "sinko" }),
+      color(255, 0, 0),
+      pos(width() / 2, 75),
+      origin("center"),
+    ]),
+      add([
+        text("Background Music Volume", { size: 32, font: "sinko" }),
         area(),
-      ]
-    );
+        color(255, 255, 255),
+        pos(width() / 2, 200),
+        origin("center"),
+      ]);
 
     // =============== Background Music =============== //
 
@@ -43,7 +35,7 @@ export const options = () => {
       text(`${((currentBackgroundMusicVolume / 3) * 100).toFixed(0)}%`, {
         size: 42,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(width() / 2, 270),
       color(249, 215, 57),
@@ -55,7 +47,7 @@ export const options = () => {
     const increaseBgMusicButton = add([
       text(`+`, {
         size: 30,
-        font: "sink",
+        font: "sinko",
       }),
       area(),
       pos(width() / 2 + 305, 270),
@@ -68,7 +60,7 @@ export const options = () => {
       text(`-`, {
         size: 30,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(width() / 2 - 305, 270),
       color(140, 140, 140),
@@ -78,6 +70,7 @@ export const options = () => {
     ]);
 
     onClick("decreaseBgMusicButton", () => {
+      playSFX("click")
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
       if (currentBackgroundMusicVolume > 0) {
         currentBgVolumeDisplay.text = `${(
@@ -93,6 +86,7 @@ export const options = () => {
     });
 
     onClick("increaseBgMusicButton", () => {
+      playSFX("click")
       let currentBackgroundMusicVolume = getBackgroundMusicVolume();
       if (currentBackgroundMusicVolume < 3.0) {
         currentBgVolumeDisplay.text = `${(
@@ -113,7 +107,7 @@ export const options = () => {
       text("Sound Effects Volume", {
         size: 32,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(width() / 2, 350),
       color(255, 255, 255),
@@ -127,7 +121,7 @@ export const options = () => {
       text(`${((currentSoundEffectVolume / 3) * 100).toFixed(0)}%`, {
         size: 42,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(width() / 2, 440),
       color(249, 215, 57),
@@ -139,7 +133,7 @@ export const options = () => {
     const increaseSFXButton = add([
       text(`+`, {
         size: 30,
-        font: "sink",
+        font: "sinko",
       }),
       area(),
       pos(width() / 2 + 305, 440),
@@ -152,7 +146,7 @@ export const options = () => {
       text(`-`, {
         size: 30,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(width() / 2 - 305, 440),
       color(140, 140, 140),
@@ -162,6 +156,7 @@ export const options = () => {
     ]);
 
     onClick("decreaseSFXButton", () => {
+      playSFX("click")
       let currentSoundEffectVolume = getSoundEffectVolume();
       if (currentSoundEffectVolume > 0.1) {
         setSoundEffectVolume((currentSoundEffectVolume -= 0.1));
@@ -175,6 +170,7 @@ export const options = () => {
     });
 
     onClick("increaseSFXButton", () => {
+      playSFX("click")
       let currentSoundEffectVolume = getSoundEffectVolume();
       if (currentSoundEffectVolume < 3.0) {
         setSoundEffectVolume((currentSoundEffectVolume += 0.1));
@@ -182,7 +178,6 @@ export const options = () => {
           (currentSoundEffectVolume / 3) *
           100
         ).toFixed(0)}%`;
-
         readd(currentSFXVolumeDisplay);
       }
     });
@@ -191,72 +186,44 @@ export const options = () => {
       text("Return", {
         size: 32,
         width: width() - 230,
-        font: "sink",
+        font: "sinko",
       }),
       pos(1100, 75),
       color(255, 255, 255),
       origin("center"),
       area(),
+      outline(100, (255, 255, 255)),
       "return",
     ]);
 
     onClick("return", () => {
-      playSFX('click')
+      playSFX("click");
       if (window.onTitleScene) {
-        stopBGM();
         go("title");
       } else {
-        stopBGM();
         displayInventoryDiv();
         go(getCurrentRoom());
       }
     });
-
-    add([
-      text(`Play Music`, {
-        size: 30,
-        font: "sink",
-      }),
-      area(),
-      pos(50, 50),
-      color(140, 140, 140),
-      "playMusic",
-    ]);
-
-    add([
-      text(`Stop Music`, {
-        size: 30,
-        font: "sink",
-      }),
-      area(),
-      pos(50, 200),
-      color(140, 140, 140),
-      "stopMusic",
-    ]);
-
-    onClick("playMusic", () => {
-      playBGM("kidMusic");
-    });
-
-    onClick("stopMusic", () => {
-      stopBGM();
-    });
-
-    // ============== Sound Effect Test Buttons =========================
-
-    add([
-      text(`Play Sound Effect`, {
-        size: 30,
-        font: "sink",
-      }),
-      area(),
-      pos(1050, 250),
-      color(140, 140, 140),
-      "playSoundEffect",
-    ]);
-
-    onClick("playSoundEffect", () => {
-      playSFX("falling");
-    });
+    playBGM("title");
   });
 };
+
+//     // ============== Sound Effect Test Buttons =========================
+
+//     add([
+//       text(`Play Sound Effect`, {
+//         size: 30,
+//         font: "sink",
+//       }),
+//       area(),
+//       pos(1050, 250),
+//       color(140, 140, 140),
+//       "playSoundEffect",
+//     ]);
+
+//     onClick("playSoundEffect", () => {
+//       playSFX("falling");
+//     });
+//   });
+// };

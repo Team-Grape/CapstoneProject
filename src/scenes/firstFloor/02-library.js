@@ -29,7 +29,7 @@ const uninterestingBookText = [
   [
     "You pick out a book and are dissapointed to find it totally uninteresting.",
   ],
-  ["You put it back"],
+  ["You put it back."],
 ];
 const fascinatingBookText = [
   [

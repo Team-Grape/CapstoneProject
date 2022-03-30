@@ -36,7 +36,7 @@ export const createKidRoom = () => {
     if (!getGameState(roomName, "ragPickedUp")) {
       const rag = add([sprite("rag"), scale(1), pos(900, 380), area(), "rag"]);
       onClick("rag", (rag) => {
-        textBubble([["An old rag was added to your inventory"]]);
+        textBubble([["An old rag was added to your inventory."]]);
 
         addToInventory(ragObj);
         setGameState(roomName, "ragPickedUp", true);
@@ -103,7 +103,7 @@ export const createKidRoom = () => {
     });
 
     onClick('largeEmptyPicture', (largeEmptyPicture) => {
-      textBubble([['There are so much dust on the picture']]);
+      textBubble([['There are so much dust on the picture.']]);
       if (window.selectedItem == 'rag') {
         largeEmptyPicture.destroy();
         const pictureOneWithNumber = add([
@@ -111,12 +111,12 @@ export const createKidRoom = () => {
           scale(2.7),
           pos(850, 110),
         ]);
-        textBubble([['Something displayed on the picture']]);
+        textBubble([['Something displayed on the picture.']]);
       }
     });
 
     onClick('smallEmptyPicture', (smallEmptyPicture) => {
-      textBubble([['There are so much dust on the picture']]);
+      textBubble([['There are so much dust on the picture.']]);
       if (window.selectedItem == 'rag') {
         smallEmptyPicture.destroy();
         const pictureTwoWithNumber = add([
@@ -124,7 +124,7 @@ export const createKidRoom = () => {
           scale(2.4),
           pos(950, 140),
         ]);
-        textBubble([['Something displayed on the picture']]);
+        textBubble([['Something displayed on the picture.']]);
       }
     });
     roomNavArrows(viewDirection);
@@ -196,11 +196,11 @@ export const createKidRoom = () => {
 
       onKeyPressRepeat('enter', () => {
         if (input.text === '0815') {
-          textBubble([['Passcode is correct, enter the next room']]);
+          textBubble([['Passcode is correct, enter the next room.']]);
           go('secondFloorHallwayDown');
         } else {
           input.text = "";
-          textBubble([["Passcode is incorrect, try again"]]);
+          textBubble([["Passcode is incorrect, try again."]]);
           // maybe the ghost show up
         }
       });

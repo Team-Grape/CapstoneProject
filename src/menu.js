@@ -57,14 +57,14 @@ export class InGameMenu {
       area(),
     ]);
     let continueButton = add([
-      text("Continue", { size: 20, font: "sink" }),
+      text("Continue", { size: 20, font: "sinko" }),
       pos(1080, 60),
       color(255, 255, 255),
       area(),
       "continue",
     ]);
     const optionsButton = add([
-      text("Options", { size: 20, font: "sink" }),
+      text("Options", { size: 20, font: "sinko" }),
       pos(1080, 100),
       color(255, 255, 255),
       area(),
@@ -72,14 +72,14 @@ export class InGameMenu {
     ]);
   
     // const restartButton = add([
-    //   text("Restart", { size: 20, font: "sink" }),
+    //   text("Restart", { size: 20, font: "sinko" }),
     //   pos(1080, 140),
     //   area(),
     //   "restart",
     // ]);
 
     const saveAndQuit = add([
-      text("Save\nand Quit", { size: 20, font: "sink" }),
+      text("Save\nand Quit", { size: 20, font: "sinko" }),
       pos(1080, 135),
       area(),
       "saveAndQuit",
@@ -199,14 +199,14 @@ function createMenuButtons() {
     area(),
   ]);
   let continueButton = add([
-    text("Continue", { size: 20, font: "sink" }),
+    text("Continue", { size: 20, font: "sinko" }),
     pos(1080, 60),
     color(255, 255, 255),
     area(),
     "continue",
   ]);
   const optionsButton = add([
-    text("Options", { size: 20, font: "sink" }),
+    text("Options", { size: 20, font: "sinko" }),
     pos(1080, 100),
     color(255, 255, 255),
     area(),
@@ -214,14 +214,14 @@ function createMenuButtons() {
   ]);
 
   // const restartButton = add([
-  //   text("Restart", { size: 20, font: "sink" }),
+  //   text("Restart", { size: 20, font: "sinko" }),
   //   pos(1080, 140),
   //   area(),
   //   "restart",
   // ]);
 
   const saveAndQuit = add([
-    text("Save\nand Quit", { size: 20, font: "sink" }),
+    text("Save\nand Quit", { size: 20, font: "sinko" }),
     pos(1080, 135),
     area(),
     "saveAndQuit",

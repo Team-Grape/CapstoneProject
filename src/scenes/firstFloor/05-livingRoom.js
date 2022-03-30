@@ -37,7 +37,7 @@ export const createLivingRoom = () => {
         'hammer',
       ]);
       onClick('hammer', (hammer) => {
-        textBubble([['a hammer was added to your inventory']]);
+        textBubble([['a hammer was added to your inventory.']]);
 
         addToInventory(hammerObj);
         setGameState(roomName, 'hammerPickedUp', true);
@@ -153,11 +153,11 @@ export const createLivingRoom = () => {
       });
       onKeyPressRepeat('enter', () => {
         if (input.text === '7312') {
-          textBubble([['Passcode is correct, enter the next room']]);
+          textBubble([['Passcode is correct, enter the next room.']]);
           // go('bedroomUp');
         } else {
           input.text = '';
-          textBubble([['Passcode is incorrect, try again']]);
+          textBubble([['Passcode is incorrect, try again.']]);
         }
       });
     });

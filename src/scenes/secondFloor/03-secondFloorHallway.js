@@ -17,7 +17,7 @@ const roomName = "secondFloorHallway";
 const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
-  ["You've made it to the second floor!  "],
+  ["You've made it to the second floor!"],
 ];
 
 export const createSecondFloorHallway = async () => {
@@ -58,16 +58,18 @@ export const createSecondFloorHallway = async () => {
 
 
     onClick("left-door", () => {
+      playSFX('doorClose')
       go("kidRoomUp")
     });
 
     onClick("center-door", () => {
       textBubble([["it won't open"]], () => {
-        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+        singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
       });
     });
 
     onClick("right-door", () => {
+      playSFX('doorClose')
       go("bedroomLeft")
     });
 

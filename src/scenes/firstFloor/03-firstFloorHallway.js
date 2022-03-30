@@ -16,8 +16,8 @@ const roomNavArrows = navArrows(roomName);
 // const message = new Message();
 
 const introMessage = [
-  ["You found stairs and followed them out of the basement.  "],
-  ["You've made it to the first floor!  "],
+  ["You found stairs and followed them out of the basement."],
+  ["You've made it to the first floor!"],
 ];
 
 export const createFirstFloorHallway = async () => {
@@ -97,6 +97,7 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("right-far-door", () => {
+      playSFX('doorClose')
       go("secondFloorHallwayDown");
       //go('libraryUp')
       // textBubble([["it won't open"]]);

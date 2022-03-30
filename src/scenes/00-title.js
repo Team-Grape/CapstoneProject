@@ -9,18 +9,19 @@ import {
 
 export const titleScene = () => {
   scene("title", () => {
-    stopBGM();
     playBGM("title");
     window.onTitleScene = true;
     add([
-      text("Haunted House Adventure Game"),
+      text("HAUNTED HOUSE ESCAPE ROOM", { size: 55, font: 'sinko', letterSpacing: 4 }),
       color(255, 255, 255),
+      outline(10, WHITE),
       pos(width() / 2, 100),
       origin("center"),
+      'title'
     ]);
 
     const optionsButton = add([
-      text("Options"),
+      text("Options", { size: 45, font: 'sinko' }),
       color(255, 0, 0),
       pos(width() / 2, 400),
       origin("center"),
@@ -29,7 +30,7 @@ export const titleScene = () => {
     ]);
 
     const startNewGameButton = add([
-      text("Start New Game"),
+      text("Start New Game", { size: 45, font: 'sinko' }),
       color(255, 0, 0),
       pos(width() / 2, 300),
       origin("center"),
@@ -48,7 +49,7 @@ export const titleScene = () => {
 
     if (getCurrentRoom()) {
       continueButton = add([
-        text("Continue"),
+        text("Continue", { size: 45, font: 'sinko' }),
         color(255, 0, 0),
         pos(width() / 2, 200),
         origin("center"),
@@ -75,8 +76,8 @@ export const titleScene = () => {
 
         const areYouSure = add([
           text(
-            "Starting a new game will erase your old save. \n \n Are you sure you want to proceed?",
-            { size: 40 }
+            "Starting a new game will \n erase your old save. \n \nAre you sure you want to proceed?",
+            { size: 45, font: 'sinko' }
           ),
           color(255, 0, 0),
           pos(width() / 2, 250),
@@ -85,12 +86,12 @@ export const titleScene = () => {
           "areYouSure",
         ]);
         const yes = add([
-          text("Yes", { size: 50 }),
-          pos(480, 370),
+          text("Yes", { size: 50, font: 'sinko' }),
+          pos(480, 400),
           area(),
           "yes",
         ]);
-        const no = add([text("No", { size: 50 }), pos(670, 370), area(), "no"]);
+        const no = add([text("No", { size: 50, font: 'sinko'  }), pos(670, 400), area(), "no"]);
 
         onClick("no", () => {
           playSFX('click')
@@ -108,7 +109,6 @@ export const titleScene = () => {
 
     onClick("options", () => {
       playSFX('click')
-      stopBGM();
       go("options");
     });
   });
