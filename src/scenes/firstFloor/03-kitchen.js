@@ -86,11 +86,11 @@ export const createKitchen = () => {
         'woodenDoor',
       ]);
 
-      if (!getGameState(roomName, 'keyPickedUp')) {
-        onLoad(() => {
-          add([sprite('key'), pos(400, 117), scale(0.8), area(), 'key']);
-        });
-      }
+      // if (!getGameState(roomName, 'keyPickedUp')) {
+      //   onLoad(() => {
+      //     add([sprite('key'), pos(400, 117), scale(0.8), area(), 'key']);
+      //   });
+      // }
 
       // first board
       if (getGameState(roomName, 'Can1Fell')) {
@@ -190,7 +190,7 @@ export const createKitchen = () => {
       ) {
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        go('basementRoomThreeUp');
+        go('firstFloorHallwayDown');
       } else {
         textBubble([["it doesn't open, it seems like it needs a key"]]);
       }
@@ -235,6 +235,13 @@ export const createKitchen = () => {
 
     onClick('SFyellow', (SFyellow) => {
       setGameState(roomName, 'Can4Fell', true);
+      setTimeout(() => {
+        if (!getGameState(roomName, 'keyPickedUp')) {
+          onLoad(() => {
+            add([sprite('key'), pos(400, 118), scale(1), area(), 'key']);
+          });
+        }
+      }, 50);
       SFyellow.destroy();
       const SFyellowFall = add([
         sprite('soft-drink-yellow'),
