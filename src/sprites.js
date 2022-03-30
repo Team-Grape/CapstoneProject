@@ -1,10 +1,9 @@
 export const loadAllSprites = () => {
   //Items =================
 
-
   loadSprite('key', './assets/items/key_gold.png');
-  loadSprite('key-silver', './assets/items/key_silver.png')
-  loadSprite('lighter', './assets/items/lighter.png')
+  loadSprite('key-silver', './assets/items/key_silver.png');
+  loadSprite('lighter', './assets/items/lighter.png');
   loadSprite('pryBar', './assets/items/pry-bar.png');
   loadSprite('rag', './assets/items/rag.png');
   loadSprite('hammer', './assets/items/hammer.png');
@@ -12,42 +11,47 @@ export const loadAllSprites = () => {
 
   // ==================== BUTTONS =============================//
 
-  loadSprite("menu-button", "./assets/buttons/menuButtonGray.png");
-  loadSprite("start-button", "./assets/buttons/startButton.png");
+  loadSprite('menu-button', './assets/buttons/menuButtonGray.png');
+  loadSprite('start-button', './assets/buttons/startButton.png');
   loadSprite(
-    "orange-passcode-button",
-    "./assets/buttons/orangePasscodeButton.png"
+    'orange-passcode-button',
+    './assets/buttons/orangePasscodeButton.png'
   );
-  loadSprite("redBTN", "./assets/buttons/redBTN.png");
-  loadSprite("blueBTN", "./assets/buttons/blueBTN.png");
-  loadSprite("greenBTN", "./assets/buttons/greenBTN.png");
-  loadSprite("purpleBTN", "./assets/buttons/purpleBTN.png");
+  loadSprite('orangeBTN', './assets/buttons/orangeDot.png');
+  loadSprite('redBTN', './assets/buttons/redBTN.png');
+  loadSprite('blueBTN', './assets/buttons/blueBTN.png');
+  loadSprite('greenBTN', './assets/buttons/greenBTN.png');
+  loadSprite('purpleBTN', './assets/buttons/purpleBTN.png');
+  loadSprite('redDot', './assets/buttons/redDot.png');
+  loadSprite('blueDot', './assets/buttons/blueDot.png');
+  loadSprite('greenDot', './assets/buttons/greenDot.png');
+  loadSprite('purpleDot', './assets/buttons/purpleDot.png');
 
   // ==================== NAV ARROWS ==========================//
 
-  loadSprite("left-arrow", "./assets/nav_arrows/leftArrow.png");
-  loadSprite("right-arrow", "./assets/nav_arrows/rightArrow.png");
-  loadSprite("up-arrow", "./assets/nav_arrows/upArrow.png");
-  loadSprite("down-arrow", "./assets/nav_arrows/downArrow.png");
+  loadSprite('left-arrow', './assets/nav_arrows/leftArrow.png');
+  loadSprite('right-arrow', './assets/nav_arrows/rightArrow.png');
+  loadSprite('up-arrow', './assets/nav_arrows/upArrow.png');
+  loadSprite('down-arrow', './assets/nav_arrows/downArrow.png');
 
   // ==================== ROOM BACKGROUNDS =====================//
 
   // Basement Room 01 ============//
   loadSprite(
-    "basementRoomOneUp",
-    "./assets/room_backgrounds/basement/roomOne/basementRoomOneUp.png"
+    'basementRoomOneUp',
+    './assets/room_backgrounds/basement/roomOne/basementRoomOneUp.png'
   );
   loadSprite(
-    "basementRoomOneLeft",
-    "./assets/room_backgrounds/basement/roomOne/basementRoomOneLeft.png"
+    'basementRoomOneLeft',
+    './assets/room_backgrounds/basement/roomOne/basementRoomOneLeft.png'
   );
   loadSprite(
-    "basementRoomOneRight",
-    "./assets/room_backgrounds/basement/roomOne/basementRoomOneRight.png"
+    'basementRoomOneRight',
+    './assets/room_backgrounds/basement/roomOne/basementRoomOneRight.png'
   );
   loadSprite(
-    "basementRoomOneDown",
-    "./assets/room_backgrounds/basement/roomOne/basementRoomOneDown.png"
+    'basementRoomOneDown',
+    './assets/room_backgrounds/basement/roomOne/basementRoomOneDown.png'
   );
 
   loadSprite(
@@ -67,43 +71,43 @@ export const loadAllSprites = () => {
   );
 
   loadSprite(
-    "room-two-background",
-    "./assets/room_backgrounds/basement/roomTwoBackground.png"
+    'room-two-background',
+    './assets/room_backgrounds/basement/roomTwoBackground.png'
   );
   loadSprite(
-    "room-two-background-right",
-    "./assets/room_backgrounds/basement/roomTwoRightLeft.png"
+    'room-two-background-right',
+    './assets/room_backgrounds/basement/roomTwoRightLeft.png'
   );
   loadSprite(
-    "room-two-background-left",
-    "./assets/room_backgrounds/basement/roomTwoRightLeft.png"
+    'room-two-background-left',
+    './assets/room_backgrounds/basement/roomTwoRightLeft.png'
   );
 
   loadSprite(
-    "room-three-background",
-    "./assets/room_backgrounds/roomThreeBackground.png"
+    'room-three-background',
+    './assets/room_backgrounds/roomThreeBackground.png'
   );
   loadSprite(
-    "room-three-background-side",
-    "./assets/room_backgrounds/roomThreeBackgroundSide.png"
+    'room-three-background-side',
+    './assets/room_backgrounds/roomThreeBackgroundSide.png'
   );
 
   //Second Floor =========== //
   loadSprite(
-    "bedroom-one-up",
-    "./assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneUp.png"
+    'bedroom-one-up',
+    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneUp.png'
   );
   loadSprite(
-    "bedroom-one-left",
-    "./assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneLeft.png"
+    'bedroom-one-left',
+    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneLeft.png'
   );
   loadSprite(
     'bedroom-one-down',
     './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneDown-DoorRemoved.png'
   );
   loadSprite(
-    "bedroom-one-right",
-    "./assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png"
+    'bedroom-one-right',
+    './assets/room_backgrounds/secondFloor/bedroomOne/bedroomOneRight.png'
   );
 
   // Study =================== //
@@ -112,22 +116,25 @@ export const loadAllSprites = () => {
   //First Floor ============ //
 
   //Main Entrance
-  loadSprite('main-entrance', './assets/room_backgrounds/firstFloor/entryWay/entryWay.png')
+  loadSprite(
+    'main-entrance',
+    './assets/room_backgrounds/firstFloor/entryWay/entryWay.png'
+  );
 
   // First Floor Hallway
   loadSprite(
-    "first-floor-hallway",
-    "./assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png"
+    'first-floor-hallway',
+    './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png'
   );
 
   // Living Room
   loadSprite(
-    "living-room-up",
-    "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithDoor/firstFloorLivingRoomUp.png"
+    'living-room-up',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithDoor/firstFloorLivingRoomUp.png'
   );
   loadSprite(
-    "living-room-left",
-    "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomLeft.png"
+    'living-room-left',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomLeft.png'
   );
   loadSprite(
     'kitchen-up',
@@ -136,57 +143,60 @@ export const loadAllSprites = () => {
   loadSprite(
     'kitchen-left',
     './assets/room_backgrounds/firstFloor/kitchen/Pantry.png'
-  )
-  loadSprite(
-    "living-room-down",
-    "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomDown.png"
   );
   loadSprite(
-    "living-room-right",
-    "./assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png"
+    'living-room-down',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomDown.png'
+  );
+  loadSprite(
+    'living-room-right',
+    './assets/room_backgrounds/firstFloor/livingRoom/livingRoomWithoutDoor/firstFloorLivingRoomRight.png'
   );
 
-
-  
   //Storgae Rooms
   loadSprite(
-    'storage-room-one', './assets/room_backgrounds/basement/roomFive/basementRoomFiveUp-Grey.png'
-  )
+    'storage-room-one',
+    './assets/room_backgrounds/basement/roomFive/basementRoomFiveUp-Grey.png'
+  );
   loadSprite(
-    'storage-room-two', './assets/room_backgrounds/basement/roomFour/basementRoomFourUp-Grey.png'
-  )
+    'storage-room-two',
+    './assets/room_backgrounds/basement/roomFour/basementRoomFourUp-Grey.png'
+  );
 
   // First Floor Hallway
-loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png');
+  loadSprite(
+    'first-floor-hallway',
+    './assets/room_backgrounds/firstFloor/firstFloorHallway/firstFloorHallway.png'
+  );
 
   // Second Floor Hallway
   loadSprite(
-    "second-floor-hallway",
-    "./assets/room_backgrounds/secondFloor/secondFloorHallway/secondFloorHallway.png"
+    'second-floor-hallway',
+    './assets/room_backgrounds/secondFloor/secondFloorHallway/secondFloorHallway.png'
   );
 
   //Library ===========//
 
   loadSprite(
-    "library-up",
-    "./assets/room_backgrounds/firstFloor/library/firstFloorLibraryUp.png"
+    'library-up',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryUp.png'
   );
   loadSprite(
-    "library-down",
-    "./assets/room_backgrounds/firstFloor/library/firstFloorLibraryDown.png"
+    'library-down',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryDown.png'
   );
   loadSprite(
-    "library-left",
-    "./assets/room_backgrounds/firstFloor/library/firstFloorLibraryLeft.png"
+    'library-left',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryLeft.png'
   );
   loadSprite(
-    "library-right",
-    "./assets/room_backgrounds/firstFloor/library/firstFloorLibraryRight.png"
+    'library-right',
+    './assets/room_backgrounds/firstFloor/library/firstFloorLibraryRight.png'
   );
 
   // ===================== ANIMATIONS ==========================//
 
-  loadSprite("ghost1", "./assets/ghost/ghost.png", {
+  loadSprite('ghost1', './assets/ghost/ghost.png', {
     sliceX: 4,
     sliceY: 1,
     anims: {
@@ -197,7 +207,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     },
   });
 
-  loadSprite("poof", "./assets/poof/poof.png", {
+  loadSprite('poof', './assets/poof/poof.png', {
     sliceX: 6,
     sliceY: 1,
     anims: {
@@ -208,7 +218,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     },
   });
 
-  loadSprite("fallingBook", "./assets/fallingBook/fallingBook.png", {
+  loadSprite('fallingBook', './assets/fallingBook/fallingBook.png', {
     sliceX: 4,
     sliceY: 1,
     anims: {
@@ -216,10 +226,11 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
         from: 0,
         to: 3,
       },
+      idle: 3,
     },
   });
 
-  loadSprite("skeleton-attack", "./assets/skeleton/skeletonAttack.png", {
+  loadSprite('skeleton-attack', './assets/skeleton/skeletonAttack.png', {
     sliceX: 18,
     sliceY: 1,
     anims: {
@@ -230,7 +241,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     },
   });
 
-  loadSprite("skeleton-dead", "./assets/skeleton/skeletonDead.png", {
+  loadSprite('skeleton-dead', './assets/skeleton/skeletonDead.png', {
     sliceX: 18,
     sliceY: 1,
     anims: {
@@ -241,7 +252,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     },
   });
 
-  loadSprite("flame", "./assets/flame/flame.png", {
+  loadSprite('flame', './assets/flame/flame.png', {
     sliceX: 6,
     sliceY: 1,
     anims: {
@@ -252,7 +263,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     },
   });
 
-  loadSprite("cuteGhost", "./assets/cuteGhost/ghost.png", {
+  loadSprite('cuteGhost', './assets/cuteGhost/ghost.png', {
     sliceX: 4,
     sliceY: 1,
     anims: {
@@ -261,8 +272,7 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
         to: 3,
       },
     },
-
-  })
+  });
 
   loadSprite('monster', './assets/monster/monster.png', {
     sliceX: 2,
@@ -270,10 +280,10 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
     anims: {
       move: {
         from: 0,
-        to: 1
-      }
-    }
-  })
+        to: 1,
+      },
+    },
+  });
   // ===================== DECORATIONS ==========================//
 
   //Barrels
@@ -283,50 +293,50 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
 
   //Blankets ===============
   loadSprite(
-    "blanket-cream",
-    "./assets/decorations/blankets/blanketCream1.png"
+    'blanket-cream',
+    './assets/decorations/blankets/blanketCream1.png'
   );
 
   //Bookcases =================
-  loadSprite("bookcase", "./assets/decorations/bookcases/bookcase.png");
-  loadSprite("bookshelve", "./assets/decorations/bookcases/bookshelve.png");
+  loadSprite('bookcase', './assets/decorations/bookcases/bookcase.png');
+  loadSprite('bookshelve', './assets/decorations/bookcases/bookshelve.png');
 
   //Books =================
-  loadSprite("books", "./assets/decorations/books/books.png");
-  loadSprite("opened-book", "./assets/decorations/books/openedbook.png");
-  loadSprite("books-on-chair", "./assets/decorations/books/booksonchair.png");
+  loadSprite('books', './assets/decorations/books/books.png');
+  loadSprite('opened-book', './assets/decorations/books/openedbook.png');
+  loadSprite('books-on-chair', './assets/decorations/books/booksonchair.png');
   loadSprite(
-    "falling-book-on-floor",
-    "./assets/fallingBook/fallingBookOnFloor.png"
+    'falling-book-on-floor',
+    './assets/fallingBook/fallingBookOnFloor.png'
   );
   loadSprite(
-    "fascinatingBook",
-    "./assets/room_backgrounds/firstFloor/library/libraryBook.png"
+    'fascinatingBook',
+    './assets/room_backgrounds/firstFloor/library/libraryBook.png'
   );
 
   //Beds =================
-  loadSprite("pink-bed", "./assets/decorations/furniture/beds/pinkbed.png");
+  loadSprite('pink-bed', './assets/decorations/furniture/beds/pinkbed.png');
 
   //Benches ==============
   loadSprite(
-    "wooden-bench1",
-    "./assets/decorations/furniture/benches/woodenBench1.png"
+    'wooden-bench1',
+    './assets/decorations/furniture/benches/woodenBench1.png'
   );
 
   //Candles =================
   loadSprite(
-    "candle",
-    "./assets/decorations/candles/wallMountedCandleHolder_brown.png"
+    'candle',
+    './assets/decorations/candles/wallMountedCandleHolder_brown.png'
   );
 
   //Chairs =================
   loadSprite(
-    "cycle-chair",
-    "./assets/decorations/furniture/chairs/cyclechair.png"
+    'cycle-chair',
+    './assets/decorations/furniture/chairs/cyclechair.png'
   );
   loadSprite(
-    "wooden-chair",
-    "./assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png"
+    'wooden-chair',
+    './assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
   );
   //Doors =================
 
@@ -336,148 +346,148 @@ loadSprite('first-floor-hallway', './assets/room_backgrounds/firstFloor/firstFlo
   loadSprite('woodenDoor', './assets/decorations/doors/woodenDoor.png');
 
   //Drawers =================
-  loadSprite("drawer", "./assets/decorations/bookcases/drawer.png");
+  loadSprite('drawer', './assets/decorations/bookcases/drawer.png');
   loadSprite(
-    "little-drawer",
-    "./assets/decorations/furniture/drawers/littledrawer.png"
+    'little-drawer',
+    './assets/decorations/furniture/drawers/littledrawer.png'
   );
 
   //Dresser =================
   loadSprite(
-    "clothset",
-    "./assets/decorations/furniture/dressers/clothset.png"
+    'clothset',
+    './assets/decorations/furniture/dressers/clothset.png'
   );
 
   // Clocks =================
   loadSprite(
-    "grandfather-clock",
-    "./assets/decorations/clocks/grandfatherClock.png"
+    'grandfather-clock',
+    './assets/decorations/clocks/grandfatherClock.png'
   );
-  loadSprite("clock", "./assets/decorations/clocks/clock.png");
+  loadSprite('clock', './assets/decorations/clocks/clock.png');
 
   //Flowers and Plants =================
-  loadSprite("flower", "./assets/decorations/flowers-plants/flower.png");
-  loadSprite("red-flower", "./assets/decorations/flowers-plants/redflower.png");
+  loadSprite('flower', './assets/decorations/flowers-plants/flower.png');
+  loadSprite('red-flower', './assets/decorations/flowers-plants/redflower.png');
   loadSprite(
-    "white-flowers",
-    "./assets/decorations/flowers-plants/whiteflowers.png"
+    'white-flowers',
+    './assets/decorations/flowers-plants/whiteflowers.png'
   );
 
   //Glass Cabinet Doors ===========
   loadSprite(
-    "closedGlassDoors",
-    "./assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png"
+    'closedGlassDoors',
+    './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsClosed.png'
   );
   loadSprite(
-    "openGlassDoors",
-    "./assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png"
+    'openGlassDoors',
+    './assets/decorations/furniture/cabinets and shelves/glassCabinentDoorsOpen.png'
   );
 
   //Lamps =================
-  loadSprite("deng", "./assets/decorations/lamps/deng.png");
+  loadSprite('deng', './assets/decorations/lamps/deng.png');
 
   //Misc =================
-  loadSprite("pile-of-bones", "./assets/decorations/misc/pileOfBones.png");
-  loadSprite("help-me", "./assets/decorations/misc/helpMe.png");
-  loadSprite("cob-webs", "./assets/decorations/misc/cobweb_down_right.png");
-  loadSprite("whole-web", "./assets/decorations/misc/wholeWeb.png");
+  loadSprite('pile-of-bones', './assets/decorations/misc/pileOfBones.png');
+  loadSprite('help-me', './assets/decorations/misc/helpMe.png');
+  loadSprite('cob-webs', './assets/decorations/misc/cobweb_down_right.png');
+  loadSprite('whole-web', './assets/decorations/misc/wholeWeb.png');
   loadSprite(
-    "chained-skeleton",
-    "./assets/decorations/misc/chainedSkeleton.png"
+    'chained-skeleton',
+    './assets/decorations/misc/chainedSkeleton.png'
   );
-  loadSprite("wall-crack", "assets/decorations/misc/wallCrack.png");
-  loadSprite("dirt", "assets/decorations/misc/dirt.png");
-  loadSprite("puddle", "assets/decorations/misc/greenPuddle.png");
-  loadSprite("paper", "assets/decorations/misc/paper.png");
-  loadSprite("paper2", "assets/decorations/misc/paper2.png");
-  loadSprite("skeleton-stand", "assets/skeleton/skeletonStand.png");
+  loadSprite('wall-crack', 'assets/decorations/misc/wallCrack.png');
+  loadSprite('dirt', 'assets/decorations/misc/dirt.png');
+  loadSprite('puddle', 'assets/decorations/misc/greenPuddle.png');
+  loadSprite('paper', 'assets/decorations/misc/paper.png');
+  loadSprite('paper2', 'assets/decorations/misc/paper2.png');
+  loadSprite('skeleton-stand', 'assets/skeleton/skeletonStand.png');
 
   //Paintings ================
   loadSprite(
-    "fruit-painting",
-    "./assets/decorations/paintings/fruitPainting.png"
+    'fruit-painting',
+    './assets/decorations/paintings/fruitPainting.png'
   );
   loadSprite(
-    "empty-picture",
-    "./assets/decorations/paintings/emptypicture.png"
+    'empty-picture',
+    './assets/decorations/paintings/emptypicture.png'
   );
   loadSprite(
-    "land-scape-painting",
-    "./assets/decorations/paintings/landscapepainting.png"
+    'land-scape-painting',
+    './assets/decorations/paintings/landscapepainting.png'
   );
   loadSprite(
-    "another-painting",
-    "./assets/decorations/paintings/anotherpainting.png"
+    'another-painting',
+    './assets/decorations/paintings/anotherpainting.png'
   );
   loadSprite(
-    "flower-painting",
-    "./assets/decorations/paintings/flowerpainting.png"
+    'flower-painting',
+    './assets/decorations/paintings/flowerpainting.png'
   );
   loadSprite(
-    "painting-one-with-number",
-    "./assets/decorations/paintings/pictureOneWithNumber.png"
+    'painting-one-with-number',
+    './assets/decorations/paintings/pictureOneWithNumber.png'
   );
   loadSprite(
-    "painting-two-with-number",
-    "./assets/decorations/paintings/pictureTwoWithNumber.png"
+    'painting-two-with-number',
+    './assets/decorations/paintings/pictureTwoWithNumber.png'
   );
-  loadSprite("painting5", "./assets/decorations/paintings/painting5.png");
-  loadSprite("painting10", "./assets/decorations/paintings/painting10.png");
+  loadSprite('painting5', './assets/decorations/paintings/painting5.png');
+  loadSprite('painting10', './assets/decorations/paintings/painting10.png');
 
   //Rugs =================
-  loadSprite("orange-carpet", "./assets/decorations/rugs/orangecarpet.png");
-  loadSprite("red-carpet", "./assets/decorations/rugs/redcarpet.png");
+  loadSprite('orange-carpet', './assets/decorations/rugs/orangecarpet.png');
+  loadSprite('red-carpet', './assets/decorations/rugs/redcarpet.png');
   loadSprite(
-    "orange-big-carpet",
-    "./assets/decorations/rugs/orangebigcarpet.png"
+    'orange-big-carpet',
+    './assets/decorations/rugs/orangebigcarpet.png'
   );
 
   //Seats
-  loadSprite("seats", "./assets/decorations/furniture/seats/seats.png");
+  loadSprite('seats', './assets/decorations/furniture/seats/seats.png');
 
   // Tables =================
   loadSprite(
-    "table",
-    "./assets/decorations/furniture/tables/longTable_dark_brown.png"
+    'table',
+    './assets/decorations/furniture/tables/longTable_dark_brown.png'
   );
   loadSprite(
-    "makeup-table",
-    "./assets/decorations/furniture/tables/makeuptable.png"
+    'makeup-table',
+    './assets/decorations/furniture/tables/makeuptable.png'
   );
 
   //Toys =================
-  loadSprite("toy", "./assets/decorations/toys/toy.png");
-  loadSprite("ball", "./assets/decorations/toys/ball.png");
+  loadSprite('toy', './assets/decorations/toys/toy.png');
+  loadSprite('ball', './assets/decorations/toys/ball.png');
 
   //Windows =================
   loadSprite(
-    "basement-window",
-    "./assets/decorations/windows/basementWindow.png"
+    'basement-window',
+    './assets/decorations/windows/basementWindow.png'
   );
-  loadSprite("window", "./assets/decorations/windows/window.png");
+  loadSprite('window', './assets/decorations/windows/window.png');
 
   // Sofas =================
   loadSprite(
-    "white-formal-sofa-one",
-    "./assets/decorations/furniture/sofas/whiteFormalSofa1.png"
+    'white-formal-sofa-one',
+    './assets/decorations/furniture/sofas/whiteFormalSofa1.png'
   );
 
   // Curtains =================
   loadSprite(
-    "white-curtains-closed",
-    "./assets/decorations/curtains/whiteCurtainsClosed.png"
+    'white-curtains-closed',
+    './assets/decorations/curtains/whiteCurtainsClosed.png'
   );
   loadSprite(
-    "white-curtains-open",
-    "./assets/decorations/curtains/whiteCurtainsOpen.png"
+    'white-curtains-open',
+    './assets/decorations/curtains/whiteCurtainsOpen.png'
   );
 
   // Lambs =================
-  loadSprite("lamp-turned-on", "./assets/decorations/lamps/lampTurnedOn.png");
-  loadSprite("lamp-turned-off", "./assets/decorations/lamps/lampTurnedOff.png");
+  loadSprite('lamp-turned-on', './assets/decorations/lamps/lampTurnedOn.png');
+  loadSprite('lamp-turned-off', './assets/decorations/lamps/lampTurnedOff.png');
 
   // paper =================
-  loadSprite("notebook", "./assets/decorations/paper/notebook.png");
+  loadSprite('notebook', './assets/decorations/paper/notebook.png');
 
   // kitchenStuff =================
   loadSprite(

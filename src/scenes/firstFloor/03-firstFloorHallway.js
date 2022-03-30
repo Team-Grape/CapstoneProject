@@ -1,3 +1,4 @@
+
 import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
@@ -5,29 +6,31 @@ import { setGameState, getGameState } from "../../state.js";
 import { cellarKey, silverKey } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
 
+
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from "../../inventory.js";
+} from '../../inventory.js';
 
-const roomName = "firstFloorHallway";
+const roomName = 'firstFloorHallway';
 const roomNavArrows = navArrows(roomName);
 // const message = new Message();
 
 const introMessage = [
-  ["You found stairs and followed them out of the basement.  "],
+  ['You found stairs and followed them out of the basement.  '],
   ["You've made it to the first floor!  "],
 ];
 
 export const createFirstFloorHallway = async () => {
-  scene(roomName + "Down", () => {
+  scene(roomName + 'Down', () => {
     window.roomName = roomName;
-    window.viewDirection = "singleViewRoom";
+    window.viewDirection = 'singleViewRoom';
 
     onLoad(() => {
       add([sprite("first-floor-hallway"), scale(1)]);
       // left-near-door
+
       add([rect(160, 235), opacity(0), pos(72, 158), area(), "left-near-door"]);
       add([rect(94, 47), opacity(0), pos(72, 392), area(), "left-near-door"]);
       // left-far-door
@@ -56,10 +59,11 @@ export const createFirstFloorHallway = async () => {
         "right-near-door",
       ]);
 
-      playBGM("ambience");
+      playBGM('ambience');
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
+
 
     if (!getGameState(roomName, "introMessageRead")) {
       textBubble(introMessage, () => {
@@ -74,6 +78,7 @@ export const createFirstFloorHallway = async () => {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
+
 
     onClick("left-near-door", () => {
       textBubble([["it won't open"]], () => {
