@@ -328,7 +328,7 @@ export const createLivingRoom = () => {
       add([sprite('redBTN'), scale(0.1), pos(980, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(1020, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(980, 120)]);
-      add([sprite('monster'), scale(1), area(), pos(80, 100), 'monster'])
+      add([sprite('monster'), scale(1), area(), pos(80, 100), 'monster']);
     });
 
     onClick('monster', (monster) => {
@@ -337,20 +337,18 @@ export const createLivingRoom = () => {
         const keySilver = add([
           sprite('key-silver'),
           pos(130, 130),
-          scale(.8),
+          scale(0.8),
           area(),
-          'keySilver'
-        ])
-        textBubble([["This key is not my face. Would you like to have it?"]])
+          'keySilver',
+        ]);
+        textBubble([['This key is not my face. Would you like to have it?']]);
         onClick('keySilver', (keySilver) => {
-        textBubble([["A key was added to your inventory"]])
-        addToInventory(silverKey);
-        setGameState(roomName, "silverKeyPickedUp", true);
-        keySilver.destroy();
-      })
+          textBubble([['A key was added to your inventory']]);
+          addToInventory(silverKey);
+          setGameState(roomName, 'silverKeyPickedUp', true);
+          keySilver.destroy();
+        });
       }
-      
-    })
     });
 
     if (!getGameState(roomName, 'paintingMoved')) {
