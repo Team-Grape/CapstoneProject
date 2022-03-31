@@ -177,6 +177,7 @@ export const createBasementRoomOne = () => {
         "pryBar",
       ]);
       onClick("pryBar", (pryBar) => {
+        playSFX('keyNoise')
         textBubble([["A Pry Bar was added to your inventory"]]);
         addToInventory(pryBarObj);
         setGameState(roomName, "pryBarPickedUp", true);
@@ -186,11 +187,13 @@ export const createBasementRoomOne = () => {
 
     onClick("door", (door) => {
       if (getGameState(roomName, "doorUnlocked")) {
+        playSFX('doorClose')
         go("basementHallwayDown");
       } else if (
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
       ) {
+        playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);

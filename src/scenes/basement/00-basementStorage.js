@@ -15,6 +15,7 @@ const roomName = "basementStorageOne";
 const roomNavArrows = navArrows(roomName);
 
 export const createBasementStorageOne = async () => {
+
   scene(roomName + "Down", () => {
     window.roomName = roomName;
     window.viewDirection = "singleViewRoom";
@@ -30,6 +31,7 @@ export const createBasementStorageOne = async () => {
     }
 
     onClick('rustyKey', (rustyKey1) => {
+      playSFX('keyNoise')
       textBubble([["A rusty key was added to your inventory."]], () => {
         singleViewNavArrow("basementStorageOneDown", "basementHallwayDown");
       })
@@ -47,6 +49,7 @@ export const createBasementStorageOne = async () => {
     ]);
 
     onClick("cuteGhost", (cuteGhost) => {
+      playSFX('cuteGhostSound')
       cuteGhost.play("move", { loop: true });
       setGameState(roomName, "ghostMoved", true);
       textBubble(

@@ -1,4 +1,3 @@
-
 import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
@@ -6,14 +5,13 @@ import { setGameState, getGameState } from "../../state.js";
 import { cellarKey, silverKey } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
 
-
 import {
   addToInventory,
   checkInventoryForItem,
   removeFromInventory,
-} from '../../inventory.js';
+} from "../../inventory.js";
 
-const roomName = 'firstFloorHallway';
+const roomName = "firstFloorHallway";
 const roomNavArrows = navArrows(roomName);
 // const message = new Message();
 
@@ -23,9 +21,9 @@ const introMessage = [
 ];
 
 export const createFirstFloorHallway = async () => {
-  scene(roomName + 'Down', () => {
+  scene(roomName + "Down", () => {
     window.roomName = roomName;
-    window.viewDirection = 'singleViewRoom';
+    window.viewDirection = "singleViewRoom";
 
     onLoad(() => {
       add([sprite("first-floor-hallway"), scale(1)]);
@@ -59,11 +57,10 @@ export const createFirstFloorHallway = async () => {
         "right-near-door",
       ]);
 
-      playBGM('ambience');
+      playBGM("ambience");
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////
-
 
     if (!getGameState(roomName, "introMessageRead")) {
       textBubble(introMessage, () => {
@@ -71,7 +68,6 @@ export const createFirstFloorHallway = async () => {
         addToMessageLog(introMessage);
         singleViewNavArrow(roomName + "Down", "basementHallwayDown");
       });
-   
     } else {
       singleViewNavArrow(roomName + "Down", "basementHallwayDown");
       // singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
@@ -79,9 +75,9 @@ export const createFirstFloorHallway = async () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-
     onClick("left-near-door", () => {
-      go("kitchenUp")
+      playSFX("doorClose");
+      go("kitchenUp");
     });
 
     onClick("left-far-door", () => {
@@ -90,21 +86,24 @@ export const createFirstFloorHallway = async () => {
         window.roomName,
         window.viewDirection
       );
+      playSFX("doorClose");
       go("mainEntranceDown");
     });
 
     onClick("right-near-door", () => {
-      go("livingRoomUp")
+      playSFX("doorClose");
+      go("livingRoomUp");
     });
 
     onClick("right-far-door", () => {
       if (getGameState(roomName, "doorUnlocked")) {
-          playSFX('doorClose')
+        playSFX("doorClose");
         go("secondFloorHallwayDown");
       } else if (
         checkInventoryForItem(silverKey) &&
         window.selectedItem == "silver key"
       ) {
+        playSFX("lockClick");
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(silverKey);
         textBubble([["The key unlocked the door!"]]);

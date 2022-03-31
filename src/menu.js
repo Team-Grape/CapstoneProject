@@ -141,6 +141,7 @@ export class InGameMenu {
         saveAndQuit,
       ]);
       this.saveAndQuit();
+      window.localStorage.setItem('menuIsOpen', false)
     });
 
     onClick("saveAsURL", () => {

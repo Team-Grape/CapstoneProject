@@ -19,7 +19,7 @@ export const gameover = () => {
             origin("center"),
         ])
         add([
-            text("click here to restart", {size: 36}),
+            text("Click here to restart", {size: 36}),
             color(255, 255, 255),
             pos(width() / 2, 460),
             origin("center"),

@@ -42,6 +42,11 @@ const doorMessage = [
   ["it's locked."],
 ];
 
+const prettyPainting = [
+  ['Your eye is caught by the beauty of this painting'],
+  ['You pause to gaze at it. This is a nice break.']
+]
+
 const doorIsLocked = [["It's locked."]];
 
 export const createMainEntrance = async () => {
@@ -53,6 +58,13 @@ export const createMainEntrance = async () => {
       add([sprite("main-entrance"), scale(1)]);
 
       add([rect(155, 240), opacity(0), pos(533, 110), area(), "center-door"]);
+      add([
+        rect(240, 75),
+        opacity(0),
+        pos(25, 150),
+        area(),
+        "prettyPainting",
+      ]);
 
       add([
         rect(200, 280),
@@ -62,6 +74,11 @@ export const createMainEntrance = async () => {
         "right-near-door",
       ]);
 
+      onClick('prettyPainting', () => {
+        textBubble(prettyPainting, () => {
+          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+        });
+      })
       playBGM("ambience");
     });
 
@@ -81,41 +98,50 @@ export const createMainEntrance = async () => {
 
     onClick("right-near-door", () => {
       playSFX('doorClose')
-      go("libraryDown");
+      go("libraryUp");
     });
 
     onClick("center-door", () => {
-      if (!getGameState(roomName, "centerDoorClicked")) {
-        textBubble(doorMessage, () => {
-          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-        });
-        setGameState(roomName, "centerDoorClicked", true);
-      } else {
-        textBubble(doorIsLocked, () => {
-          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-        });
-      }
       
-      if (getGameState(roomName, "doorUnlocked")) {
-        go("win");
-      } else if (
-        checkInventoryForItem(rustyKey) &&
-        window.selectedItem == "rusty key"
-      ) {
-        setGameState(roomName, "doorUnlocked", true);
-        removeFromInventory(rustyKey);
-        textBubble([["The key unlocked the door!"]], () => {
-          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-        });
-      } else if (window.selectedItem == "pry bar") {
-        textBubble([["It doesn't work"]], () => {
-          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-        });
-      } else {
-        textBubble(doorIsLocked, () => {
-          singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-        });
-      }
+
+      if (getGameState(roomName, "doorUnlocked")) { 
+      go("win");
+    } else if (
+      checkInventoryForItem(rustyKey) &&
+      window.selectedItem == "rusty key"
+    ) {
+       playSFX('lockClick')
+      setGameState(roomName, "doorUnlocked", true);
+      removeFromInventory(rustyKey);
+      textBubble([["The key unlocked the door!"]], () => {
+        singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      });
+    } else if (window.selectedItem == "pry bar") {
+      textBubble([["It doesn't work"]], () => {
+        singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      });
+    } else if (!getGameState(roomName, "centerDoorClicked")){
+      textBubble(doorMessage, () => {
+        singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      });
+      setGameState(roomName, "centerDoorClicked", true);
+    } else {
+      textBubble(doorIsLocked, () => {
+        singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      });
+    }
+
+
+      // if (!getGameState(roomName, "centerDoorClicked")) {
+      //   textBubble(doorMessage, () => {
+      //     singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      //   });
+      //   setGameState(roomName, "centerDoorClicked", true);
+      // } else {
+      //   textBubble(doorIsLocked, () => {
+      //     singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
+      //   });
+      // }
     });
 
     // if (!InGameMenu.isOpen()) {

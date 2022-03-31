@@ -1,9 +1,11 @@
 export const loadAllSprites = () => {
   //Items =================
 
-  loadSprite('key', './assets/items/key_gold.png');
-  loadSprite('key-silver', './assets/items/key_silver.png');
-  loadSprite('key-rusty', './assets/items/key_rusty.png');
+  loadSprite('key', './assets/items/keys/key_gold.png');
+  loadSprite('key-silver', './assets/items/keys/key_silver.png');
+  loadSprite('key-rusty', './assets/items/keys/key_rusty.png');
+  loadSprite('heart-key', './assets/items/keys/goldHeartKey.png');
+  loadSprite('diamond-key', './assets/items/keys/silverDiamondKey.png');
   loadSprite('lock-pick', './assets/items/lockpick_brown.png');
   loadSprite('lighter', './assets/items/lighter.png');
   loadSprite('pryBar', './assets/items/pry-bar.png');
@@ -293,7 +295,7 @@ export const loadAllSprites = () => {
 
   //Barrels
   loadSprite('barrel1', './assets/decorations/barrels/Barrels1.png');
-  loadSprite('barrel2', './assets/decorations/barrels/Barrels3.png');
+  loadSprite('barrel2', './assets/decorations/barrels/Barrels2.png');
   loadSprite('barrel3', './assets/decorations/barrels/Barrels3.png');
 
   //Blankets ===============
@@ -343,6 +345,11 @@ export const loadAllSprites = () => {
     'wooden-chair',
     './assets/decorations/furniture/chairs/whiteCrudeWoodenChair.png'
   );
+
+  //Chest =============
+  loadSprite('chestClosed', './assets/decorations/chest/chest3Closed.png')
+  loadSprite('chestHalfOpen', './assets/decorations/chest/chest3HalfOpen.png')
+  loadSprite('chestOpen', './assets/decorations/chest/chest3Open.png')
   //Doors =================
 
   loadSprite('door', './assets/decorations/doors/evilDoor.png');
@@ -356,6 +363,7 @@ export const loadAllSprites = () => {
     'little-drawer',
     './assets/decorations/furniture/drawers/littledrawer.png'
   );
+  loadSprite('deskDrawer', './assets/decorations/furniture/drawers/drawer.png')
 
   //Dresser =================
   loadSprite(

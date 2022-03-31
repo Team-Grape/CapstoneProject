@@ -2,22 +2,36 @@ export let cellarKey = {
   name: 'cellar key',
   description: 'An old rusty key to the cellar door',
   quantity: 1,
-  image: '/items/key_gold.png',
+  image: '/items/keys/key_gold.png',
 };
 
 export let silverKey = {
   name: 'silver key',
   description: 'An old rusty key to open doors.',
   quantity: 1,
-  image: '/items/key_silver.png'
+  image: '/items/keys/key_silver.png'
 }
 
 export let rustyKey = {
   name: 'rusty key',
   description: 'An old rusty key to open the main door.',
   quantity: 1,
-  image: '/items/key_rusty.png'
+  image: '/items/keys/key_rusty.png'
 } 
+
+export let heartKey = {
+  name: 'heart key',
+  description: 'A heart shaped key made of gold.',
+  quantity: 1,
+  image: '/items/keys/goldHeartKey.png'
+}
+
+export let diamondKey = {
+  name: 'diamond key',
+  description: 'A diamond shaped key made of silver.',
+  quantity: 1,
+  image: '/items/keys/silverDiamondKey.png'
+}
 
 export let pryBarObj = {
   name: 'pry bar',

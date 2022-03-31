@@ -44,6 +44,7 @@ export const createBedroom = () => {
     }
 
     onClick("lockPick", (lockPick2) => {
+      playSFX('keyNoise')
       textBubble([["A lock pick was added to your inventory"]]);
       addToInventory(lockPick);
       setGameState(roomName, "lock-pickPickedUp", true);
@@ -76,6 +77,7 @@ export const createBedroom = () => {
         "lighter",
       ]);
       onClick("lighter", (lighter) => {
+        playSFX('keyNoise')
         textBubble([["A lighter was added to your inventory"]]);
 
         addToInventory(lighterObj);
@@ -159,6 +161,7 @@ export const createBedroom = () => {
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
       ) {
+        playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
@@ -196,6 +199,7 @@ export const createBedroom = () => {
           "flame",
         ]);
         flame.play("fire", { loop: true });
+        playSFX('fireSound')
         setInterval(() => {
           wholeWeb.destroy();
           setGameState(roomName, "webBurned", true);

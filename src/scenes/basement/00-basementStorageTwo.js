@@ -48,6 +48,7 @@ export const createBasementStorageTwo = async () => {
     ]);
 
     onClick("monster", (monster) => {
+      playSFX('cuteGhostSound')
       monster.play("move");
       textBubble([
         [`I dont't know where my face went. Please help me find it.`],
