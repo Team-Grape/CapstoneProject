@@ -7,8 +7,8 @@ import { removeInventoryDiv, resetCursorDiv } from '../inventory';
 export const createTrapDoor = () => {
   const scene = new THREE.Scene();
   
-  const axesHelper = new THREE.AxesHelper(5);
-  scene.add(axesHelper);
+//  const axesHelper = new THREE.AxesHelper(5);
+//  scene.add(axesHelper);
   
   const camera = new THREE.PerspectiveCamera(
     75,
