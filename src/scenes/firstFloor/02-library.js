@@ -9,6 +9,8 @@ import { debugRectSize } from "../../debug";
 
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 
+import { pryBarObj } from "../../items";
+
 import {
   addToInventory,
   checkInventoryForItem,
@@ -24,6 +26,14 @@ const hauntedHousesBook = [
   [
     "You find a about haunted houses. It seems a little on the nose so you leave it.",
   ],
+];
+
+const chestOpen = [
+  ["You look inside."],
+  ["Wow!"],
+  ["You can't believe your eyes!"],
+  ["Nothing!"],
+  ["You wonder if whoever put you here has a twisted sense of humor."],
 ];
 const uninterestingBookText = [
   [
@@ -85,7 +95,7 @@ export const createLibrary = () => {
     }
 
     onClick("door", () => {
-      playSFX('doorClose')
+      playSFX("doorClose");
       go("mainEntranceDown");
     });
 
@@ -99,7 +109,6 @@ export const createLibrary = () => {
     });
 
     onClick("uninterestingBook", () => {
-      console.log("clicked");
       textBubble(uninterestingBookText);
     });
 
@@ -119,9 +128,49 @@ export const createLibrary = () => {
       add([sprite("library-right"), scale(1), area()]);
     });
 
-   
+    const deskDrawer1 = add([
+      sprite("deskDrawer"),
+      scale(1.05),
+      pos(471, 402),
+      area(),
+      "deskDrawer1",
+    ]);
+    const deskDrawer2 = add([
+      sprite("deskDrawer"),
+      scale(1.05),
+      pos(471, 452),
+      area(),
+      "deskDrawer2",
+    ]);
 
-  
+    onClick("deskDrawer1", () => {
+      if (!getGameState(roomName, "deskDrawer1Opened")) {
+        playSFX("drawerOpening");
+        deskDrawer1.pos.y += 20;
+
+        setGameState(roomName, "deskDrawer1Opened", true);
+      } else {
+        playSFX("drawerClosing");
+        deskDrawer1.pos.y -= 20;
+
+        setGameState(roomName, "deskDrawer1Opened", false);
+      }
+    });
+
+    onClick("deskDrawer2", () => {
+      if (!getGameState(roomName, "deskDrawer2Opened")) {
+        playSFX("drawerOpening");
+        deskDrawer2.pos.y += 20;
+
+        setGameState(roomName, "deskDrawer2Opened", true);
+      } else {
+        playSFX("drawerClosing");
+        deskDrawer2.pos.y -= 20;
+
+        setGameState(roomName, "deskDrawer2Opened", false);
+      }
+    });
+
     roomNavArrows(window.viewDirection);
   });
 
@@ -134,6 +183,13 @@ export const createLibrary = () => {
 
     onLoad(() => {
       add([sprite("library-up"), scale(1), area()]);
+    });
+    add([rect(15, 20), opacity(0), pos(280, 185), area(), "uninterestingBook"]);
+    add([rect(15, 20), opacity(0), pos(400, 106), area(), "uninterestingBook"]);
+    add([rect(15, 20), opacity(0), pos(880, 103), area(), "uninterestingBook"]);
+    onClick("uninterestingBook", () => {
+      console.log("clicked");
+      textBubble(uninterestingBookText);
     });
 
     if (getGameState(roomName, "openedLibraryGlassDoor", true)) {
@@ -155,7 +211,7 @@ export const createLibrary = () => {
     }
 
     onClick("glassDoorClosed", (door) => {
-      playSFX('glassDoorOpening')
+      playSFX("glassDoorOpening");
       setGameState(roomName, "openedLibraryGlassDoor", true);
       door.destroy();
       add([
@@ -168,7 +224,7 @@ export const createLibrary = () => {
     });
 
     onClick("glassDoorOpen", (door) => {
-      playSFX('glassDoorClosing')
+      playSFX("glassDoorClosing");
       setGameState(roomName, "openedLibraryGlassDoor", false);
       door.destroy();
       add([
@@ -194,46 +250,84 @@ export const createLibrary = () => {
     onLoad(() => {
       add([sprite("library-left"), scale(1), area()]);
 
-      if (!getGameState(roomName, 'lampOff')) {
+      if (!getGameState(roomName, "lampOff")) {
         add([
-          sprite('lamp-turned-off'),
+          sprite("lamp-turned-off"),
           scale(5),
           pos(558, 190),
           area(),
-          'lampTurnedOff',
+          "lampTurnedOff",
         ]);
       } else {
-        add([sprite('lamp-turned-on'), scale(5), pos(558, 190), area(), 'lampTurnedOn']);
+        add([
+          sprite("lamp-turned-on"),
+          scale(5),
+          pos(558, 190),
+          area(),
+          "lampTurnedOn",
+        ]);
       }
     });
 
-    onClick('lampTurnedOff', (lampTurnedOff) => {
-      playSFX('click')
+    if (!getGameState(roomName, "chestOpen")) {
+      add([sprite("chestClosed"), scale(5), pos(160, 280), area(), "chest"]);
+      onClick("chest", (chest) => {
+        if (
+          checkInventoryForItem(pryBarObj) &&
+          window.selectedItem == "pry bar"
+        ) {
+          chest.destroy();
+          playSFX("chestOpen");
+          textBubble(chestOpen);
+          setGameState(roomName, "chestOpen", true);
+          add([
+            sprite("chestOpen"),
+            scale(5),
+            pos(160, 280),
+            area(),
+            "chestOpen",
+          ]);
+        } else {
+          playSFX('click')
+        }
+      });
+    } else {
+      add([
+        sprite("chestOpen"),
+        scale(5),
+        pos(160, 280),
+        area(),
+        "chestOpen",
+      ]);
+    }
+
+    onClick("lampTurnedOff", (lampTurnedOff) => {
+      playSFX("click");
       lampTurnedOff.destroy();
-      setGameState(roomName, 'lampOff', true);
+      setGameState(roomName, "lampOff", true);
       const lampTurnedOn = add([
-        sprite('lamp-turned-on'),
+        sprite("lamp-turned-on"),
         scale(5),
         pos(558, 190),
         area(),
-        'lampTurnedOn',
+        "lampTurnedOn",
       ]);
     });
 
-    onClick('lampTurnedOn', (lampTurnedOn) => {
-      playSFX('click')
+    onClick("lampTurnedOn", (lampTurnedOn) => {
+      playSFX("click");
       lampTurnedOn.destroy();
-      setGameState(roomName, 'lampOff', false);
+      setGameState(roomName, "lampOff", false);
       const lampTurnedOff = add([
-        sprite('lamp-turned-off'),
+        sprite("lamp-turned-off"),
         scale(5),
         pos(558, 190),
         area(),
-        'lampTurnedOff',
+        "lampTurnedOff",
       ]);
-    }); 
+    });
     roomNavArrows(window.viewDirection);
   });
-
-  // ======================================================== //
 };
+
+// ======================================================== //
