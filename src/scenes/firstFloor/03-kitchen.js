@@ -44,6 +44,7 @@ export const createKitchen = () => {
     ]);
 
     onClick('cabbage', (cabbage) => {
+      playSFX('cuteGhostSound')
       textBubble([['Bye']]);
       cabbage.onUpdate(() => {
         cabbage.angle += 120 * dt();
@@ -79,11 +80,12 @@ export const createKitchen = () => {
     });
 
     onClick('milkBottle', (milkBottle) => {
-      textBubble([["It was expired, you probably don'n want to take it."]]);
+      textBubble([["It is expired, you probably don't want to take it."]]);
     });
 
     onClick('meat', (meat1) => {
-      textBubble([['the meat was added to your inventory']]);
+      playSFX('keyNoise')
+      textBubble([['The meat was added to your inventory']]);
       addToInventory(meat);
       setGameState(roomName, 'meatPickedUp', true);
       meat1.destroy();
@@ -208,8 +210,10 @@ export const createKitchen = () => {
 
     onClick('woodenDoor', (woodenDoor) => {
       if (getGameState(roomName, 'doorUnlocked')) {
+        playSFX('doorClose')
         go('firstFloorHallwayDown');
       } else if (checkInventoryForItem(cellarKey) && window.selectedItem == 'cellar key') {
+        play('lockClick')
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
