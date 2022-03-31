@@ -143,7 +143,8 @@ export const createTrapDoor = () => {
   // ----------- kaboom & three canvas switching stuff --------------- //
   
   const threeCanvas = document.querySelectorAll('[data-engine]')[0]
-  threeCanvas.style.top = '460px'
+  //threeCanvas.style.top = '460px'
+  threeCanvas.style.top = '50%'
   threeCanvas.style["cursor"] = "auto";
   
   const kaboomCanvas = document.querySelectorAll('[tabindex="0"]')[0]
