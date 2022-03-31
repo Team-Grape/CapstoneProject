@@ -196,6 +196,7 @@ export const createBedroom = () => {
           "flame",
         ]);
         flame.play("fire", { loop: true });
+        playSFX('fireSound')
         setInterval(() => {
           wholeWeb.destroy();
           setGameState(roomName, "webBurned", true);
