@@ -16,19 +16,13 @@ export const createTrapDoor = () => {
     0.4,
     1000
   );
-  
+
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  // renderer.setClearColor(0xffffff);
   document.body.appendChild(renderer.domElement);
-  
-  /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-  // create controls for camera
-  //const controls = new THREE.OrbitControls(camera, renderer.domElement);
-  camera.position.set(0, 10, 150);
-  //controls.enableZoom = false;
-  //controls.update();
-  
+
+  camera.position.set(0, 10, 100);
+
   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
   // adds lighting to the scene
   const light = new THREE.AmbientLight(0xffffff); // soft white light
@@ -92,7 +86,6 @@ export const createTrapDoor = () => {
       texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.x = 1;
       texture.repeat.y = 1;
-      // const geometry = new THREE.PlaneGeometry(400, 225);
       const geometry = new THREE.PlaneGeometry(400, 400);
       const material = new THREE.MeshLambertMaterial({ map: texture });
       const plane = new THREE.Mesh(geometry, material);
@@ -119,26 +112,16 @@ export const createTrapDoor = () => {
   );
   
   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-  //load gltf models
-  //const loader = new THREE.GLTFLoader();
   const loader = new GLTFLoader();
   
   let mixer;
   
   loader.load("../assets/transparentGhost/scene.gltf", (gltf) => {
     const model = gltf.scene
-    scene.add(model);
-  
     const scale = 5;
     model.scale.set(scale, scale, scale);
     model.position.set(0, -160, 0);
-  
-    mixer = new THREE.AnimationMixer(model)
-    const clips = gltf.animations;
-    const clip = THREE.AnimationClip.findByName(clips, "Take 001")
-    const action = mixer.clipAction(clip);
-    console.log(action)
-    action.play();
+    scene.add(model);
   });
   
   function onWindowResize() {
@@ -147,13 +130,8 @@ export const createTrapDoor = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
   
-  function update () {
-    mixer.update( deltaSeconds )
-  }
-  
   function animate() {
     requestAnimationFrame(animate);
-    //controls.update();
     renderer.render(scene, camera);
   }
   
@@ -165,7 +143,7 @@ export const createTrapDoor = () => {
   // ----------- kaboom & three canvas switching stuff --------------- //
   
   const threeCanvas = document.querySelectorAll('[data-engine]')[0]
-  threeCanvas.style.top = '300px'
+  threeCanvas.style.top = '460px'
   threeCanvas.style["cursor"] = "auto";
   
   const kaboomCanvas = document.querySelectorAll('[tabindex="0"]')[0]
@@ -180,7 +158,7 @@ export const createTrapDoor = () => {
     threeCanvas.remove()
     go("gameover")
   
-  }, 5000);
+  }, 3000);
 
 }
 

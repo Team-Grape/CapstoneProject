@@ -109,9 +109,6 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-//      textBubble([["it won't open"]], () => {
-//        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
-//      });
       createTrapDoor()
 
     });
