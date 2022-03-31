@@ -10,6 +10,7 @@ import {
 
 
 import { displayInventoryDiv } from "../inventory"
+import { createTrapDoor } from "./trapRoom.js"
 
 
 export const entry = () => {
@@ -50,6 +51,7 @@ export const entry = () => {
         }
       } else {
         window.localStorage.setItem('menuIsOpen', false)
+//        createTrapDoor()
         go("title");
       }
     });
