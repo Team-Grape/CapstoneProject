@@ -2,6 +2,7 @@ import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { setGameState, getGameState } from "../../state.js";
 import { silverKey } from "../../items.js";
+import { playSFX } from "../../sounds";
 
 import { playSFX } from "../../sounds";
 
