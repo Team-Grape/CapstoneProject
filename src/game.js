@@ -64,7 +64,7 @@ createStudy();
 
 
 //go('bedroomDown');
-go('entry');
+go('studyDown');
 
 //import { createTrapDoor } from "./scenes/trapRoom.js"
 //createTrapDoor()

@@ -1,9 +1,11 @@
 export const loadAllSprites = () => {
   //Items =================
 
-  loadSprite('key', './assets/items/key_gold.png');
-  loadSprite('key-silver', './assets/items/key_silver.png');
-  loadSprite('key-rusty', './assets/items/key_rusty.png');
+  loadSprite('key', './assets/items/keys/key_gold.png');
+  loadSprite('key-silver', './assets/items/keys/key_silver.png');
+  loadSprite('key-rusty', './assets/items/keys/key_rusty.png');
+  loadSprite('heart-key', './assets/items/keys/goldHeartKey.png');
+  loadSprite('diamond-key', './assets/items/keys/silverDiamondKey.png');
   loadSprite('lock-pick', './assets/items/lockpick_brown.png');
   loadSprite('lighter', './assets/items/lighter.png');
   loadSprite('pryBar', './assets/items/pry-bar.png');

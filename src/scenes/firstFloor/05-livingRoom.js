@@ -349,7 +349,7 @@ export const createLivingRoom = () => {
         ]);
         textBubble([['This key is not my face. Would you like to have it?']]);
         onClick('keySilver', (keySilver) => {
-          play('keyNoise')
+          playSFX('keyNoise')
           textBubble([['A key was added to your inventory']]);
           addToInventory(silverKey);
           setGameState(roomName, 'silverKeyPickedUp', true);
@@ -371,6 +371,7 @@ export const createLivingRoom = () => {
     }
 
     onClick('painting10', (painting10) => {
+      playSFX('falling')
       painting10.destroy();
       setGameState(roomName, 'paintingMoved', true);
       add([
