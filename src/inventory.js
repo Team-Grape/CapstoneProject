@@ -61,8 +61,17 @@ export const createCursorDiv = (imgURL) => {
   canvas.addEventListener('mousemove', (e) => {
     if (window.selectedItem) {
     cursorItem.style['display'] = 'block';
-    cursorItem.style.left = (e.clientX - window.selectedItemOffset.x) + 'px';
-    cursorItem.style.top = (e.clientY - window.selectedItemOffset.y) + 'px';
+
+    cursorItem.style["image-rendering"] = "pixelated";
+    cursorItem.style["width"] = "auto";
+    cursorItem.style["height"] = "64px";
+    cursorItem.style["user-select"] = "none";
+    cursorItem.style["user-drag"] = "none";
+
+//    cursorItem.style.left = (e.clientX - window.selectedItemOffset.x) + 'px';
+//    cursorItem.style.top = (e.clientY - window.selectedItemOffset.y) + 'px';
+    cursorItem.style.left = (e.clientX - 32) + 'px';
+    cursorItem.style.top = (e.clientY - 32) + 'px';
     }
   })
   canvas.addEventListener('mouseleave', (e) => {
@@ -148,8 +157,10 @@ export const displayInventoryDiv = () => {
     //tmpItemImg.alt = `${item.name}: ${item.description}`
     tmpItemImg.title = `${item.name}: \n  ${item.description}`;
     tmpItemImg.style["border"] = "3px solid grey";
-    tmpItemImg.style["width"] = "64px";
+//    tmpItemImg.style["width"] = "64px";
+    tmpItemImg.style["width"] = "auto";
     tmpItemImg.style["height"] = "64px";
+    tmpItemImg.style["image-rendering"] = "pixelated";
     tmpItemImg.style["user-select"] = "none";
     tmpItemImg.style["user-drag"] = "none";
 //    tmpItemImg.style["cursor"] = "pointer";
