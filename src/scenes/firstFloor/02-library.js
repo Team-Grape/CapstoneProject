@@ -85,7 +85,7 @@ export const createLibrary = () => {
     }
 
     onClick("door", () => {
-      console.log("door clicked");
+      playSFX('doorClose')
       go("mainEntranceDown");
     });
 
@@ -118,6 +118,10 @@ export const createLibrary = () => {
     onLoad(() => {
       add([sprite("library-right"), scale(1), area()]);
     });
+
+   
+
+  
     roomNavArrows(window.viewDirection);
   });
 
@@ -151,6 +155,7 @@ export const createLibrary = () => {
     }
 
     onClick("glassDoorClosed", (door) => {
+      playSFX('glassDoorOpening')
       setGameState(roomName, "openedLibraryGlassDoor", true);
       door.destroy();
       add([
@@ -163,6 +168,7 @@ export const createLibrary = () => {
     });
 
     onClick("glassDoorOpen", (door) => {
+      playSFX('glassDoorClosing')
       setGameState(roomName, "openedLibraryGlassDoor", false);
       door.destroy();
       add([
@@ -188,8 +194,45 @@ export const createLibrary = () => {
     onLoad(() => {
       add([sprite("library-left"), scale(1), area()]);
 
-      roomNavArrows(window.viewDirection);
+      if (!getGameState(roomName, 'lampOff')) {
+        add([
+          sprite('lamp-turned-off'),
+          scale(5),
+          pos(558, 190),
+          area(),
+          'lampTurnedOff',
+        ]);
+      } else {
+        add([sprite('lamp-turned-on'), scale(5), pos(558, 190), area(), 'lampTurnedOn']);
+      }
     });
+
+    onClick('lampTurnedOff', (lampTurnedOff) => {
+      playSFX('click')
+      lampTurnedOff.destroy();
+      setGameState(roomName, 'lampOff', true);
+      const lampTurnedOn = add([
+        sprite('lamp-turned-on'),
+        scale(5),
+        pos(558, 190),
+        area(),
+        'lampTurnedOn',
+      ]);
+    });
+
+    onClick('lampTurnedOn', (lampTurnedOn) => {
+      playSFX('click')
+      lampTurnedOn.destroy();
+      setGameState(roomName, 'lampOff', false);
+      const lampTurnedOff = add([
+        sprite('lamp-turned-off'),
+        scale(5),
+        pos(558, 190),
+        area(),
+        'lampTurnedOff',
+      ]);
+    }); 
+    roomNavArrows(window.viewDirection);
   });
 
   // ======================================================== //

@@ -15,6 +15,7 @@ const roomName = "basementStorageOne";
 const roomNavArrows = navArrows(roomName);
 
 export const createBasementStorageOne = async () => {
+
   scene(roomName + "Down", () => {
     window.roomName = roomName;
     window.viewDirection = "singleViewRoom";

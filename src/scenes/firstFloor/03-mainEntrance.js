@@ -81,7 +81,7 @@ export const createMainEntrance = async () => {
 
     onClick("right-near-door", () => {
       playSFX('doorClose')
-      go("libraryDown");
+      go("libraryUp");
     });
 
     onClick("center-door", () => {

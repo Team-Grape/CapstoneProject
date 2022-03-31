@@ -90,6 +90,7 @@ export const createFirstFloorHallway = async () => {
         window.roomName,
         window.viewDirection
       );
+      playSFX('doorClose')
       go("mainEntranceDown");
     });
 

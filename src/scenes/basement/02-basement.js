@@ -98,6 +98,7 @@ export const createBasementRoomTwo = async () => {
     });
     onClick("door2", (door2) => {
       if (getGameState(roomName, "doorUnlocked")) {
+        playSFX('doorClose')
         go("basementHallwayDown");
       } else if (
         checkInventoryForItem(cellarKey) &&
