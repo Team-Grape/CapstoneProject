@@ -10,7 +10,7 @@ import { setGameState, getGameState } from '../../state';
 
 import { textBubble, addToMessageLog } from '../../message';
 
-import { playBGM, stopBGM } from '../../sounds';
+import { playBGM, stopBGM, playSFX } from '../../sounds';
 import { navArrows } from '../../buttons';
 
 const roomName = 'kitchen';
@@ -207,22 +207,20 @@ export const createKitchen = () => {
     });
 
     onClick('woodenDoor', (woodenDoor) => {
-      playBGM('kidMusic');
-      if (
-        getGameState(roomName, 'doorUnlocked') ||
-        checkInventoryForItem(cellarKey)
-      ) {
+      if (getGameState(roomName, 'doorUnlocked')) {
+        go('firstFloorHallwayDown');
+      } else if (checkInventoryForItem(cellarKey) && window.selectedItem == 'cellar key') {
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        go('firstFloorHallwayDown');
+        textBubble([["The key unlocked the door!"]]);
       } else {
-        textBubble([["it doesn't open, it seems like it needs a key"]]);
+        textBubble([["It doesn't open, it seems like it needs a key"]]);
       }
     });
 
     onClick('key', (key) => {
       playSFX('keyNoise')
-      textBubble([['a key was added to your inventory']]);
+      textBubble([['A key was added to your inventory']]);
       addToInventory(cellarKey);
       setGameState(roomName, 'keyPickedUp', true);
       key.destroy();

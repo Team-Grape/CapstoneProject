@@ -81,9 +81,7 @@ export const createFirstFloorHallway = async () => {
 
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]], () => {
-        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
-      });
+      go("kitchenUp")
     });
 
     onClick("left-far-door", () => {
@@ -96,9 +94,7 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("right-near-door", () => {
-      textBubble([["it won't open"]], () => {
-        singleViewNavArrow(roomName + "Down", "basementHallwayDown");
-      });
+      go("livingRoomUp")
     });
 
     onClick("right-far-door", () => {
