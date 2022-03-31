@@ -583,6 +583,19 @@ export const loadAllSprites = () => {
   loadSprite('water', './assets/decorations/kitchenStuff/foods/water.png');
   loadSprite('cabbage', './assets/decorations/kitchenStuff/foods/cabbage.png');
 
+  // Kid Room
+  loadSprite(
+    'rectangle-carpet',
+    './assets/decorations/kidroom/rectangleCarpet.png'
+  );
+  loadSprite('paper-board', './assets/decorations/kidroom/paperBoard.png');
+  loadSprite('starts-on-wall', './assets/decorations/kidroom/startsOnWall.png');
+  loadSprite('global', './assets/decorations/kidroom/global.png');
+  loadSprite('green-plant', './assets/decorations/kidroom/greenPlant.png');
+
+  // Numbers
+  loadSprite('number1', './assets/decorations/numbers/numberOne.png');
+
   // Ghost Image ===============//
 
   loadSprite('nun', './assets/monster/nun.jpg');

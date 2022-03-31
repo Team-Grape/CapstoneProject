@@ -28,6 +28,8 @@ export const createKidRoom = () => {
       add([sprite('little-drawer'), scale(6), pos(360, 270)]);
       add([sprite('flower-painting'), scale(4), pos(500, 120)]);
       add([sprite('flower-painting'), scale(4), pos(320, 90)]);
+      add([sprite('white-flowers'), scale(3), pos(650, 300)]);
+      add([sprite('white-flowers'), scale(3), pos(770, 300)]);
       add([sprite('flower'), scale(3), pos(360, 230)]);
       // playBGM('kidMusic');
     });
@@ -38,7 +40,6 @@ export const createKidRoom = () => {
       onClick("rag", (rag) => {
         playSFX('keyNoise')
         textBubble([["An old rag was added to your inventory."]]);
-
         addToInventory(ragObj);
         setGameState(roomName, 'ragPickedUp', true);
         rag.destroy();
@@ -92,6 +93,11 @@ export const createKidRoom = () => {
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
       add([sprite('red-carpet'), scale(1.5), pos(100, 500)]);
+      add([sprite('starts-on-wall'), scale(2), pos(0, 100)]);
+      add([sprite('starts-on-wall'), scale(2), pos(110, 100)]);
+      add([sprite('starts-on-wall'), scale(2), pos(220, 100)]);
+      add([sprite('starts-on-wall'), scale(2), pos(55, 180)]);
+      add([sprite('starts-on-wall'), scale(2), pos(165, 180)]);
       add([sprite('pink-bed'), scale(5), pos(90, 265)]);
       add([sprite('little-drawer'), scale(4.5), pos(350, 270)]);
       add([sprite('deng'), scale(2.5), pos(350, 230)]);
@@ -100,6 +106,7 @@ export const createKidRoom = () => {
       add([sprite('cycle-chair'), scale(3.2), pos(385, 370)]);
       add([sprite('bookshelve'), scale(3.2), pos(520, 230)]);
       add([sprite('books-on-chair'), scale(2.2), pos(710, 370)]);
+      add([sprite('rectangle-carpet'), scale(3), pos(800, 340)]);
     });
 
     if (!getGameState(roomName, 'largeEmptyPictureRemoveDust')) {
@@ -138,7 +145,6 @@ export const createKidRoom = () => {
 
         textBubble([['Something displayed on the picture']]);
         setGameState(roomName, 'largeEmptyPictureRemoveDust', true);
-
       }
     });
 
@@ -154,7 +160,6 @@ export const createKidRoom = () => {
 
         textBubble([['Something displayed on the picture']]);
         setGameState(roomName, 'smallEmptyPictureRemoveDust', true);
-
       }
     });
     roomNavArrows(viewDirection);
@@ -165,12 +170,39 @@ export const createKidRoom = () => {
     window.viewDirection = 'Down';
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
-      add([sprite('orange-carpet'), scale(3), pos(800, 400)]);
+      add([sprite('orange-carpet'), scale(3), pos(800, 400), area(), solid()]);
       add([sprite('makeup-table'), scale(6), pos(120, 230)]);
       add([sprite('clothset'), scale(6), pos(400, 200)]);
       add([sprite('cycle-chair'), scale(3.5), pos(165, 400)]);
       add([sprite('land-scape-painting'), scale(3), pos(600, 120)]);
       add([sprite('red-flower'), scale(3.5), pos(1200, 300)]);
+      add([
+        sprite('paper-board'),
+        scale(3),
+        pos(800, 150),
+        area(),
+        'paperboard',
+      ]);
+      add([sprite('global'), scale(1.5), pos(900, 430), rotate(24)]);
+      add([sprite('green-plant'), scale(2.5), pos(50, 300)]);
+    });
+
+    onClick('paperboard', (paperboard) => {
+      if (paperboard.pos.x < 850) {
+        paperboard.pos.x += 5;
+      } else if ((paperboard.pos.x = 850)) {
+        if (!getGameState(roomName, 'Number1ShowsUp')) {
+          add([
+            sprite('number1'),
+            scale(3),
+            pos(840, 170),
+            area(),
+            body(),
+            gravity(200),
+          ]);
+          setGameState(roomName, 'Number1ShowsUp', true);
+        }
+      }
     });
     roomNavArrows(viewDirection);
   });
@@ -181,8 +213,39 @@ export const createKidRoom = () => {
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
       add([sprite('orange-big-carpet'), scale(3), pos(200, 350)]);
-      add([sprite('toy'), scale(3.5), pos(220, 380)]);
-      add([sprite('ball'), scale(3.5), pos(500, 480)]);
+      add([
+        sprite('empty-picture'),
+        scale(2.7),
+        pos(250, 110),
+        area(),
+        'largeEmptyPicture',
+      ]);
+      add([
+        sprite('empty-picture'),
+        scale(2.5),
+        pos(330, 120),
+        area(),
+        'largeEmptyPicture',
+      ]);
+      add([
+        sprite('ball'),
+        scale(3.5),
+        pos(500, 480),
+        rotate(0),
+        area(),
+        solid(),
+        origin('center'),
+        'ball',
+      ]);
+      add([
+        sprite('toy'),
+        scale(3.5),
+        pos(920, 450),
+        rotate(),
+        area(),
+        solid(),
+        'toy',
+      ]);
       add([sprite('another-painting'), scale(3), pos(600, 120)]);
       add([sprite('white-flowers'), scale(3), pos(650, 300)]);
       add([sprite('seats'), scale(3), pos(1200, 400)]);
@@ -191,6 +254,18 @@ export const createKidRoom = () => {
       add([sprite('orangeBTN'), scale(0.17), pos(1071, 139)]);
       add([sprite('orangeBTN'), scale(0.17), pos(1091, 139)]);
       add([sprite('orangeBTN'), scale(0.17), pos(1111, 139)]);
+    });
+
+    onClick('ball', (ball) => {
+      ball.onUpdate(() => {
+        if (ball.pos.x < 920) {
+          ball.pos.x += 2;
+          ball.angle += 120 * dt();
+        }
+      });
+      ball.onCollide('toy', (toy) => {
+        toy.angle = 45 * dt();
+      });
     });
 
     const cuteGhost = add([
@@ -279,7 +354,6 @@ export const createKidRoom = () => {
         ['The door locked behind you. Please enter a passcode to exit.'],
       ]);
 
-
       if (
         numberLabel1.text === 0 &&
         numberLabel2.text === 8 &&
@@ -300,7 +374,6 @@ export const createKidRoom = () => {
         let number4 = 0;
         textBubble([['Passcode is incorrect, try again']]);
       }
-
     });
 
     function createNumberLabel1() {
