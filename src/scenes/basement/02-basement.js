@@ -32,7 +32,7 @@ export const createBasementRoomTwo = async () => {
       add([sprite("help-me"), pos(300, 100), scale(0.2), area()]);
       add([
         sprite("grandfather-clock"),
-        pos(680, 100),
+        pos(680, 140),
         scale(4),
         area(),
         "grandfather-clock",
@@ -69,7 +69,7 @@ export const createBasementRoomTwo = async () => {
       ]);
     });
     onClick("grandfather-clock", () => {
-      playBGM("gong");
+      playSFX("gong");
     });
 
     onClick("fruit-painting", (fruitPainting) => {
@@ -78,7 +78,7 @@ export const createBasementRoomTwo = async () => {
       playSFX("falling");
       playBGM("horror");
     });
-    roomNavArrows(window.viewDirection);
+
   });
 
   // ======================================================== //
@@ -125,14 +125,27 @@ export const createBasementRoomTwo = async () => {
     let bookCaseX;
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
-      add([sprite("barrel1"), pos(1100, 270), scale(4.5), area(), 'barrel1'])
+      
     });
     
-    onClick('barrel1', (barrel1) => {
-      barrel1.destroy();
-      const barrel2 = add([
-        sprite('barrel2'),
-        pos(1100, 270),
+    if (!getGameState(roomName, 'barrelDrained')) {
+      add([sprite("barrel2"), pos(1000, 270), scale(4.5), area(), 'barrel2'])
+    } else {
+      add([
+        sprite('barrel3'),
+        pos(1000, 270),
+        scale(4.5),
+        area()
+      ])
+    }
+
+
+    onClick('barrel2', (barrel) => {
+      setGameState(roomName, 'barrelDrained', true)
+      barrel.destroy();
+      add([
+        sprite('barrel3'),
+        pos(1000, 270),
         scale(4.5),
         area()
       ])
@@ -158,11 +171,17 @@ export const createBasementRoomTwo = async () => {
         "bookcase",
       ]);
     });
+
+console.log(!getGameState(roomName, 'bookCaseMoved'))
     onClick("bookcase", (bookcase) => {
-      setGameState(roomName, "bookCaseMoved", true);
-      bookcase.pos.x = 350;
-      playSFX("bookcaseMoving");
+      if (!getGameState(roomName, 'bookCaseMoved')) {
+        setGameState(roomName, "bookCaseMoved", true);
+        bookcase.pos.x = 350;
+        playSFX("bookcaseMoving");
+      }
+      
     });
+
     onClick("key", (key) => {
       playSFX('keyNoise')
       textBubble([["A key was added to your inventory"]]);
