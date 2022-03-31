@@ -32,7 +32,7 @@ scene.add(light);
 const textureLoader = new THREE.TextureLoader();
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg",
+  "../assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -47,7 +47,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg",
+  "../assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -63,7 +63,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/brick.jpeg",
+  "../assets/room_backgrounds/brick.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -79,7 +79,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/floor.jpeg",
+  "../assets/room_backgrounds/floor.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -96,7 +96,7 @@ textureLoader.load(
 );
 
 textureLoader.load(
-  "./dist/assets/room_backgrounds/grayCeiling.jpeg",
+  "../assets/room_backgrounds/grayCeiling.jpeg",
   function (texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -117,7 +117,7 @@ const loader = new THREE.GLTFLoader();
 
 let mixer;
 
-loader.load("./dist/assets/transparentGhost/scene.gltf", (gltf) => {
+loader.load("../assets/transparentGhost/scene.gltf", (gltf) => {
   const model = gltf.scene
   scene.add(model);
 
