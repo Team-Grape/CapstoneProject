@@ -14,7 +14,6 @@ export const createBasementStorageOne = async () => {
 
         onLoad(() => {
             add([sprite('storage-room-one'), scale(1)])
-
         })
         const cuteGhost = add([
             sprite("cuteGhost"), 

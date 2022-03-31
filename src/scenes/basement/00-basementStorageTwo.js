@@ -3,6 +3,8 @@ import { textBubble, addToMessageLog } from "../../message";
 import { setGameState, getGameState } from "../../state.js";
 import { silverKey } from "../../items.js";
 
+import { playSFX } from "../../sounds";
+
 import {
   addToInventory,
   checkInventoryForItem,

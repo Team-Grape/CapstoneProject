@@ -21,6 +21,8 @@ export const loadAllSounds = () => {
   loadSound('keyNoise', './assets/sounds/keyNoise.wav')
   loadSound('crumble', "./assets/sounds/crumble.wav")
   loadSound('cabbage', './assets/sounds/openChestSound.wav')
+  loadSound('glassDoorOpening', './assets/sounds/glassDoorOpening.wav')
+  loadSound('glassDoorClosing', './assets/sounds/glassDoorsClosed.wav')
 };
 
 //  ================================================================= //

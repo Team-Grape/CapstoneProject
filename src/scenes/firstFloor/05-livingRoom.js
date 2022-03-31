@@ -178,7 +178,7 @@ export const createLivingRoom = () => {
         'lampTurnedOff',
       ]);
     } else {
-      add([sprite('lamp-turned-on'), scale(5), pos(200, 130), area()]);
+      add([sprite('lamp-turned-on'), scale(5), pos(200, 130), area(), 'lampTurnedOn']);
       add([sprite('greenBTN'), scale(0.1), pos(230, 180)]);
     }
 
