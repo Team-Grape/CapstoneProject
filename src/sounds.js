@@ -26,6 +26,9 @@ export const loadAllSounds = () => {
   loadSound('drawerOpening', './assets/sounds/drawerOpening.wav')
   loadSound('drawerClosing', './assets/sounds/drawerClosing.wav')
   loadSound('chestOpen', './assets/sounds/openChestSound.wav')
+  loadSound('cuteGhostSound', './assets/sounds/cuteGhostSound.wav')
+  loadSound('lockClick', './assets/sounds/lockClick.wav')
+
 };
 
 //  ================================================================= //

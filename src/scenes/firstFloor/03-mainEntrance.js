@@ -103,12 +103,14 @@ export const createMainEntrance = async () => {
 
     onClick("center-door", () => {
       
+
       if (getGameState(roomName, "doorUnlocked")) { 
       go("win");
     } else if (
       checkInventoryForItem(rustyKey) &&
       window.selectedItem == "rusty key"
     ) {
+       playSFX('lockClick')
       setGameState(roomName, "doorUnlocked", true);
       removeFromInventory(rustyKey);
       textBubble([["The key unlocked the door!"]], () => {
@@ -140,8 +142,6 @@ export const createMainEntrance = async () => {
       //     singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
       //   });
       // }
-      
-      
     });
 
     // if (!InGameMenu.isOpen()) {

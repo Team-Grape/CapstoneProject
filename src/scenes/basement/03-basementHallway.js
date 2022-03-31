@@ -13,6 +13,8 @@ import {
   removeFromInventory,
 } from "../../inventory.js";
 
+import { createTrapDoor } from "../trapRoom.js"
+
 const roomName = "basementHallway";
 const roomNavArrows = navArrows(roomName);
 
@@ -107,9 +109,8 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]], () => {
-        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
-      });
+      playSFX('doorClose')
+      createTrapDoor()
     });
 
     onClick("left-far-door", () => {
@@ -136,6 +137,7 @@ export const createBasementHallway = async () => {
           checkInventoryForItem(silverKey) &&
           window.selectedItem == "silver key"
         ) {
+          playSFX('lockClick')
           setGameState(roomName, "doorUnlocked", true);
           removeFromInventory(silverKey);
           textBubble([["The key unlocked the door!"]]);
