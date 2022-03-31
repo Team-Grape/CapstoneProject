@@ -293,7 +293,7 @@ export const loadAllSprites = () => {
 
   //Barrels
   loadSprite('barrel1', './assets/decorations/barrels/Barrels1.png');
-  loadSprite('barrel2', './assets/decorations/barrels/Barrels3.png');
+  loadSprite('barrel2', './assets/decorations/barrels/Barrels2.png');
   loadSprite('barrel3', './assets/decorations/barrels/Barrels3.png');
 
   //Blankets ===============
