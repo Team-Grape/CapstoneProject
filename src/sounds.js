@@ -23,6 +23,8 @@ export const loadAllSounds = () => {
   loadSound('cabbage', './assets/sounds/openChestSound.wav')
   loadSound('glassDoorOpening', './assets/sounds/glassDoorOpening.wav')
   loadSound('glassDoorClosing', './assets/sounds/glassDoorsClosed.wav')
+  loadSound('cuteGhostSound', './assets/sounds/cuteGhostSound.wav')
+  loadSound('lockClick', './assets/sounds/lockClick.wav')
 };
 
 //  ================================================================= //

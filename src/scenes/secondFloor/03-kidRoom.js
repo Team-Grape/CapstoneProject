@@ -10,7 +10,7 @@ import { setGameState, getGameState } from '../../state';
 
 import { textBubble, addToMessageLog } from '../../message';
 
-import { playBGM, stopBGM } from '../../sounds';
+import { playBGM, stopBGM, playSFX } from '../../sounds';
 import { navArrows } from '../../buttons';
 
 const roomName = 'kidRoom';
@@ -36,8 +36,8 @@ export const createKidRoom = () => {
     if (!getGameState(roomName, "ragPickedUp")) {
       const rag = add([sprite("rag"), scale(1), pos(900, 380), area(), "rag"]);
       onClick("rag", (rag) => {
+        playSFX('keyNoise')
         textBubble([["An old rag was added to your inventory."]]);
-
 
         addToInventory(ragObj);
         setGameState(roomName, 'ragPickedUp', true);
@@ -201,6 +201,7 @@ export const createKidRoom = () => {
       'cuteGhost',
     ]);
     onClick('cuteGhost', (cuteGhost) => {
+      playSFX('cuteGhostSound')
       cuteGhost.play('move', { loop: true });
       setGameState(roomName, 'ghostMoved', true);
       textBubble([
@@ -269,6 +270,7 @@ export const createKidRoom = () => {
         numberLabel3.text === 1 &&
         numberLabel4.text === 5
       ) {
+        playSFX('doorClose')
         textBubble([['Passcode is correct, enter the next room']]);
         go('secondFloorHallwayDown');
       } else {

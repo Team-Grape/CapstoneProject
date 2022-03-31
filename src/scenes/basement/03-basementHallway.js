@@ -109,8 +109,8 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
+      playSFX('doorClose')
       createTrapDoor()
-
     });
 
     onClick("left-far-door", () => {
@@ -137,6 +137,7 @@ export const createBasementHallway = async () => {
           checkInventoryForItem(silverKey) &&
           window.selectedItem == "silver key"
         ) {
+          playSFX('lockClick')
           setGameState(roomName, "doorUnlocked", true);
           removeFromInventory(silverKey);
           textBubble([["The key unlocked the door!"]]);

@@ -68,12 +68,13 @@ export const createSecondFloorHallway = async () => {
     onClick("center-door", () => {
 
       if (getGameState(roomName, "doorUnlocked")) {
-          playSFX('doorClose')
+        playSFX('doorClose')
         go("studyDown");
       } else if (
         checkInventoryForItem(lockPick) &&
         window.selectedItem == "lock pick"
       ) {
+        playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(lockPick);
         textBubble([["You picked the lock!"]]);
@@ -87,6 +88,7 @@ export const createSecondFloorHallway = async () => {
     });
 
     onClick('right-door', () => {
+      playSFX('doorClose')
       go('bedroomLeft');
 
     });

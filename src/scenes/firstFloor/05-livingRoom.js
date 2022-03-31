@@ -10,7 +10,7 @@ import { setGameState, getGameState } from '../../state';
 
 import { textBubble, addToMessageLog } from '../../message';
 
-import { playBGM, stopBGM } from '../../sounds';
+import { playBGM, stopBGM, playSFX } from '../../sounds';
 import { navArrows } from '../../buttons';
 
 const roomName = 'livingRoom';
@@ -37,7 +37,8 @@ export const createLivingRoom = () => {
         'hammer',
       ]);
       onClick('hammer', (hammer) => {
-        textBubble([['a hammer was added to your inventory.']]);
+        playSFX('keyNoise')
+        textBubble([['A hammer was added to your inventory.']]);
 
         addToInventory(hammerObj);
         setGameState(roomName, 'hammerPickedUp', true);
@@ -183,6 +184,7 @@ export const createLivingRoom = () => {
     }
 
     onClick('lampTurnedOff', (lampTurnedOff) => {
+      playSFX('click')
       lampTurnedOff.destroy();
       setGameState(roomName, 'lampOff', true);
       const lampTurnedOn = add([
@@ -196,6 +198,7 @@ export const createLivingRoom = () => {
     });
 
     onClick('lampTurnedOn', (lampTurnedOn) => {
+      playSFX('click')
       lampTurnedOn.destroy();
       setGameState(roomName, 'lampOff', false);
       const lampTurnedOff = add([
@@ -261,6 +264,7 @@ export const createLivingRoom = () => {
         numberLabel3.text === 1 &&
         numberLabel4.text === 2
       ) {
+        playSFX('doorClose')
         textBubble([['Passcode is correct, enter the next room']]);
         go('firstFloorHallwayDown');
       } else {
@@ -334,6 +338,7 @@ export const createLivingRoom = () => {
 
     onClick('monster', (monster) => {
       monster.play('move');
+      playSFX('cuteGhostSound')
       if (!getGameState(roomName, 'silverKeyPickedUp')) {
         const keySilver = add([
           sprite('key-silver'),
@@ -344,6 +349,7 @@ export const createLivingRoom = () => {
         ]);
         textBubble([['This key is not my face. Would you like to have it?']]);
         onClick('keySilver', (keySilver) => {
+          play('keyNoise')
           textBubble([['A key was added to your inventory']]);
           addToInventory(silverKey);
           setGameState(roomName, 'silverKeyPickedUp', true);

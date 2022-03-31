@@ -104,6 +104,7 @@ export const createBasementRoomTwo = async () => {
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
       ) {
+        playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);

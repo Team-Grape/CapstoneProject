@@ -102,6 +102,7 @@ export const createMainEntrance = async () => {
         checkInventoryForItem(rustyKey) &&
         window.selectedItem == "rusty key"
       ) {
+        playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(rustyKey);
         textBubble([["The key unlocked the door!"]], () => {
