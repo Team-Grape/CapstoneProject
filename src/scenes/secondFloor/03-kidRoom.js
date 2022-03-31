@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from '../../inventory.js';
 
-import { ragObj } from '../../items.js';
+import { ragObj, diamondKey } from '../../items.js';
 
 import { setGameState, getGameState } from '../../state';
 
@@ -206,7 +206,23 @@ export const createKidRoom = () => {
       setGameState(roomName, 'ghostMoved', true);
       textBubble([
         ['Hello, hurry up and find the passcode before you end up like me.'],
+        ['Here is a special key to unlock a special door.']
       ]);
+      if (!getGameState(roomName, 'diamondKeyPickedUp')) {
+        add([
+          sprite('diamond-key'), 
+          scale(1), pos(120, 450), 
+          area(), 
+          'diamondKey'
+        ])
+        onClick('diamondKey', (diamondKey1) => {
+          playSFX('keyNoise');
+          textBubble([['A key was added to your inventory']])
+          addToInventory(diamondKey);
+          setGameState(roomName, 'diamondKeyPickedUp');
+          diamondKey1.destroy()
+        })
+      } 
     });
 
     if (getGameState(roomName, 'ghostMoved')) {

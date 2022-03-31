@@ -63,7 +63,7 @@ createKitchen();
 createStudy();
 
 //go('bedroomDown');
-go('entry');
+go('kidRoomUp');
 
 //import { createTrapDoor } from "./scenes/trapRoom.js"
 //createTrapDoor()

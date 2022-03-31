@@ -3,7 +3,7 @@ import { navArrows, singleViewNavArrow } from "../../buttons";
 import { textBubble, addToMessageLog } from "../../message";
 import { playBGM, stopBGM, playSFX } from "../../sounds";
 import { setGameState, getGameState} from "../../state.js";
-import { cellarKey, silverKey } from "../../items.js";
+import { cellarKey, silverKey, diamondKey } from "../../items.js";
 import { debugRectSize } from "../../debug.js";
 
 
@@ -109,8 +109,28 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-      playSFX('doorClose')
-      createTrapDoor()
+
+      if (getGameState(roomName, "doorUnlocked")) {
+        playSFX('doorClose')
+        createTrapDoor();
+      } else if (
+        checkInventoryForItem(diamondKey) &&
+        window.selectedItem == "diamond key"
+      ) {
+        playSFX('lockClick')
+        setGameState(roomName, "doorUnlocked", true);
+        removeFromInventory(diamondKey);
+        textBubble([["The key unlocked the door!"]]);
+      } else if (window.selectedItem == "pry bar") {
+        textBubble([["It doesn't work"]], () => {
+          singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+        });
+      } else {
+        textBubble([["It doesn't open, it seems like it needs a special key."]], () => {
+          singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+        });
+      }
+
     });
 
     onClick("left-far-door", () => {
