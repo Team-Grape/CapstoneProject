@@ -262,7 +262,7 @@ export const createLivingRoom = () => {
         numberLabel4.text === 2
       ) {
         textBubble([['Passcode is correct, enter the next room']]);
-        go('secondFloorHallwayDown');
+        go('firstFloorHallwayDown');
       } else {
         numberLabel1.text = 0;
         numberLabel2.text = 0;
