@@ -17,10 +17,10 @@ document.body.appendChild(renderer.domElement);
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 // create controls for camera
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+//const controls = new THREE.OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 10, 150);
-controls.enableZoom = false;
-controls.update();
+//controls.enableZoom = false;
+//controls.update();
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 // adds lighting to the scene
@@ -145,7 +145,7 @@ function update () {
 
 function animate() {
   requestAnimationFrame(animate);
-  controls.update();
+  //controls.update();
   renderer.render(scene, camera);
 }
 
