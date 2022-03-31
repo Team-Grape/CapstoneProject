@@ -11,7 +11,6 @@ import {
 
 import { displayInventoryDiv } from "../inventory"
 
-
 export const entry = () => {
   scene("entry", () => {
     if (!getBackgroundMusicVolume()) {
@@ -50,6 +49,7 @@ export const entry = () => {
         }
       } else {
         window.localStorage.setItem('menuIsOpen', false)
+
         go("title");
       }
     });

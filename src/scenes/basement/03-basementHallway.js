@@ -13,6 +13,8 @@ import {
   removeFromInventory,
 } from "../../inventory.js";
 
+import { createTrapDoor } from "../trapRoom.js"
+
 const roomName = "basementHallway";
 const roomNavArrows = navArrows(roomName);
 
@@ -107,9 +109,8 @@ export const createBasementHallway = async () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     onClick("left-near-door", () => {
-      textBubble([["it won't open"]], () => {
-        singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
-      });
+      createTrapDoor()
+
     });
 
     onClick("left-far-door", () => {
