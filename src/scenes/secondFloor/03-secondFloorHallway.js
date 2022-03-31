@@ -77,13 +77,17 @@ export const createSecondFloorHallway = async () => {
         playSFX('lockClick')
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(lockPick);
-        textBubble([["You picked the lock!"]]);
+        textBubble([["You picked the lock!"]], () => {
+          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
+        });
       } else if (window.selectedItem == "pry bar") {
         textBubble([["It doesn't work"]], () => {
          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
         })
       } else {
-        textBubble([["It doesn't open, looks like the lock can be picked."]]);
+        textBubble([["It doesn't open, looks like the lock can be picked."]], () => {
+          singleViewNavArrow(roomName + "Down", "firstFloorHallwayDown");
+        });
       }
     });
 
