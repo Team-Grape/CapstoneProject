@@ -13,6 +13,8 @@ export const loadAllSprites = () => {
   loadSprite('hammer', './assets/items/hammer.png');
   loadSprite('meat', './assets/items/meat.png');
   loadSprite('number1', './assets/items/numberOne.png');
+  loadSprite('number2', './assets/items/numberTwo.png');
+  loadSprite('number4', './assets/items/numberFour.png');
 
   // ==================== BUTTONS =============================//
 
