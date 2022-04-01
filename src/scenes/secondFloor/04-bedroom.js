@@ -171,6 +171,13 @@ export const createBedroom = () => {
     window.viewDirection = 'Down';
     onLoad(() => {
       add([sprite('bedroom-one-down'), scale(1)]);
+      add([
+        pos(540, 150),
+        text('Nothing here~', {
+          font: 'sinko',
+          size: 12,
+        }),
+      ]);
     });
     if (!getGameState(roomName, 'lighterPickedUp')) {
       const lighter = add([
