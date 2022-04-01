@@ -110,7 +110,9 @@ export const createBasementHallway = async () => {
 
     onClick("left-near-door", () => {
 
+
       if (getGameState(roomName, "leftNearDoorUnlocked")) {
+        playSFX('dundundun')
         playSFX('doorClose')
         createTrapDoor();
       } else if (

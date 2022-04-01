@@ -65,4 +65,6 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
+
 go('entry');
+

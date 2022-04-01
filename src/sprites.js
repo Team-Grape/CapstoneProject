@@ -453,6 +453,7 @@ export const loadAllSprites = () => {
   );
   loadSprite('painting5', './assets/decorations/paintings/painting5.png');
   loadSprite('painting10', './assets/decorations/paintings/painting10.png');
+  loadSprite('painting12', './assets/decorations/paintings/painting12.png');
 
   //Rugs =================
   loadSprite('orange-carpet', './assets/decorations/rugs/orangecarpet.png');
