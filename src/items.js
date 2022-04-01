@@ -84,8 +84,22 @@ export let lockPick = {
 };
 
 export let number1 = {
-  name: 'piece number',
+  name: 'piece number1',
   description: 'A piece of paper that has a number 1 on it.',
   quantity: 1,
   image: '/items/numberOne.png',
+};
+
+export let number2 = {
+  name: 'piece number2',
+  description: 'A piece of paper that has a number 2 on it.',
+  quantity: 1,
+  image: '/items/numberTwo.png',
+};
+
+export let number4 = {
+  name: 'piece number4',
+  description: 'A piece of paper that has a number 4 on it.',
+  quantity: 1,
+  image: '/items/numberFour.png',
 };

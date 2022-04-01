@@ -7,6 +7,7 @@ import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
 import { gameover } from './scenes/00-gameover';
+import { createMessageLogScene } from './scenes/00-messageLog';
 
 import { createBasementRoomOne } from './scenes/basement/01-basement';
 import { createBasementRoomTwo } from './scenes/basement/02-basement';
@@ -24,6 +25,17 @@ import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance';
 import { createKitchen } from './scenes/firstFloor/03-kitchen';
 
 // window.SETCURSORDIVTOPLEFT = true
+
+// *********************************
+import { addToInventory } from "./inventory";
+import * as ITEMS from './items.js'
+const cheat = () => {
+  for (let i of Object.keys(ITEMS)) {
+    addToInventory(ITEMS[i]);
+  }
+}
+window.cheat = cheat
+// *********************************
 
 kaboom({
   global: true,
@@ -46,6 +58,8 @@ titleScene();
 options();
 winScene();
 gameover();
+createMessageLogScene();
+
 
 createBasementRoomOne();
 createBasementRoomTwo();
@@ -62,6 +76,4 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
-
-go('studyDown');
-
+go('entry');

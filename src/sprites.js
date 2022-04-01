@@ -13,6 +13,8 @@ export const loadAllSprites = () => {
   loadSprite('hammer', './assets/items/hammer.png');
   loadSprite('meat', './assets/items/meat.png');
   loadSprite('number1', './assets/items/numberOne.png');
+  loadSprite('number2', './assets/items/numberTwo.png');
+  loadSprite('number4', './assets/items/numberFour.png');
 
   // ==================== BUTTONS =============================//
 
@@ -41,6 +43,12 @@ export const loadAllSprites = () => {
 
   // ==================== ROOM BACKGROUNDS =====================//
 
+  // Message Log & Books scene background
+  loadSprite(
+    'open-book-scene',
+    './assets/Openbook.png'
+  );
+  
   // Basement Room 01 ============//
   loadSprite(
     'basementRoomOneUp',
@@ -497,7 +505,7 @@ export const loadAllSprites = () => {
     './assets/decorations/curtains/whiteCurtainsOpen.png'
   );
 
-  // Lambs =================
+  // Lamps =================
   loadSprite('lamp-turned-on', './assets/decorations/lamps/lampTurnedOn.png');
   loadSprite('lamp-turned-off', './assets/decorations/lamps/lampTurnedOff.png');
 

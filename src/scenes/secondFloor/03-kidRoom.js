@@ -212,6 +212,7 @@ export const createKidRoom = () => {
     });
 
     onClick('number1', (Number1) => {
+      playSFX('keyNoise');
       setGameState(roomName, 'Number1PickedUp');
       textBubble([['A piece of number was added to your inventory']]);
       addToInventory(number1);
