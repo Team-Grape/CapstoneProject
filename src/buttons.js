@@ -102,6 +102,7 @@ export function displayMessageLog() {
     area(),
   ]);
   viewPastMessage.onClick(() => {
-    openMessageLog();
+    go("messageLog")
+//    openMessageLog();
   });
 }

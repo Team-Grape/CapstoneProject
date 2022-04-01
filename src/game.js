@@ -7,6 +7,7 @@ import { titleScene } from './scenes/00-title';
 import { options } from './scenes/00-options';
 import { winScene } from './scenes/00-win';
 import { gameover } from './scenes/00-gameover';
+import { createMessageLogScene } from './scenes/00-messageLog';
 
 import { createBasementRoomOne } from './scenes/basement/01-basement';
 import { createBasementRoomTwo } from './scenes/basement/02-basement';
@@ -46,6 +47,8 @@ titleScene();
 options();
 winScene();
 gameover();
+createMessageLogScene();
+
 
 createBasementRoomOne();
 createBasementRoomTwo();
