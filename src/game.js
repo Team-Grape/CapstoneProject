@@ -76,4 +76,4 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
-go('libraryRight');
+go('entry');
