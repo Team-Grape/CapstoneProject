@@ -44,6 +44,52 @@ const prettyPainting = [
 
 const doorIsLocked = [["It's locked."]];
 
+const checkPuzzle = (topLeft, topRight, bottomCenter) => {
+
+  // https://puzzling.stackexchange.com/questions/1957/puzzle-of-putting-numbers-1-9-in-3x3-grid-to-add-up-to-15
+
+  /*
+                  |              |                
+       topLeft    |   topCenter  |   topRight     
+                  |              |                
+    --------------+--------------+----------------
+                  |              |                
+       midLeft    |   midCenter  |   midRight     
+                  |              |                
+    --------------+--------------+----------------
+                  |              |                
+      bottomLeft  | bottomCenter |  bottomRight   
+                  |              |                
+  */
+
+  const topCenter = 9
+  const midLeft = 7
+  const midCenter = 5
+  const midRight = 3
+  const bottomLeft = 6 
+  const bottomRight = 8
+
+        // rows
+  if ( (topLeft    + topCenter    +   topRight  === 15) &&
+       (midLeft    + midCenter    +   midRight  === 15) &&
+       (bottomLeft + bottomCenter + bottomRight === 15) &&
+
+       // columns
+       (topLeft    + midLeft      + bottomLeft  === 15) &&
+       (topCente r + midCenter    + midRight    === 15) &&
+       (topRight   + midRight     + bottomRight === 15) &&
+
+       // diagonals
+       (topLeft    + midCenter    + bottomRight === 15) &&
+       (bottomLeft + bottomCenter + bottomRight === 15) ) {
+       //-------------------------------------------------
+    return true
+  } else {
+    return false
+  }
+}
+
+
 export const createMainEntrance = async () => {
   scene(roomName + "Down", () => {
     window.roomName = roomName;
