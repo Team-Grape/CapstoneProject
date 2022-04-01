@@ -19,13 +19,14 @@ export const options = () => {
       color(255, 0, 0),
       pos(width() / 2, 75),
       origin("center"),
-    ]),
-      add([
-        text("Background Music Volume", { size: 32, font: "sinko" }),
-        color(255, 255, 255),
-        pos(width() / 2, 200),
-        origin("center"),
-      ]);
+    ]);
+
+    add([
+      text("Background Music Volume", { size: 32, font: "sinko" }),
+      color(255, 255, 255),
+      pos(width() / 2, 200),
+      origin("center"),
+    ]);
 
     // =============== Background Music =============== //
 

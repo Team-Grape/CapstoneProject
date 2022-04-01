@@ -96,12 +96,25 @@ export const destroyNavArrows = () => {
 };
 
 export function displayMessageLog() {
-  const viewPastMessage = add([
-    text("Message Log", { size: 20, font: 'sinko' }),
-    pos(50, 10),
+  add([
+    rect(180,30),
+    pos(40,5),
+    color(100,100,100),
     area(),
+    outline(2),
+    "messageLogButton",
+  ])
+  add([
+    text("[Message Log].black", { size: 20, font: 'sink', styles: { black: { color: rgb(0, 0, 0)}}}),
+    pos(49, 10),
+    color(255,255,255),
+    area(),
+    "messageLogButton"
   ]);
-  viewPastMessage.onClick(() => {
-    openMessageLog();
+
+
+  onClick("messageLogButton",() => {
+    go("messageLog")
+//    openMessageLog();
   });
 }

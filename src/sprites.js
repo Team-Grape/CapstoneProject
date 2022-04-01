@@ -41,6 +41,12 @@ export const loadAllSprites = () => {
 
   // ==================== ROOM BACKGROUNDS =====================//
 
+  // Message Log & Books scene background
+  loadSprite(
+    'open-book-scene',
+    './assets/Openbook.png'
+  );
+  
   // Basement Room 01 ============//
   loadSprite(
     'basementRoomOneUp',
@@ -497,7 +503,7 @@ export const loadAllSprites = () => {
     './assets/decorations/curtains/whiteCurtainsOpen.png'
   );
 
-  // Lambs =================
+  // Lamps =================
   loadSprite('lamp-turned-on', './assets/decorations/lamps/lampTurnedOn.png');
   loadSprite('lamp-turned-off', './assets/decorations/lamps/lampTurnedOff.png');
 
