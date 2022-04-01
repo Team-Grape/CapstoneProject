@@ -123,8 +123,8 @@ export const createMainEntrance = async () => {
           textBubble([["Seems like a number can go here."]], () => {
             singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
           });
-          setGameState(roomName, "textShowed2", true)
-        } 
+          setGameState(roomName, "textShowed2", true);
+        }
         if (
           checkInventoryForItem(number2) &&
           window.selectedItem == "piece number2"
@@ -141,8 +141,8 @@ export const createMainEntrance = async () => {
           textBubble([["Seems like a number can go here."]], () => {
             singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
           });
-          setGameState(roomName, "textShowed1", true)
-        } 
+          setGameState(roomName, "textShowed1", true);
+        }
         if (
           checkInventoryForItem(number1) &&
           window.selectedItem == "piece number1"
@@ -150,7 +150,7 @@ export const createMainEntrance = async () => {
           setGameState(roomName, "addedNumber1", true);
           removeFromInventory(number1);
           number1square.destroy();
-          add([sprite("number1"),  pos(468, 290), scale(1.5)]);
+          add([sprite("number1"), pos(468, 290), scale(1.5)]);
         }
       });
 
@@ -159,8 +159,8 @@ export const createMainEntrance = async () => {
           textBubble([["Seems like a number can go here."]], () => {
             singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
           });
-          setGameState(roomName, "textShowed4", true)
-        } 
+          setGameState(roomName, "textShowed4", true);
+        }
         if (
           checkInventoryForItem(number4) &&
           window.selectedItem == "piece number4"
