@@ -110,7 +110,8 @@ export const createBasementHallway = async () => {
 
     onClick("left-near-door", () => {
 
-      if (getGameState(roomName, "doorUnlocked")) {
+
+      if (getGameState(roomName, "leftNearDoorUnlocked")) {
         playSFX('dundundun')
         playSFX('doorClose')
         createTrapDoor();
@@ -119,9 +120,11 @@ export const createBasementHallway = async () => {
         window.selectedItem == "diamond key"
       ) {
         playSFX('lockClick')
-        setGameState(roomName, "doorUnlocked", true);
+        setGameState(roomName, "leftNearDoorUnlocked", true);
         removeFromInventory(diamondKey);
-        textBubble([["The key unlocked the door!"]]);
+        textBubble([["The key unlocked the door!"]], () => {
+          singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+        });
       } else if (window.selectedItem == "pry bar") {
         textBubble([["It doesn't work"]], () => {
           singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
@@ -141,7 +144,7 @@ export const createBasementHallway = async () => {
 
     onClick("right-near-door", () => {
 
-      if (getGameState(roomName, "doorUnlocked")) {
+      if (getGameState(roomName, "rightNearDoorUnlocked")) {
         playSFX('doorClose')
         go("basementStorageOneDown");
       } else if (
@@ -149,9 +152,11 @@ export const createBasementHallway = async () => {
         window.selectedItem == "heart key"
       ) {
         playSFX('lockClick')
-        setGameState(roomName, "doorUnlocked", true);
+        setGameState(roomName, "rightNearDoorUnlocked", true);
         removeFromInventory(heartKey);
-        textBubble([["The key unlocked the door!"]]);
+        textBubble([["The key unlocked the door!"]], () => {
+          singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+        });
       } else if (window.selectedItem == "pry bar") {
         textBubble([["It doesn't work"]], () => {
           singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
@@ -171,7 +176,7 @@ export const createBasementHallway = async () => {
 
     onClick("center-door", () => {
 
-        if (getGameState(roomName, "doorUnlocked")) {
+        if (getGameState(roomName, "centerDoorUnlocked")) {
           playSFX('doorClose')
           go("firstFloorHallwayDown");
         } else if (
@@ -179,9 +184,11 @@ export const createBasementHallway = async () => {
           window.selectedItem == "silver key"
         ) {
           playSFX('lockClick')
-          setGameState(roomName, "doorUnlocked", true);
+          setGameState(roomName, "centerDoorUnlocked", true);
           removeFromInventory(silverKey);
-          textBubble([["The key unlocked the door!"]]);
+          textBubble([["The key unlocked the door!"]], () => {
+            singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")
+          });
         } else if (window.selectedItem == "pry bar") {
           textBubble([["It doesn't work"]], () => {
             singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft")

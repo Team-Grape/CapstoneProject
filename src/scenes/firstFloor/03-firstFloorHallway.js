@@ -106,11 +106,17 @@ export const createFirstFloorHallway = async () => {
         playSFX("lockClick");
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(silverKey);
-        textBubble([["The key unlocked the door!"]]);
+        textBubble([["The key unlocked the door!"]], () => {
+          singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+        });
       } else if (window.selectedItem == "pry bar") {
-        textBubble([["It doesn't work"]]);
+        textBubble([["It doesn't work"]], () => {
+          singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+        });
       } else {
-        textBubble([["It doesn't open, it seems like it needs a key"]]);
+        textBubble([["It doesn't open, it seems like it needs a key"]], () => {
+          singleViewNavArrow(roomName + "Down", "basementHallwayDown");
+        });
       }
     });
   });

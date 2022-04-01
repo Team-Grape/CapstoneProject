@@ -33,7 +33,7 @@ export const createTrapDoor = () => {
   const textureLoader = new THREE.TextureLoader();
   
   textureLoader.load(
-    "../assets/room_backgrounds/brick.jpeg",
+    "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -48,7 +48,7 @@ export const createTrapDoor = () => {
   );
   
   textureLoader.load(
-    "../assets/room_backgrounds/brick.jpeg",
+    "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -64,7 +64,7 @@ export const createTrapDoor = () => {
   );
   
   textureLoader.load(
-    "../assets/room_backgrounds/brick.jpeg",
+    "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -80,7 +80,7 @@ export const createTrapDoor = () => {
   );
   
   textureLoader.load(
-    "../assets/room_backgrounds/floor.jpeg",
+    "./assets/room_backgrounds/floor.jpeg",
     function (texture) {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -96,7 +96,7 @@ export const createTrapDoor = () => {
   );
   
   textureLoader.load(
-    "../assets/room_backgrounds/grayCeiling.jpeg",
+    "./assets/room_backgrounds/grayCeiling.jpeg",
     function (texture) {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -116,7 +116,7 @@ export const createTrapDoor = () => {
   
   let mixer;
   
-  loader.load("../assets/transparentGhost/scene.gltf", (gltf) => {
+  loader.load("./assets/transparentGhost/scene.gltf", (gltf) => {
     const model = gltf.scene
     const scale = 5;
     model.scale.set(scale, scale, scale);
