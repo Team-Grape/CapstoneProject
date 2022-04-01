@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from '../../inventory.js';
 
-import { ragObj, diamondKey } from '../../items.js';
+import { ragObj, diamondKey, number1 } from '../../items.js';
 
 import { setGameState, getGameState } from '../../state';
 
@@ -34,12 +34,11 @@ export const createKidRoom = () => {
       // playBGM('kidMusic');
     });
 
-
-    if (!getGameState(roomName, "ragPickedUp")) {
-      const rag = add([sprite("rag"), scale(1), pos(900, 380), area(), "rag"]);
-      onClick("rag", (rag) => {
-        playSFX('keyNoise')
-        textBubble([["An old rag was added to your inventory."]]);
+    if (!getGameState(roomName, 'ragPickedUp')) {
+      const rag = add([sprite('rag'), scale(1), pos(900, 380), area(), 'rag']);
+      onClick('rag', (rag) => {
+        playSFX('keyNoise');
+        textBubble([['An old rag was added to your inventory.']]);
         addToInventory(ragObj);
         setGameState(roomName, 'ragPickedUp', true);
         rag.destroy();
@@ -176,33 +175,48 @@ export const createKidRoom = () => {
       add([sprite('cycle-chair'), scale(3.5), pos(165, 400)]);
       add([sprite('land-scape-painting'), scale(3), pos(600, 120)]);
       add([sprite('red-flower'), scale(3.5), pos(1200, 300)]);
-      add([
-        sprite('paper-board'),
-        scale(3),
-        pos(800, 150),
-        area(),
-        'paperboard',
-      ]);
+      if (!getGameState(roomName, 'paperBoardMoved')) {
+        add([
+          sprite('paper-board'),
+          scale(3),
+          pos(800, 150),
+          area(),
+          'paperboard',
+        ]);
+      } else {
+        add([sprite('paper-board'), scale(3), pos(850, 150)]);
+      }
       add([sprite('global'), scale(1.5), pos(900, 430), rotate(24)]);
       add([sprite('green-plant'), scale(2.5), pos(50, 300)]);
     });
 
     onClick('paperboard', (paperboard) => {
+      setGameState(roomName, 'paperBoardMoved', true);
       if (paperboard.pos.x < 850) {
         paperboard.pos.x += 5;
       } else if ((paperboard.pos.x = 850)) {
         if (!getGameState(roomName, 'Number1ShowsUp')) {
           add([
             sprite('number1'),
-            scale(3),
+            scale(2),
             pos(840, 170),
             area(),
             body(),
             gravity(200),
+            'number1',
           ]);
           setGameState(roomName, 'Number1ShowsUp', true);
+          setGameState(roomName, 'Number1PickdUp', false);
         }
       }
+    });
+
+    onClick('number1', (Number1) => {
+      setGameState(roomName, 'Number1PickedUp');
+      textBubble([['A piece of number was added to your inventory']]);
+      addToInventory(number1);
+      setGameState(roomName, 'Number1PickedUp', true);
+      Number1.destroy();
     });
     roomNavArrows(viewDirection);
   });
@@ -276,28 +290,29 @@ export const createKidRoom = () => {
       'cuteGhost',
     ]);
     onClick('cuteGhost', (cuteGhost) => {
-      playSFX('cuteGhostSound')
+      playSFX('cuteGhostSound');
       cuteGhost.play('move', { loop: true });
       setGameState(roomName, 'ghostMoved', true);
       textBubble([
         ['Hello, hurry up and find the passcode before you end up like me.'],
-        ['Here is a special key to unlock a special door.']
+        ['Here is a special key to unlock a special door.'],
       ]);
       if (!getGameState(roomName, 'diamondKeyPickedUp')) {
         add([
-          sprite('diamond-key'), 
-          scale(1), pos(120, 450), 
-          area(), 
-          'diamondKey'
-        ])
+          sprite('diamond-key'),
+          scale(1),
+          pos(120, 450),
+          area(),
+          'diamondKey',
+        ]);
         onClick('diamondKey', (diamondKey1) => {
           playSFX('keyNoise');
-          textBubble([['A key was added to your inventory']])
+          textBubble([['A key was added to your inventory']]);
           addToInventory(diamondKey);
           setGameState(roomName, 'diamondKeyPickedUp');
-          diamondKey1.destroy()
-        })
-      } 
+          diamondKey1.destroy();
+        });
+      }
     });
 
     if (getGameState(roomName, 'ghostMoved')) {
@@ -360,7 +375,7 @@ export const createKidRoom = () => {
         numberLabel3.text === 1 &&
         numberLabel4.text === 5
       ) {
-        playSFX('doorClose')
+        playSFX('doorClose');
         textBubble([['Passcode is correct, enter the next room']]);
         go('secondFloorHallwayDown');
       } else {

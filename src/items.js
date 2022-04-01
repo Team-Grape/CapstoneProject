@@ -9,29 +9,29 @@ export let silverKey = {
   name: 'silver key',
   description: 'An old rusty key to open doors.',
   quantity: 1,
-  image: '/items/keys/key_silver.png'
-}
+  image: '/items/keys/key_silver.png',
+};
 
 export let rustyKey = {
   name: 'rusty key',
   description: 'An old rusty key to open the main door.',
   quantity: 1,
-  image: '/items/keys/key_rusty.png'
-} 
+  image: '/items/keys/key_rusty.png',
+};
 
 export let heartKey = {
   name: 'heart key',
   description: 'A heart shaped key made of gold.',
   quantity: 1,
-  image: '/items/keys/goldHeartKey.png'
-}
+  image: '/items/keys/goldHeartKey.png',
+};
 
 export let diamondKey = {
   name: 'diamond key',
   description: 'A diamond shaped key made of silver.',
   quantity: 1,
-  image: '/items/keys/silverDiamondKey.png'
-}
+  image: '/items/keys/silverDiamondKey.png',
+};
 
 export let pryBarObj = {
   name: 'pry bar',
@@ -52,8 +52,8 @@ export let lighterObj = {
   name: 'lighter',
   description: 'A regular lighter',
   quantity: 1,
-  image: '/items/lighter.png'
-}
+  image: '/items/lighter.png',
+};
 
 export let hammerObj = {
   name: 'hammer',
@@ -80,5 +80,12 @@ export let lockPick = {
   name: 'lock pick',
   description: 'A rusty lock pick. Can be used to pick the lock of a door.',
   quantity: 1,
-  image: '/items/lockpick_brown.png'
+  image: '/items/lockpick_brown.png',
+};
+
+export let number1 = {
+  name: 'piece number',
+  description: 'A piece of paper that has a number 1 on it.',
+  quantity: 1,
+  image: '/items/numberOne.png',
 };

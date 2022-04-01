@@ -62,5 +62,4 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
-go('entry');
-
+go('kidRoomDown');
