@@ -21,7 +21,61 @@ export const createStudy = async () => {
 
     onLoad(() => {
       add([sprite("study"), scale(1)]);
-      add([sprite("heart-key"), pos(300, 300), scale(1), area(), "heartKey"]);
+      add([rect(50, 28), pos(441, 335), color(0, 0, 0)]);
+      add([rect(50, 28), pos(441, 372), color(0, 0, 0)]);
+    });
+
+    const deskDrawer1 = add([
+      sprite("deskDrawer"),
+      scale(1.05),
+      pos(441, 335),
+      area(),
+      "deskDrawer1",
+    ]);
+    const deskDrawer2 = add([
+      sprite("deskDrawer"),
+      scale(1.05),
+      pos(441, 372),
+      area(),
+      "deskDrawer2",
+    ]);
+
+    onClick("deskDrawer1", () => {
+      if (!getGameState(roomName, "deskDrawer1Opened")) {
+        playSFX("drawerOpening");
+        deskDrawer1.pos.y += 20;
+
+        setGameState(roomName, "deskDrawer1Opened", true);
+      } else {
+        playSFX("drawerClosing");
+        deskDrawer1.pos.y -= 20;
+
+        setGameState(roomName, "deskDrawer1Opened", false);
+      }
+    });
+
+    onClick("deskDrawer2", () => {
+
+      if (!getGameState(roomName, "deskDrawer2Opened")) {
+        playSFX("drawerOpening");
+        deskDrawer2.pos.y += 20;
+        setGameState(roomName, "deskDrawer2Opened", true);
+      } else {
+        playSFX("drawerClosing");
+        deskDrawer2.pos.y -= 20;
+
+        setGameState(roomName, "deskDrawer2Opened", false);
+      }
+      if (!getGameState(roomName, "heartKeyPickedUp")) {
+          add([sprite("heart-key"), pos(441, 372), scale(0.8), area(), "heartKey"]);
+          onClick('heartKey', (heartKey1) => {
+            playSFX('keyNoise')
+            textBubble([['A key was added to your inventory']]);
+            addToInventory(heartKey);
+            setGameState(roomName, 'heartKeyPickedUp', true);
+            heartKey1.destroy();
+          })
+      }
     });
 
     onClick("heartKey", (heartKey1) => {
@@ -36,23 +90,23 @@ export const createStudy = async () => {
       }
     });
 
-    const nunInterval = setInterval(() => {
-      const nun = add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
-      textBubble([["Boooooo!!"]]);
-      playSFX("dundundun");
-    }, 5000);
+    // const nunInterval = setInterval(() => {
+    //   const nun = add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
+    //   textBubble([["Boooooo!!"]]);
+    //   playSFX("dundundun");
+    // }, 5000);
 
-    const gameoverInterval = setInterval(() => {
-      go("gameover");
-    }, 7000);
+    // const gameoverInterval = setInterval(() => {
+    //   go("gameover");
+    // }, 7000);
 
-    setTimeout(() => {
-      clearInterval(nunInterval);
-    }, 6000);
+    // setTimeout(() => {
+    //   clearInterval(nunInterval);
+    // }, 6000);
 
-    setTimeout(() => {
-      clearInterval(gameoverInterval);
-    }, 8000);
+    // setTimeout(() => {
+    //   clearInterval(gameoverInterval);
+    // }, 8000);
 
     singleViewNavArrow("studyDown", "secondFloorHallwayDown");
   });
