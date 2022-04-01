@@ -7,6 +7,7 @@ export const loadAllSounds = () => {
   loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
   loadSound('ambience', './assets/sounds/ambience/houseAmbience.wav')
   loadSound('title', './assets/sounds/titleTrack/titleTrack.wav')
+  loadSound('dundundun', './assets/sounds/dundundun.wav')
   // Sound Effects ================
   loadSound("gong", "./assets/sounds/clockGong.wav");
   loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
@@ -28,7 +29,6 @@ export const loadAllSounds = () => {
   loadSound('chestOpen', './assets/sounds/openChestSound.wav')
   loadSound('cuteGhostSound', './assets/sounds/cuteGhostSound.wav')
   loadSound('lockClick', './assets/sounds/lockClick.wav')
-
 };
 
 //  ================================================================= //
