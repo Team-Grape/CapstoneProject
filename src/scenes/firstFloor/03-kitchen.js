@@ -4,7 +4,7 @@ import {
   removeFromInventory,
 } from '../../inventory';
 
-import { cellarKey, meat } from '../../items.js';
+import { cellarKey, meat, number2 } from '../../items.js';
 
 import { setGameState, getGameState } from '../../state';
 
@@ -44,7 +44,7 @@ export const createKitchen = () => {
     ]);
 
     onClick('cabbage', (cabbage) => {
-      playSFX('cuteGhostSound')
+      playSFX('cuteGhostSound');
       textBubble([['Bye']]);
       cabbage.onUpdate(() => {
         cabbage.angle += 120 * dt();
@@ -84,7 +84,7 @@ export const createKitchen = () => {
     });
 
     onClick('meat', (meat1) => {
-      playSFX('keyNoise')
+      playSFX('keyNoise');
       textBubble([['The meat was added to your inventory']]);
       addToInventory(meat);
       setGameState(roomName, 'meatPickedUp', true);
@@ -210,20 +210,23 @@ export const createKitchen = () => {
 
     onClick('woodenDoor', (woodenDoor) => {
       if (getGameState(roomName, 'doorUnlocked')) {
-        playSFX('doorClose')
+        playSFX('doorClose');
         go('firstFloorHallwayDown');
-      } else if (checkInventoryForItem(cellarKey) && window.selectedItem == 'cellar key') {
-        play('lockClick')
+      } else if (
+        checkInventoryForItem(cellarKey) &&
+        window.selectedItem == 'cellar key'
+      ) {
+        play('lockClick');
         setGameState(roomName, 'doorUnlocked', true);
         removeFromInventory(cellarKey);
-        textBubble([["The key unlocked the door!"]]);
+        textBubble([['The key unlocked the door!']]);
       } else {
         textBubble([["It doesn't open, it seems like it needs a key"]]);
       }
     });
 
     onClick('key', (key) => {
-      playSFX('keyNoise')
+      playSFX('keyNoise');
       textBubble([['A key was added to your inventory']]);
       addToInventory(cellarKey);
       setGameState(roomName, 'keyPickedUp', true);
@@ -338,6 +341,25 @@ export const createKitchen = () => {
     window.viewDirection = 'Left';
     onLoad(() => {
       add([sprite('kitchen-left'), scale(1)]);
+    });
+    if (!getGameState(roomName, 'number2PickedUp')) {
+      add([
+        sprite('number2'),
+        scale(2.5),
+        pos(200, 500),
+        area(),
+        origin('center'),
+        rotate(45),
+        'number2',
+      ]);
+    }
+
+    onClick('number2', (Number2) => {
+      playSFX('keyNoise');
+      setGameState(roomName, 'number2PickedUp', true);
+      textBubble([['A piece of number was added to your inventory']]);
+      addToInventory(number2);
+      Number2.destroy();
     });
     roomNavArrows(viewDirection);
   });
