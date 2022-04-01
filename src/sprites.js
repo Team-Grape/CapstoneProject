@@ -12,6 +12,7 @@ export const loadAllSprites = () => {
   loadSprite('rag', './assets/items/rag.png');
   loadSprite('hammer', './assets/items/hammer.png');
   loadSprite('meat', './assets/items/meat.png');
+  loadSprite('number1', './assets/items/numberOne.png');
 
   // ==================== BUTTONS =============================//
 
@@ -347,9 +348,9 @@ export const loadAllSprites = () => {
   );
 
   //Chest =============
-  loadSprite('chestClosed', './assets/decorations/chest/chest3Closed.png')
-  loadSprite('chestHalfOpen', './assets/decorations/chest/chest3HalfOpen.png')
-  loadSprite('chestOpen', './assets/decorations/chest/chest3Open.png')
+  loadSprite('chestClosed', './assets/decorations/chest/chest3Closed.png');
+  loadSprite('chestHalfOpen', './assets/decorations/chest/chest3HalfOpen.png');
+  loadSprite('chestOpen', './assets/decorations/chest/chest3Open.png');
   //Doors =================
 
   loadSprite('door', './assets/decorations/doors/evilDoor.png');
@@ -363,7 +364,7 @@ export const loadAllSprites = () => {
     'little-drawer',
     './assets/decorations/furniture/drawers/littledrawer.png'
   );
-  loadSprite('deskDrawer', './assets/decorations/furniture/drawers/drawer.png')
+  loadSprite('deskDrawer', './assets/decorations/furniture/drawers/drawer.png');
 
   //Dresser =================
   loadSprite(
@@ -594,7 +595,6 @@ export const loadAllSprites = () => {
   loadSprite('green-plant', './assets/decorations/kidroom/greenPlant.png');
 
   // Numbers
-  loadSprite('number1', './assets/decorations/numbers/numberOne.png');
 
   // Ghost Image ===============//
 
