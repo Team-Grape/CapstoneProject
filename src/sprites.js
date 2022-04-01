@@ -15,6 +15,8 @@ export const loadAllSprites = () => {
   loadSprite('number1', './assets/items/numberOne.png');
   loadSprite('number2', './assets/items/numberTwo.png');
   loadSprite('number4', './assets/items/numberFour.png');
+  loadSprite('missingNumbers', './assets/items/missingNumbers.png');
+  loadSprite('blankNumberSpot', './assets/items/blankNumberSpot.png');
 
   // ==================== BUTTONS =============================//
 
