@@ -23,6 +23,8 @@ export const createStudy = async () => {
       add([sprite("study"), scale(1)]);
       add([rect(50, 28), pos(441, 335), color(0, 0, 0)]);
       add([rect(50, 28), pos(441, 372), color(0, 0, 0)]);
+      add([sprite("books"), pos(680, 260), scale(2), area(), "books"]);
+      add([sprite('white-curtains-closed'), pos(88, 88), scale(1), area(), 'closedCurtains'])
     });
 
     const deskDrawer1 = add([
@@ -55,7 +57,6 @@ export const createStudy = async () => {
     });
 
     onClick("deskDrawer2", () => {
-
       if (!getGameState(roomName, "deskDrawer2Opened")) {
         playSFX("drawerOpening");
         deskDrawer2.pos.y += 20;
@@ -67,47 +68,66 @@ export const createStudy = async () => {
         setGameState(roomName, "deskDrawer2Opened", false);
       }
       if (!getGameState(roomName, "heartKeyPickedUp")) {
-          add([sprite("heart-key"), pos(441, 372), scale(0.8), area(), "heartKey"]);
-          onClick('heartKey', (heartKey1) => {
-            playSFX('keyNoise')
-            textBubble([['A key was added to your inventory']]);
-            addToInventory(heartKey);
-            setGameState(roomName, 'heartKeyPickedUp', true);
-            heartKey1.destroy();
-          })
-      }
-    });
-
-    onClick("heartKey", (heartKey1) => {
-      if (!getGameState(roomName, "heartKeyPickedUp")) {
-        playSFX("keyNoise");
-        textBubble([["A key was added to your inventory"]], () => {
-          singleViewNavArrow("studyDown", "secondFloorHallwayDown");
+        add([
+          sprite("heart-key"),
+          pos(441, 372),
+          scale(0.8),
+          area(),
+          "heartKey",
+        ]);
+        onClick("heartKey", (heartKey1) => {
+          playSFX("keyNoise");
+          textBubble([["A key was added to your inventory"]], () => {
+            singleViewNavArrow("studyDown", "secondFloorHallwayDown")
+          });
+          addToInventory(heartKey);
+          setGameState(roomName, "heartKeyPickedUp", true);
+          heartKey1.destroy();
         });
-        addToInventory(heartKey);
-        setGameState(roomName, "silverKeyPickedUp", true);
-        heartKey1.destroy();
       }
     });
 
-    // const nunInterval = setInterval(() => {
-    //   const nun = add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
-    //   textBubble([["Boooooo!!"]]);
-    //   playSFX("dundundun");
-    // }, 5000);
+    function nun() {
+      add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
+      textBubble([["Boooooo!!"]]);
+      playSFX("dundundun");
+    }
 
-    // const gameoverInterval = setInterval(() => {
-    //   go("gameover");
-    // }, 7000);
+    function setAndClearGameoverInterval() {
+      const gameover = setInterval(() => {
+        go("gameover")
+      }, 1500)
+      setTimeout(() => {
+        clearInterval(gameover)
+      }, 2000)
+    }
 
-    // setTimeout(() => {
-    //   clearInterval(nunInterval);
-    // }, 6000);
+    onClick("books", () => {
+      nun();
+      setAndClearGameoverInterval();
+    });
 
-    // setTimeout(() => {
-    //   clearInterval(gameoverInterval);
-    // }, 8000);
+    onClick("closedCurtains", () => {
+      nun();
+      setAndClearGameoverInterval();
+    });
 
     singleViewNavArrow("studyDown", "secondFloorHallwayDown");
   });
 };
+
+// function nun () {
+//   add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
+//   textBubble([["Boooooo!!"]]);
+//   playSFX("dundundun");
+// }
+
+// onClick('books', () => {
+//   nun()
+//   const gameoverInterval = setInterval (() => {
+//     go('gameover')
+//  }, 1000)
+//   setTimeout(() => {
+//     clearInterval(gameoverInterval)
+//   },1500)
+// }
