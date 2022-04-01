@@ -164,13 +164,21 @@ export const createLibrary = () => {
         setGameState(roomName, 'deskDrawer2Opened', true);
 
         if (!getGameState(roomName, 'Number4ShowsUp')) {
-          add([sprite('number4'), scale(2), pos(490, 450), area(), 'number4']);
+          if (!getGameState(roomName, 'Number4PickedUp')) {
+            add([
+              sprite('number4'),
+              scale(2),
+              pos(490, 450),
+              area(),
+              'number4',
+            ]);
+          }
         }
         setGameState(roomName, 'Number4PickedUp', false);
       } else {
         playSFX('drawerClosing');
         deskDrawer2.pos.y -= 20;
-
+        every('number4', destroy);
         setGameState(roomName, 'deskDrawer2Opened', false);
       }
     });
