@@ -76,12 +76,12 @@ const checkPuzzle = (topLeft, topRight, bottomCenter) => {
 
        // columns
        (topLeft    + midLeft      + bottomLeft  === 15) &&
-       (topCente r + midCenter    + midRight    === 15) &&
+       (topCenter  + midCenter    + bottomCenter   === 15) &&
        (topRight   + midRight     + bottomRight === 15) &&
 
        // diagonals
        (topLeft    + midCenter    + bottomRight === 15) &&
-       (bottomLeft + bottomCenter + bottomRight === 15) ) {
+       (bottomLeft + midCenter    + topRight    === 15) ) {
        //-------------------------------------------------
     return true
   } else {
