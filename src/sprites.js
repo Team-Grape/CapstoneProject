@@ -46,11 +46,8 @@ export const loadAllSprites = () => {
   // ==================== ROOM BACKGROUNDS =====================//
 
   // Message Log & Books scene background
-  loadSprite(
-    'open-book-scene',
-    './assets/Openbook.png'
-  );
-  
+  loadSprite('open-book-scene', './assets/Openbook.png');
+
   // Basement Room 01 ============//
   loadSprite(
     'basementRoomOneUp',
@@ -605,7 +602,19 @@ export const loadAllSprites = () => {
   loadSprite('global', './assets/decorations/kidroom/global.png');
   loadSprite('green-plant', './assets/decorations/kidroom/greenPlant.png');
 
-  // Numbers
+  // answers
+  loadSprite(
+    'answer_number1',
+    './assets/decorations/numbers/answer_number1.png'
+  );
+  loadSprite(
+    'answer_number2',
+    './assets/decorations/numbers/answer_number2.png'
+  );
+  loadSprite(
+    'answer_number4',
+    './assets/decorations/numbers/answer_number4.png'
+  );
 
   // Ghost Image ===============//
 

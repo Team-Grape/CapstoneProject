@@ -27,14 +27,14 @@ import { createKitchen } from './scenes/firstFloor/03-kitchen';
 // window.SETCURSORDIVTOPLEFT = true
 
 // *********************************
-import { addToInventory } from "./inventory";
-import * as ITEMS from './items.js'
+import { addToInventory } from './inventory';
+import * as ITEMS from './items.js';
 const cheat = () => {
   for (let i of Object.keys(ITEMS)) {
     addToInventory(ITEMS[i]);
   }
-}
-window.cheat = cheat
+};
+window.cheat = cheat;
 // *********************************
 
 kaboom({
@@ -60,7 +60,6 @@ winScene();
 gameover();
 createMessageLogScene();
 
-
 createBasementRoomOne();
 createBasementRoomTwo();
 createKidRoom();
@@ -76,4 +75,4 @@ createMainEntrance();
 createKitchen();
 createStudy();
 
-go('libraryDown');
+go('mainEntranceDown');
