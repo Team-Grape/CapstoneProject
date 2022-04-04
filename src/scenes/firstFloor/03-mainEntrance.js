@@ -90,16 +90,26 @@ const checkPuzzle = (topLeft, topRight, bottomCenter) => {
 
 const solvePuzzle = () => {
   if (
-    getGameState(roomName, 'addedNumber4') &&
-    getGameState(roomName, 'addedNumber2') &&
-    getGameState(roomName, 'addedNumber1')
+    getGameState(roomName, 'topLeft') == 2 &&
+    getGameState(roomName, 'topRight') == 4 &&
+    getGameState(roomName, 'bottom') == 1
   ) {
     const solvedPuzzleMessage = [
-      ['Congrate! You solve the puzzle!'],
+      ['Congrats! You solve the puzzle!'],
       ['But the door is still locked.'],
       ['Please find another way to unlock the door!'],
     ];
     textBubble(solvedPuzzleMessage);
+  }
+  if (
+    getGameState(roomName, 'topLeft') &&
+    getGameState(roomName, 'topRight') &&
+    getGameState(roomName, 'bottom') &&
+    getGameState(roomName, 'topLeft') !== 2 &&
+    getGameState(roomName, 'topRight') !== 4 &&
+    getGameState(roomName, 'bottom') !== 1
+  ) {
+    textBubble([['Oops, you only have one chance.']]);
   }
 };
 
@@ -185,33 +195,34 @@ export const createMainEntrance = async () => {
           singleViewNavArrow('mainEntranceDown', 'firstFloorHallwayDown');
         });
         setGameState(roomName, 'textShowed2', true);
-      }
-      if (
+      } else if (
         checkInventoryForItem(number2) &&
         window.selectedItem == 'piece number2'
       ) {
-        setGameState(roomName, 'addedNumber2', true);
+        setGameState(roomName, 'topLeft', 2);
         removeFromInventory(number2);
         number2square.destroy();
         add([sprite('answer_number2'), pos(454, 253), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number1) &&
         window.selectedItem == 'piece number1'
       ) {
-        setGameState(roomName, 'addedNumber2', false);
+        setGameState(roomName, 'topLeft', 1);
         removeFromInventory(number1);
         number2square.destroy();
         add([sprite('answer_number1'), pos(454, 253), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number4) &&
         window.selectedItem == 'piece number4'
       ) {
-        setGameState(roomName, 'addedNumber2', false);
+        setGameState(roomName, 'topLeft', 4);
         removeFromInventory(number4);
         number2square.destroy();
         add([sprite('answer_number4'), pos(454, 253), scale(1.5)]);
+        solvePuzzle();
       }
-      solvePuzzle();
     });
 
     onClick('number1square', (number1square) => {
@@ -220,33 +231,34 @@ export const createMainEntrance = async () => {
           singleViewNavArrow('mainEntranceDown', 'firstFloorHallwayDown');
         });
         setGameState(roomName, 'textShowed1', true);
-      }
-      if (
+      } else if (
         checkInventoryForItem(number1) &&
         window.selectedItem == 'piece number1'
       ) {
-        setGameState(roomName, 'addedNumber1', true);
+        setGameState(roomName, 'bottom', 1);
         removeFromInventory(number1);
         number1square.destroy();
         add([sprite('answer_number1'), pos(470, 292), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number2) &&
         window.selectedItem == 'piece number2'
       ) {
-        setGameState(roomName, 'addedNumber1', false);
+        setGameState(roomName, 'bottom', 2);
         removeFromInventory(number2);
         number1square.destroy();
         add([sprite('answer_number2'), pos(470, 292), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number4) &&
         window.selectedItem == 'piece number4'
       ) {
-        setGameState(roomName, 'addedNumber1', false);
+        setGameState(roomName, 'bottom', 4);
         removeFromInventory(number4);
         number1square.destroy();
         add([sprite('answer_number4'), pos(470, 292), scale(1.5)]);
+        solvePuzzle();
       }
-      solvePuzzle();
     });
 
     onClick('number4square', (number4square) => {
@@ -255,33 +267,34 @@ export const createMainEntrance = async () => {
           singleViewNavArrow('mainEntranceDown', 'firstFloorHallwayDown');
         });
         setGameState(roomName, 'textShowed4', true);
-      }
-      if (
+      } else if (
         checkInventoryForItem(number4) &&
         window.selectedItem == 'piece number4'
       ) {
-        setGameState(roomName, 'addedNumber4', true);
+        setGameState(roomName, 'topRight', 4);
         removeFromInventory(number4);
         number4square.destroy();
         add([sprite('answer_number4'), pos(487, 253), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number1) &&
         window.selectedItem == 'piece number1'
       ) {
-        setGameState(roomName, 'addedNumber4', false);
+        setGameState(roomName, 'topRight', 1);
         removeFromInventory(number1);
         number4square.destroy();
         add([sprite('answer_number1'), pos(487, 253), scale(1.5)]);
+        solvePuzzle();
       } else if (
         checkInventoryForItem(number2) &&
         window.selectedItem == 'piece number2'
       ) {
-        setGameState(roomName, 'addedNumber4', false);
+        setGameState(roomName, 'topRight', 2);
         removeFromInventory(number2);
         number4square.destroy();
         add([sprite('answer_number2'), pos(487, 253), scale(1.5)]);
+        solvePuzzle();
       }
-      solvePuzzle();
     });
     // } else {
     //   // const notSolvedPuzzleMessage = [['You do not solve the puzzle.']];
