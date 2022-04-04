@@ -12,7 +12,7 @@ export const titleScene = () => {
     playBGM("title");
     window.onTitleScene = true;
     add([
-      text("HAUNTED HOUSE ESCAPE ROOM", { size: 55, font: 'sinko', letterSpacing: 4 }),
+      text("HAUNTED MANSION ESCAPE ROOM", { size: 55, font: 'sinko', letterSpacing: 4 }),
       color(255, 255, 255),
       outline(10, WHITE),
       pos(width() / 2, 100),
