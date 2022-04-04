@@ -3,12 +3,12 @@
 [<p align="center"> <img width="200" height="300" src="https://user-images.githubusercontent.com/96203831/161592220-83f84c1c-9618-402b-8c6f-94c4e2d01088.jpg" > </p>](https://team-grape.github.io/CapstoneProject/)
 
 <div>
- <h1 align="center">Haunted Mansion Escape Room</h>
+ <h1 align="center"> <a href="https://team-grape.github.io/CapstoneProject/"> Haunted Mansion Escape Room </a> </h>
 </div>
 
 <p align="center">
  <b>
- Haunted Mansion Escape Room is a point and click adventure using <a href="https://kaboomjs.com/">Kaboom.js</a>. The game starts with the player waking up and finding themselves in the basement of an abandoned mansion. The player would need to navigate the whole mansion looking for clues to escape, while avoiding an evil ghost. Friendly ghosts are placed throughout the mansion to help you escape.
+ A 2D point and click adventure using <a href="https://kaboomjs.com/">Kaboom.js</a>. The game starts with the player waking up and finding themselves in the basement of an abandoned mansion. The player would need to navigate the whole mansion looking for clues to escape, while avoiding an evil ghost. Friendly ghosts are placed throughout the mansion to help you escape.
  </b>
 </p>
  
