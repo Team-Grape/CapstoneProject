@@ -5,7 +5,7 @@ export const loadAllSounds = () => {
   loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
   loadSound("falling", "./assets/sounds/paintingFalling.wav");
   loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
-  loadSound('ambience', './assets/sounds/ambience/houseAmbience.wav')
+  loadSound('ambience', './assets/sounds/ambience/houseAmbience.mp3')
   loadSound('title', './assets/sounds/titleTrack/titleTrack.wav')
   loadSound('dundundun', './assets/sounds/dundundun.wav')
   // Sound Effects ================
