@@ -39,6 +39,7 @@
 
   - [mermaid](https://github.com/mermaid-js/mermaid) for flowcharting
   - [three.js](https://github.com/mrdoob/three.js/) for 3d scenes
+  - [json-url](https://github.com/masotime/json-url) for save as url compression
 </details>
 
 <details>
