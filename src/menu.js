@@ -35,7 +35,7 @@ export class InGameMenu {
   open() {
     let gameMenu = add([
       pos(1070, 50),
-      rect(160, 210),
+      rect(160, 220),
       outline(4),
       color(100, 100, 100),
       area(),
@@ -72,9 +72,17 @@ export class InGameMenu {
 
     const githubLink = add([
       text("GitHub", { size: 20, font: "sinko" }),
-      pos(1080, 230),
+      pos(1120, 235),
       area(),
       "github"
+    ])
+
+    const githubLogo = add([
+      sprite("github"),
+      scale(.07),
+      pos(1030, 205),
+      area(),
+      "githubLogo"
     ])
 
     onClick("continue", () => {
@@ -85,7 +93,8 @@ export class InGameMenu {
         optionsButton,
         saveAsURL,
         saveAndQuit,
-        githubLink
+        githubLink,
+        githubLogo
       ]);
       window.localStorage.setItem("menuIsOpen", false);
     });
@@ -98,7 +107,8 @@ export class InGameMenu {
         optionsButton,
         saveAsURL,
         saveAndQuit,
-        githubLink
+        githubLink,
+        githubLogo
       ]);
       this.restart();
       window.localStorage.setItem("menuIsOpen", false);
@@ -119,7 +129,8 @@ export class InGameMenu {
         optionsButton,
         saveAsURL,
         saveAndQuit,
-        githubLink
+        githubLink,
+        githubLogo
       ]);
       this.saveAndQuit();
       window.localStorage.setItem("menuIsOpen", false);
@@ -139,7 +150,8 @@ export class InGameMenu {
         optionsButton,
         saveAsURL,
         saveAndQuit,
-        githubLink
+        githubLink,
+        githubLogo
       ]);
     });
 
@@ -152,7 +164,23 @@ export class InGameMenu {
         optionsButton,
         saveAsURL,
         saveAndQuit,
-        githubLink
+        githubLink,
+        githubLogo
+      ]);
+      window.localStorage.setItem("menuIsOpen", false);
+    })
+
+    onClick("githubLogo", () => {
+      playSFX("click");
+      window.open("https://github.com/Team-Grape/CapstoneProject")
+      this.close([
+        gameMenu,
+        continueButton,
+        optionsButton,
+        saveAsURL,
+        saveAndQuit,
+        githubLink,
+        githubLogo
       ]);
       window.localStorage.setItem("menuIsOpen", false);
     })
