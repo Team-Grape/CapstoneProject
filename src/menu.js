@@ -161,13 +161,9 @@ export class InGameMenu {
 
     onClick("saveAsURL", async () => {
       playSFX("click");
-//      console.dir(J)
-      //const shareURL = codec.compress({...localStorage}).then(result => console.log(result));    
       const compressedLS = await codec.compress({...localStorage})
-      const shareURL = window.location.origin + "/?s=" + compressedLS;
-//      const shareURL = window.location.origin + "/?s=" + encodeURIComponent(JSON.stringify({ ...localStorage }));
-
-      console.log("Save URL: ", shareURL);
+      const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
+//      console.log("Save URL: ", shareURL);
       window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
       this.close([
         gameMenu,
