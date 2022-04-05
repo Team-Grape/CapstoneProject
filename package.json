@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "http-server": "^14.1.0",
+    "json-url": "^3.0.0",
     "kaboom": "^2000.2.9",
     "mermaid": "^8.14.0",
     "three": "^0.139.1",

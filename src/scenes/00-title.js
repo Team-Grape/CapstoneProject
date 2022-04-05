@@ -12,7 +12,7 @@ export const titleScene = () => {
     playBGM("title");
     window.onTitleScene = true;
     add([
-      text("HAUNTED MANSION ESCAPE ROOM", { size: 55, font: 'sinko', letterSpacing: 4 }),
+      text("HAUNTED MANSION\nESCAPE ROOM ", { size: 55, font: 'sinko', letterSpacing: 4 }),
       color(255, 255, 255),
       outline(10, WHITE),
       pos(width() / 2, 100),
@@ -23,7 +23,7 @@ export const titleScene = () => {
     const optionsButton = add([
       text("Options", { size: 45, font: 'sinko' }),
       color(255, 0, 0),
-      pos(width() / 2, 400),
+      pos(width() / 2, 450),
       origin("center"),
       area(),
       "options",
@@ -32,7 +32,7 @@ export const titleScene = () => {
     const startNewGameButton = add([
       text("Start New Game", { size: 45, font: 'sinko' }),
       color(255, 0, 0),
-      pos(width() / 2, 300),
+      pos(width() / 2, 350),
       origin("center"),
       area(),
       "startNewGame",
@@ -51,7 +51,7 @@ export const titleScene = () => {
       continueButton = add([
         text("Continue", { size: 45, font: 'sinko' }),
         color(255, 0, 0),
-        pos(width() / 2, 200),
+        pos(width() / 2, 250),
         origin("center"),
         area(),
         "continue",
