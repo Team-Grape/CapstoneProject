@@ -17,6 +17,7 @@ export const loadAllSprites = () => {
   loadSprite('number4', './assets/items/numberFour.png');
   loadSprite('missingNumbers', './assets/items/missingNumbers.png');
   loadSprite('blankNumberSpot', './assets/items/blankNumberSpot.png');
+  loadSprite('github', './assets/github2.png')
 
   // ==================== BUTTONS =============================//
 
@@ -45,8 +46,8 @@ export const loadAllSprites = () => {
 
   // ==================== ROOM BACKGROUNDS =====================//
 
-  // Message Log & Books scene background
-  loadSprite('open-book-scene', './assets/Openbook.png');
+  //// Message Log & Books scene background
+  //loadSprite('open-book-scene', './assets/Openbook.png');
 
   // Basement Room 01 ============//
   loadSprite(
