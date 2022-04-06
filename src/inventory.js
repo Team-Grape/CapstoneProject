@@ -67,9 +67,6 @@ export const createCursorDiv = (imgURL) => {
     cursorItem.style["height"] = "64px";
     cursorItem.style["user-select"] = "none";
     cursorItem.style["user-drag"] = "none";
-
-//    cursorItem.style.left = (e.clientX - window.selectedItemOffset.x) + 'px';
-//    cursorItem.style.top = (e.clientY - window.selectedItemOffset.y) + 'px';
     cursorItem.style.left = (e.clientX - 32) + 'px';
     cursorItem.style.top = (e.clientY - 32) + 'px';
     }
@@ -86,18 +83,14 @@ export const setCursorDivCenter = async (imgURL) => {
 
   const canvas = document.getElementsByTagName("canvas")[0];
   canvas.style["cursor"] = 'none';
-//  canvas.style["cursor"] = 'crosshair';
 
-  // we need to adjust the "point" to the center of the image
   let aaaimg = new Image();
   aaaimg.src = imgURL
 
-  // have to wait until picture fetched, fix later
   while ( aaaimg.width == 0 ) {
     await new Promise(resolve => setTimeout(resolve, 10));
   }
   window.selectedItemOffset = {x: Math.ceil(aaaimg.width/2), y: Math.ceil(aaaimg.height/2)} 
-//  window.selectedItemOffset = {x: 0, y: 0} 
 };
 
 export const setCursorDivTopLeft = async (imgURL) => {
@@ -124,21 +117,10 @@ export const displayInventoryDiv = () => {
     return;
   }
   const inventoryContainerDiv = document.createElement("div");
-  //  inventoryContainer.style['border'] = '2px solid blue'
   inventoryContainerDiv.style["display"] = "flex";
   inventoryContainerDiv.style["position"] = "absolute";
   inventoryContainerDiv.style["bottom"] = "0";
   inventoryContainerDiv.id = "inventoryPanel";
-
-  /*
-  const headingTextNode = document.createTextNode('Inventory:');
-  const headingContainer = document.createElement("div");
-  headingContainer.appendChild(headingTextNode);
-  headingContainer.style['-webkit-text-stroke'] = '1px white'
-  headingContainer.style['color'] = 'black'
-  headingContainer.style['font-size'] = 'xxx-large'
-  inventoryContainerDiv.appendChild(headingContainer);
-*/
 
   const cancelButton = {
     name: "None",
@@ -154,16 +136,13 @@ export const displayInventoryDiv = () => {
   currentInventory.map((item) => {
     const tmpItemImg = document.createElement("img");
     tmpItemImg.src = "./assets/" + item.image;
-    //tmpItemImg.alt = `${item.name}: ${item.description}`
     tmpItemImg.title = `${item.name}: \n  ${item.description}`;
     tmpItemImg.style["border"] = "3px solid grey";
-//    tmpItemImg.style["width"] = "64px";
     tmpItemImg.style["width"] = "auto";
     tmpItemImg.style["height"] = "64px";
     tmpItemImg.style["image-rendering"] = "pixelated";
     tmpItemImg.style["user-select"] = "none";
     tmpItemImg.style["user-drag"] = "none";
-//    tmpItemImg.style["cursor"] = "pointer";
     tmpItemImg.classList.add("inventoryItem");
     if (item.name === "None") {
       tmpItemImg.onclick = () => {
@@ -183,7 +162,6 @@ export const displayInventoryDiv = () => {
       };
     } else {
       tmpItemImg.onclick = () => {
-        //setCursor(tmpItemImg.src);
         if (window.SETCURSORDIVTOPLEFT) {
           setCursorDivTopLeft(tmpItemImg.src)
         } else {

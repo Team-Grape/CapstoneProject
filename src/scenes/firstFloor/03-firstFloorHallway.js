@@ -13,7 +13,6 @@ import {
 
 const roomName = "firstFloorHallway";
 const roomNavArrows = navArrows(roomName);
-// const message = new Message();
 
 const introMessage = [
   ["You found stairs and followed them out of the basement."],
@@ -70,7 +69,6 @@ export const createFirstFloorHallway = async () => {
       });
     } else {
       singleViewNavArrow(roomName + "Down", "basementHallwayDown");
-      // singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +79,6 @@ export const createFirstFloorHallway = async () => {
     });
 
     onClick("left-far-door", () => {
-      console.log(
-        "Room Name and Direction",
-        window.roomName,
-        window.viewDirection
-      );
       playSFX("doorClose");
       go("mainEntranceDown");
     });

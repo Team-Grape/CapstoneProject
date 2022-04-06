@@ -26,7 +26,6 @@ const introMessage = [
 
 export const createBasementRoomOne = () => {
   // ======================================================== //
-  // window.localStorage.setItem('menuIsOpen', false);
   scene(roomName + "Up", () => {
     window.roomName = roomName;
     window.viewDirection = "Up";
@@ -59,7 +58,6 @@ export const createBasementRoomOne = () => {
       }
     });
     onClick("barrel1", (barrel) => {
-      //if (getGameState(roomName, "pryBarPickedUp")) {
       if (window.selectedItem == "pry bar") {
         (async () => {
           await fadeOutOpacity(barrel);
@@ -162,7 +160,6 @@ export const createBasementRoomOne = () => {
     window.roomName = roomName;
     window.viewDirection = "Left";
     playBGM("ambience");
-    //Sprite Loaders
     onLoad(() => {
       add([sprite("basementRoomOneLeft"), scale(1), area()]);
       add([sprite("door2"), pos(520, 50), scale(1.37), area(), "door"]);

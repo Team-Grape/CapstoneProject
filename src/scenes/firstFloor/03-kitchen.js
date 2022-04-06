@@ -112,13 +112,7 @@ export const createKitchen = () => {
         'woodenDoor',
       ]);
 
-      // if (!getGameState(roomName, 'keyPickedUp')) {
-      //   onLoad(() => {
-      //     add([sprite('key'), pos(400, 117), scale(0.8), area(), 'key']);
-      //   });
-      // }
-
-      // first board
+      //first board
       if (getGameState(roomName, 'Can1Fell')) {
         add([sprite('soft-drink-blue'), pos(345, 340), rotate(100)]);
       } else {

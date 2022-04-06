@@ -172,7 +172,6 @@ export const createBasementRoomTwo = async () => {
       ]);
     });
 
-console.log(!getGameState(roomName, 'bookCaseMoved'))
     onClick("bookcase", (bookcase) => {
       if (!getGameState(roomName, 'bookCaseMoved')) {
         setGameState(roomName, "bookCaseMoved", true);

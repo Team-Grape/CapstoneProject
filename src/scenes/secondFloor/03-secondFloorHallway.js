@@ -96,13 +96,5 @@ export const createSecondFloorHallway = async () => {
       go('bedroomLeft');
 
     });
-
-    //    onClick("right-far-door", () => {
-    //      //go('secondFloorHallwayDown')
-    //      //go('libraryUp')
-    //      textBubble([["it won't open"]]);
-    //    });
-
-    //    debugRectSize();
   });
 };

@@ -115,19 +115,3 @@ export const createStudy = async () => {
     singleViewNavArrow("studyDown", "secondFloorHallwayDown");
   });
 };
-
-// function nun () {
-//   add([sprite("nun"), pos(330, 0), scale(1.6), area()]);
-//   textBubble([["Boooooo!!"]]);
-//   playSFX("dundundun");
-// }
-
-// onClick('books', () => {
-//   nun()
-//   const gameoverInterval = setInterval (() => {
-//     go('gameover')
-//  }, 1000)
-//   setTimeout(() => {
-//     clearInterval(gameoverInterval)
-//   },1500)
-// }

@@ -10,7 +10,6 @@ const allChartsAsStrings = {
 };
 
 Object.values(allChartsAsStrings).map((msg, idx) => {
-  // msg is the content of the mmd file
 
   const chartAndHeadingContainer = document.createElement("div");
   chartAndHeadingContainer.classList.add("chartAndHeadingContainer");

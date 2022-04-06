@@ -1,128 +1,6 @@
 import { navArrows, destroyNavArrows, singleViewNavArrow } from "./buttons";
 import { getCurrentRoom } from "./state";
 
-// export class Message {
-//   constructor() {
-//     (this.currentRoom = getCurrentRoom()), (this.previousRoom = getPreviousRoom());
-//   }
-
-//   addToMessageLog(msg) {
-//     if (!window.localStorage.getItem("messageLog")) {
-//       window.localStorage.setItem("messageLog", JSON.stringify([]));
-//     }
-//     let currentMessageLog = JSON.parse(
-//       window.localStorage.getItem("messageLog")
-//     );
-
-//     currentMessageLog.push(msg);
-
-//     localStorage.setItem("messageLog", JSON.stringify(currentMessageLog));
-//   };
-
-//   openMessageLog() {
-//     const messageBox = add([
-//       rect(width() / 2, height() - 200, { radius: 32 }),
-//       origin("center"),
-//       pos(center().x, center().y),
-//     ]);
-
-//     const closeButton = add([text("X", { size: 30 }), pos(890, 400), area()]);
-//     closeButton.onClick(() => {
-//       messageBox.destroy();
-//       closeButton.destroy();
-//     });
-
-//     let msgY = height() / 2 - 160;
-//     let currentMessageLog = JSON.parse(
-//       window.localStorage.getItem("messageLog")
-//     );
-//     currentMessageLog.forEach((message) => {
-//       message.forEach((currentMessage) => {
-//         msgY = msgY + 20;
-//         const cm = add([
-//           text(currentMessage, { size: 12 }),
-//           pos(width() / 2 - 280, msgY),
-//         ]);
-
-//         closeButton.onClick(() => {
-//           cm.destroy();
-//         });
-//       });
-//     });
-//   }
-
-//   textBubble (dialogs, onFinish) {
-//     const roomNavArrows = navArrows(window.roomName);
-
-//     destroyNavArrows();
-
-//     // Current dialog
-//     let curDialog = 0;
-
-//     // Text bubble
-//     const textbox = add([
-//       rect(width() - 200, 120, { radius: 32 }),
-//       origin("center"),
-//       pos(center().x, height() - 100),
-//       outline(2),
-//       color(100, 100, 100),
-//     ]);
-
-//     // Text
-//     const txt = add([
-//       text("", { size: 32, width: width() - 230, font: "sink" }),
-//       pos(textbox.pos),
-//       origin("center"),
-//     ]);
-
-//     // NextButton
-//     const nextButton = add([
-//       text("Next", { size: 20, font: "sink" }),
-//       pos(1050, 475),
-//       area(),
-//     ]);
-//     if (dialogs.length === 1) {
-//       nextButton.text = "Close";
-//     }
-//     nextButton.onClick(() => {
-//       /*  if (curDialog === dialogs.length - 2) {
-//           nextButton.text = "Close"
-//         } else */ if (curDialog === dialogs.length - 1) {
-//         textbox.destroy();
-//         txt.destroy();
-//         nextButton.destroy();
-//         curDialog = 0;
-
-//         if (window.viewDirection === "singleViewRoom") {
-//           console.log('currentRoom, previousRoom -->', this.currentRoom, this.previousRoom)
-//           singleViewNavArrow(this.currentRoom, this.previousRoom);
-//         } else {
-//           roomNavArrows(window.viewDirection);
-//         }
-
-//         if (onFinish) {
-//           onFinish();
-//         }
-//         return;
-//       }
-//       curDialog = curDialog + 1;
-//       updateDialog();
-//     });
-
-//     // Update the on screen sprite & text
-//     function updateDialog() {
-//       const [dialog] = dialogs[curDialog];
-//       txt.text = dialog;
-//     }
-
-//     updateDialog();
-//   };
-// }
-
-
-
-
-
 //================= Old Functions Below ============= //
 
 
@@ -149,37 +27,6 @@ export function openMessageLog() {
     messageBox.destroy();
     closeButton.destroy();
   });
-
-  /*
-    message.forEach((currentMessage) => {
-      let shortenedCurrentMessage = []
-      if (currentMessage[0].length > 25) {
-        for (let i = 25; i > 0; i--) {
-          let currentCharacter = currentMessage[0][i];
-          if (currentCharacter == ' ') {
-            shortenedCurrentMessage.push(currentMessage[0].slice(0, i), currentMessage[0].slice(i + 1))
-            console.log('Shortened Current Message', shortenedCurrentMessage)
-            break
-          }
-        }
-        msgY = msgY + 20;
-        const cm = add([
-          text(shortenedCurrentMessage[0], { size: 25, font: 'sinko', lineSpacing: 5 }),
-          pos(width() / 2 - 280, msgY),
-        ]);
-        msgY = msgY + 20;
-        const cm2 = add([
-          text(shortenedCurrentMessage[1], { size: 25, font: 'sinko', lineSpacing: 5 }),
-          pos(width() / 2 - 280, msgY),
-        ]);
-      } else {
-        msgY = msgY + 20;
-        const cm = add([
-          text(currentMessage, { size: 25, font: 'sinko', lineSpacing: 5 }),
-          pos(width() / 2 - 280, msgY),
-        ]);
-      }
-  */
 
   let msgY = height() / 2 - 160;
   let currentMessageLog = JSON.parse(window.localStorage.getItem("messageLog"));
@@ -225,8 +72,6 @@ export const textBubble = (dialogs, onFinish) => {
     origin("center"),
   ]);
 
-  //   console.log(txt)
-
   // NextButton
   const nextButton = add([
     text("Next", { size: 20, font: "sink" }),
@@ -237,16 +82,13 @@ export const textBubble = (dialogs, onFinish) => {
     nextButton.text = "Close";
   }
   nextButton.onClick(() => {
-    /*  if (curDialog === dialogs.length - 2) {
-        nextButton.text = "Close"
-      } else */ if (curDialog === dialogs.length - 1) {
+   if (curDialog === dialogs.length - 1) {
       textbox.destroy();
       txt.destroy();
       nextButton.destroy();
       curDialog = 0;
 
       if (window.viewDirection === "singleViewRoom") {
-       console.log('We probably dont need this')
       } else {
         roomNavArrows(window.viewDirection);
       }

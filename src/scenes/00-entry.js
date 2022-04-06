@@ -41,18 +41,13 @@ export const entry = () => {
         try {
           let searchParams = new URLSearchParams(window.location.search);
           const decoded = await codec.decompress(searchParams.get('s'))
-//          const decoded = await codec.decompress(window.location.search.replace(/^\?s=/, ""))
 
-          console.dir(decoded, { depth: null })
           Object.keys(decoded).map((keyStr, idx) => {
-//            localStorage.setItem(keyStr, Object.values(decoded)[idx])
-            console.log('typeof', keyStr, typeof decoded[keyStr])
             if (typeof decoded[keyStr] === 'string') {
               localStorage.setItem(keyStr, decoded[keyStr])
             } else {
               localStorage.setItem(keyStr, JSON.stringify(decoded[keyStr]))
             }
-            //localStorage.setItem(keyStr, decoded[keyStr])
           })
 
           history.replaceState("", "", window.location.pathname)
