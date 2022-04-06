@@ -2,10 +2,10 @@ import { getBackgroundMusicVolume, getSoundEffectVolume } from "./state";
 
 export const loadAllSounds = () => {
   //Background Music ============
-  loadSound("horror", "./assets/sounds/horrorAmbiance.wav");
+  loadSound("horror", "./assets/sounds/horrorAmbiance.ogg");
   loadSound("falling", "./assets/sounds/paintingFalling.wav");
-  loadSound("kidMusic", "./assets/sounds/kidMusic.wav");
-  loadSound('ambience', './assets/sounds/ambience/houseAmbience.wav')
+  loadSound("kidMusic", "./assets/sounds/kidMusic.ogg");
+  loadSound('ambience', './assets/sounds/ambience/houseAmbience.ogg')
   loadSound('title', './assets/sounds/titleTrack/titleTrack.wav')
   loadSound('dundundun', './assets/sounds/dundundun.wav')
   // Sound Effects ================
