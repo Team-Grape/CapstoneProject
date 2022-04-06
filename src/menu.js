@@ -161,41 +161,23 @@ export class InGameMenu {
 
     onClick("saveAsURL", async () => {
       playSFX("click");
-//      const jsonLS = JSON.stringify({...localStorage})
-//      const compressedLS = await codec.compress(jsonLS)
-//      const compressedLS = await codec.compress({...localStorage})
       let tmpObj = {}
       const LS = {...localStorage}
 
       Object.keys(LS).map((keyStr, idx) => {
-        console.log(LS[keyStr])
-        // if the value does not contain a quote mark, it will make JSON.parse fail
-//        if (!LS[keyStr].indexOf('"') >=0) {
-//          tmpObj[keyStr] = LS[keyStr]
-//        } else {
-//          tmpObj[keyStr] = JSON.parse(LS[keyStr])
-//        }
         try {
-          console.log("TRY")
           tmpObj[keyStr] = JSON.parse(LS[keyStr])
         } catch (e) {
-          console.log("CATCH")
-          
           tmpObj[keyStr] = LS[keyStr]
         } finally {
-          console.log("FAILED")
         }
-
       })
  
-//      console.dir(tmpObj, {depth: null})
       const compressedLS = await codec.compress(tmpObj)
       const decompressedLS = await codec.decompress(compressedLS)
-      console.dir(decompressedLS, {depth: null})      
 
 
       const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
-//      console.log("Save URL: ", shareURL);
       window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
       this.close([
         gameMenu,
@@ -208,22 +190,7 @@ export class InGameMenu {
         githubLogoBox
       ]);
     });
-/*
-    onClick("github", () => {
-      playSFX("click");
-      window.open("https://github.com/Team-Grape/CapstoneProject")
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo
-      ]);
-      window.localStorage.setItem("menuIsOpen", false);
-    })
-*/
+    
     onClick("githubLogoBox", () => {
       playSFX("click");
       window.open("https://github.com/Team-Grape/CapstoneProject")
@@ -242,7 +209,6 @@ export class InGameMenu {
   }
 
   close(arrayOfComponents) {
-    console.log("close");
     arrayOfComponents.forEach((component) => component.destroy());
   }
 
@@ -300,7 +266,6 @@ function closeMenu(arrayOfComponents) {
 }
 
 function createMenuButtons() {
-  console.log("menu buttons created");
   let gameMenu = add([
     pos(1070, 50),
     rect(160, 150),
@@ -335,7 +300,6 @@ function createMenuButtons() {
     closeMenu([
       gameMenu,
       continueButton,
-      // restartButton,
       optionsButton,
       saveAndQuit,
     ]);

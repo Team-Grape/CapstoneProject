@@ -2,7 +2,6 @@ import { saveCurrentRoom, savePreviousRoom, getPreviousRoom } from "./state";
 import { openMessageLog } from "./message";
 import { InGameMenu } from "./menu.js";
 import { playSFX } from './sounds'
-// import { createInGameMenu } from "./menu.js";
 const inGameMenu = new InGameMenu();
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
@@ -45,7 +44,6 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
 }
 
 export const singleViewNavArrow = (roomName, previousRoom) => {
-  console.log('previousRoom', typeof previousRoom)
   function goPreviousRoom(previousRoom) {
     go(previousRoom)
   }
@@ -115,6 +113,5 @@ export function displayMessageLog() {
 
   onClick("messageLogButton",() => {
     go("messageLog")
-//    openMessageLog();
   });
 }

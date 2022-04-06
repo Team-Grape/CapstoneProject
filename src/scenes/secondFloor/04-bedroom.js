@@ -122,7 +122,6 @@ export const createBedroom = () => {
       textBubble([skeletonMessage]);
 
       onClick('skeletonAttack', (skeletonAttack) => {
-        //if (getGameState(roomName, "pryBarPickedUp")) {
         if (window.selectedItem == 'pry bar') {
           playSFX('crumble');
           skeletonAttack.destroy();

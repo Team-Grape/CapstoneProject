@@ -72,7 +72,6 @@ export const options = () => {
       playSFX("click")
       let currentBackgroundMusicVolume = Number(getBackgroundMusicVolume());
       if (currentBackgroundMusicVolume >= 0.1) {
-        // sets volume on local storage 'options' key
         setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1).toFixed(1));
         setCurrentlyPlayingBGMVolume();
         currentBgVolumeDisplay.text = `${(
@@ -87,12 +86,6 @@ export const options = () => {
       playSFX("click")
       let currentBackgroundMusicVolume = Number(getBackgroundMusicVolume());
       if (currentBackgroundMusicVolume < 3.0) {
-
-        // sets volume on local storage 'options' key
-//        let tmpVolA = Number(currentBackgroundMusicVolume) + 0.1
-//        let tmpVolB = Number(tmpVolA)
-//        let tmpVolC = tmpVolA.toFixed(1);
-//        console.log(tmpVolC)
         setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1).toFixed(1));
         setCurrentlyPlayingBGMVolume();
         currentBgVolumeDisplay.text = `${(
@@ -208,22 +201,3 @@ export const options = () => {
     playBGM("title");
   });
 };
-
-//     // ============== Sound Effect Test Buttons =========================
-
-//     add([
-//       text(`Play Sound Effect`, {
-//         size: 30,
-//         font: "sink",
-//       }),
-//       area(),
-//       pos(1050, 250),
-//       color(140, 140, 140),
-//       "playSoundEffect",
-//     ]);
-
-//     onClick("playSoundEffect", () => {
-//       playSFX("falling");
-//     });
-//   });
-// };

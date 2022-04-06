@@ -37,7 +37,6 @@ export const playSFX2 = (sndNameStr) => {
   if (window.currentlyPlayingSFX) {
     
   }
-  console.log('playingSFX')
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
 };
 
@@ -45,7 +44,6 @@ export const playSFX2 = (sndNameStr) => {
 
 
 export const playSFX = (sndNameStr) => {
-  // if something is already playing
   if (window.currentlyPlayingSFX) {
     if (window.currentlyPlayingSFX.time() - 1 > window.currentlyPlayingSFX.duration() || 
     window.currentlyPlayingSFX.name == sndNameStr){
@@ -53,16 +51,6 @@ export const playSFX = (sndNameStr) => {
       delete window.currentlyPlayingSFX;
     }
   }
-  
-  //   if (window.currentlyPlayingSFX.name == sndNameStr) {
-  //     // if you try to play the same thing that is currently playing,
-  //     // leave it playing and dont do anything else
-  //     return;
-  //   } else {
-  //     // if currently playing anything, STOP IT, then proceed
-  //     window.currentlyPlayingSFX.stop();
-  //   }
-  // }
 
   const playObj = play(sndNameStr, {
     volume: getSoundEffectVolume(),
@@ -88,7 +76,6 @@ export const setCurrentlyPlayingSFXVolume = () => {
 export const playBGM = (sndNameStr) => {
   // if something is already playing
   if (window.currentlyPlayingBGM) {
-    console.log(currentlyPlayingBGM)
     if (window.currentlyPlayingBGM.name == sndNameStr) {
       // if you try to play the same thing that is currently playing,
       // leave it playing and dont do anything else

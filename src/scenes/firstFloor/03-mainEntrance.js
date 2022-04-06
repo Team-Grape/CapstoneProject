@@ -296,12 +296,6 @@ export const createMainEntrance = async () => {
         solvePuzzle();
       }
     });
-    // } else {
-    //   // const notSolvedPuzzleMessage = [['You do not solve the puzzle.']];
-    //   textBubble([['You do not solve the puzzle.']]);
-    //   console.log('You do not solve the puzzle.');
-    // }
-
     playBGM('ambience');
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -350,26 +344,6 @@ export const createMainEntrance = async () => {
           singleViewNavArrow('mainEntranceDown', 'firstFloorHallwayDown');
         });
       }
-
-      // if (!getGameState(roomName, "centerDoorClicked")) {
-      //   textBubble(doorMessage, () => {
-      //     singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-      //   });
-      //   setGameState(roomName, "centerDoorClicked", true);
-      // } else {
-      //   textBubble(doorIsLocked, () => {
-      //     singleViewNavArrow("mainEntranceDown", "firstFloorHallwayDown");
-      //   });
-      // }
     });
-
-    // if (!InGameMenu.isOpen()) {
-    //     onClick("right-near-door", () => {
-
-    //         textBubble([["it won't open"]]);
-    //       });
-    // }
-
-    //debugRectSize();
   });
 };

@@ -100,8 +100,6 @@ export const createBasementHallway = async () => {
         addToMessageLog(introMessage);
          singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
       });
-      // singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
-
     } else {
       singleViewNavArrow("basementHallwayDown", "basementRoomOneLeft");
     }
@@ -199,7 +197,5 @@ export const createBasementHallway = async () => {
           });
         }
     });
-
-    //debugRectSize();
   });
 };

@@ -100,7 +100,6 @@ export const createLibrary = () => {
     });
 
     onClick('fascinatingBook', (libraryBook) => {
-      console.log('door clicked');
       textBubble(fascinatingBookText);
       setGameState(roomName, 'pickedUpFascinatingBook', true);
       addToInventory(fascinatingBook);
@@ -114,7 +113,6 @@ export const createLibrary = () => {
 
     roomNavArrows(window.viewDirection);
 
-    //  debugRectSize();
   });
 
   // ======================================================== //
@@ -208,7 +206,6 @@ export const createLibrary = () => {
     add([rect(15, 20), opacity(0), pos(400, 106), area(), 'uninterestingBook']);
     add([rect(15, 20), opacity(0), pos(880, 103), area(), 'uninterestingBook']);
     onClick('uninterestingBook', () => {
-      console.log('clicked');
       textBubble(uninterestingBookText);
     });
 
@@ -257,7 +254,6 @@ export const createLibrary = () => {
     });
 
     roomNavArrows(window.viewDirection);
-    // debugRectSize()
   });
 
   // ======================================================== //
@@ -266,7 +262,6 @@ export const createLibrary = () => {
     window.roomName = roomName;
     window.viewDirection = 'Left';
     playBGM('ambience');
-    //Sprite Loaders
     onLoad(() => {
       add([sprite('library-left'), scale(1), area()]);
 

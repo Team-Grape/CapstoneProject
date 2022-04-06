@@ -19,7 +19,6 @@ export const createMessageLogScene = () => {
     bookContainerDiv.style["background-position"] = "center";
     bookContainerDiv.style["image-rendering"] = "pixelated";
     bookContainerDiv.style["display"] = "flex";
-    //bookContainerDiv.style["border"] = "solid #5B6DCD 2px";
     bookContainerDiv.style["box-sizing"] = "content-box";
     bookContainerDiv.style["position"] = "fixed";
     bookContainerDiv.style["top"] = "50%";
@@ -33,7 +32,6 @@ export const createMessageLogScene = () => {
 
     const leftPageDiv = document.createElement("div");
     leftPageDiv.id = "leftPageDiv";
-    //leftPageDiv.style["border"] = "solid #997744 2px";
     leftPageDiv.style["box-sizing"] = "content-box";
     leftPageDiv.style["width"] = "37%";
     leftPageDiv.style["height"] = "100%";
@@ -42,7 +40,6 @@ export const createMessageLogScene = () => {
 
     const rightPageDiv = document.createElement("div");
     rightPageDiv.id = "leftPageDiv";
-    //rightPageDiv.style["border"] = "solid #447799 2px";
     rightPageDiv.style["box-sizing"] = "content-box";
     rightPageDiv.style["width"] = "37%";
     rightPageDiv.style["height"] = "100%";
@@ -85,7 +82,6 @@ export const createMessageLogScene = () => {
 
     const heading = document.createElement("h1");
     heading.id = "messageLogHeading";
-    //heading.style["border"] = "solid #447799 2px";
     heading.style["position"] = "fixed";
     heading.style["top"] = "0";
     heading.style["left"] = "50%";
@@ -101,7 +97,6 @@ export const createMessageLogScene = () => {
 
     const returnButton = document.createElement("h1");
     returnButton.id = "returnButton"
-    //returnButton.style["border"] = "solid #447799 2px";
     returnButton.style["position"] = "fixed";
     returnButton.style["top"] = "0";
     returnButton.style["right"] = "2%";
