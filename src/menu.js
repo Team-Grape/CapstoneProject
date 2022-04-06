@@ -5,7 +5,7 @@ import { playSFX } from "./sounds";
 import { navArrows, destroyNavArrows } from "./buttons"
 import { debugRectSize } from "./debug"
 import _J from 'json-url';
-const codec = _J('lzstring');
+const codec = _J('lzw');
 //import * as J from 'json-url/dist/browser/json-url.js'
 //import J from 'json-url/dist/browser/json-url.js'
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -161,7 +161,38 @@ export class InGameMenu {
 
     onClick("saveAsURL", async () => {
       playSFX("click");
-      const compressedLS = await codec.compress({...localStorage})
+//      const jsonLS = JSON.stringify({...localStorage})
+//      const compressedLS = await codec.compress(jsonLS)
+//      const compressedLS = await codec.compress({...localStorage})
+      let tmpObj = {}
+      const LS = {...localStorage}
+
+      Object.keys(LS).map((keyStr, idx) => {
+        console.log(LS[keyStr])
+        // if the value does not contain a quote mark, it will make JSON.parse fail
+//        if (!LS[keyStr].indexOf('"') >=0) {
+//          tmpObj[keyStr] = LS[keyStr]
+//        } else {
+//          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+//        }
+        try {
+          console.log("TRY")
+          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+        } catch (e) {
+          console.log("CATCH")
+          
+          tmpObj[keyStr] = LS[keyStr]
+        } finally {
+          console.log("FAILED")
+        }
+
+      })
+ 
+      console.dir(tmpObj, {depth: null})
+      const compressedLS = await codec.compress(tmpObj)
+      
+
+
       const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
 //      console.log("Save URL: ", shareURL);
       window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
