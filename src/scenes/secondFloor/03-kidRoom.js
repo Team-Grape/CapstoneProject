@@ -31,7 +31,7 @@ export const createKidRoom = () => {
       add([sprite('white-flowers'), scale(3), pos(650, 300)]);
       add([sprite('white-flowers'), scale(3), pos(770, 300)]);
       add([sprite('flower'), scale(3), pos(360, 230)]);
-      // playBGM('kidMusic');
+      playBGM('kidMusic');
     });
 
     if (!getGameState(roomName, 'ragPickedUp')) {
