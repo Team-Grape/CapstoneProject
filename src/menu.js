@@ -161,7 +161,39 @@ export class InGameMenu {
 
     onClick("saveAsURL", async () => {
       playSFX("click");
-      const compressedLS = await codec.compress({...localStorage})
+//      const jsonLS = JSON.stringify({...localStorage})
+//      const compressedLS = await codec.compress(jsonLS)
+//      const compressedLS = await codec.compress({...localStorage})
+      let tmpObj = {}
+      const LS = {...localStorage}
+
+      Object.keys(LS).map((keyStr, idx) => {
+        console.log(LS[keyStr])
+        // if the value does not contain a quote mark, it will make JSON.parse fail
+//        if (!LS[keyStr].indexOf('"') >=0) {
+//          tmpObj[keyStr] = LS[keyStr]
+//        } else {
+//          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+//        }
+        try {
+          console.log("TRY")
+          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+        } catch (e) {
+          console.log("CATCH")
+          
+          tmpObj[keyStr] = LS[keyStr]
+        } finally {
+          console.log("FAILED")
+        }
+
+      })
+ 
+//      console.dir(tmpObj, {depth: null})
+      const compressedLS = await codec.compress(tmpObj)
+      const decompressedLS = await codec.decompress(compressedLS)
+      console.dir(decompressedLS, {depth: null})      
+
+
       const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
 //      console.log("Save URL: ", shareURL);
       window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
