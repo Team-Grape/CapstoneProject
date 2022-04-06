@@ -85,33 +85,6 @@ export const setCurrentlyPlayingSFXVolume = () => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const playBGM = (sndNameStr) => {
   // if something is already playing
   if (window.currentlyPlayingBGM) {
