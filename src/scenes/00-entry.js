@@ -12,7 +12,7 @@ import {
 import { displayInventoryDiv } from "../inventory"
 
 import _J from 'json-url';
-const codec = _J('lzw');
+const codec = _J('lzstring');
 
 
 export const entry = () => {
@@ -50,7 +50,7 @@ export const entry = () => {
             if (typeof decoded[keyStr] === 'string') {
               localStorage.setItem(keyStr, decoded[keyStr])
             } else {
-            localStorage.setItem(keyStr, JSON.stringify(decoded[keyStr]))
+              localStorage.setItem(keyStr, JSON.stringify(decoded[keyStr]))
             }
             //localStorage.setItem(keyStr, decoded[keyStr])
           })

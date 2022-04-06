@@ -5,7 +5,7 @@ import { playSFX } from "./sounds";
 import { navArrows, destroyNavArrows } from "./buttons"
 import { debugRectSize } from "./debug"
 import _J from 'json-url';
-const codec = _J('lzw');
+const codec = _J('lzstring');
 //import * as J from 'json-url/dist/browser/json-url.js'
 //import J from 'json-url/dist/browser/json-url.js'
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -188,9 +188,10 @@ export class InGameMenu {
 
       })
  
-      console.dir(tmpObj, {depth: null})
+//      console.dir(tmpObj, {depth: null})
       const compressedLS = await codec.compress(tmpObj)
-      
+      const decompressedLS = await codec.decompress(compressedLS)
+      console.dir(decompressedLS, {depth: null})      
 
 
       const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
