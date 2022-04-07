@@ -1,9 +1,5 @@
 import { displayInventoryDiv } from "../inventory";
-import {
-  playBGM,
-  playSFX,
-  setCurrentlyPlayingBGMVolume,
-} from "../sounds";
+import { playBGM, playSFX, setCurrentlyPlayingBGMVolume } from "../sounds";
 import {
   getCurrentRoom,
   setBackgroundMusicVolume,
@@ -69,10 +65,12 @@ export const options = () => {
     ]);
 
     onClick("decreaseBgMusicButton", () => {
-      playSFX("click")
+      playSFX("click");
       let currentBackgroundMusicVolume = Number(getBackgroundMusicVolume());
       if (currentBackgroundMusicVolume >= 0.1) {
-        setBackgroundMusicVolume((currentBackgroundMusicVolume -= 0.1).toFixed(1));
+        setBackgroundMusicVolume(
+          (currentBackgroundMusicVolume -= 0.1).toFixed(1)
+        );
         setCurrentlyPlayingBGMVolume();
         currentBgVolumeDisplay.text = `${(
           (currentBackgroundMusicVolume / 3) *
@@ -83,10 +81,12 @@ export const options = () => {
     });
 
     onClick("increaseBgMusicButton", () => {
-      playSFX("click")
+      playSFX("click");
       let currentBackgroundMusicVolume = Number(getBackgroundMusicVolume());
       if (currentBackgroundMusicVolume < 3.0) {
-        setBackgroundMusicVolume((currentBackgroundMusicVolume += 0.1).toFixed(1));
+        setBackgroundMusicVolume(
+          (currentBackgroundMusicVolume += 0.1).toFixed(1)
+        );
         setCurrentlyPlayingBGMVolume();
         currentBgVolumeDisplay.text = `${(
           (currentBackgroundMusicVolume / 3) *
@@ -149,7 +149,7 @@ export const options = () => {
     ]);
 
     onClick("decreaseSFXButton", () => {
-      playSFX("click")
+      playSFX("click");
       let currentSoundEffectVolume = Number(getSoundEffectVolume());
       if (currentSoundEffectVolume >= 0.1) {
         setSoundEffectVolume((currentSoundEffectVolume -= 0.1).toFixed(1));
@@ -163,7 +163,7 @@ export const options = () => {
     });
 
     onClick("increaseSFXButton", () => {
-      playSFX("click")
+      playSFX("click");
       let currentSoundEffectVolume = Number(getSoundEffectVolume());
       if (currentSoundEffectVolume < 3.0) {
         setSoundEffectVolume((currentSoundEffectVolume += 0.1).toFixed(1));

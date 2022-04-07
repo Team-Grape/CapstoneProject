@@ -12,16 +12,20 @@ export const titleScene = () => {
     playBGM("title");
     window.onTitleScene = true;
     add([
-      text("HAUNTED MANSION\nESCAPE ROOM ", { size: 55, font: 'sinko', letterSpacing: 4 }),
+      text("HAUNTED MANSION\nESCAPE ROOM ", {
+        size: 55,
+        font: "sinko",
+        letterSpacing: 4,
+      }),
       color(255, 255, 255),
       outline(10, WHITE),
       pos(width() / 2, 100),
       origin("center"),
-      'title'
+      "title",
     ]);
 
     const optionsButton = add([
-      text("Options", { size: 45, font: 'sinko' }),
+      text("Options", { size: 45, font: "sinko" }),
       color(255, 0, 0),
       pos(width() / 2, 450),
       origin("center"),
@@ -30,7 +34,7 @@ export const titleScene = () => {
     ]);
 
     const startNewGameButton = add([
-      text("Start New Game", { size: 45, font: 'sinko' }),
+      text("Start New Game", { size: 45, font: "sinko" }),
       color(255, 0, 0),
       pos(width() / 2, 350),
       origin("center"),
@@ -49,7 +53,7 @@ export const titleScene = () => {
 
     if (getCurrentRoom()) {
       continueButton = add([
-        text("Continue", { size: 45, font: 'sinko' }),
+        text("Continue", { size: 45, font: "sinko" }),
         color(255, 0, 0),
         pos(width() / 2, 250),
         origin("center"),
@@ -61,14 +65,14 @@ export const titleScene = () => {
         delete window.onTitleScene;
         displayInventoryDiv();
         const room = getCurrentRoom();
-        playSFX('click')
+        playSFX("click");
         stopBGM();
         go(room);
       });
     }
 
     onClick("startNewGame", () => {
-      playSFX('click')
+      playSFX("click");
       if (getCurrentRoom()) {
         optionsButton.destroy();
         continueButton.destroy();
@@ -77,7 +81,7 @@ export const titleScene = () => {
         const areYouSure = add([
           text(
             "Starting a new game will \n erase your old save. \n \nAre you sure you want to proceed?",
-            { size: 45, font: 'sinko' }
+            { size: 45, font: "sinko" }
           ),
           color(255, 0, 0),
           pos(width() / 2, 250),
@@ -86,20 +90,25 @@ export const titleScene = () => {
           "areYouSure",
         ]);
         const yes = add([
-          text("Yes", { size: 50, font: 'sinko' }),
+          text("Yes", { size: 50, font: "sinko" }),
           pos(480, 400),
           area(),
           "yes",
         ]);
-        const no = add([text("No", { size: 50, font: 'sinko'  }), pos(670, 400), area(), "no"]);
+        const no = add([
+          text("No", { size: 50, font: "sinko" }),
+          pos(670, 400),
+          area(),
+          "no",
+        ]);
 
         onClick("no", () => {
-          playSFX('click')
+          playSFX("click");
           go("title");
         });
 
         onClick("yes", () => {
-          playSFX('click')
+          playSFX("click");
           startNewGame();
         });
       } else {
@@ -108,7 +117,7 @@ export const titleScene = () => {
     });
 
     onClick("options", () => {
-      playSFX('click')
+      playSFX("click");
       go("options");
     });
   });

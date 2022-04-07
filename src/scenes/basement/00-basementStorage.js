@@ -15,7 +15,6 @@ const roomName = "basementStorageOne";
 const roomNavArrows = navArrows(roomName);
 
 export const createBasementStorageOne = async () => {
-
   scene(roomName + "Down", () => {
     window.roomName = roomName;
     window.viewDirection = "singleViewRoom";
@@ -26,30 +25,38 @@ export const createBasementStorageOne = async () => {
 
     if (!getGameState(roomName, "rustyKeyPickedUp")) {
       onLoad(() => {
-        add([sprite('key-rusty'), pos(1200, 340), scale(.8), area(), "SCENE", 'rustyKey'])
-      })
+        add([
+          sprite("key-rusty"),
+          pos(1200, 340),
+          scale(0.8),
+          area(),
+          "SCENE",
+          "rustyKey",
+        ]);
+      });
     }
 
-    onClick('rustyKey', (rustyKey1) => {
-      playSFX('keyNoise')
+    onClick("rustyKey", (rustyKey1) => {
+      playSFX("keyNoise");
       textBubble([["A rusty key was added to your inventory."]], () => {
         singleViewNavArrow("basementStorageOneDown", "basementHallwayDown");
-      })
+      });
       addToInventory(rustyKey);
       setGameState(roomName, "rustyKeyPickedUp", true);
-      rustyKey1.destroy()
-    })
+      rustyKey1.destroy();
+    });
 
     const cuteGhost = add([
       sprite("cuteGhost"),
       scale(5),
       pos(400, 280),
-      area(), "SCENE",
+      area(),
+      "SCENE",
       "cuteGhost",
     ]);
 
     onClick("cuteGhost", (cuteGhost) => {
-      playSFX('cuteGhostSound')
+      playSFX("cuteGhostSound");
       cuteGhost.play("move", { loop: true });
       setGameState(roomName, "ghostMoved", true);
       textBubble(

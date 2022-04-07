@@ -5,15 +5,13 @@ import {
   getBackgroundMusicVolume,
   getSoundEffectVolume,
   setSoundEffectVolume,
-  getCurrentRoom
+  getCurrentRoom,
 } from "../state";
 
+import { displayInventoryDiv } from "../inventory";
 
-import { displayInventoryDiv } from "../inventory"
-
-import _J from 'json-url';
-const codec = _J('lzstring');
-
+import _J from "json-url";
+const codec = _J("lzstring");
 
 export const entry = () => {
   scene("entry", () => {
@@ -26,40 +24,39 @@ export const entry = () => {
     }
 
     add([
-      text("Click to start", {size: 60, font: 'sinko'}),
+      text("Click to start", { size: 60, font: "sinko" }),
 
       color(255, 0, 0),
       pos(width() / 2, height() / 2),
       origin("center"),
     ]);
 
-    add([rect(width(), height()), opacity(0), pos(0,0), area(), 'clickBox'])
+    add([rect(width(), height()), opacity(0), pos(0, 0), area(), "clickBox"]);
 
-    onClick('clickBox', async () => {
+    onClick("clickBox", async () => {
       if (window.location.search) {
         // load game state
         try {
           let searchParams = new URLSearchParams(window.location.search);
-          const decoded = await codec.decompress(searchParams.get('s'))
+          const decoded = await codec.decompress(searchParams.get("s"));
 
           Object.keys(decoded).map((keyStr, idx) => {
-            if (typeof decoded[keyStr] === 'string') {
-              localStorage.setItem(keyStr, decoded[keyStr])
+            if (typeof decoded[keyStr] === "string") {
+              localStorage.setItem(keyStr, decoded[keyStr]);
             } else {
-              localStorage.setItem(keyStr, JSON.stringify(decoded[keyStr]))
+              localStorage.setItem(keyStr, JSON.stringify(decoded[keyStr]));
             }
-          })
+          });
 
-          history.replaceState("", "", window.location.pathname)
+          history.replaceState("", "", window.location.pathname);
           displayInventoryDiv();
           const room = getCurrentRoom();
           go(room);
-
         } catch (e) {
-          console.log(e)
+          console.log(e);
         }
       } else {
-        window.localStorage.setItem('menuIsOpen', false)
+        window.localStorage.setItem("menuIsOpen", false);
 
         go("title");
       }

@@ -51,17 +51,31 @@ export const createBasementRoomOne = () => {
     playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneRight"), scale(1), area()]);
-      add([sprite("barrel3"), scale(4), pos(1150, 300), area(), "SCENE", "barrel3"]);
+      add([
+        sprite("barrel3"),
+        scale(4),
+        pos(1150, 300),
+        area(),
+        "SCENE",
+        "barrel3",
+      ]);
 
       if (!getGameState(roomName, "keyPickedUp")) {
-        add([sprite("barrel1"), scale(4), pos(1150, 300), area(), "SCENE", "barrel1"]);
+        add([
+          sprite("barrel1"),
+          scale(4),
+          pos(1150, 300),
+          area(),
+          "SCENE",
+          "barrel1",
+        ]);
       }
     });
     onClick("barrel1", (barrel) => {
       if (window.selectedItem == "pry bar") {
         (async () => {
           await fadeOutOpacity(barrel);
-          playSFX('keyNoise')
+          playSFX("keyNoise");
           textBubble([["A key was added to your inventory"]]);
           addToInventory(cellarKey);
           setGameState(roomName, "keyPickedUp", true);
@@ -83,7 +97,8 @@ export const createBasementRoomOne = () => {
         sprite("chained-skeleton"),
         pos(400, 150),
         scale(4),
-        area(), "SCENE",
+        area(),
+        "SCENE",
         "chained-skeleton",
       ]);
       if (getGameState(roomName, "skeleton1Clicked")) {
@@ -92,19 +107,19 @@ export const createBasementRoomOne = () => {
           opacity(0.6),
           pos(500, 150),
           scale(4),
-          area(), "SCENE",
+          area(),
+          "SCENE",
           "ghost1",
         ]);
         ghost1.play("idle", { loop: true, pingpong: true, speed: 4 });
         flickerOpacity(ghost1);
       }
       onClick("chained-skeleton", () => {
-       
         if (!getGameState(roomName, "skeleton1Clicked")) {
           destroyNavArrows();
           setGameState(roomName, "skeleton1Clicked", true);
-          playSFX('poof')
-          playSFX('sparkle')
+          playSFX("poof");
+          playSFX("sparkle");
           const poof = add([
             sprite("poof"),
             opacity(0.6),
@@ -117,7 +132,7 @@ export const createBasementRoomOne = () => {
               poof.destroy();
               const beginMessage = [
                 ['"Oh no. Not another one!'],
-                [' I was trapped here just like you and never made it out.']
+                [" I was trapped here just like you and never made it out."],
               ];
               textBubble([beginMessage]);
               let ghost1 = add([
@@ -125,7 +140,8 @@ export const createBasementRoomOne = () => {
                 opacity(0.2),
                 pos(500, 150),
                 scale(4),
-                area(), "SCENE",
+                area(),
+                "SCENE",
                 "ghost1",
               ]);
 
@@ -162,19 +178,27 @@ export const createBasementRoomOne = () => {
     playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneLeft"), scale(1), area()]);
-      add([sprite("door2"), pos(520, 50), scale(1.37), area(), "SCENE", "door"]);
+      add([
+        sprite("door2"),
+        pos(520, 50),
+        scale(1.37),
+        area(),
+        "SCENE",
+        "door",
+      ]);
     });
 
     if (!getGameState(roomName, "pryBarPickedUp")) {
       const pryBar = add([
         sprite("pryBar"),
-        scale(.8),
+        scale(0.8),
         pos(100, 400),
-        area(), "SCENE",
+        area(),
+        "SCENE",
         "pryBar",
       ]);
       onClick("pryBar", (pryBar) => {
-        playSFX('keyNoise')
+        playSFX("keyNoise");
         textBubble([["A Pry Bar was added to your inventory"]]);
         addToInventory(pryBarObj);
         setGameState(roomName, "pryBarPickedUp", true);
@@ -184,13 +208,13 @@ export const createBasementRoomOne = () => {
 
     onClick("door", (door) => {
       if (getGameState(roomName, "doorUnlocked")) {
-        playSFX('doorClose')
+        playSFX("doorClose");
         go("basementHallwayDown");
       } else if (
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
       ) {
-        playSFX('lockClick')
+        playSFX("lockClick");
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);

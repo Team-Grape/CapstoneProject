@@ -2,13 +2,12 @@ import { clearLocalStorage, setGameState, getGameState } from "./state";
 import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
 import { playSFX } from "./sounds";
-import { navArrows, destroyNavArrows } from "./buttons"
-import { debugRectSize } from "./debug"
-import { makeSceneClickable, makeSceneUnclickable } from "./bubbling"
-import { fadeOutOpacity } from "./sprites"
-import _J from 'json-url';
-const codec = _J('lzstring');
-
+import { navArrows, destroyNavArrows } from "./buttons";
+import { debugRectSize } from "./debug";
+import { makeSceneClickable, makeSceneUnclickable } from "./bubbling";
+import { fadeOutOpacity } from "./sprites";
+import _J from "json-url";
+const codec = _J("lzstring");
 
 // ==================== In Game Menu ====================================== //
 
@@ -39,44 +38,43 @@ export class InGameMenu {
     });
   }
 
-
   open() {
     makeSceneUnclickable();
 
     // invisible box to the left of menu
     add([
       rect(width() - (width() - 1070), height()),
-      pos(0,0),
+      pos(0, 0),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
     // invisible box above menu
     add([
       rect(width() - 1070, 50),
-      pos(1070,0),
+      pos(1070, 0),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
     // invisible box below menu
     add([
       rect(width() - 1070, height() - 260),
-      pos(1070,260),
+      pos(1070, 260),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     let gameMenu = add([
       pos(1070, 50),
       rect(160, 210),
       outline(4),
       color(100, 100, 100),
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
     let continueButton = add([
       text("Continue", { size: 20, font: "sinko" }),
@@ -84,7 +82,7 @@ export class InGameMenu {
       color(255, 255, 255),
       area(),
       "continue",
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
@@ -92,7 +90,7 @@ export class InGameMenu {
       color(255, 255, 255),
       area(),
       "options",
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
 
     const saveAsURL = add([
@@ -100,7 +98,7 @@ export class InGameMenu {
       pos(1080, 120),
       area(),
       "saveAsURL",
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
 
     const saveAndQuit = add([
@@ -115,25 +113,25 @@ export class InGameMenu {
       text("GitHub", { size: 20, font: "sinko" }),
       pos(1120, 225),
       "github",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     const githubLogo = add([
       sprite("github"),
-      scale(.07),
+      scale(0.07),
       pos(1030, 195),
       "githubLogo",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     const githubLogoBox = add([
-      rect(135,30),
+      rect(135, 30),
       pos(1080, 220),
       opacity(0),
       area(),
       "githubLogoBox",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     onClick("continue", () => {
       playSFX("click");
@@ -167,40 +165,48 @@ export class InGameMenu {
     onClick("saveAsURL", async () => {
       playSFX("click");
       window.localStorage.setItem("menuIsOpen", false);
-      let tmpObj = {}
-      const LS = {...localStorage}
+      let tmpObj = {};
+      const LS = { ...localStorage };
 
       Object.keys(LS).map((keyStr, idx) => {
         try {
-          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+          tmpObj[keyStr] = JSON.parse(LS[keyStr]);
         } catch (e) {
-          tmpObj[keyStr] = LS[keyStr]
+          tmpObj[keyStr] = LS[keyStr];
         } finally {
         }
-      })
+      });
 
-      const compressedLS = await codec.compress(tmpObj)
+      const compressedLS = await codec.compress(tmpObj);
       //const decompressedLS = await codec.decompress(compressedLS)
-      const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
+      const shareURL =
+        window.location.origin +
+        window.location.pathname +
+        "?s=" +
+        compressedLS;
       //window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
-      navigator.clipboard.writeText(shareURL)
+      navigator.clipboard.writeText(shareURL);
       const copiedMessage = add([
-        text("Copied URL\nto Clipboard ", { size: 45, font: 'sinko', letterSpacing: 4 }),
-        pos(width()/2, 130),
+        text("Copied URL\nto Clipboard ", {
+          size: 45,
+          font: "sinko",
+          letterSpacing: 4,
+        }),
+        pos(width() / 2, 130),
         origin("center"),
       ]);
-      fadeOutOpacity(copiedMessage, .125)
+      fadeOutOpacity(copiedMessage, 0.125);
       every("gameMenuBox", destroy);
       makeSceneClickable();
     });
-    
+
     onClick("githubLogoBox", () => {
       playSFX("click");
-      window.open("https://github.com/Team-Grape/CapstoneProject")
+      window.open("https://github.com/Team-Grape/CapstoneProject");
       window.localStorage.setItem("menuIsOpen", false);
       every("gameMenuBox", destroy);
       makeSceneClickable();
-    })
+    });
   }
 
   restart() {
@@ -215,7 +221,6 @@ export class InGameMenu {
   saveAndQuit() {
     this.areYouSure("saveAndQuit");
   }
-
 
   areYouSure(actionType) {
     const areYouSurePrompt = add([

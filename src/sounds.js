@@ -5,48 +5,47 @@ export const loadAllSounds = () => {
   loadSound("horror", "./assets/sounds/horrorAmbiance.ogg");
   loadSound("falling", "./assets/sounds/paintingFalling.wav");
   loadSound("kidMusic", "./assets/sounds/kidMusic.ogg");
-  loadSound('ambience', './assets/sounds/ambience/houseAmbience.ogg')
-  loadSound('title', './assets/sounds/titleTrack/titleTrack.wav')
-  loadSound('dundundun', './assets/sounds/dundundun.wav')
+  loadSound("ambience", "./assets/sounds/ambience/houseAmbience.ogg");
+  loadSound("title", "./assets/sounds/titleTrack/titleTrack.wav");
+  loadSound("dundundun", "./assets/sounds/dundundun.wav");
   // Sound Effects ================
   loadSound("gong", "./assets/sounds/clockGong.wav");
   loadSound("bookcaseMoving", "./assets/sounds/bookcaseMoving.wav");
   loadSound("spooky", "./assets/sounds/spookyBgMusic.mp3");
-  loadSound('click', './assets/sounds/click.wav')
-  loadSound('poof', './assets/sounds/poof.wav')
-  loadSound('sparkle', './assets/sounds/sparkle.wav')
-  loadSound('footSteps', './assets/sounds/stairs.wav')
-  loadSound('doorClose', './assets/sounds/doorClosingNoise.wav')
-  loadSound('fireSound', './assets/sounds/fireSound.wav')
-  loadSound('swordSound', './assets/sounds/swordSound.wav')
-  loadSound('keyNoise', './assets/sounds/keyNoise.wav')
-  loadSound('crumble', "./assets/sounds/crumble.wav")
-  loadSound('cabbage', './assets/sounds/openChestSound.wav')
-  loadSound('glassDoorOpening', './assets/sounds/glassDoorOpening.wav')
-  loadSound('glassDoorClosing', './assets/sounds/glassDoorsClosed.wav')
-  loadSound('drawerOpening', './assets/sounds/drawerOpening.wav')
-  loadSound('drawerClosing', './assets/sounds/drawerClosing.wav')
-  loadSound('chestOpen', './assets/sounds/openChestSound.wav')
-  loadSound('cuteGhostSound', './assets/sounds/cuteGhostSound.wav')
-  loadSound('lockClick', './assets/sounds/lockClick.wav')
+  loadSound("click", "./assets/sounds/click.wav");
+  loadSound("poof", "./assets/sounds/poof.wav");
+  loadSound("sparkle", "./assets/sounds/sparkle.wav");
+  loadSound("footSteps", "./assets/sounds/stairs.wav");
+  loadSound("doorClose", "./assets/sounds/doorClosingNoise.wav");
+  loadSound("fireSound", "./assets/sounds/fireSound.wav");
+  loadSound("swordSound", "./assets/sounds/swordSound.wav");
+  loadSound("keyNoise", "./assets/sounds/keyNoise.wav");
+  loadSound("crumble", "./assets/sounds/crumble.wav");
+  loadSound("cabbage", "./assets/sounds/openChestSound.wav");
+  loadSound("glassDoorOpening", "./assets/sounds/glassDoorOpening.wav");
+  loadSound("glassDoorClosing", "./assets/sounds/glassDoorsClosed.wav");
+  loadSound("drawerOpening", "./assets/sounds/drawerOpening.wav");
+  loadSound("drawerClosing", "./assets/sounds/drawerClosing.wav");
+  loadSound("chestOpen", "./assets/sounds/openChestSound.wav");
+  loadSound("cuteGhostSound", "./assets/sounds/cuteGhostSound.wav");
+  loadSound("lockClick", "./assets/sounds/lockClick.wav");
 };
 
 //  ================================================================= //
 
 export const playSFX2 = (sndNameStr) => {
   if (window.currentlyPlayingSFX) {
-    
   }
   play(sndNameStr, { volume: getSoundEffectVolume(), loop: false });
 };
 
-
-
-
 export const playSFX = (sndNameStr) => {
   if (window.currentlyPlayingSFX) {
-    if (window.currentlyPlayingSFX.time() - 1 > window.currentlyPlayingSFX.duration() || 
-    window.currentlyPlayingSFX.name == sndNameStr){
+    if (
+      window.currentlyPlayingSFX.time() - 1 >
+        window.currentlyPlayingSFX.duration() ||
+      window.currentlyPlayingSFX.name == sndNameStr
+    ) {
       window.currentlyPlayingSFX.stop();
       delete window.currentlyPlayingSFX;
     }

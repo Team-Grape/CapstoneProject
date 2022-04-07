@@ -24,21 +24,30 @@ export const createStudy = async () => {
       add([rect(50, 28), pos(441, 335), color(0, 0, 0)]);
       add([rect(50, 28), pos(441, 372), color(0, 0, 0)]);
       add([sprite("books"), pos(680, 260), scale(2), area(), "SCENE", "books"]);
-      add([sprite('white-curtains-closed'), pos(88, 88), scale(1), area(), "SCENE", 'closedCurtains'])
+      add([
+        sprite("white-curtains-closed"),
+        pos(88, 88),
+        scale(1),
+        area(),
+        "SCENE",
+        "closedCurtains",
+      ]);
     });
 
     const deskDrawer1 = add([
       sprite("deskDrawer"),
       scale(1.05),
       pos(441, 335),
-      area(), "SCENE",
+      area(),
+      "SCENE",
       "deskDrawer1",
     ]);
     const deskDrawer2 = add([
       sprite("deskDrawer"),
       scale(1.05),
       pos(441, 372),
-      area(), "SCENE",
+      area(),
+      "SCENE",
       "deskDrawer2",
     ]);
 
@@ -72,13 +81,14 @@ export const createStudy = async () => {
           sprite("heart-key"),
           pos(441, 372),
           scale(0.8),
-          area(), "SCENE",
+          area(),
+          "SCENE",
           "heartKey",
         ]);
         onClick("heartKey", (heartKey1) => {
           playSFX("keyNoise");
           textBubble([["A key was added to your inventory"]], () => {
-            singleViewNavArrow("studyDown", "secondFloorHallwayDown")
+            singleViewNavArrow("studyDown", "secondFloorHallwayDown");
           });
           addToInventory(heartKey);
           setGameState(roomName, "heartKeyPickedUp", true);
@@ -95,11 +105,11 @@ export const createStudy = async () => {
 
     function setAndClearGameoverInterval() {
       const gameover = setInterval(() => {
-        go("gameover")
-      }, 1500)
+        go("gameover");
+      }, 1500);
       setTimeout(() => {
-        clearInterval(gameover)
-      }, 2000)
+        clearInterval(gameover);
+      }, 2000);
     }
 
     onClick("books", () => {

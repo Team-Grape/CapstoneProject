@@ -3,7 +3,6 @@ import { getCurrentRoom } from "./state";
 
 //================= Old Functions Below ============= //
 
-
 export const addToMessageLog = (msg) => {
   if (!window.localStorage.getItem("messageLog")) {
     window.localStorage.setItem("messageLog", JSON.stringify([]));
@@ -45,9 +44,6 @@ export function openMessageLog() {
   });
 }
 
-
-
-
 export const textBubble = (dialogs, onFinish) => {
   const roomNavArrows = navArrows(window.roomName);
 
@@ -82,7 +78,7 @@ export const textBubble = (dialogs, onFinish) => {
     nextButton.text = "Close";
   }
   nextButton.onClick(() => {
-   if (curDialog === dialogs.length - 1) {
+    if (curDialog === dialogs.length - 1) {
       textbox.destroy();
       txt.destroy();
       nextButton.destroy();
