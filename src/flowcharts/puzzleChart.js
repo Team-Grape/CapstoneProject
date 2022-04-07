@@ -10,7 +10,6 @@ const allChartsAsStrings = {
 };
 
 Object.values(allChartsAsStrings).map((msg, idx) => {
-
   const chartAndHeadingContainer = document.createElement("div");
   chartAndHeadingContainer.classList.add("chartAndHeadingContainer");
   chartAndHeadingContainer.style["border"] = "2px solid black";

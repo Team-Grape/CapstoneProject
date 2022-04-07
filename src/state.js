@@ -18,7 +18,7 @@ export function clearLocalStorage() {
   window.localStorage.setItem("messageLog", JSON.stringify([]));
   window.localStorage.setItem("gameState", JSON.stringify({}));
   window.localStorage.setItem("currentRoom", "");
-  window.localStorage.setItem('previousRoom', '')
+  window.localStorage.setItem("previousRoom", "");
 }
 
 const setOption = (option, value) => {

@@ -1,7 +1,7 @@
 import { saveCurrentRoom, savePreviousRoom, getPreviousRoom } from "./state";
 import { openMessageLog } from "./message";
 import { InGameMenu } from "./menu.js";
-import { playSFX } from './sounds'
+import { playSFX } from "./sounds";
 const inGameMenu = new InGameMenu();
 
 export function displayNavArrows(arrayOfDirectionsStrings = []) {
@@ -45,15 +45,15 @@ export function displayNavArrows(arrayOfDirectionsStrings = []) {
 
 export const singleViewNavArrow = (roomName, previousRoom) => {
   function goPreviousRoom(previousRoom) {
-    go(previousRoom)
+    go(previousRoom);
   }
   saveCurrentRoom(roomName);
   displayNavArrows(["down"]);
   onClick("down-arrow", () => {
-    playSFX('footSteps')
+    playSFX("footSteps");
     go(previousRoom);
   });
-}
+};
 
 export const navArrows = (roomName) => (d) => {
   saveCurrentRoom(roomName + d);
@@ -96,24 +96,27 @@ export const destroyNavArrows = () => {
 
 export function displayMessageLog() {
   add([
-    rect(180,30),
-    pos(40,5),
-    color(100,100,100),
+    rect(180, 30),
+    pos(40, 5),
+    color(100, 100, 100),
     area(),
     outline(2),
     "messageLogButton",
     "messageLogButtonBox",
-  ])
+  ]);
   add([
-    text("[Message Log].black", { size: 20, font: 'sink', styles: { black: { color: rgb(0, 0, 0)}}}),
+    text("[Message Log].black", {
+      size: 20,
+      font: "sink",
+      styles: { black: { color: rgb(0, 0, 0) } },
+    }),
     pos(49, 10),
-    color(255,255,255),
+    color(255, 255, 255),
     "messageLogButton",
     "messageLogButtonText",
   ]);
 
-
-  onClick("messageLogButtonBox",() => {
-    go("messageLog")
+  onClick("messageLogButtonBox", () => {
+    go("messageLog");
   });
 }

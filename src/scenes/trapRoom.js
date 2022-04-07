@@ -1,12 +1,11 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { removeInventoryDiv, resetCursorDiv } from '../inventory';
-
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { removeInventoryDiv, resetCursorDiv } from "../inventory";
 
 export const createTrapDoor = () => {
   const scene = new THREE.Scene();
-  
+
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -24,11 +23,11 @@ export const createTrapDoor = () => {
   // adds lighting to the scene
   const light = new THREE.AmbientLight(0xffffff); // soft white light
   scene.add(light);
-  
+
   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
   //loading textures to planes/ walls
   const textureLoader = new THREE.TextureLoader();
-  
+
   textureLoader.load(
     "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
@@ -43,7 +42,7 @@ export const createTrapDoor = () => {
       plane.position.z = -200;
     }
   );
-  
+
   textureLoader.load(
     "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
@@ -59,7 +58,7 @@ export const createTrapDoor = () => {
       plane.position.x = -200;
     }
   );
-  
+
   textureLoader.load(
     "./assets/room_backgrounds/brick.jpeg",
     function (texture) {
@@ -75,7 +74,7 @@ export const createTrapDoor = () => {
       plane.position.x = 200;
     }
   );
-  
+
   textureLoader.load(
     "./assets/room_backgrounds/floor.jpeg",
     function (texture) {
@@ -91,7 +90,7 @@ export const createTrapDoor = () => {
       plane.position.y = -112;
     }
   );
-  
+
   textureLoader.load(
     "./assets/room_backgrounds/grayCeiling.jpeg",
     function (texture) {
@@ -107,84 +106,51 @@ export const createTrapDoor = () => {
       plane.position.y = 112;
     }
   );
-  
+
   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
   const loader = new GLTFLoader();
-  
+
   let mixer;
-  
+
   loader.load("./assets/transparentGhost/scene.gltf", (gltf) => {
-    const model = gltf.scene
+    const model = gltf.scene;
     const scale = 5;
     model.scale.set(scale, scale, scale);
     model.position.set(0, -160, 0);
     scene.add(model);
   });
-  
+
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
-  
+
   function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
   }
-  
+
   window.addEventListener("resize", onWindowResize, false);
-  
-  
+
   animate();
 
   // ----------- kaboom & three canvas switching stuff --------------- //
-  
-  const threeCanvas = document.querySelectorAll('[data-engine]')[0]
-  threeCanvas.style.top = '50%'
+
+  const threeCanvas = document.querySelectorAll("[data-engine]")[0];
+  threeCanvas.style.top = "50%";
   threeCanvas.style["cursor"] = "auto";
-  
-  const kaboomCanvas = document.querySelectorAll('[tabindex="0"]')[0]
-  kaboomCanvas.style.display = "none"
+
+  const kaboomCanvas = document.querySelectorAll('[tabindex="0"]')[0];
+  kaboomCanvas.style.display = "none";
   kaboomCanvas.style["cursor"] = "auto";
-  
-  removeInventoryDiv()
-  resetCursorDiv()
-  
+
+  removeInventoryDiv();
+  resetCursorDiv();
+
   setTimeout(() => {
-    kaboomCanvas.style.display = "block"
-    threeCanvas.remove()
-    go("gameover")
-  
+    kaboomCanvas.style.display = "block";
+    threeCanvas.remove();
+    go("gameover");
   }, 3000);
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};

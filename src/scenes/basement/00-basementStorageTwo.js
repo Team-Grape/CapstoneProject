@@ -24,18 +24,25 @@ export const createBasementStorageTwo = async () => {
 
     if (!getGameState(roomName, "silverKeyPickedUp")) {
       onLoad(() => {
-        add([sprite("key-silver"), pos(200, 300), scale(.8), area(), "keySilver"]);
+        add([
+          sprite("key-silver"),
+          pos(200, 300),
+          scale(0.8),
+          area(),
+          "SCENE",
+          "keySilver",
+        ]);
       });
     }
 
     onClick("keySilver", (keySilver) => {
-      playSFX('keyNoise')
+      playSFX("keyNoise");
       textBubble([["A key was added to your inventory."]], () => {
         singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
       });
       addToInventory(silverKey);
       setGameState(roomName, "silverKeyPickedUp", true);
-  
+
       keySilver.destroy();
     });
 
@@ -44,18 +51,19 @@ export const createBasementStorageTwo = async () => {
       scale(1),
       pos(550, 130),
       area(),
+      "SCENE",
       "monster",
     ]);
 
     onClick("monster", (monster) => {
-      playSFX('cuteGhostSound')
+      playSFX("cuteGhostSound");
       monster.play("move");
-      textBubble([
-        [`I dont't know where my face went. Please help me find it.`],
-      ], () => {
-        singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
-      });
-
+      textBubble(
+        [[`I dont't know where my face went. Please help me find it.`]],
+        () => {
+          singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");
+        }
+      );
     });
 
     singleViewNavArrow("basementStorageTwoDown", "basementHallwayDown");

@@ -55,55 +55,57 @@ export const resetCursor = () => {
 
 export const createCursorDiv = (imgURL) => {
   const cursorItem = document.createElement("img");
-  cursorItem.id = "cursorItem"
-  cursorItem.classList.add('cursor')
-  document.body.appendChild(cursorItem)
-  canvas.addEventListener('mousemove', (e) => {
+  cursorItem.id = "cursorItem";
+  cursorItem.classList.add("cursor");
+  document.body.appendChild(cursorItem);
+  canvas.addEventListener("mousemove", (e) => {
     if (window.selectedItem) {
-    cursorItem.style['display'] = 'block';
+      cursorItem.style["display"] = "block";
 
-    cursorItem.style["image-rendering"] = "pixelated";
-    cursorItem.style["width"] = "auto";
-    cursorItem.style["height"] = "64px";
-    cursorItem.style["user-select"] = "none";
-    cursorItem.style["user-drag"] = "none";
-    cursorItem.style.left = (e.clientX - 32) + 'px';
-    cursorItem.style.top = (e.clientY - 32) + 'px';
+      cursorItem.style["image-rendering"] = "pixelated";
+      cursorItem.style["width"] = "auto";
+      cursorItem.style["height"] = "64px";
+      cursorItem.style["user-select"] = "none";
+      cursorItem.style["user-drag"] = "none";
+      cursorItem.style.left = e.clientX - 32 + "px";
+      cursorItem.style.top = e.clientY - 32 + "px";
     }
-  })
-  canvas.addEventListener('mouseleave', (e) => {
-    cursorItem.style['display'] = 'none';
-  })
-}
-
+  });
+  canvas.addEventListener("mouseleave", (e) => {
+    cursorItem.style["display"] = "none";
+  });
+};
 
 export const setCursorDivCenter = async (imgURL) => {
-  const cursorItem = document.getElementById('cursorItem')
+  const cursorItem = document.getElementById("cursorItem");
   cursorItem.src = imgURL;
 
   const canvas = document.getElementsByTagName("canvas")[0];
-  canvas.style["cursor"] = 'none';
+  canvas.style["cursor"] = "none";
 
   let aaaimg = new Image();
-  aaaimg.src = imgURL
+  aaaimg.src = imgURL;
 
-  while ( aaaimg.width == 0 ) {
-    await new Promise(resolve => setTimeout(resolve, 10));
+  while (aaaimg.width == 0) {
+    await new Promise((resolve) => setTimeout(resolve, 10));
   }
-  window.selectedItemOffset = {x: Math.ceil(aaaimg.width/2), y: Math.ceil(aaaimg.height/2)} 
+  window.selectedItemOffset = {
+    x: Math.ceil(aaaimg.width / 2),
+    y: Math.ceil(aaaimg.height / 2),
+  };
 };
 
 export const setCursorDivTopLeft = async (imgURL) => {
-  const cursorItem = document.getElementById('cursorItem')
+  const cursorItem = document.getElementById("cursorItem");
   cursorItem.src = imgURL;
-  window.selectedItemOffset = {x: 0, y: 0} 
+  window.selectedItemOffset = { x: 0, y: 0 };
 };
 
 export const resetCursorDiv = () => {
-  const cursorItem = document.getElementById('cursorItem')
-  cursorItem.src = '';
+  const cursorItem = document.getElementById("cursorItem");
+  cursorItem.src = "";
   delete window.selectedItemOffset;
-}
+};
 
 export const displayInventoryDiv = () => {
   if (!window.localStorage.getItem("inventory")) {
@@ -150,20 +152,21 @@ export const displayInventoryDiv = () => {
         canvas.style["cursor"] = "auto";
         delete window.selectedItem;
       };
-    } 
-    else if (item.name === '\'The Aesthetics of Fire-Hydrant Design: Volume IX\'') {
+    } else if (
+      item.name === "'The Aesthetics of Fire-Hydrant Design: Volume IX'"
+    ) {
       let fascinatingBookMessage = [
-        ['This book sure does look fascinating but this doesn\'t seem the like right time to read it.']
-      ]
+        [
+          "This book sure does look fascinating but this doesn't seem the like right time to read it.",
+        ],
+      ];
       tmpItemImg.onclick = () => {
-        textBubble(fascinatingBookMessage, () => {
-          
-        })
+        textBubble(fascinatingBookMessage, () => {});
       };
     } else {
       tmpItemImg.onclick = () => {
         if (window.SETCURSORDIVTOPLEFT) {
-          setCursorDivTopLeft(tmpItemImg.src)
+          setCursorDivTopLeft(tmpItemImg.src);
         } else {
           setCursorDivCenter(tmpItemImg.src);
         }

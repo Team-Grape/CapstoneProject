@@ -8,22 +8,21 @@ import { playSFX } from "../sounds";
 export const createMessageLogScene = () => {
   scene("messageLog", () => {
     onLoad(() => {
-      removeInventoryDiv()
+      removeInventoryDiv();
       window.localStorage.setItem("menuIsOpen", false);
-//      while (document.getElementById("bookContainerDiv")) {
+      //      while (document.getElementById("bookContainerDiv")) {
 
+      if (document.getElementById("bookContainerDiv")) {
+        document.getElementById("bookContainerDiv").remove();
+      }
 
-        if (document.getElementById("bookContainerDiv")) {
-          document.getElementById("bookContainerDiv").remove();
-        }
+      if (document.getElementById("returnButton")) {
+        document.getElementById("returnButton").remove();
+      }
 
-        if (document.getElementById("returnButton")) {
-          document.getElementById("returnButton").remove();
-        }
- 
-        if (document.getElementById("messageLogHeading")) {
-          document.getElementById("messageLogHeading").remove();
-        }
+      if (document.getElementById("messageLogHeading")) {
+        document.getElementById("messageLogHeading").remove();
+      }
     });
 
     const bookContainerDiv = document.createElement("div");
@@ -43,7 +42,6 @@ export const createMessageLogScene = () => {
     bookContainerDiv.style["height"] = "75%";
     bookContainerDiv.style["justify-content"] = "center";
     bookContainerDiv.style["gap"] = "2%";
-
 
     const leftPageDiv = document.createElement("div");
     leftPageDiv.id = "leftPageDiv";
@@ -80,7 +78,7 @@ export const createMessageLogScene = () => {
             const textNode = document.createTextNode(currentMessage);
             const listItem = document.createElement("li");
             listItem.style["padding"] = "10px";
-            listItem.appendChild(textNode)
+            listItem.appendChild(textNode);
             if (counter < 8) {
               leftPageList.appendChild(listItem);
             } else {
@@ -103,16 +101,15 @@ export const createMessageLogScene = () => {
     heading.style["transform"] = "translate(-50%, 0%)";
     heading.style["color"] = "red";
     heading.style["text-decoration-color"] = "red";
-//    heading.style["text-shadow"] = "none";
+    //    heading.style["text-shadow"] = "none";
     heading.style["text-shadow"] = "0 0 13px #FF0000";
     heading.style["font-size"] = "300%";
     const headingTextNode = document.createTextNode("Message Log");
-    heading.appendChild(headingTextNode)
+    heading.appendChild(headingTextNode);
     document.body.appendChild(heading);
 
-
     const returnButton = document.createElement("h1");
-    returnButton.id = "returnButton"
+    returnButton.id = "returnButton";
     returnButton.style["position"] = "fixed";
     returnButton.style["top"] = "0";
     returnButton.style["right"] = "2%";
@@ -123,37 +120,35 @@ export const createMessageLogScene = () => {
     returnButton.onclick = async () => {
       while (document.getElementById("bookContainerDiv")) {
         document.getElementById("bookContainerDiv").remove();
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 10));
       }
 
       while (document.getElementById("returnButton")) {
         document.getElementById("returnButton").remove();
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 10));
       }
 
       while (document.getElementById("messageLogHeading")) {
         document.getElementById("messageLogHeading").remove();
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 10));
       }
 
       playSFX("click");
       displayInventoryDiv();
 
       go(getCurrentRoom());
-    }
-    
-    returnButton.appendChild(document.createTextNode("Return"))
+    };
+
+    returnButton.appendChild(document.createTextNode("Return"));
     document.body.appendChild(returnButton);
 
-    returnButton.addEventListener('mouseenter', () => {
+    returnButton.addEventListener("mouseenter", () => {
       returnButton.style["color"] = "white";
       returnButton.style["text-shadow"] = "0 0 13px #666666";
     });
-    returnButton.addEventListener('mouseleave', () => {
+    returnButton.addEventListener("mouseleave", () => {
       returnButton.style["color"] = "#FFCCCC";
       returnButton.style["text-shadow"] = "none";
     });
-
-
   });
 };

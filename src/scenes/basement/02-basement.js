@@ -15,7 +15,7 @@ const roomNavArrows = navArrows(roomName);
 
 const introMessage = [
   ["Seems to be a storage closet of some sort."],
-  ["Look around and see what you can find."]
+  ["Look around and see what you can find."],
 ];
 
 export const createBasementRoomTwo = async () => {
@@ -35,6 +35,7 @@ export const createBasementRoomTwo = async () => {
         pos(680, 140),
         scale(4),
         area(),
+        "SCENE",
         "grandfather-clock",
       ]);
       playBGM("spooky");
@@ -65,6 +66,7 @@ export const createBasementRoomTwo = async () => {
         pos(300, fruitPaintingY),
         scale(5),
         area(),
+        "SCENE",
         "fruit-painting",
       ]);
     });
@@ -78,7 +80,6 @@ export const createBasementRoomTwo = async () => {
       playSFX("falling");
       playBGM("horror");
     });
-
   });
 
   // ======================================================== //
@@ -93,18 +94,19 @@ export const createBasementRoomTwo = async () => {
         scale(1.2),
         pos(320, 85),
         area(),
+        "SCENE",
         "door2",
       ]);
     });
     onClick("door2", (door2) => {
       if (getGameState(roomName, "doorUnlocked")) {
-        playSFX('doorClose')
+        playSFX("doorClose");
         go("basementHallwayDown");
       } else if (
         checkInventoryForItem(cellarKey) &&
         window.selectedItem == "cellar key"
       ) {
-        playSFX('lockClick')
+        playSFX("lockClick");
         setGameState(roomName, "doorUnlocked", true);
         removeFromInventory(cellarKey);
         textBubble([["The key unlocked the door!"]]);
@@ -125,36 +127,31 @@ export const createBasementRoomTwo = async () => {
     let bookCaseX;
     onLoad(() => {
       add([sprite("background-tile"), scale(1), area()]);
-      
     });
-    
-    if (!getGameState(roomName, 'barrelDrained')) {
-      add([sprite("barrel2"), pos(1000, 270), scale(4.5), area(), 'barrel2'])
-    } else {
+
+    if (!getGameState(roomName, "barrelDrained")) {
       add([
-        sprite('barrel3'),
+        sprite("barrel2"),
         pos(1000, 270),
         scale(4.5),
-        area()
-      ])
+        area(),
+        "SCENE",
+        "barrel2",
+      ]);
+    } else {
+      add([sprite("barrel3"), pos(1000, 270), scale(4.5), area()]);
     }
 
-
-    onClick('barrel2', (barrel) => {
-      setGameState(roomName, 'barrelDrained', true)
+    onClick("barrel2", (barrel) => {
+      setGameState(roomName, "barrelDrained", true);
       barrel.destroy();
-      add([
-        sprite('barrel3'),
-        pos(1000, 270),
-        scale(4.5),
-        area()
-      ])
-      textBubble([["The water drained out of the barrel."]])
-    })
+      add([sprite("barrel3"), pos(1000, 270), scale(4.5), area(), "SCENE"]);
+      textBubble([["The water drained out of the barrel."]]);
+    });
 
     if (!getGameState(roomName, "keyPickedUp")) {
       onLoad(() => {
-        add([sprite("key"), pos(650, 300), scale(1), area(), "key"]);
+        add([sprite("key"), pos(650, 300), scale(1), area(), "SCENE", "key"]);
       });
     }
     onLoad(() => {
@@ -168,21 +165,21 @@ export const createBasementRoomTwo = async () => {
         pos(bookCaseX, 150),
         scale(4),
         area(),
+        "SCENE",
         "bookcase",
       ]);
     });
 
     onClick("bookcase", (bookcase) => {
-      if (!getGameState(roomName, 'bookCaseMoved')) {
+      if (!getGameState(roomName, "bookCaseMoved")) {
         setGameState(roomName, "bookCaseMoved", true);
         bookcase.pos.x = 350;
         playSFX("bookcaseMoving");
       }
-      
     });
 
     onClick("key", (key) => {
-      playSFX('keyNoise')
+      playSFX("keyNoise");
       textBubble([["A key was added to your inventory"]]);
       addToInventory(cellarKey);
       setGameState(roomName, "keyPickedUp", true);
@@ -198,10 +195,10 @@ export const createBasementRoomTwo = async () => {
     window.viewDirection = "Right";
     const direction = "Right";
     onLoad(() => {
-      add([sprite("background-tile"), scale(1), area()]);
-      add([sprite("table"), pos(450, 240), scale(5), area()]);
-      add([sprite("candle"), pos(450, 140), scale(4), area()]);
-      add([sprite("cob-webs"), pos(520, 310), scale(2), area()]);
+      add([sprite("background-tile"), scale(1)]);
+      add([sprite("table"), pos(450, 240), scale(5)]);
+      add([sprite("candle"), pos(450, 140), scale(4)]);
+      add([sprite("cob-webs"), pos(520, 310), scale(2)]);
     });
     roomNavArrows(window.viewDirection);
   });

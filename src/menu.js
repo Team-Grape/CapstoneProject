@@ -2,12 +2,12 @@ import { clearLocalStorage, setGameState, getGameState } from "./state";
 import { removeInventoryDiv } from "./inventory";
 import { changeComponentColor } from "./changeColor";
 import { playSFX } from "./sounds";
-import { navArrows, destroyNavArrows } from "./buttons"
-import { debugRectSize } from "./debug"
-import { fadeOutOpacity } from "./sprites"
-import _J from 'json-url';
-const codec = _J('lzstring');
-
+import { navArrows, destroyNavArrows } from "./buttons";
+import { debugRectSize } from "./debug";
+import { makeSceneClickable, makeSceneUnclickable } from "./bubbling";
+import { fadeOutOpacity } from "./sprites";
+import _J from "json-url";
+const codec = _J("lzstring");
 
 // ==================== In Game Menu ====================================== //
 
@@ -38,63 +38,62 @@ export class InGameMenu {
     });
   }
 
-
   open() {
-
+    makeSceneUnclickable();
 
     // invisible box to the left of menu
     add([
       rect(width() - (width() - 1070), height()),
-      pos(0,0),
+      pos(0, 0),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
     // invisible box above menu
     add([
       rect(width() - 1070, 50),
-      pos(1070,0),
+      pos(1070, 0),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
     // invisible box below menu
     add([
       rect(width() - 1070, height() - 260),
-      pos(1070,260),
+      pos(1070, 260),
       opacity(0),
       area(),
       "continue",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
-    let gameMenu = add([
+    const gameMenu = add([
       pos(1070, 50),
       rect(160, 210),
       outline(4),
       color(100, 100, 100),
-      area(),
-      solid(),
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
-    let continueButton = add([
+    const continueButton = add([
       text("Continue", { size: 20, font: "sinko" }),
       pos(1080, 60),
       color(255, 255, 255),
       area(),
       "continue",
-      "gameMenuBox"
+      "continueText",
+      "gameMenuBox",
     ]);
+
+
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
       pos(1080, 90),
-
       color(255, 255, 255),
       area(),
-      "options",
-      "gameMenuBox"
+      "optionsText",
+      "gameMenuBox",
     ]);
 
     const saveAsURL = add([
@@ -102,7 +101,8 @@ export class InGameMenu {
       pos(1080, 120),
       area(),
       "saveAsURL",
-      "gameMenuBox"
+      "saveAsURL",
+      "gameMenuBox",
     ]);
 
     const saveAndQuit = add([
@@ -110,49 +110,54 @@ export class InGameMenu {
       pos(1080, 170),
       area(),
       "saveAndQuit",
-      "gameMenuBox"
+      "gameMenuBox",
     ]);
 
     const githubLink = add([
       text("GitHub", { size: 20, font: "sinko" }),
       pos(1120, 225),
-      "github",
-      "gameMenuBox"
-    ])
+      area(),
+      "githubText",
+      "gameMenuBox",
+    ]);
 
     const githubLogo = add([
       sprite("github"),
-      scale(.07),
+      scale(0.07),
       pos(1030, 195),
       "githubLogo",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     const githubLogoBox = add([
-      rect(135,30),
+      rect(135, 30),
       pos(1080, 220),
       opacity(0),
       area(),
       "githubLogoBox",
-      "gameMenuBox"
-    ])
+      "gameMenuBox",
+    ]);
 
     onClick("continue", () => {
       playSFX("click");
+      highlightCanceler()
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
+      makeSceneClickable();
     });
 
     onClick("restart", () => {
       playSFX("click");
+      highlightCanceler()
       every("gameMenuBox", destroy);
       this.restart();
       window.localStorage.setItem("menuIsOpen", false);
     });
 
-    onClick("options", () => {
+    onClick("optionsText", () => {
       playSFX("click");
       removeInventoryDiv();
+      highlightCanceler();
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
       go("options");
@@ -160,6 +165,7 @@ export class InGameMenu {
 
     onClick("saveAndQuit", () => {
       playSFX("click");
+      highlightCanceler();
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
       this.saveAndQuit();
@@ -168,38 +174,76 @@ export class InGameMenu {
     onClick("saveAsURL", async () => {
       playSFX("click");
       window.localStorage.setItem("menuIsOpen", false);
-      let tmpObj = {}
-      const LS = {...localStorage}
+      let tmpObj = {};
+      const LS = { ...localStorage };
 
       Object.keys(LS).map((keyStr, idx) => {
         try {
-          tmpObj[keyStr] = JSON.parse(LS[keyStr])
+          tmpObj[keyStr] = JSON.parse(LS[keyStr]);
         } catch (e) {
-          tmpObj[keyStr] = LS[keyStr]
+          tmpObj[keyStr] = LS[keyStr];
         } finally {
         }
-      })
+      });
 
-      const compressedLS = await codec.compress(tmpObj)
+      const compressedLS = await codec.compress(tmpObj);
       //const decompressedLS = await codec.decompress(compressedLS)
-      const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
+      const shareURL =
+        window.location.origin +
+        window.location.pathname +
+        "?s=" +
+        compressedLS;
       //window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
-      navigator.clipboard.writeText(shareURL)
+      navigator.clipboard.writeText(shareURL);
       const copiedMessage = add([
-        text("Copied URL\nto Clipboard ", { size: 45, font: 'sinko', letterSpacing: 4 }),
-        pos(width()/2, 130),
+        text("Copied URL\nto Clipboard ", {
+          size: 45,
+          font: "sinko",
+          letterSpacing: 4,
+        }),
+        pos(width() / 2, 130),
         origin("center"),
       ]);
-      fadeOutOpacity(copiedMessage, .125)
+      fadeOutOpacity(copiedMessage, 0.125);
+      highlightCanceler();
       every("gameMenuBox", destroy);
+      makeSceneClickable();
     });
-    
+
     onClick("githubLogoBox", () => {
       playSFX("click");
-      window.open("https://github.com/Team-Grape/CapstoneProject")
+      window.open("https://github.com/Team-Grape/CapstoneProject");
       window.localStorage.setItem("menuIsOpen", false);
+      highlightCanceler();
       every("gameMenuBox", destroy);
-    })
+      makeSceneClickable();
+    });
+
+   const highlightCanceler = onUpdate(() => {
+     ["continueText", "optionsText", "saveAsURL", "saveAndQuit"].forEach((itemString) => {
+
+       let [item] = get(itemString)
+//       console.log("itemString", itemString, "item", item)
+
+       if (item.isHovering()) {
+         item.color = rgb(255, 0, 0)
+       } else {
+         item.color = rgb(255, 255, 255)
+       }
+       
+     })
+     
+     const [ghLogoBox] = get("githubLogoBox")
+     const [ghText] = get("githubText")
+     if (ghLogoBox.isHovering()) {
+       ghText.color = rgb(255, 0, 0)
+     } else {
+       ghText.color = rgb(255, 255, 255)
+     }
+     
+   })
+
+
   }
 
   restart() {
@@ -208,6 +252,7 @@ export class InGameMenu {
 
   close(arrayOfComponents) {
     arrayOfComponents.forEach((component) => component.destroy());
+    makeSceneClickable();
   }
 
   saveAndQuit() {
@@ -234,6 +279,7 @@ export class InGameMenu {
 
     onClick("no", () => {
       playSFX("click");
+      highlightCancelerYN();
       this.close([areYouSurePrompt, areYouSureText, yes, no]);
       window.localStorage.setItem("menuIsOpen", false);
     });
@@ -241,6 +287,7 @@ export class InGameMenu {
     onClick("yes", () => {
       window.localStorage.setItem("menuIsOpen", false);
       playSFX("click");
+      highlightCancelerYN();
       if (actionType === "restart") {
         clearLocalStorage();
         removeInventoryDiv();
@@ -250,5 +297,23 @@ export class InGameMenu {
         go("title");
       }
     });
+
+
+   const highlightCancelerYN = onUpdate(() => {
+     ["yes", "no"].forEach((itemString) => {
+
+       const [item] = get(itemString)
+//       console.log("itemString", itemString, "item", item)
+
+       if (item.isHovering()) {
+         item.color = rgb(255, 0, 0)
+       } else {
+         item.color = rgb(255, 255, 255)
+       }
+     })
+   })
+
+
+
   }
 }
