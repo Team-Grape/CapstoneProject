@@ -35,8 +35,8 @@ export const createSecondFloorHallway = async () => {
       add([rect(94, 47), opacity(0), pos(72, 392), area(), 'left-door']);
 
       // right-door
-      add([rect(162, 235), opacity(0), pos(998, 158), area(), 'right-door']);
-      add([rect(80, 47), opacity(0), pos(1088, 392), area(), 'right-door']);
+      add([rect(162, 235), opacity(0), pos(998, 158), area(), solid(), layer("SCENE"), z(1), "SCENE", 'right-door']);
+      add([rect(80, 47), opacity(0), pos(1088, 392), area(), solid(), layer("SCENE"), z(1), "SCENE", 'right-door']);
 
       // center-door
       add([rect(138, 230), opacity(0), pos(542, 115), area(), 'center-door']);

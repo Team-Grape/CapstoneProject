@@ -44,7 +44,7 @@ kaboom({
   stretch: true,
   letterbox: true,
   scale: 1,
-//  debug: true,
+  debug: true,
   background: [35, 35, 35],
 });
 

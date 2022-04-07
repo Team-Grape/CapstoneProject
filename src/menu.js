@@ -41,7 +41,6 @@ export class InGameMenu {
 
   open() {
 
-
     // invisible box to the left of menu
     add([
       rect(width() - (width() - 1070), height()),
@@ -75,8 +74,6 @@ export class InGameMenu {
       rect(160, 210),
       outline(4),
       color(100, 100, 100),
-      area(),
-      solid(),
       "gameMenuBox"
     ]);
     let continueButton = add([
@@ -90,7 +87,6 @@ export class InGameMenu {
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
       pos(1080, 90),
-
       color(255, 255, 255),
       area(),
       "options",
@@ -109,8 +105,12 @@ export class InGameMenu {
       text("Save\nand Quit", { size: 20, font: "sinko" }),
       pos(1080, 170),
       area(),
+      solid(),
+      layer("HUD"),
+      z(9),
       "saveAndQuit",
-      "gameMenuBox"
+      "gameMenuBox",
+      "HUD",
     ]);
 
     const githubLink = add([
@@ -141,6 +141,12 @@ export class InGameMenu {
       playSFX("click");
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
+      const allScene = get("SCENE")
+      allScene.forEach((item) => {
+          item.area.scale.x = 1
+          item.area.scale.y = 1
+//        item.readd()
+      })
     });
 
     onClick("restart", () => {
@@ -158,7 +164,24 @@ export class InGameMenu {
       go("options");
     });
 
+
+      saveAndQuit.onCollide("SCENE", () => {
+        //console.log("COLLIDE")
+        const allScene = get("SCENE")
+        console.log(allScene)
+        allScene.forEach((item) => {
+        //  item.destroy()
+          item.area.scale.x = 0
+          item.area.scale.y = 0
+        })
+      })
+
+
+
     onClick("saveAndQuit", () => {
+//      if (saveAndQuit.isColliding("SCENE")) {
+//        console.log("COLLIDE")
+//      }
       playSFX("click");
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
@@ -213,6 +236,7 @@ export class InGameMenu {
   saveAndQuit() {
     this.areYouSure("saveAndQuit");
   }
+
 
   areYouSure(actionType) {
     const areYouSurePrompt = add([
