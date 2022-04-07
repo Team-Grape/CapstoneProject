@@ -24,7 +24,7 @@ import { createLibrary } from './scenes/firstFloor/02-library';
 import { createMainEntrance } from './scenes/firstFloor/03-mainEntrance';
 import { createKitchen } from './scenes/firstFloor/03-kitchen';
 
-window.SETCURSORDIVTOPLEFT = true;
+//window.SETCURSORDIVTOPLEFT = true;
 
 // *********************************
 import { addToInventory } from './inventory';
@@ -44,7 +44,7 @@ kaboom({
   stretch: true,
   letterbox: true,
   scale: 1,
-  debug: true,
+//  debug: true,
   background: [35, 35, 35],
 });
 

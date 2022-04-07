@@ -91,6 +91,7 @@ export const destroyNavArrows = () => {
   every("down-arrow", destroy);
   every("left-arrow", destroy);
   every("right-arrow", destroy);
+  every("messageLogButton", destroy);
 };
 
 export function displayMessageLog() {
@@ -101,17 +102,18 @@ export function displayMessageLog() {
     area(),
     outline(2),
     "messageLogButton",
+    "messageLogButtonBox",
   ])
   add([
     text("[Message Log].black", { size: 20, font: 'sink', styles: { black: { color: rgb(0, 0, 0)}}}),
     pos(49, 10),
     color(255,255,255),
-    area(),
-    "messageLogButton"
+    "messageLogButton",
+    "messageLogButtonText",
   ]);
 
 
-  onClick("messageLogButton",() => {
+  onClick("messageLogButtonBox",() => {
     go("messageLog")
   });
 }

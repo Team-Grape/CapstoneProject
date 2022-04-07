@@ -4,11 +4,9 @@ import { changeComponentColor } from "./changeColor";
 import { playSFX } from "./sounds";
 import { navArrows, destroyNavArrows } from "./buttons"
 import { debugRectSize } from "./debug"
+import { fadeOutOpacity } from "./sprites"
 import _J from 'json-url';
 const codec = _J('lzstring');
-//import * as J from 'json-url/dist/browser/json-url.js'
-//import J from 'json-url/dist/browser/json-url.js'
-//import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 
 // ==================== In Game Menu ====================================== //
@@ -31,7 +29,6 @@ export class InGameMenu {
   display() {
     this.createMenuButton();
     onClick("menu-button", (menuButton) => {
-      //debugRectSize();
       const isMenuOpen = JSON.parse(window.localStorage.getItem("menuIsOpen"));
       if (!isMenuOpen) {
         window.localStorage.setItem("menuIsOpen", true);
@@ -41,14 +38,46 @@ export class InGameMenu {
     });
   }
 
+
   open() {
-//    destroyNavArrows()
+
+
+    // invisible box to the left of menu
+    add([
+      rect(width() - (width() - 1070), height()),
+      pos(0,0),
+      opacity(0),
+      area(),
+      "continue",
+      "gameMenuBox"
+    ])
+    // invisible box above menu
+    add([
+      rect(width() - 1070, 50),
+      pos(1070,0),
+      opacity(0),
+      area(),
+      "continue",
+      "gameMenuBox"
+    ])
+    // invisible box below menu
+    add([
+      rect(width() - 1070, height() - 260),
+      pos(1070,260),
+      opacity(0),
+      area(),
+      "continue",
+      "gameMenuBox"
+    ])
+
     let gameMenu = add([
       pos(1070, 50),
-      rect(160, 220),
+      rect(160, 210),
       outline(4),
       color(100, 100, 100),
       area(),
+      solid(),
+      "gameMenuBox"
     ]);
     let continueButton = add([
       text("Continue", { size: 20, font: "sinko" }),
@@ -56,82 +85,67 @@ export class InGameMenu {
       color(255, 255, 255),
       area(),
       "continue",
+      "gameMenuBox"
     ]);
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
-      pos(1080, 100),
+      pos(1080, 90),
 
       color(255, 255, 255),
       area(),
       "options",
+      "gameMenuBox"
     ]);
 
     const saveAsURL = add([
       text("Save Game\nas URL", { size: 20, font: "sinko" }),
-      pos(1080, 130),
+      pos(1080, 120),
       area(),
       "saveAsURL",
+      "gameMenuBox"
     ]);
 
     const saveAndQuit = add([
       text("Save\nand Quit", { size: 20, font: "sinko" }),
-      pos(1080, 180),
+      pos(1080, 170),
       area(),
       "saveAndQuit",
+      "gameMenuBox"
     ]);
 
     const githubLink = add([
       text("GitHub", { size: 20, font: "sinko" }),
-      pos(1120, 235),
-      "github"
+      pos(1120, 225),
+      "github",
+      "gameMenuBox"
     ])
 
     const githubLogo = add([
       sprite("github"),
       scale(.07),
-      pos(1030, 205),
-      "githubLogo"
+      pos(1030, 195),
+      "githubLogo",
+      "gameMenuBox"
     ])
 
     const githubLogoBox = add([
       rect(135,30),
-      pos(1080, 230),
+      pos(1080, 220),
       opacity(0),
       area(),
-      "githubLogoBox"
+      "githubLogoBox",
+      "gameMenuBox"
     ])
 
     onClick("continue", () => {
       playSFX("click");
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo,
-        githubLogoBox
-      ]);
+      every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
-//      if (window.viewDirection === 'singleViewRoom') {
-//        navArrows()
-//      }
-       
     });
 
     onClick("restart", () => {
       playSFX("click");
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo,
-        githubLogoBox
-      ]);
+      every("gameMenuBox", destroy);
       this.restart();
       window.localStorage.setItem("menuIsOpen", false);
     });
@@ -139,28 +153,21 @@ export class InGameMenu {
     onClick("options", () => {
       playSFX("click");
       removeInventoryDiv();
-      go("options");
+      every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
+      go("options");
     });
 
     onClick("saveAndQuit", () => {
       playSFX("click");
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo,
-        githubLogoBox
-      ]);
-      this.saveAndQuit();
+      every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
+      this.saveAndQuit();
     });
 
     onClick("saveAsURL", async () => {
       playSFX("click");
+      window.localStorage.setItem("menuIsOpen", false);
       let tmpObj = {}
       const LS = {...localStorage}
 
@@ -172,48 +179,35 @@ export class InGameMenu {
         } finally {
         }
       })
- 
+
       const compressedLS = await codec.compress(tmpObj)
-      const decompressedLS = await codec.decompress(compressedLS)
-
-
+      //const decompressedLS = await codec.decompress(compressedLS)
       const shareURL = window.location.origin + window.location.pathname + "?s=" + compressedLS;
-      window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo,
-        githubLogoBox
+      //window.prompt("Copy to clipboard: Ctrl+C, Enter", shareURL);
+      navigator.clipboard.writeText(shareURL)
+      const copiedMessage = add([
+        text("Copied URL\nto Clipboard ", { size: 45, font: 'sinko', letterSpacing: 4 }),
+        pos(width()/2, 130),
+        origin("center"),
       ]);
+      fadeOutOpacity(copiedMessage, .125)
+      every("gameMenuBox", destroy);
     });
     
     onClick("githubLogoBox", () => {
       playSFX("click");
       window.open("https://github.com/Team-Grape/CapstoneProject")
-      this.close([
-        gameMenu,
-        continueButton,
-        optionsButton,
-        saveAsURL,
-        saveAndQuit,
-        githubLink,
-        githubLogo,
-        githubLogoBox
-      ]);
       window.localStorage.setItem("menuIsOpen", false);
+      every("gameMenuBox", destroy);
     })
-  }
-
-  close(arrayOfComponents) {
-    arrayOfComponents.forEach((component) => component.destroy());
   }
 
   restart() {
     this.areYouSure("restart");
+  }
+
+  close(arrayOfComponents) {
+    arrayOfComponents.forEach((component) => component.destroy());
   }
 
   saveAndQuit() {
@@ -257,82 +251,4 @@ export class InGameMenu {
       }
     });
   }
-}
-
-// ================ Below is some test code to try to fix the clicking bug ========= //
-
-function closeMenu(arrayOfComponents) {
-  arrayOfComponents.forEach((component) => component.destroy());
-}
-
-function createMenuButtons() {
-  let gameMenu = add([
-    pos(1070, 50),
-    rect(160, 150),
-    outline(4),
-    color(100, 100, 100),
-    area(),
-  ]);
-  let continueButton = add([
-    text("Continue", { size: 20, font: "sinko" }),
-    pos(1080, 60),
-    color(255, 255, 255),
-    area(),
-    "continue",
-  ]);
-  const optionsButton = add([
-    text("Options", { size: 20, font: "sinko" }),
-    pos(1080, 100),
-    color(255, 255, 255),
-    area(),
-    "options",
-  ]);
-
-  const saveAndQuit = add([
-    text("Save\nand Quit", { size: 20, font: "sinko" }),
-    pos(1080, 135),
-    area(),
-    "saveAndQuit",
-  ]);
-
-  onClick("continue", () => {
-    playSFX("click");
-    closeMenu([
-      gameMenu,
-      continueButton,
-      optionsButton,
-      saveAndQuit,
-    ]);
-    window.localStorage.setItem("menuIsOpen", false);
-  });
-
-  onClick("options", () => {
-    playSFX("click");
-    removeInventoryDiv();
-    go("options");
-    window.localStorage.setItem("menuIsOpen", false);
-  });
-
-  onClick("saveAndQuit", () => {
-    playSFX("click");
-    this.close([
-      gameMenu,
-      continueButton,
-      optionsButton,
-      saveAndQuit,
-    ]);
-  });
-}
-
-export function createInGameMenu() {
-  add([sprite("menu-button"), pos(1150, 10), scale(1), area(), "menu-button"]);
-
-  onClick("menu-button", () => {
-    const isMenuOpen = JSON.parse(window.localStorage.getItem("menuIsOpen"));
-    if (!isMenuOpen) {
-      window.localStorage.setItem("menuIsOpen", true);
-      playSFX("click");
-      createMenuButtons();
-    }
-  });
 }

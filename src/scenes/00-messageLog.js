@@ -9,6 +9,21 @@ export const createMessageLogScene = () => {
   scene("messageLog", () => {
     onLoad(() => {
       removeInventoryDiv()
+      window.localStorage.setItem("menuIsOpen", false);
+//      while (document.getElementById("bookContainerDiv")) {
+
+
+        if (document.getElementById("bookContainerDiv")) {
+          document.getElementById("bookContainerDiv").remove();
+        }
+
+        if (document.getElementById("returnButton")) {
+          document.getElementById("returnButton").remove();
+        }
+ 
+        if (document.getElementById("messageLogHeading")) {
+          document.getElementById("messageLogHeading").remove();
+        }
     });
 
     const bookContainerDiv = document.createElement("div");
@@ -88,6 +103,7 @@ export const createMessageLogScene = () => {
     heading.style["transform"] = "translate(-50%, 0%)";
     heading.style["color"] = "red";
     heading.style["text-decoration-color"] = "red";
+//    heading.style["text-shadow"] = "none";
     heading.style["text-shadow"] = "0 0 13px #FF0000";
     heading.style["font-size"] = "300%";
     const headingTextNode = document.createTextNode("Message Log");
