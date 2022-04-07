@@ -29,7 +29,7 @@ export const createKitchen = () => {
       sprite('potatoes'),
       scale(2.5),
       pos(100, 400),
-      area(),
+      area(), "SCENE",
       solid(),
       'potatoes',
     ]);
@@ -37,7 +37,7 @@ export const createKitchen = () => {
       sprite('cabbage'),
       scale(2.5),
       pos(600, 380),
-      area(),
+      area(), "SCENE",
       solid(),
       rotate(),
       'cabbage',
@@ -65,7 +65,7 @@ export const createKitchen = () => {
         sprite('milk-bottle'),
         scale(2),
         pos(750, 280),
-        area(),
+        area(), "SCENE",
         'milkBottle',
       ]);
       add([sprite('apples'), scale(2.5), pos(800, 320)]);
@@ -74,7 +74,7 @@ export const createKitchen = () => {
 
       if (!getGameState(roomName, 'meatPickedUp')) {
         onLoad(() => {
-          add([sprite('meat'), scale(2.5), pos(150, 400), area(), 'meat']);
+          add([sprite('meat'), scale(2.5), pos(150, 400), area(), "SCENE", 'meat']);
         });
       }
     });
@@ -108,7 +108,7 @@ export const createKitchen = () => {
         sprite('woodenDoor'),
         pos(950, 57),
         scale(3.7),
-        area(),
+        area(), "SCENE",
         'woodenDoor',
       ]);
 
@@ -120,7 +120,7 @@ export const createKitchen = () => {
           sprite('soft-drink-blue'),
           pos(332, 117),
           scale(1.2),
-          area(),
+          area(), "SCENE",
           'SFblue',
         ]);
       }
@@ -132,7 +132,7 @@ export const createKitchen = () => {
           sprite('soft-drink-green'),
           pos(354, 117),
           scale(1.2),
-          area(),
+          area(), "SCENE",
           'SFgreen',
         ]);
       }
@@ -144,7 +144,7 @@ export const createKitchen = () => {
           sprite('soft-drink-red'),
           pos(376, 117),
           scale(1.2),
-          area(),
+          area(), "SCENE",
           'SFred',
         ]);
       }
@@ -156,7 +156,7 @@ export const createKitchen = () => {
           sprite('soft-drink-yellow'),
           pos(398, 117),
           scale(1.2),
-          area(),
+          area(), "SCENE",
           'SFyellow',
         ]);
       }
@@ -170,7 +170,7 @@ export const createKitchen = () => {
           sprite('fridge-close'),
           scale(7.5),
           pos(150, 160),
-          area(),
+          area(), "SCENE",
           'fridgeClose',
         ]);
       } else {
@@ -178,7 +178,7 @@ export const createKitchen = () => {
           sprite('fridge-open'),
           scale(7.5),
           pos(150, 160),
-          area(),
+          area(), "SCENE",
           'fridgeOpen',
         ]);
       }
@@ -188,7 +188,7 @@ export const createKitchen = () => {
           sprite('kitchen-carbinet-closed'),
           pos(600, 280),
           scale(7),
-          area(),
+          area(), "SCENE",
           'kitchenCarbinetClosed',
         ]);
       } else {
@@ -196,7 +196,7 @@ export const createKitchen = () => {
           sprite('kitchen-carbinet-opened'),
           scale(7),
           pos(593, 280),
-          area(),
+          area(), "SCENE",
           'kitchenCarbinetOpened',
         ]);
       }
@@ -262,7 +262,7 @@ export const createKitchen = () => {
       setTimeout(() => {
         if (!getGameState(roomName, 'keyPickedUp')) {
           onLoad(() => {
-            add([sprite('key'), pos(400, 118), scale(1), area(), 'key']);
+            add([sprite('key'), pos(400, 118), scale(1), area(), "SCENE", 'key']);
           });
         }
       }, 50);
@@ -281,7 +281,7 @@ export const createKitchen = () => {
         sprite('fridge-open'),
         scale(7.5),
         pos(150, 160),
-        area(),
+        area(), "SCENE",
         'fridgeOpen',
       ]);
     });
@@ -293,7 +293,7 @@ export const createKitchen = () => {
         sprite('fridge-close'),
         scale(7.5),
         pos(150, 160),
-        area(),
+        area(), "SCENE",
         'fridgeClose',
       ]);
     });
@@ -305,7 +305,7 @@ export const createKitchen = () => {
         sprite('kitchen-carbinet-opened'),
         scale(7),
         pos(593, 280),
-        area(),
+        area(), "SCENE",
         'kitchenCarbinetOpened',
       ]);
       const potatochipGreen = add([
@@ -323,7 +323,7 @@ export const createKitchen = () => {
         sprite('kitchen-carbinet-closed'),
         scale(7),
         pos(600, 280),
-        area(),
+        area(), "SCENE",
         'kitchenCarbinetClosed',
       ]);
     });
@@ -341,7 +341,7 @@ export const createKitchen = () => {
         sprite('number2'),
         scale(2.5),
         pos(200, 500),
-        area(),
+        area(), "SCENE",
         origin('center'),
         rotate(45),
         'number2',

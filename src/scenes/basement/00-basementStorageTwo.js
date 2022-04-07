@@ -24,7 +24,7 @@ export const createBasementStorageTwo = async () => {
 
     if (!getGameState(roomName, "silverKeyPickedUp")) {
       onLoad(() => {
-        add([sprite("key-silver"), pos(200, 300), scale(.8), area(), "keySilver"]);
+        add([sprite("key-silver"), pos(200, 300), scale(.8), area(), "SCENE", "keySilver"]);
       });
     }
 
@@ -43,7 +43,7 @@ export const createBasementStorageTwo = async () => {
       sprite("monster"),
       scale(1),
       pos(550, 130),
-      area(),
+      area(), "SCENE",
       "monster",
     ]);
 

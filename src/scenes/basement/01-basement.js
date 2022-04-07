@@ -51,10 +51,10 @@ export const createBasementRoomOne = () => {
     playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneRight"), scale(1), area()]);
-      add([sprite("barrel3"), scale(4), pos(1150, 300), area(), "barrel3"]);
+      add([sprite("barrel3"), scale(4), pos(1150, 300), area(), "SCENE", "barrel3"]);
 
       if (!getGameState(roomName, "keyPickedUp")) {
-        add([sprite("barrel1"), scale(4), pos(1150, 300), area(), "barrel1"]);
+        add([sprite("barrel1"), scale(4), pos(1150, 300), area(), "SCENE", "barrel1"]);
       }
     });
     onClick("barrel1", (barrel) => {
@@ -83,7 +83,7 @@ export const createBasementRoomOne = () => {
         sprite("chained-skeleton"),
         pos(400, 150),
         scale(4),
-        area(),
+        area(), "SCENE",
         "chained-skeleton",
       ]);
       if (getGameState(roomName, "skeleton1Clicked")) {
@@ -92,7 +92,7 @@ export const createBasementRoomOne = () => {
           opacity(0.6),
           pos(500, 150),
           scale(4),
-          area(),
+          area(), "SCENE",
           "ghost1",
         ]);
         ghost1.play("idle", { loop: true, pingpong: true, speed: 4 });
@@ -125,7 +125,7 @@ export const createBasementRoomOne = () => {
                 opacity(0.2),
                 pos(500, 150),
                 scale(4),
-                area(),
+                area(), "SCENE",
                 "ghost1",
               ]);
 
@@ -162,7 +162,7 @@ export const createBasementRoomOne = () => {
     playBGM("ambience");
     onLoad(() => {
       add([sprite("basementRoomOneLeft"), scale(1), area()]);
-      add([sprite("door2"), pos(520, 50), scale(1.37), area(), "door"]);
+      add([sprite("door2"), pos(520, 50), scale(1.37), area(), "SCENE", "door"]);
     });
 
     if (!getGameState(roomName, "pryBarPickedUp")) {
@@ -170,7 +170,7 @@ export const createBasementRoomOne = () => {
         sprite("pryBar"),
         scale(.8),
         pos(100, 400),
-        area(),
+        area(), "SCENE",
         "pryBar",
       ]);
       onClick("pryBar", (pryBar) => {

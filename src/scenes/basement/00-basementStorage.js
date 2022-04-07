@@ -26,7 +26,7 @@ export const createBasementStorageOne = async () => {
 
     if (!getGameState(roomName, "rustyKeyPickedUp")) {
       onLoad(() => {
-        add([sprite('key-rusty'), pos(1200, 340), scale(.8), area(), 'rustyKey'])
+        add([sprite('key-rusty'), pos(1200, 340), scale(.8), area(), "SCENE", 'rustyKey'])
       })
     }
 
@@ -44,7 +44,7 @@ export const createBasementStorageOne = async () => {
       sprite("cuteGhost"),
       scale(5),
       pos(400, 280),
-      area(),
+      area(), "SCENE",
       "cuteGhost",
     ]);
 

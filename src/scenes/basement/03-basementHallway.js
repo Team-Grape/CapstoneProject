@@ -35,12 +35,12 @@ export const createBasementHallway = async () => {
 
       // left-near-door
       add([sprite("basementHallwayDoor"), scale(0.85), pos(30, 180)]);
-      add([rect(156, 270), opacity(0), pos(30, 180), area(), "left-near-door"]);
+      add([rect(156, 270), opacity(0), pos(30, 180), area(), "SCENE", "left-near-door"]);
 
       // left-far-door
       add([sprite("basementHallwayDoor"), scale(0.58), pos(240, 180)]);
-      add([rect(108, 145), opacity(0), pos(240, 180), area(), "left-far-door"]);
-      add([rect(62, 39), opacity(0), pos(287, 327), area(), "left-far-door"]);
+      add([rect(108, 145), opacity(0), pos(240, 180), area(), "SCENE", "left-far-door"]);
+      add([rect(62, 39), opacity(0), pos(287, 327), area(), "SCENE", "left-far-door"]);
 
       // right-near-door
       add([
@@ -52,7 +52,7 @@ export const createBasementHallway = async () => {
         rect(160, 280),
         opacity(0),
         pos(1060, 180),
-        area(),
+        area(), "SCENE",
         "right-near-door",
       ]);
 
@@ -66,25 +66,25 @@ export const createBasementHallway = async () => {
         rect(105, 145),
         opacity(0),
         pos(890, 180),
-        area(),
+        area(), "SCENE",
         "right-far-door",
       ]);
-      add([rect(70, 40), opacity(0), pos(890, 325), area(), "right-far-door"]);
+      add([rect(70, 40), opacity(0), pos(890, 325), area(), "SCENE", "right-far-door"]);
 
       // center-door
       add([
         sprite("door2", { flipX: true }),
         scale(0.8),
         pos(577, 170),
-        area(),
+        area(), "SCENE",
         "center-door",
       ]);
 
-      add([sprite("barrel1"), scale(3.7), area(), pos(185, 325), "barrelLeft"]);
+      add([sprite("barrel1"), scale(3.7), area(), "SCENE", pos(185, 325), "barrelLeft"]);
       add([
         sprite("barrel1"),
         scale(3.7),
-        area(),
+        area(), "SCENE",
         pos(960, 325),
         "barrelRight",
       ]);

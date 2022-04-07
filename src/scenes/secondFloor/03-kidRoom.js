@@ -24,7 +24,7 @@ export const createKidRoom = () => {
     onLoad(() => {
       add([sprite('room-three-background'), scale(1), area()]);
       add([sprite('seats'), scale(3), pos(20, 400)]);
-      add([sprite('orange-carpet'), scale(3), pos(400, 420), area(), solid()]);
+      add([sprite('orange-carpet'), scale(3), pos(400, 420), area(), "SCENE", solid()]);
       add([sprite('little-drawer'), scale(6), pos(360, 270)]);
       add([sprite('flower-painting'), scale(4), pos(500, 120)]);
       add([sprite('flower-painting'), scale(4), pos(320, 90)]);
@@ -35,7 +35,7 @@ export const createKidRoom = () => {
     });
 
     if (!getGameState(roomName, 'ragPickedUp')) {
-      const rag = add([sprite('rag'), scale(1), pos(900, 380), area(), 'rag']);
+      const rag = add([sprite('rag'), scale(1), pos(900, 380), area(), "SCENE", 'rag']);
       onClick('rag', (rag) => {
         playSFX('keyNoise');
         textBubble([['An old rag was added to your inventory.']]);
@@ -46,13 +46,13 @@ export const createKidRoom = () => {
     }
 
     if (!getGameState(roomName, 'BookFell')) {
-      add([sprite('books'), scale(3), pos(475, 250), area(), 'books']);
+      add([sprite('books'), scale(3), pos(475, 250), area(), "SCENE", 'books']);
     } else {
       add([
         sprite('fallingBook', { anim: 'idle' }),
         scale(1.5),
         pos(510, 350),
-        area(),
+        area(), "SCENE",
         'fallingBook',
       ]);
     }
@@ -66,7 +66,7 @@ export const createKidRoom = () => {
         pos(510, 250),
         gravity(100),
         body(),
-        area(),
+        area(), "SCENE",
         'fallingBook',
       ]);
       fallingBook.play('fall', {
@@ -113,7 +113,7 @@ export const createKidRoom = () => {
         sprite('empty-picture'),
         scale(2.7),
         pos(850, 110),
-        area(),
+        area(), "SCENE",
         'largeEmptyPicture',
       ]);
     } else {
@@ -125,7 +125,7 @@ export const createKidRoom = () => {
         sprite('empty-picture'),
         scale(2.4),
         pos(950, 140),
-        area(),
+        area(), "SCENE",
         'smallEmptyPicture',
       ]);
     } else {
@@ -169,7 +169,7 @@ export const createKidRoom = () => {
     window.viewDirection = 'Down';
     onLoad(() => {
       add([sprite('room-three-background-side'), scale(1), area()]);
-      add([sprite('orange-carpet'), scale(3), pos(800, 400), area(), solid()]);
+      add([sprite('orange-carpet'), scale(3), pos(800, 400), area(), "SCENE", solid()]);
       add([sprite('makeup-table'), scale(6), pos(120, 230)]);
       add([sprite('clothset'), scale(6), pos(400, 200)]);
       add([sprite('cycle-chair'), scale(3.5), pos(165, 400)]);
@@ -180,7 +180,7 @@ export const createKidRoom = () => {
           sprite('paper-board'),
           scale(3),
           pos(800, 150),
-          area(),
+          area(), "SCENE",
           'paperboard',
         ]);
       } else {
@@ -200,7 +200,7 @@ export const createKidRoom = () => {
             sprite('number1'),
             scale(2),
             pos(840, 170),
-            area(),
+            area(), "SCENE",
             body(),
             gravity(200),
             'number1',
@@ -232,14 +232,14 @@ export const createKidRoom = () => {
         sprite('empty-picture'),
         scale(2.7),
         pos(250, 110),
-        area(),
+        area(), "SCENE",
         'largeEmptyPicture',
       ]);
       add([
         sprite('empty-picture'),
         scale(2.5),
         pos(330, 120),
-        area(),
+        area(), "SCENE",
         'largeEmptyPicture',
       ]);
       add([
@@ -247,7 +247,7 @@ export const createKidRoom = () => {
         scale(3.5),
         pos(500, 480),
         rotate(0),
-        area(),
+        area(), "SCENE",
         solid(),
         origin('center'),
         'ball',
@@ -257,14 +257,14 @@ export const createKidRoom = () => {
         scale(3.5),
         pos(920, 450),
         rotate(),
-        area(),
+        area(), "SCENE",
         solid(),
         'toy',
       ]);
       add([sprite('another-painting'), scale(3), pos(600, 120)]);
       add([sprite('white-flowers'), scale(3), pos(650, 300)]);
       add([sprite('seats'), scale(3), pos(1200, 400)]);
-      add([sprite('door2'), pos(875, 75), scale(1.3), area(), 'door2']);
+      add([sprite('door2'), pos(875, 75), scale(1.3), area(), "SCENE", 'door2']);
       add([sprite('orangeBTN'), scale(0.17), pos(1051, 139)]);
       add([sprite('orangeBTN'), scale(0.17), pos(1071, 139)]);
       add([sprite('orangeBTN'), scale(0.17), pos(1091, 139)]);
@@ -287,7 +287,7 @@ export const createKidRoom = () => {
       sprite('cuteGhost'),
       scale(5),
       pos(60, 280),
-      area(),
+      area(), "SCENE",
       'cuteGhost',
     ]);
     onClick('cuteGhost', (cuteGhost) => {
@@ -303,7 +303,7 @@ export const createKidRoom = () => {
           sprite('diamond-key'),
           scale(1),
           pos(120, 450),
-          area(),
+          area(), "SCENE",
           'diamondKey',
         ]);
         onClick('diamondKey', (diamondKey1) => {
@@ -397,7 +397,7 @@ export const createKidRoom = () => {
       const numberLabel1 = add([
         text(number1, { font: 'apl386', size: 20, width: 18 }),
         pos(1057, 140),
-        area(),
+        area(), "SCENE",
         'numberLabel1',
       ]);
       return numberLabel1;
@@ -408,7 +408,7 @@ export const createKidRoom = () => {
       const numberLabel2 = add([
         text(number2, { font: 'apl386', size: 20, width: 18 }),
         pos(1077, 140),
-        area(),
+        area(), "SCENE",
         'numberLabel2',
       ]);
       return numberLabel2;
@@ -418,7 +418,7 @@ export const createKidRoom = () => {
       const numberLabel3 = add([
         text(number3, { font: 'apl386', size: 20, width: 18 }),
         pos(1097, 140),
-        area(),
+        area(), "SCENE",
         'numberLabel3',
       ]);
       return numberLabel3;
@@ -428,7 +428,7 @@ export const createKidRoom = () => {
       const numberLabel4 = add([
         text(number4, { font: 'apl386', size: 20, width: 18 }),
         pos(1117, 140),
-        area(),
+        area(), "SCENE",
         'numberLabel4',
       ]);
       return numberLabel4;

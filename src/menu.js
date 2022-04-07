@@ -4,6 +4,7 @@ import { changeComponentColor } from "./changeColor";
 import { playSFX } from "./sounds";
 import { navArrows, destroyNavArrows } from "./buttons"
 import { debugRectSize } from "./debug"
+import { makeSceneClickable, makeSceneUnclickable } from "./bubbling"
 import { fadeOutOpacity } from "./sprites"
 import _J from 'json-url';
 const codec = _J('lzstring');
@@ -40,6 +41,7 @@ export class InGameMenu {
 
 
   open() {
+    makeSceneUnclickable();
 
     // invisible box to the left of menu
     add([
@@ -105,12 +107,8 @@ export class InGameMenu {
       text("Save\nand Quit", { size: 20, font: "sinko" }),
       pos(1080, 170),
       area(),
-      solid(),
-      layer("HUD"),
-      z(9),
       "saveAndQuit",
       "gameMenuBox",
-      "HUD",
     ]);
 
     const githubLink = add([
@@ -141,12 +139,7 @@ export class InGameMenu {
       playSFX("click");
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
-      const allScene = get("SCENE")
-      allScene.forEach((item) => {
-          item.area.scale.x = 1
-          item.area.scale.y = 1
-//        item.readd()
-      })
+      makeSceneClickable();
     });
 
     onClick("restart", () => {
@@ -164,24 +157,7 @@ export class InGameMenu {
       go("options");
     });
 
-
-      saveAndQuit.onCollide("SCENE", () => {
-        //console.log("COLLIDE")
-        const allScene = get("SCENE")
-        console.log(allScene)
-        allScene.forEach((item) => {
-        //  item.destroy()
-          item.area.scale.x = 0
-          item.area.scale.y = 0
-        })
-      })
-
-
-
     onClick("saveAndQuit", () => {
-//      if (saveAndQuit.isColliding("SCENE")) {
-//        console.log("COLLIDE")
-//      }
       playSFX("click");
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
@@ -215,6 +191,7 @@ export class InGameMenu {
       ]);
       fadeOutOpacity(copiedMessage, .125)
       every("gameMenuBox", destroy);
+      makeSceneClickable();
     });
     
     onClick("githubLogoBox", () => {
@@ -222,6 +199,7 @@ export class InGameMenu {
       window.open("https://github.com/Team-Grape/CapstoneProject")
       window.localStorage.setItem("menuIsOpen", false);
       every("gameMenuBox", destroy);
+      makeSceneClickable();
     })
   }
 
@@ -231,6 +209,7 @@ export class InGameMenu {
 
   close(arrayOfComponents) {
     arrayOfComponents.forEach((component) => component.destroy());
+    makeSceneClickable();
   }
 
   saveAndQuit() {

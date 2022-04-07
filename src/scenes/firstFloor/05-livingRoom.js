@@ -33,7 +33,7 @@ export const createLivingRoom = () => {
         sprite('hammer'),
         scale(2.7),
         pos(350, 420),
-        area(),
+        area(), "SCENE",
         'hammer',
       ]);
       onClick('hammer', (hammer) => {
@@ -54,11 +54,11 @@ export const createLivingRoom = () => {
     window.viewDirection = 'Right';
     onLoad(() => {
       add([sprite('living-room-right'), scale(1), area()]);
-      add([sprite('window'), scale(1), area(), pos(100, 90)]);
+      add([sprite('window'), scale(1), area(), "SCENE", pos(100, 90)]);
       add([sprite('blueBTN'), scale(0.1), pos(150, 170)]);
       add([sprite('blueBTN'), scale(0.1), pos(170, 190)]);
       add([sprite('blueBTN'), scale(0.1), pos(180, 160)]);
-      add([sprite('window'), scale(1), area(), pos(1000, 90)]);
+      add([sprite('window'), scale(1), area(), "SCENE", pos(1000, 90)]);
       add([sprite('blueBTN'), scale(0.1), pos(1060, 160)]);
       add([sprite('blueBTN'), scale(0.1), pos(1040, 195)]);
       add([sprite('blueBTN'), scale(0.1), pos(1070, 180)]);
@@ -70,7 +70,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-closed'),
         scale(1),
         pos(970, 80),
-        area(),
+        area(), "SCENE",
         'rightWhiteCurtains',
       ]);
     } else {
@@ -78,7 +78,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(970, 80),
-        area(),
+        area(), "SCENE",
         'RightWhiteCurtainsOpen',
       ]);
     }
@@ -88,7 +88,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-closed'),
         scale(1),
         pos(60, 80),
-        area(),
+        area(), "SCENE",
         'leftWhiteCurtains',
       ]);
     } else {
@@ -96,7 +96,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(60, 80),
-        area(),
+        area(), "SCENE",
         'leftWhiteCurtainsOpen',
       ]);
     }
@@ -107,7 +107,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(60, 80),
-        area(),
+        area(), "SCENE",
         'leftWhiteCurtainsOpen',
       ]);
       setGameState(roomName, 'leftWhiteCurtainsIsOpen', true);
@@ -119,7 +119,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-closed'),
         scale(1),
         pos(60, 80),
-        area(),
+        area(), "SCENE",
         'leftWhiteCurtains',
       ]);
       setGameState(roomName, 'leftWhiteCurtainsIsOpen', false);
@@ -131,7 +131,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-open'),
         scale(1),
         pos(970, 80),
-        area(),
+        area(), "SCENE",
         'RightWhiteCurtainsOpen',
       ]);
       setGameState(roomName, 'RightWhiteCurtainsIsOpen', true);
@@ -143,7 +143,7 @@ export const createLivingRoom = () => {
         sprite('white-curtains-closed'),
         scale(1),
         pos(970, 80),
-        area(),
+        area(), "SCENE",
         'rightWhiteCurtains',
       ]);
       setGameState(roomName, 'RightWhiteCurtainsIsOpen', false);
@@ -165,7 +165,7 @@ export const createLivingRoom = () => {
         sprite('woodenDoor'),
         scale(3),
         pos(510, 110),
-        area(),
+        area(), "SCENE",
         'woodenDoor',
       ]);
     });
@@ -175,11 +175,11 @@ export const createLivingRoom = () => {
         sprite('lamp-turned-off'),
         scale(5),
         pos(200, 130),
-        area(),
+        area(), "SCENE",
         'lampTurnedOff',
       ]);
     } else {
-      add([sprite('lamp-turned-on'), scale(5), pos(200, 130), area(), 'lampTurnedOn']);
+      add([sprite('lamp-turned-on'), scale(5), pos(200, 130), area(), "SCENE", 'lampTurnedOn']);
       add([sprite('greenBTN'), scale(0.1), pos(230, 180)]);
     }
 
@@ -191,7 +191,7 @@ export const createLivingRoom = () => {
         sprite('lamp-turned-on'),
         scale(5),
         pos(200, 130),
-        area(),
+        area(), "SCENE",
         'lampTurnedOn',
       ]);
       const greenBTN = add([sprite('greenBTN'), scale(0.1), pos(230, 180)]);
@@ -205,7 +205,7 @@ export const createLivingRoom = () => {
         sprite('lamp-turned-off'),
         scale(5),
         pos(200, 130),
-        area(),
+        area(), "SCENE",
         'lampTurnedOff',
       ]);
     });
@@ -285,7 +285,7 @@ export const createLivingRoom = () => {
       const numberLabel1 = add([
         text(number1, { font: 'apl386', size: 20, width: 18 }),
         pos(650, 141),
-        area(),
+        area(), "SCENE",
         'numberLabel1',
       ]);
       return numberLabel1;
@@ -296,7 +296,7 @@ export const createLivingRoom = () => {
       const numberLabel2 = add([
         text(number2, { font: 'apl386', size: 20, width: 18 }),
         pos(670, 141),
-        area(),
+        area(), "SCENE",
         'numberLabel2',
       ]);
       return numberLabel2;
@@ -306,7 +306,7 @@ export const createLivingRoom = () => {
       const numberLabel3 = add([
         text(number3, { font: 'apl386', size: 20, width: 18 }),
         pos(690, 141),
-        area(),
+        area(), "SCENE",
         'numberLabel3',
       ]);
       return numberLabel3;
@@ -316,7 +316,7 @@ export const createLivingRoom = () => {
       const numberLabel4 = add([
         text(number4, { font: 'apl386', size: 20, width: 18 }),
         pos(710, 141),
-        area(),
+        area(), "SCENE",
         'numberLabel4',
       ]);
       return numberLabel4;
@@ -329,11 +329,11 @@ export const createLivingRoom = () => {
     window.viewDirection = 'Left';
     onLoad(() => {
       add([sprite('living-room-left'), scale(1), area()]);
-      add([sprite('painting5'), scale(4), area(), pos(180, 80)]);
+      add([sprite('painting5'), scale(4), area(), "SCENE", pos(180, 80)]);
       add([sprite('redBTN'), scale(0.1), pos(980, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(1020, 90)]);
       add([sprite('redBTN'), scale(0.1), pos(980, 120)]);
-      add([sprite('monster'), scale(1), area(), pos(80, 100), 'monster']);
+      add([sprite('monster'), scale(1), area(), "SCENE", pos(80, 100), 'monster']);
     });
 
     onClick('monster', (monster) => {
@@ -344,7 +344,7 @@ export const createLivingRoom = () => {
           sprite('key-silver'),
           pos(130, 130),
           scale(0.8),
-          area(),
+          area(), "SCENE",
           'keySilver',
         ]);
         textBubble([['This key is not my face. Would you like to have it?']]);
@@ -359,12 +359,12 @@ export const createLivingRoom = () => {
     });
 
     if (!getGameState(roomName, 'paintingMoved')) {
-      add([sprite('painting10'), scale(4), area(), pos(980, 80), 'painting10']);
+      add([sprite('painting10'), scale(4), area(), "SCENE", pos(980, 80), 'painting10']);
     } else {
       add([
         sprite('painting10'),
         scale(4),
-        area(),
+        area(), "SCENE",
         pos(980, 220),
         'painting10',
       ]);
@@ -377,7 +377,7 @@ export const createLivingRoom = () => {
       add([
         sprite('painting10'),
         scale(4),
-        area(),
+        area(), "SCENE",
         pos(980, 220),
         'painting10',
       ]);

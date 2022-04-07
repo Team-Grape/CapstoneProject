@@ -34,7 +34,7 @@ export const createBasementRoomTwo = async () => {
         sprite("grandfather-clock"),
         pos(680, 140),
         scale(4),
-        area(),
+        area(), "SCENE",
         "grandfather-clock",
       ]);
       playBGM("spooky");
@@ -64,7 +64,7 @@ export const createBasementRoomTwo = async () => {
         sprite("fruit-painting"),
         pos(300, fruitPaintingY),
         scale(5),
-        area(),
+        area(), "SCENE",
         "fruit-painting",
       ]);
     });
@@ -92,7 +92,7 @@ export const createBasementRoomTwo = async () => {
         sprite("door2"),
         scale(1.2),
         pos(320, 85),
-        area(),
+        area(), "SCENE",
         "door2",
       ]);
     });
@@ -129,7 +129,7 @@ export const createBasementRoomTwo = async () => {
     });
     
     if (!getGameState(roomName, 'barrelDrained')) {
-      add([sprite("barrel2"), pos(1000, 270), scale(4.5), area(), 'barrel2'])
+      add([sprite("barrel2"), pos(1000, 270), scale(4.5), area(), "SCENE", 'barrel2'])
     } else {
       add([
         sprite('barrel3'),
@@ -147,14 +147,15 @@ export const createBasementRoomTwo = async () => {
         sprite('barrel3'),
         pos(1000, 270),
         scale(4.5),
-        area()
+        area(),
+        "SCENE"
       ])
       textBubble([["The water drained out of the barrel."]])
     })
 
     if (!getGameState(roomName, "keyPickedUp")) {
       onLoad(() => {
-        add([sprite("key"), pos(650, 300), scale(1), area(), "key"]);
+        add([sprite("key"), pos(650, 300), scale(1), area(), "SCENE", "key"]);
       });
     }
     onLoad(() => {
@@ -167,7 +168,7 @@ export const createBasementRoomTwo = async () => {
         sprite("bookcase"),
         pos(bookCaseX, 150),
         scale(4),
-        area(),
+        area(), "SCENE",
         "bookcase",
       ]);
     });
@@ -198,10 +199,10 @@ export const createBasementRoomTwo = async () => {
     window.viewDirection = "Right";
     const direction = "Right";
     onLoad(() => {
-      add([sprite("background-tile"), scale(1), area()]);
-      add([sprite("table"), pos(450, 240), scale(5), area()]);
-      add([sprite("candle"), pos(450, 140), scale(4), area()]);
-      add([sprite("cob-webs"), pos(520, 310), scale(2), area()]);
+      add([sprite("background-tile"), scale(1)]);
+      add([sprite("table"), pos(450, 240), scale(5)]);
+      add([sprite("candle"), pos(450, 140), scale(4)]);
+      add([sprite("cob-webs"), pos(520, 310), scale(2)]);
     });
     roomNavArrows(window.viewDirection);
   });

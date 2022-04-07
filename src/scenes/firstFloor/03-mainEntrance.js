@@ -131,24 +131,24 @@ export const createMainEntrance = async () => {
         rect(18, 18),
         pos(450, 250),
         color(128, 128, 128),
-        area(),
+        area(), "SCENE",
         'number2square',
       ]);
       add([
         rect(18, 18),
         pos(468, 290),
         color(128, 128, 128),
-        area(),
+        area(), "SCENE",
         'number1square',
       ]);
       add([
         rect(18, 18),
         pos(485, 250),
         color(128, 128, 128),
-        area(),
+        area(), "SCENE",
         'number4square',
       ]);
-      add([rect(155, 240), opacity(0), pos(533, 110), area(), 'center-door']);
+      add([rect(155, 240), opacity(0), pos(533, 110), area(), "SCENE", 'center-door']);
       add([rect(300, 75), pos(450, 30), opacity(0)]);
       add([
         text('Solve the number puzzle.', { size: 18, font: 'apl386o' }),
@@ -171,13 +171,13 @@ export const createMainEntrance = async () => {
         color(255, 0, 0),
       ]);
 
-      add([rect(240, 75), opacity(0), pos(25, 150), area(), 'prettyPainting']);
+      add([rect(240, 75), opacity(0), pos(25, 150), area(), "SCENE", 'prettyPainting']);
 
       add([
         rect(200, 280),
         opacity(0),
         pos(1040, 150),
-        area(),
+        area(), "SCENE",
         'right-near-door',
       ]);
     });

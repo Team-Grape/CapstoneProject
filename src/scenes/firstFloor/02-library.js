@@ -60,26 +60,26 @@ export const createLibrary = () => {
 
     onLoad(() => {
       add([sprite('library-down'), scale(1), area()]);
-      add([sprite('door2'), pos(537, 65), scale(1.37), area(), 'door']);
+      add([sprite('door2'), pos(537, 65), scale(1.37), area(), "SCENE", 'door']);
       add([
         rect(15, 20),
         opacity(0),
         pos(30, 185),
-        area(),
+        area(), "SCENE",
         'uninterestingBook',
       ]);
       add([
         rect(15, 20),
         opacity(0),
         pos(400, 306),
-        area(),
+        area(), "SCENE",
         'uninterestingBook',
       ]);
       add([
         rect(15, 20),
         opacity(0),
         pos(950, 103),
-        area(),
+        area(), "SCENE",
         'uninterestingBook',
       ]);
     });
@@ -89,7 +89,7 @@ export const createLibrary = () => {
         sprite('fascinatingBook'),
         pos(852, 223),
         scale(1.35),
-        area(),
+        area(), "SCENE",
         'fascinatingBook',
       ]);
     }
@@ -130,14 +130,14 @@ export const createLibrary = () => {
       sprite('deskDrawer'),
       scale(1.05),
       pos(471, 402),
-      area(),
+      area(), "SCENE",
       'deskDrawer1',
     ]);
     const deskDrawer2 = add([
       sprite('deskDrawer'),
       scale(1.05),
       pos(471, 452),
-      area(),
+      area(), "SCENE",
       'deskDrawer2',
     ]);
 
@@ -167,7 +167,7 @@ export const createLibrary = () => {
               sprite('number4'),
               scale(2),
               pos(490, 450),
-              area(),
+              area(), "SCENE",
               'number4',
             ]);
           }
@@ -202,9 +202,9 @@ export const createLibrary = () => {
     onLoad(() => {
       add([sprite('library-up'), scale(1), area()]);
     });
-    add([rect(15, 20), opacity(0), pos(280, 185), area(), 'uninterestingBook']);
-    add([rect(15, 20), opacity(0), pos(400, 106), area(), 'uninterestingBook']);
-    add([rect(15, 20), opacity(0), pos(880, 103), area(), 'uninterestingBook']);
+    add([rect(15, 20), opacity(0), pos(280, 185), area(), "SCENE", 'uninterestingBook']);
+    add([rect(15, 20), opacity(0), pos(400, 106), area(), "SCENE", 'uninterestingBook']);
+    add([rect(15, 20), opacity(0), pos(880, 103), area(), "SCENE", 'uninterestingBook']);
     onClick('uninterestingBook', () => {
       textBubble(uninterestingBookText);
     });
@@ -213,7 +213,7 @@ export const createLibrary = () => {
       add([
         sprite('openGlassDoors'),
         scale(1.008),
-        area(),
+        area(), "SCENE",
         pos(545, 89),
         'glassDoorOpen',
       ]);
@@ -221,7 +221,7 @@ export const createLibrary = () => {
       add([
         sprite('closedGlassDoors'),
         scale(1.008),
-        area(),
+        area(), "SCENE",
         pos(545, 89),
         'glassDoorClosed',
       ]);
@@ -234,7 +234,7 @@ export const createLibrary = () => {
       add([
         sprite('openGlassDoors'),
         scale(1.008),
-        area(),
+        area(), "SCENE",
         pos(545, 89),
         'glassDoorOpen',
       ]);
@@ -247,7 +247,7 @@ export const createLibrary = () => {
       add([
         sprite('closedGlassDoors'),
         scale(1.008),
-        area(),
+        area(), "SCENE",
         pos(545, 89),
         'glassDoorClosed',
       ]);
@@ -270,7 +270,7 @@ export const createLibrary = () => {
           sprite('lamp-turned-off'),
           scale(5),
           pos(558, 190),
-          area(),
+          area(), "SCENE",
           'lampTurnedOff',
         ]);
       } else {
@@ -278,14 +278,14 @@ export const createLibrary = () => {
           sprite('lamp-turned-on'),
           scale(5),
           pos(558, 190),
-          area(),
+          area(), "SCENE",
           'lampTurnedOn',
         ]);
       }
     });
 
     if (!getGameState(roomName, 'chestOpen')) {
-      add([sprite('chestClosed'), scale(5), pos(160, 280), area(), 'chest']);
+      add([sprite('chestClosed'), scale(5), pos(160, 280), area(), "SCENE", 'chest']);
       onClick('chest', (chest) => {
         if (
           checkInventoryForItem(pryBarObj) &&
@@ -299,7 +299,7 @@ export const createLibrary = () => {
             sprite('chestOpen'),
             scale(5),
             pos(160, 280),
-            area(),
+            area(), "SCENE",
             'chestOpen',
           ]);
         } else {
@@ -307,7 +307,7 @@ export const createLibrary = () => {
         }
       });
     } else {
-      add([sprite('chestOpen'), scale(5), pos(160, 280), area(), 'chestOpen']);
+      add([sprite('chestOpen'), scale(5), pos(160, 280), area(), "SCENE", 'chestOpen']);
     }
 
     onClick('lampTurnedOff', (lampTurnedOff) => {
@@ -318,7 +318,7 @@ export const createLibrary = () => {
         sprite('lamp-turned-on'),
         scale(5),
         pos(558, 190),
-        area(),
+        area(), "SCENE",
         'lampTurnedOn',
       ]);
     });
@@ -331,7 +331,7 @@ export const createLibrary = () => {
         sprite('lamp-turned-off'),
         scale(5),
         pos(558, 190),
-        area(),
+        area(), "SCENE",
         'lampTurnedOff',
       ]);
     });

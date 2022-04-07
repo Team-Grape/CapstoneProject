@@ -28,16 +28,16 @@ export const createFirstFloorHallway = async () => {
       add([sprite("first-floor-hallway"), scale(1)]);
       // left-near-door
 
-      add([rect(160, 235), opacity(0), pos(72, 158), area(), "left-near-door"]);
-      add([rect(94, 47), opacity(0), pos(72, 392), area(), "left-near-door"]);
+      add([rect(160, 235), opacity(0), pos(72, 158), area(), "SCENE", "left-near-door"]);
+      add([rect(94, 47), opacity(0), pos(72, 392), area(), "SCENE", "left-near-door"]);
       // left-far-door
-      add([rect(140, 235), opacity(0), pos(355, 110), area(), "left-far-door"]);
+      add([rect(140, 235), opacity(0), pos(355, 110), area(), "SCENE", "left-far-door"]);
       // right-far-door
       add([
         rect(140, 235),
         opacity(0),
         pos(710, 110),
-        area(),
+        area(), "SCENE",
         "right-far-door",
       ]);
       // left-near-door
@@ -45,14 +45,14 @@ export const createFirstFloorHallway = async () => {
         rect(162, 235),
         opacity(0),
         pos(998, 158),
-        area(),
+        area(), "SCENE",
         "right-near-door",
       ]);
       add([
         rect(80, 47),
         opacity(0),
         pos(1088, 392),
-        area(),
+        area(), "SCENE",
         "right-near-door",
       ]);
 

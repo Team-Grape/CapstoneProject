@@ -33,7 +33,7 @@ export const createBedroom = () => {
         sprite('lamp-turned-off'),
         scale(6),
         pos(970, 98),
-        area(),
+        area(), "SCENE",
         'lampTurnedOff',
       ]);
     } else {
@@ -41,7 +41,7 @@ export const createBedroom = () => {
         sprite('lamp-turned-on'),
         scale(6),
         pos(970, 98),
-        area(),
+        area(), "SCENE",
         'lampTurnedOn',
       ]);
     }
@@ -54,7 +54,7 @@ export const createBedroom = () => {
         sprite('lamp-turned-on'),
         scale(6),
         pos(970, 98),
-        area(),
+        area(), "SCENE",
         'lampTurnedOn',
       ]);
     });
@@ -67,7 +67,7 @@ export const createBedroom = () => {
         sprite('lamp-turned-off'),
         scale(6),
         pos(970, 98),
-        area(),
+        area(), "SCENE",
         'lampTurnedOff',
       ]);
     });
@@ -84,14 +84,14 @@ export const createBedroom = () => {
         sprite('skeleton-stand'),
         pos(180, 320),
         scale(5),
-        area(),
+        area(), "SCENE",
         'skeletonStand',
       ]);
     });
 
     if (!getGameState(roomName, 'lock-pickPickedUp')) {
       onLoad(() => {
-        add([sprite('lock-pick'), pos(730, 344), scale(1), area(), 'lockPick']);
+        add([sprite('lock-pick'), pos(730, 344), scale(1), area(), "SCENE", 'lockPick']);
       });
     }
 
@@ -109,7 +109,7 @@ export const createBedroom = () => {
         sprite('skeleton-attack'),
         scale(5),
         pos(180, 320),
-        area(),
+        area(), "SCENE",
         'skeletonAttack',
       ]);
       skeletonAttack.play('attack', { speed: 5, loop: true });
@@ -142,7 +142,7 @@ export const createBedroom = () => {
                     sprite('key'),
                     scale(1),
                     pos(300, 400),
-                    area(),
+                    area(), "SCENE",
                     'key',
                   ]);
                 }
@@ -183,7 +183,7 @@ export const createBedroom = () => {
         sprite('lighter'),
         pos(900, 100),
         scale(0.3),
-        area(),
+        area(), "SCENE",
         'lighter',
       ]);
       onClick('lighter', (lighter) => {
@@ -200,7 +200,7 @@ export const createBedroom = () => {
         sprite('painting12'),
         scale(5),
         pos(700, 100),
-        area(),
+        area(), "SCENE",
         rotate(),
         origin('topright'),
         'painting12',
@@ -210,7 +210,7 @@ export const createBedroom = () => {
         sprite('painting12'),
         scale(5),
         pos(700, 100),
-        area(),
+        area(), "SCENE",
         rotate(-45),
         origin('topright'),
       ]);
@@ -222,7 +222,7 @@ export const createBedroom = () => {
         sprite('painting12'),
         scale(5),
         pos(700, 100),
-        area(),
+        area(), "SCENE",
         rotate(-45),
         origin('topright'),
       ]);
@@ -255,9 +255,9 @@ export const createBedroom = () => {
 
     onLoad(() => {
       add([sprite('bedroom-one-left'), scale(1)]);
-      add([sprite('door2'), pos(295, 75), scale(1.3), area(), 'door2']);
+      add([sprite('door2'), pos(295, 75), scale(1.3), area(), "SCENE", 'door2']);
       if (!getGameState(roomName, 'webBurned')) {
-        add([sprite('whole-web'), pos(220, 50), scale(8), area(), 'wholeWeb']);
+        add([sprite('whole-web'), pos(220, 50), scale(8), area(), "SCENE", 'wholeWeb']);
       } else {
         onClick('door2', door2CallBack);
       }
@@ -276,7 +276,7 @@ export const createBedroom = () => {
           sprite('flame'),
           pos(250, 50),
           scale(15),
-          area(),
+          area(), "SCENE",
           'flame',
         ]);
         flame.play('fire', { loop: true });

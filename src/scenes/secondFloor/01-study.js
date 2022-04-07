@@ -23,22 +23,22 @@ export const createStudy = async () => {
       add([sprite("study"), scale(1)]);
       add([rect(50, 28), pos(441, 335), color(0, 0, 0)]);
       add([rect(50, 28), pos(441, 372), color(0, 0, 0)]);
-      add([sprite("books"), pos(680, 260), scale(2), area(), "books"]);
-      add([sprite('white-curtains-closed'), pos(88, 88), scale(1), area(), 'closedCurtains'])
+      add([sprite("books"), pos(680, 260), scale(2), area(), "SCENE", "books"]);
+      add([sprite('white-curtains-closed'), pos(88, 88), scale(1), area(), "SCENE", 'closedCurtains'])
     });
 
     const deskDrawer1 = add([
       sprite("deskDrawer"),
       scale(1.05),
       pos(441, 335),
-      area(),
+      area(), "SCENE",
       "deskDrawer1",
     ]);
     const deskDrawer2 = add([
       sprite("deskDrawer"),
       scale(1.05),
       pos(441, 372),
-      area(),
+      area(), "SCENE",
       "deskDrawer2",
     ]);
 
@@ -72,7 +72,7 @@ export const createStudy = async () => {
           sprite("heart-key"),
           pos(441, 372),
           scale(0.8),
-          area(),
+          area(), "SCENE",
           "heartKey",
         ]);
         onClick("heartKey", (heartKey1) => {
