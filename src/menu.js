@@ -41,6 +41,8 @@ export class InGameMenu {
 
   open() {
 
+
+    // invisible box to the left of menu
     add([
       rect(width() - (width() - 1070), height()),
       pos(0,0),
@@ -49,6 +51,7 @@ export class InGameMenu {
       "continue",
       "gameMenuBox"
     ])
+    // invisible box above menu
     add([
       rect(width() - 1070, 50),
       pos(1070,0),
@@ -57,6 +60,7 @@ export class InGameMenu {
       "continue",
       "gameMenuBox"
     ])
+    // invisible box below menu
     add([
       rect(width() - 1070, height() - 275),
       pos(1070,275),
@@ -68,7 +72,7 @@ export class InGameMenu {
 
     let gameMenu = add([
       pos(1070, 50),
-      rect(160, 220),
+      rect(160, 210),
       outline(4),
       color(100, 100, 100),
       area(),
@@ -84,7 +88,7 @@ export class InGameMenu {
     ]);
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
-      pos(1080, 100),
+      pos(1080, 90),
 
       color(255, 255, 255),
       area(),
@@ -94,7 +98,7 @@ export class InGameMenu {
 
     const saveAsURL = add([
       text("Save Game\nas URL", { size: 20, font: "sinko" }),
-      pos(1080, 130),
+      pos(1080, 120),
       area(),
       "saveAsURL",
       "gameMenuBox"
@@ -102,7 +106,7 @@ export class InGameMenu {
 
     const saveAndQuit = add([
       text("Save\nand Quit", { size: 20, font: "sinko" }),
-      pos(1080, 180),
+      pos(1080, 170),
       area(),
       "saveAndQuit",
       "gameMenuBox"
@@ -110,7 +114,7 @@ export class InGameMenu {
 
     const githubLink = add([
       text("GitHub", { size: 20, font: "sinko" }),
-      pos(1120, 235),
+      pos(1120, 225),
       "github",
       "gameMenuBox"
     ])
@@ -118,14 +122,14 @@ export class InGameMenu {
     const githubLogo = add([
       sprite("github"),
       scale(.07),
-      pos(1030, 205),
+      pos(1030, 195),
       "githubLogo",
       "gameMenuBox"
     ])
 
     const githubLogoBox = add([
       rect(135,30),
-      pos(1080, 230),
+      pos(1080, 220),
       opacity(0),
       area(),
       "githubLogoBox",
