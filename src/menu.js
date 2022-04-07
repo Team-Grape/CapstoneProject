@@ -295,7 +295,7 @@ export class InGameMenu {
      ["yes", "no"].forEach((itemString) => {
 
        const [item] = get(itemString)
-       console.log("itemString", itemString, "item", item)
+//       console.log("itemString", itemString, "item", item)
 
        if (item.isHovering()) {
          item.color = rgb(255, 0, 0)
