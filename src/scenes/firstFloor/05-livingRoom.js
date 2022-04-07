@@ -230,49 +230,97 @@ export const createLivingRoom = () => {
       ]);
     });
 
-    const numberLabel1 = createNumberLabel1();
-    const numberLabel2 = createNumberLabel2();
-    const numberLabel3 = createNumberLabel3();
-    const numberLabel4 = createNumberLabel4();
-    numberLabel1.text = 0;
-    numberLabel2.text = 0;
-    numberLabel3.text = 0;
-    numberLabel4.text = 0;
-    let number1 = 0;
-    let number2 = 0;
-    let number3 = 0;
-    let number4 = 0;
+
+    if (!getGameState(roomName, "doorCode1")) {
+      window.number1 = 0;
+    } else {
+      window.number1 = getGameState(roomName, "doorCode1");
+    }
+
+    if (!getGameState(roomName, "doorCode2")) {
+      window.number2 = 0;
+    } else {
+      window.number2 = getGameState(roomName, "doorCode2");
+    }
+
+    if (!getGameState(roomName, "doorCode3")) {
+      window.number3 = 0;
+    } else {
+      window.number3 = getGameState(roomName, "doorCode3");
+    }
+
+    if (!getGameState(roomName, "doorCode4")) {
+      window.number4 = 0;
+    } else {
+      window.number4 = getGameState(roomName, "doorCode4");
+    }
+
+    const numberLabel1 = add([
+      text(window.number1, { font: "apl386", size: 20, width: 18 }),
+      pos(650, 141),
+      area(),
+      "SCENE",
+      "numberLabel1",
+    ]);
+
+    const numberLabel2 = add([
+      text(window.number2, { font: "apl386", size: 20, width: 18 }),
+      pos(670, 141),
+      area(),
+      "SCENE",
+      "numberLabel2",
+    ]);
+
+    const numberLabel3 = add([
+      text(window.number3, { font: "apl386", size: 20, width: 18 }),
+      pos(690, 141),
+      area(),
+      "SCENE",
+      "numberLabel3",
+    ]);
+
+    const numberLabel4 = add([
+      text(window.number4, { font: "apl386", size: 20, width: 18 }),
+      pos(710, 141),
+      area(),
+      "SCENE",
+      "numberLabel4",
+    ]);
 
     onClick("numberLabel1", (numberLabel1) => {
-      number1++;
-      while (number1 > 9) {
-        number1 = 0;
+      window.number1++;
+      while (window.number1 > 9) {
+        window.number1 = 0;
       }
-      numberLabel1.text = number1;
+      numberLabel1.text = window.number1;
+      setGameState(roomName, "doorCode1", window.number1)
     });
 
     onClick("numberLabel2", (numberLabel2) => {
-      number2++;
-      while (number2 > 9) {
-        number2 = 0;
+      window.number2++;
+      while (window.number2 > 9) {
+        window.number2 = 0;
       }
-      numberLabel2.text = number2;
+      numberLabel2.text = window.number2;
+      setGameState(roomName, "doorCode2", window.number2)
     });
 
     onClick("numberLabel3", (numberLabel3) => {
-      number3++;
-      while (number3 > 9) {
-        number3 = 0;
+      window.number3++;
+      while (window.number3 > 9) {
+        window.number3 = 0;
       }
-      numberLabel3.text = number3;
+      numberLabel3.text = window.number3;
+      setGameState(roomName, "doorCode3", window.number3)
     });
 
     onClick("numberLabel4", (numberLabel4) => {
-      number4++;
-      while (number4 > 9) {
-        number4 = 0;
+      window.number4++;
+      while (window.number4 > 9) {
+        window.number4 = 0;
       }
-      numberLabel4.text = number4;
+      numberLabel4.text = window.number4;
+      setGameState(roomName, "doorCode4", window.number4)
     });
 
     onClick("woodenDoor", () => {
@@ -286,65 +334,16 @@ export const createLivingRoom = () => {
       ) {
         playSFX("doorClose");
         textBubble([["Passcode is correct, enter the next room"]]);
+        delete window.number1;
+        delete window.number2;
+        delete window.number3;
+        delete window.number4;
         go("firstFloorHallwayDown");
       } else {
-        numberLabel1.text = 0;
-        numberLabel2.text = 0;
-        numberLabel3.text = 0;
-        numberLabel4.text = 0;
-        let number1 = 0;
-        let number2 = 0;
-        let number3 = 0;
-        let number4 = 0;
         textBubble([["Passcode is incorrect, try again"]]);
       }
     });
 
-    function createNumberLabel1() {
-      let number1 = 0;
-      const numberLabel1 = add([
-        text(number1, { font: "apl386", size: 20, width: 18 }),
-        pos(650, 141),
-        area(),
-        "SCENE",
-        "numberLabel1",
-      ]);
-      return numberLabel1;
-    }
-
-    function createNumberLabel2() {
-      let number2 = 0;
-      const numberLabel2 = add([
-        text(number2, { font: "apl386", size: 20, width: 18 }),
-        pos(670, 141),
-        area(),
-        "SCENE",
-        "numberLabel2",
-      ]);
-      return numberLabel2;
-    }
-    function createNumberLabel3() {
-      let number3 = 0;
-      const numberLabel3 = add([
-        text(number3, { font: "apl386", size: 20, width: 18 }),
-        pos(690, 141),
-        area(),
-        "SCENE",
-        "numberLabel3",
-      ]);
-      return numberLabel3;
-    }
-    function createNumberLabel4() {
-      let number4 = 0;
-      const numberLabel4 = add([
-        text(number4, { font: "apl386", size: 20, width: 18 }),
-        pos(710, 141),
-        area(),
-        "SCENE",
-        "numberLabel4",
-      ]);
-      return numberLabel4;
-    }
     roomNavArrows(viewDirection);
   });
   // ======================================================== //
