@@ -7,7 +7,10 @@ export const makeSceneUnclickable = () => {
   });
 };
 
-export const makeSceneClickable = () => {
+export const makeSceneClickable = async () => {
+
+  await new Promise(resolve => setTimeout(resolve, .1 * 1000));
+  
   const allScene = get("SCENE");
   //  console.log("CLICKABLE", allScene)
   allScene.forEach((item) => {

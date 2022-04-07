@@ -69,27 +69,30 @@ export class InGameMenu {
       "gameMenuBox",
     ]);
 
-    let gameMenu = add([
+    const gameMenu = add([
       pos(1070, 50),
       rect(160, 210),
       outline(4),
       color(100, 100, 100),
       "gameMenuBox",
     ]);
-    let continueButton = add([
+    const continueButton = add([
       text("Continue", { size: 20, font: "sinko" }),
       pos(1080, 60),
       color(255, 255, 255),
       area(),
       "continue",
+      "continueText",
       "gameMenuBox",
     ]);
+
+
     const optionsButton = add([
       text("Options", { size: 20, font: "sinko" }),
       pos(1080, 90),
       color(255, 255, 255),
       area(),
-      "options",
+      "optionsText",
       "gameMenuBox",
     ]);
 
@@ -97,6 +100,7 @@ export class InGameMenu {
       text("Save Game\nas URL", { size: 20, font: "sinko" }),
       pos(1080, 120),
       area(),
+      "saveAsURL",
       "saveAsURL",
       "gameMenuBox",
     ]);
@@ -112,8 +116,10 @@ export class InGameMenu {
     const githubLink = add([
       text("GitHub", { size: 20, font: "sinko" }),
       pos(1120, 225),
-      "github",
+      area(),
+      "githubText",
       "gameMenuBox",
+      "github"
     ]);
 
     const githubLogo = add([
@@ -122,6 +128,7 @@ export class InGameMenu {
       pos(1030, 195),
       "githubLogo",
       "gameMenuBox",
+      "github"
     ]);
 
     const githubLogoBox = add([
@@ -135,6 +142,7 @@ export class InGameMenu {
 
     onClick("continue", () => {
       playSFX("click");
+      highlightCanceler()
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
       makeSceneClickable();
@@ -142,14 +150,16 @@ export class InGameMenu {
 
     onClick("restart", () => {
       playSFX("click");
+      highlightCanceler()
       every("gameMenuBox", destroy);
       this.restart();
       window.localStorage.setItem("menuIsOpen", false);
     });
 
-    onClick("options", () => {
+    onClick("optionsText", () => {
       playSFX("click");
       removeInventoryDiv();
+      highlightCanceler();
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
       go("options");
@@ -157,6 +167,7 @@ export class InGameMenu {
 
     onClick("saveAndQuit", () => {
       playSFX("click");
+      highlightCanceler();
       every("gameMenuBox", destroy);
       window.localStorage.setItem("menuIsOpen", false);
       this.saveAndQuit();
@@ -196,6 +207,7 @@ export class InGameMenu {
         origin("center"),
       ]);
       fadeOutOpacity(copiedMessage, 0.125);
+      highlightCanceler();
       every("gameMenuBox", destroy);
       makeSceneClickable();
     });
@@ -204,9 +216,26 @@ export class InGameMenu {
       playSFX("click");
       window.open("https://github.com/Team-Grape/CapstoneProject");
       window.localStorage.setItem("menuIsOpen", false);
+      highlightCanceler();
       every("gameMenuBox", destroy);
       makeSceneClickable();
     });
+
+   const highlightCanceler = onUpdate(() => {
+     ["continueText", "optionsText", "saveAsURL", "saveAndQuit", "githubText"].forEach((itemString) => {
+
+       const [item] = get(itemString)
+//       console.log("itemString", itemString, "item", item)
+
+       if (item.isHovering()) {
+         item.color = rgb(255, 0, 0)
+       } else {
+         item.color = rgb(255, 255, 255)
+       }
+     })
+   })
+
+
   }
 
   restart() {
@@ -242,6 +271,7 @@ export class InGameMenu {
 
     onClick("no", () => {
       playSFX("click");
+      highlightCancelerYN();
       this.close([areYouSurePrompt, areYouSureText, yes, no]);
       window.localStorage.setItem("menuIsOpen", false);
     });
@@ -249,6 +279,7 @@ export class InGameMenu {
     onClick("yes", () => {
       window.localStorage.setItem("menuIsOpen", false);
       playSFX("click");
+      highlightCancelerYN();
       if (actionType === "restart") {
         clearLocalStorage();
         removeInventoryDiv();
@@ -258,5 +289,23 @@ export class InGameMenu {
         go("title");
       }
     });
+
+
+   const highlightCancelerYN = onUpdate(() => {
+     ["yes", "no"].forEach((itemString) => {
+
+       const [item] = get(itemString)
+       console.log("itemString", itemString, "item", item)
+
+       if (item.isHovering()) {
+         item.color = rgb(255, 0, 0)
+       } else {
+         item.color = rgb(255, 255, 255)
+       }
+     })
+   })
+
+
+
   }
 }
