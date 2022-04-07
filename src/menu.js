@@ -62,8 +62,8 @@ export class InGameMenu {
     ])
     // invisible box below menu
     add([
-      rect(width() - 1070, height() - 275),
-      pos(1070,275),
+      rect(width() - 1070, height() - 260),
+      pos(1070,260),
       opacity(0),
       area(),
       "continue",
