@@ -76,6 +76,7 @@ export class InGameMenu {
       outline(4),
       color(100, 100, 100),
       area(),
+      solid(),
       "gameMenuBox"
     ]);
     let continueButton = add([
@@ -203,6 +204,10 @@ export class InGameMenu {
 
   restart() {
     this.areYouSure("restart");
+  }
+
+  close(arrayOfComponents) {
+    arrayOfComponents.forEach((component) => component.destroy());
   }
 
   saveAndQuit() {
