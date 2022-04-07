@@ -119,7 +119,6 @@ export class InGameMenu {
       area(),
       "githubText",
       "gameMenuBox",
-      "github"
     ]);
 
     const githubLogo = add([
@@ -128,7 +127,6 @@ export class InGameMenu {
       pos(1030, 195),
       "githubLogo",
       "gameMenuBox",
-      "github"
     ]);
 
     const githubLogoBox = add([
@@ -222,9 +220,9 @@ export class InGameMenu {
     });
 
    const highlightCanceler = onUpdate(() => {
-     ["continueText", "optionsText", "saveAsURL", "saveAndQuit", "githubText"].forEach((itemString) => {
+     ["continueText", "optionsText", "saveAsURL", "saveAndQuit"].forEach((itemString) => {
 
-       const [item] = get(itemString)
+       let [item] = get(itemString)
 //       console.log("itemString", itemString, "item", item)
 
        if (item.isHovering()) {
@@ -232,7 +230,17 @@ export class InGameMenu {
        } else {
          item.color = rgb(255, 255, 255)
        }
+       
      })
+     
+     const [ghLogoBox] = get("githubLogoBox")
+     const [ghText] = get("githubText")
+     if (ghLogoBox.isHovering()) {
+       ghText.color = rgb(255, 0, 0)
+     } else {
+       ghText.color = rgb(255, 255, 255)
+     }
+     
    })
 
 
