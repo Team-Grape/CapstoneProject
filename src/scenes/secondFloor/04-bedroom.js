@@ -91,7 +91,7 @@ export const createBedroom = () => {
 
     if (!getGameState(roomName, 'lock-pickPickedUp')) {
       onLoad(() => {
-        add([sprite('lock-pick'), pos(730, 350), scale(1), area(), 'lockPick']);
+        add([sprite('lock-pick'), pos(730, 344), scale(1), area(), 'lockPick']);
       });
     }
 

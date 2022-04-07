@@ -9,6 +9,7 @@ export const createMessageLogScene = () => {
   scene("messageLog", () => {
     onLoad(() => {
       removeInventoryDiv()
+      window.localStorage.setItem("menuIsOpen", false);
     });
 
     const bookContainerDiv = document.createElement("div");

@@ -91,6 +91,7 @@ export const destroyNavArrows = () => {
   every("down-arrow", destroy);
   every("left-arrow", destroy);
   every("right-arrow", destroy);
+  every("messageLogButton", destroy);
 };
 
 export function displayMessageLog() {

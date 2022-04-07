@@ -622,12 +622,12 @@ export const loadAllSprites = () => {
   loadSprite('nun', './assets/monster/nun.jpg');
 };
 
-export const fadeOutOpacity = async (GameObj) => {
+export const fadeOutOpacity = async (GameObj, seconds = .1) => {
   let i = 1.0;
   while (i > 0) {
     GameObj.opacity = i;
     i -= 0.05;
-    await new Promise((resolve) => setTimeout(resolve, 0.1 * 1000));
+    await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   }
   GameObj.destroy();
 };
